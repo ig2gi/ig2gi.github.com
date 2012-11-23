@@ -1,0 +1,112 @@
+.counties {
+  stroke: #fff;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+
+.states {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.0px;
+}
+
+.title {
+ 	font-family: Arial;
+	font-size: 1.8em;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.usrate {
+ 	font-family: Arial;
+	font-size: 1.0em;
+	fill: #000;
+	
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.barlabel {
+ 	font-family: Arial;
+	font-size: 0.6em;
+	fill: #fff;
+	text-anchor: start;
+	dominant-baseline: central;
+	
+	--text-shadow: 3px 3px 7px #111;
+}
+
+
+.barvalue {
+ 	font-family: Arial;
+	font-size: 0.6em;
+	fill: #000;
+	text-anchor: start;
+	dominant-baseline: central;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.bartitle {
+ 	font-family: Arial;
+ 	font-weight:bold;
+	font-size: 1em;
+	fill: #000;
+}
+
+.indexbar rect {
+   stroke: white;
+   fill: steelblue;
+}
+
+
+.legendbar rect{
+   	stroke: #000;
+  
+}
+
+.frame{
+   	stroke: #000;
+  fill: none;
+  stroke-width: .1px;
+}
+
+.legend  {
+
+   font-family: Arial;
+ 	font-size: 0.7em;
+
+
+   }
+   
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+
+
+
+
+.q0-9{fill:#608321}
+.q1-9{fill:#6C9325}
+.q2-9{fill:#7AA629}
+.q3-9{fill:#84B42D}
+.q4-9{fill:#90C431}
+.q5-9{fill:#9BCE3B}
+.q6-9{fill:#A3D24B}
+.q7-9{fill:#ABD65C}
+.q8-9{fill:#B4DA6C}
+
+.p0-9{fill:#E28D8D}
+.p1-9{fill:#DE7D7D}
+.p2-9{fill:#D96D6D}
+.p3-9{fill:#D55D5D}
+.p4-9{fill:#D14D4D}
+.p5-9{fill:#CD3C3C}
+.p6-9{fill:#C33232}
+.p7-9{fill:#B22E2E}
+.p8-9{fill:#A52A2A}
