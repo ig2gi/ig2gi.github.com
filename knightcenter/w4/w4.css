@@ -10,15 +10,22 @@
   stroke-width: 1.0px;
 }
 
-.title {
+.maptitle {
  	font-family: Arial;
-	font-size: 1.8em;
+	font-size: 1.7em;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+
+.maplegendtitle {
+ 	font-family: Arial;
+	font-size: 1.5em;
 	--text-shadow: 3px 3px 7px #111;
 }
 
 .currentstate {
  	font-family: Arial;
-	font-size: 1.7em;
+	font-size: 1.2em;
 	--text-shadow: 3px 3px 7px #111;
 }
 .currentstaterate {
@@ -38,8 +45,8 @@
 .barlabel {
  	font-family: Arial;
 	font-size: 0.6em;
-	fill: #fff;
-	text-anchor: start;
+	fill: #bbb;
+	text-anchor: end;
 	dominant-baseline: central;
 	
 	--text-shadow: 3px 3px 7px #111;
@@ -48,8 +55,8 @@
 
 .barvalue {
  	font-family: Arial;
-	font-size: 0.6em;
-	fill: #000;
+	font-size: 0.5em;
+	fill: #ccc;
 	text-anchor: start;
 	dominant-baseline: central;
 	--text-shadow: 3px 3px 7px #111;
@@ -59,10 +66,11 @@
  	font-family: Arial;
  	font-weight:bold;
 	font-size: 1em;
+	text-anchor: start;
 	fill: #000;
 }
 
-.indexbar rect {
+.indexbar circle {
    stroke: white;
    fill: steelblue;
 }
@@ -70,6 +78,7 @@
 
 .legendbar rect{
    	stroke: #000;
+   	stroke-width: 1px;
   
 }
 
@@ -83,21 +92,28 @@
 
    font-family: Arial;
  	font-size: 0.7em;
+	text-anchor: end;
 
-
-   }
+ }
    
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #bbb;
   shape-rendering: crispEdges;
 }
 
-.axis text {
-  font: 10px sans-serif;
+.x.axis {
+  font-family: Arial;
+	font-size: 0.6em;
+	fill:#bbb;
 }
 
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
 
 
 
