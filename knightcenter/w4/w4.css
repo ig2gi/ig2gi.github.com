@@ -16,6 +16,17 @@
 	--text-shadow: 3px 3px 7px #111;
 }
 
+.currentstate {
+ 	font-family: Arial;
+	font-size: 1.7em;
+	--text-shadow: 3px 3px 7px #111;
+}
+.currentstaterate {
+ 	font-family: Arial;
+	font-size: 1.0em;
+	--text-shadow: 3px 3px 7px #111;
+}
+
 .usrate {
  	font-family: Arial;
 	font-size: 1.0em;

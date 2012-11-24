@@ -51,13 +51,13 @@ var index_bar = svg.append("g")
 	     
 var legend =  svg.append("g")
        	      .attr("class", "legend")
-       	     .attr('transform', 'translate(700, 120)');
+       	     .attr('transform', 'translate(350, 120)');
 
-svg.append("g").attr('transform', 'translate(0, 100)').append("rect")
+svg.append("g").attr('transform', 'translate(20, 100)').append("rect")
            		.attr("x", 0)
            		.attr("y", 0)
            		.attr("width", 280)
-           		.attr("height", 700)
+           		.attr("height", 675)
            		.attr("class","frame");
 
 
@@ -74,7 +74,7 @@ queue()
 	    .await(ready);
 	
 function us_rate(){
-	return 'US Rate (mean) = ' + rmean + '%';
+	return 'US Jobless Rate (mean) = ' + rmean + '%';
 }
 	
 function refresh(){
@@ -137,17 +137,41 @@ function ready(error, counties, states, unemployment, rates) {
       .data(states.features)
     	.enter().append("path")
       .attr("class", function(d) { return quantize(rateById[d.id]); })
-      .attr("d", path);
+      .attr("d", path)
+      .on('mouseover', function (d) {
+      				d3.select(this)
+      					.style('stroke', 'steelblue')
+      					.style('stroke-width', 4);
+      				d3.select('.currentstate').text(d.properties['name']);
+      				d3.select('.currentstaterate').text('Jobless rate = ' + rateById[d.id] + ' %');
+      		})
+      .on('mouseout', function (d) {
+      				d3.select(this)
+      					 .style('stroke', 'black')
+      					 .style('stroke-width', 1);
+      				d3.select('.currentstate').text('');
+      				d3.select('.currentstaterate').text('');
+      		});
 
 	svg.append('svg:text')
 		.attr('class', 'title')
-		.attr('transform', 'translate(700, 100)')
+		.attr('transform', 'translate(350, 100)')
 		.text(currentMonth);
 	
 	svg.append('svg:text')
 			.attr('class', 'usrate')
-			.attr('transform', 'translate(700, 120)')
+			.attr('transform', 'translate(350, 120)')
 			.text(us_rate());
+			
+	svg.append('svg:text')
+    			.attr('class', 'currentstate')
+    			.attr('transform', 'translate(750, 100)')
+    			.text('');
+    			
+        	svg.append('svg:text')
+            			.attr('class', 'currentstaterate')
+            			.attr('transform', 'translate(750, 120)')
+            			.text('');
 			
 // ---------------------------- 
 //  LEGEND
@@ -222,8 +246,8 @@ function ready(error, counties, states, unemployment, rates) {
                                     		
     svg.append('svg:text')
                                       			.attr('class', 'bartitle')
-                                      			.attr('transform', 'translate(10, 90)')
-                                      			.text("US Rate % (mean) from 2009:");
+                                      			.attr('transform', 'translate(20, 90)')
+                                      			.text("US Jobless Rate % from 2009:");
 		
 
 
