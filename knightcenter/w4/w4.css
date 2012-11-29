@@ -12,7 +12,7 @@
 
 .maptitle {
  	font-family: Arial;
-	font-size: 1.7em;
+	font-size: 1.9em;
 	font-weight:bold;
 	--text-shadow: 3px 3px 7px #111;
 }
@@ -135,7 +135,7 @@ rect.currentstate{
 
  }
    
-.legenddc  {
+.legenddc {
 
    font-family: Arial;
  	font-size: 0.8em;

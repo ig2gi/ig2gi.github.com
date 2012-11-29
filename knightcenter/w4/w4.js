@@ -6,6 +6,7 @@ var width = 1300,
 var currentMonth = 'September 2012';
 var currentIndex = 0;
 var currentstate;
+var currentstateId;
 
 var body = d3.select("body");
 
@@ -13,6 +14,7 @@ var body = d3.select("body");
 var data_unemployment;
 var data_us_rates;
 var usrates = new Array(); // TODO
+var usratesByDate = {}
 
 var rateById = {};
 var rate2009ById = {};
@@ -45,11 +47,15 @@ var index_bar = svg.append("g")
 	     
 var legend =  svg.append("g")
     .attr("class", "legend")
-    .attr('transform', 'translate(350, 100)');
+    .attr('transform', 'translate(330, 300)');
+
+var legendtitle =  svg.append("g")
+    .attr("class", "legendtitle")
+    .attr('transform', 'translate( 340, 100)');
 
 var currentstate_box =  svg.append("g")
     .attr("class", "currentstate")
-    .attr('transform', 'translate(370, 150)');
+    .attr('transform', 'translate(340, 140)');
 
 var difference_chart =  svg.append("g")
     .attr("class", "diffchart")
@@ -117,7 +123,7 @@ function quantize(r){
 *
 */
 function us_rate(){
-	return 'U.S. Rate (mean) = ' + rmean + '%';
+	return 'U.S. Rate = ' + rmean + '%';
 }
 
 /**
@@ -171,7 +177,7 @@ function draw_map(states){
       .on('mouseover', function (d) {
               var rate = rateById[d.id];
               var rate2009 = rate2009ById[d.id];
-              onstate(this, 'steelblue', 4, d.properties['name'], rate + '%', d3.format('+,.1f')( rate - rate2009 ) + '%') ;
+              onstate(this, 'steelblue', 4, d.properties['name'], d.id, rate + '%', d3.format('+,.1f')( rate - rate2009 ) + '%') ;
               s = d3.select("rect.currentstate").style("display");
               if (s == 'none'){
                 d3.select("rect.currentstate").style("display","block");
@@ -185,7 +191,8 @@ function draw_map(states){
                 }
           })
       .on('mouseout', function (d) {
-              onstate(this, 'black', 1, '',  '', '');
+              onstate(this, 'black', 1, '', d.id, '',  '', '');
+              
               if(currentstate == 'US Rate'){
                 d3.select("rect.currentstate").style("display","none");
                 d3.select("image.currentstatearrow").style("display","none");
@@ -277,7 +284,7 @@ function r_populationByNumber(n){
 /**
 *
 */
-function onstate(element, strokecolor, strokewidth, state, rate, delta){
+function onstate(element, strokecolor, strokewidth, state, stateId,  rate, delta){
 
         d3.select(element)
                 .style('stroke', strokecolor)
@@ -290,14 +297,13 @@ function onstate(element, strokecolor, strokewidth, state, rate, delta){
         d3.select('.currentstaterate')
                 .text(rate)
                 .style("fill", col);
-                
+        
+        
         currentstate = state;
+        currentstateId = stateId;
         update_differenceChart(); 
 
        
-
-        
-
         
 }
 
@@ -308,15 +314,22 @@ function onstate(element, strokecolor, strokewidth, state, rate, delta){
 */
 function draw_maplegend(){
 
-  svg.append('svg:text')
+  legendtitle.append('svg:text')
       .attr('class', 'maplegendtitle')
-      .attr('transform', 'translate(350, 100)')
+      .attr('transform', 'translate(0, 0)')
       .text(currentMonth);
   
-  svg.append('svg:text')
+  legendtitle.append('svg:text')
       .attr('class', 'usrate')
-      .attr('transform', 'translate(350, 120)')
+      .attr('transform', 'translate(0, 20)')
       .text(us_rate());
+
+  legendtitle.append("image")
+      .attr("xlink:href", "arrow-right.png")
+      .attr("x", -40)
+      .attr("y", -20)
+      .attr("width", 30)
+      .attr("height", 30);
 
 
   legend.selectAll("rect")
@@ -341,7 +354,15 @@ function draw_maplegend(){
       .attr("x", -30)
       .attr("y", function(d, i) { return 245 - i*15})
       .attr("class", "legend")
-      .text(function(d, i) { return d})
+      .text(function(d, i) { return d});
+
+  legend.append('svg:text')
+      .attr('class', 'legend')
+      .attr('x', 0)
+      .attr('y', -30)
+      //.attr('transform', 'rotate(90)')      
+      .style("font-size", "0.9em")
+      .text('Rate (%)');
 
 
 }
@@ -383,14 +404,13 @@ function draw_currentstate_box(){
       .text('Since Jan 2009');
 
   currentstate_box.append("image")
-      .attr("xlink:href", "arrow-up.png")
+      .attr("xlink:href", "arrow-right.png")
       .attr("class","currentstatearrow")
       .style("display","none")
-      .attr("x", 30)
-      .attr("y", -210)
-      .attr("transform","rotate(90)")
-      .attr("width", 40)
-      .attr("height", 40);
+      .attr("x", 170)
+      .attr("y", 30)
+      .attr("width", 30)
+      .attr("height", 30);
      
       
 
@@ -416,15 +436,16 @@ function draw_differenceChart(){
 
     difference_chart.append('svg:text')
         .attr('class', 'legenddc')
-        .attr('transform', 'translate(360, 5)')
+        .attr('transform', 'translate(320, -10)')
         .text('US Rate');
 
-    difference_chart.append('circle')
-        .attr('class', 'legenddc')
-        .attr("r", 6)
+    difference_chart.append('rect')
         .style("fill","steelblue")
-        .attr('transform', 'translate(350, 0)');
-     
+        .attr("width", 15)
+        .attr("height", 2)
+        .attr('transform', 'translate(300, -15)');
+
+
 
 }
 
@@ -443,6 +464,9 @@ if(currentstate == '')
       d3.max(usrates, function(d) { return Math.max(d[currentstate], d["US Rate"]); })
     ]);
 
+  //ydc.domain([4,15]);
+  //console.log(usrates['Missouri']);
+
   difference_chart.selectAll("clipPath").remove();
   difference_chart.selectAll(".area.above").remove();
   difference_chart.selectAll(".area.below").remove();
@@ -453,6 +477,16 @@ if(currentstate == '')
   difference_chart.selectAll(".line2").remove();
   difference_chart.selectAll(".legenddc.state").remove();
   //difference_chart.selectAll('*').remove();
+
+var dd = parseDate(currentMonth);
+ difference_chart.append("rect")
+            .attr("x",  xdc(dd) - 3)
+            .attr("y", -10)
+            .attr("width", 6)
+            .attr("height", 140)
+            .attr("class","dcpointer")
+            .attr('transform', 'translate(0, 10)')
+            .style("fill","lightgray");
 
   
 if(currentstate != 'US Rate'){
@@ -488,47 +522,63 @@ if(currentstate != 'US Rate'){
 
           difference_chart.append('svg:text')
               .attr('class', 'legenddc state')
-              .attr('transform', 'translate(430, 5)')
+              .attr('transform', 'translate(400, -10)')
               .text(currentstate);
 
-          difference_chart.append('circle')
+          difference_chart.append('rect')
               .attr('class', 'legenddc state')
-              .attr("r", 4)
+              .attr("width", 15)
+              .attr("height", 2)
               .style("fill","gray")
-              .attr('transform', 'translate(420, 0)');
+              .attr('transform', 'translate(380, -15)');
 
-  }
+          
+          if(rateById[currentstateId] != undefined){
 
-var dd = parseDate(currentMonth);
-difference_chart.append("rect")
-        .attr("x",  xdc(dd) - 6)
-        .attr("y", 0)
-        .attr("width", 6)
-        .attr("height", 130)
-        .attr("class","dcpointer")
-        .attr('transform', 'translate(0, 10)')
-        .style("fill","lightgray");
+              difference_chart.append("circle")
+                   .attr("cx", xdc(dd))
+                   .attr("cy", ydc(rateById[currentstateId]) )
+                   .attr("class","legenddc state")
+                   .attr("r", 6)
+                   .style("fill", "gray");
 
-
-
-
-difference_chart.append("path")
-        .attr("class", "line")
-        .attr("data-legend",'US Rate')
-        .attr("d", linedc);
+          }
+         
 
 
+    }
 
- difference_chart.append("g")
-        .attr("class", "y axis dc")
-        .attr("transform", "translate(-10,0)")
-        .call(ydcAxis)
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text(" Rate (%)");
+
+   
+
+
+    difference_chart.append("path")
+            .attr("class", "line")
+            .attr("data-legend",'US Rate')
+            .attr("d", linedc);
+
+    difference_chart.append("circle")
+           .attr("cx", xdc(dd) )
+           .attr("cy", ydc(rmean))
+           .attr("class","dcpointer")
+           .attr("r", 6)
+           .style("fill", "steelblue");
+          
+
+
+    difference_chart.append("g")
+            .attr("class", "y axis dc")
+            .attr("transform", "translate(-10,0)")
+            .call(ydcAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text(" Rate (%)");
+
+    
+    
 
 }
 
@@ -656,8 +706,13 @@ function indexbar_select(d){
     d3.selectAll('.' + d.date.replace(' ',''))
         .style("fill","lightcoral")
         .style("font-weight","bold");
-    currentMonth = d.month;
-    rmean = parseFloat(d.rate);
+    selectDate(d.month);
+}
+
+function selectDate(date, rate){
+
+    currentMonth = date;
+    rmean = parseFloat(usratesByDate[date]);
     refresh();
 
 }
@@ -682,6 +737,7 @@ function ready(error, counties, states, unemployment, rates) {
         obj[u.state] = u[d.month];
       });
       usrates.push(obj);
+      usratesByDate[d.month] = parseFloat(d.rate);
 
     });
 
