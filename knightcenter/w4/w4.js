@@ -3,18 +3,35 @@
 var width = 1300,
     height = 1000;
 
-//var legend_data;
+var currentMonth = 'September 2012';
+var currentIndex = 0;
+var currentstate;
+var currentstateId;
+
+var body = d3.select("body");
+
+
+var data_unemployment;
+var data_us_rates;
+var usrates = new Array(); // TODO
+var usratesByDate = {}
+
+var rateById = {};
+var rate2009ById = {};
+var rmean=7.8, rmin=0,rmax=15;
+
+var legend_data;
 
 var parseDate = d3.time.format("%B %Y").parse;
 
+var maxunemployment;
 
+var populationByState = {}
 
 
 // D3 variables ---------------------------------
 
 var path = d3.geo.path();
-
-var body = d3.select("body");
 
 var svg = d3.select("#map").append("svg")
     .attr("width", width)
@@ -80,39 +97,21 @@ queue()
 		  .defer(d3.csv, "data/US_unemployment_rate.csv")
 	    .await(ready);
 
-/*
-*
-*/
-function ready(error, counties, states, unemployment, rates) {
-
-    w4.init([unemployment, rates]);
-
-    
-    draw_maplegend();
-    draw_map(states);
-    draw_leftgraph();
-    draw_currentstate_box();
-    draw_differenceChart();
-
-    refresh();
-     
-}
-
 
 /**
 *
 */
 function quantize(r){
   var clazz;
-  if(r <= w4.rate_mean){
+  if(r <= rmean){
     l = 'q';
     quantz = d3.scale.quantize()
-        .domain([w4.rate_min, w4.rate_mean])
+        .domain([rmin, rmean])
         .range(d3.range(9));
     clazz = 'q' + quantz(r) + "-9";
   }else{
      quantz = d3.scale.quantize()
-         .domain([w4.rate_mean, w4.rate_max])
+         .domain([rmean, rmax])
          .range(d3.range(9));
      clazz = 'p' + quantz(r) + "-9";
   }
@@ -120,22 +119,35 @@ function quantize(r){
   return clazz;
 }
 
+/**
+*
+*/
+function us_rate(){
+	return 'U.S. Rate = ' + rmean + '%';
+}
 
 /**
 *
 */
 function refresh(){
 
+      data_unemployment.forEach(function(d) { rateById[d.id] = +d[currentMonth];});
+    	rmin = Number.POSITIVE_INFINITY;
+      rmax = Number.NEGATIVE_INFINITY;
+      for(k in rateById){
+        v = rateById[k];
+        if(v <= rmin) rmin = v;
+        if(v >= rmax) rmax = v;
+      }
 
-
-    	d3.select('.maplegendtitle').text(w4.currentdate);
-    	d3.select('.usrate').text(w4.usrate());
+    	d3.select('.maplegendtitle').text(currentMonth);
+    	d3.select('.usrate').text(us_rate());
     	map.selectAll("path")
-    	      .attr("class", function(d) { return quantize(w4.rateById[d.id]); })
+    	      .attr("class", function(d) { return quantize(rateById[d.id]); })
     	k = 0;
     	legend_data = new Array();
-    	step = (w4.rate_max - w4.rate_rmin) / 17;
-      for(var i = w4.rate_min; i <= w4.rate_max  ; i = i + step){
+    	step = (rmax - rmin) / 17;
+      for(var i = rmin; i <= rmax ; i = i + step){
           legend_data[k++] = parseFloat(i).toFixed(1);
       }
 
@@ -160,11 +172,11 @@ function draw_map(states){
   map.selectAll("path")
       .data(states.features)
       .enter().append("path")
-      .attr("class", function(d) { return quantize(w4.rateById[d.id]); })
+      .attr("class", function(d) { return quantize(rateById[d.id]); })
       .attr("d", path)
       .on('mouseover', function (d) {
-              var rate = w4.rateById[d.id];
-              var rate2009 = w4.rate2009ById[d.id];
+              var rate = rateById[d.id];
+              var rate2009 = rate2009ById[d.id];
               onstate(this, 'steelblue', 4, d.properties['name'], d.id, rate + '%', d3.format('+,.1f')( rate - rate2009 ) + '%') ;
               s = d3.select("rect.currentstate").style("display");
               if (s == 'none'){
@@ -173,7 +185,7 @@ function draw_map(states){
                 d3.select(".currentstatedeltainfo").style("display","block"); 
               }
                if(d.id != 0){
-                   var rate2009 = w4.rate2009ById[d.id];
+                   var rate2009 = rate2009ById[d.id];
                    d3.select('.currentstatedelta')
                       .text();
                 }
@@ -181,7 +193,7 @@ function draw_map(states){
       .on('mouseout', function (d) {
               onstate(this, 'black', 1, '', d.id, '',  '', '');
               
-              if(w4.currentstate.name == 'US Rate'){
+              if(currentstate == 'US Rate'){
                 d3.select("rect.currentstate").style("display","none");
                 d3.select("image.currentstatearrow").style("display","none");
                 d3.select(".currentstatedeltainfo").style("display","none"); 
@@ -254,8 +266,8 @@ function draw_map(states){
 
 function r_populationByStateId(stateId){
 
-  if(stateId in w4.unemployed2012ByState){
-      return r_populationByNumber(w4.unemployed2012ByState[stateId]); 
+  if(stateId in populationByState){
+      return r_populationByNumber(populationByState[stateId]); 
   }
   return 0;
 
@@ -264,7 +276,7 @@ function r_populationByStateId(stateId){
 function r_populationByNumber(n){
 
     var rm = 20; // max radius
-    return Math.sqrt(n / w4.max_unemployed2012) * rm; 
+    return Math.sqrt(n / maxunemployment) * rm; 
 
 }
 
@@ -287,7 +299,8 @@ function onstate(element, strokecolor, strokewidth, state, stateId,  rate, delta
                 .style("fill", col);
         
         
-        w4.selectState(stateId, state);
+        currentstate = state;
+        currentstateId = stateId;
         update_differenceChart(); 
 
        
@@ -304,12 +317,12 @@ function draw_maplegend(){
   legendtitle.append('svg:text')
       .attr('class', 'maplegendtitle')
       .attr('transform', 'translate(0, 0)')
-      .text(w4.currentdate);
+      .text(currentMonth);
   
   legendtitle.append('svg:text')
       .attr('class', 'usrate')
       .attr('transform', 'translate(0, 20)')
-      .text(w4.usrate());
+      .text(us_rate());
 
   legendtitle.append("image")
       .attr("xlink:href", "arrow-right.png")
@@ -320,7 +333,7 @@ function draw_maplegend(){
 
 
   legend.selectAll("rect")
-      .data(w4.ratesrange)
+      .data(legend_data)
       .enter().append("rect")
       .attr('class', 'legendbar')
       .attr("x", function(d, i) { return i*15 -250 })
@@ -336,7 +349,7 @@ function draw_maplegend(){
   
         
   legend.selectAll("text")
-      .data(w4.ratesrange)
+      .data(legend_data)
       .enter().append("text")
       .attr("x", -30)
       .attr("y", function(d, i) { return 245 - i*15})
@@ -411,8 +424,8 @@ function draw_currentstate_box(){
 */
 function draw_differenceChart(){
 
-    xdc.domain(d3.extent(w4.usrates, function(d) { return d.date; }));
-    difference_chart.datum(w4.usrates);
+    xdc.domain(d3.extent(usrates, function(d) { return d.date; }));
+    difference_chart.datum(usrates);
 
     update_differenceChart();
 
@@ -443,12 +456,12 @@ function draw_differenceChart(){
 function update_differenceChart(){
 
 
-if(w4.currentstate.name == '')
-    w4.currentstate.name = 'US Rate';
+if(currentstate == '')
+    currentstate = 'US Rate';
 
   ydc.domain([
-      d3.min(w4.usrates, function(d) { return  Math.min(d[w4.currentstate.name], d["US Rate"]); }),
-      d3.max(w4.usrates, function(d) { return Math.max(d[w4.currentstate.name], d["US Rate"]); })
+      d3.min(usrates, function(d) { return  Math.min(d[currentstate], d["US Rate"]); }),
+      d3.max(usrates, function(d) { return Math.max(d[currentstate], d["US Rate"]); })
     ]);
 
   //ydc.domain([4,15]);
@@ -465,7 +478,7 @@ if(w4.currentstate.name == '')
   difference_chart.selectAll(".legenddc.state").remove();
   //difference_chart.selectAll('*').remove();
 
-var dd = parseDate(w4.currentdate);
+var dd = parseDate(currentMonth);
  difference_chart.append("rect")
             .attr("x",  xdc(dd) - 3)
             .attr("y", -10)
@@ -476,7 +489,7 @@ var dd = parseDate(w4.currentdate);
             .style("fill","lightgray");
 
   
-if(w4.currentstate.name != 'US Rate'){
+if(currentstate != 'US Rate'){
 
           difference_chart.append("clipPath")
               .attr("id", "clip-below")
@@ -491,7 +504,7 @@ if(w4.currentstate.name != 'US Rate'){
           difference_chart.append("path")
               .attr("class", "area above")
               .attr("clip-path", "url(#clip-above)")
-              .attr("d", areadc.y0(function(d) { return ydc(d[w4.currentstate.name]); }));
+              .attr("d", areadc.y0(function(d) { return ydc(d[currentstate]); }));
 
           difference_chart.append("path")
               .attr("class", "area below")
@@ -501,7 +514,7 @@ if(w4.currentstate.name != 'US Rate'){
           var linedc2 = d3.svg.area()
               .interpolate("basis")
               .x(function(d) { return xdc(d.date); })
-              .y(function(d) { return ydc(d[w4.currentstate.name]); });
+              .y(function(d) { return ydc(d[currentstate]); });
 
           difference_chart.append("path")
               .attr("class", "line2")
@@ -510,7 +523,7 @@ if(w4.currentstate.name != 'US Rate'){
           difference_chart.append('svg:text')
               .attr('class', 'legenddc state')
               .attr('transform', 'translate(400, -10)')
-              .text(w4.currentstate.name);
+              .text(currentstate);
 
           difference_chart.append('rect')
               .attr('class', 'legenddc state')
@@ -520,11 +533,11 @@ if(w4.currentstate.name != 'US Rate'){
               .attr('transform', 'translate(380, -15)');
 
           
-          if(w4.rateById[w4.currentstate.id] != undefined){
+          if(rateById[currentstateId] != undefined){
 
               difference_chart.append("circle")
                    .attr("cx", xdc(dd))
-                   .attr("cy", ydc(w4.rateById[w4.currentstate.id]) )
+                   .attr("cy", ydc(rateById[currentstateId]) )
                    .attr("class","legenddc state")
                    .attr("r", 6)
                    .style("fill", "gray");
@@ -546,7 +559,7 @@ if(w4.currentstate.name != 'US Rate'){
 
     difference_chart.append("circle")
            .attr("cx", xdc(dd) )
-           .attr("cy", ydc(w4.rate_mean))
+           .attr("cy", ydc(rmean))
            .attr("class","dcpointer")
            .attr("r", 6)
            .style("fill", "steelblue");
@@ -600,7 +613,7 @@ function draw_leftgraph(){
 
 
   x.domain([6,11]);
-  y.domain(d3.extent(w4.usrates_rawdata, function(d) { return parseDate(d.date); }));
+  y.domain(d3.extent(data_us_rates, function(d) { return parseDate(d.date); }));
 
   index_bar.append("g")
       .attr("class", "x axis")
@@ -614,13 +627,13 @@ function draw_leftgraph(){
 
 
   index_bar.append("path")
-      .datum(w4.usrates_rawdata)
+      .datum(data_us_rates)
       .attr("class", "line")
       .attr('transform', 'translate(20, 0)')
       .attr("d", line);
 
   index_bar.selectAll("circle")
-       .data(w4.usrates_rawdata)
+       .data(data_us_rates)
        .enter().append("circle")
        .attr("cx", function(d) { return x(parseFloat(d.rate)); })
        .attr("cy", function(d) { return y(parseDate(d.date)); })
@@ -633,7 +646,7 @@ function draw_leftgraph(){
 
   
   index_bar.selectAll(".barlabel")
-      .data(w4.usrates_rawdata)
+      .data(data_us_rates)
       .enter().append("text")
       //.attr("x", function(d) { return x(parseFloat(d.rate)); })
       .attr("x", 22)
@@ -642,7 +655,7 @@ function draw_leftgraph(){
       .text(function(d,i) { return d.date});
 
   index_bar.selectAll("rect")
-      .data(w4.usrates_rawdata)
+      .data(data_us_rates)
       .enter().append("rect")
       .attr("x", 20)
       .attr("y", function(d) { return y(parseDate(d.date)) - 5; })
@@ -656,7 +669,7 @@ function draw_leftgraph(){
 
  
   index_bar.selectAll(".barvalue")            
-      .data(w4.usrates_rawdata)
+      .data(data_us_rates)
       .enter().append("text")
       .attr("x", function(d, i) { return x(parseFloat(d.rate))+ 32 ;})
       .attr("y", function(d, i) { return y(parseDate(d.date));} )
@@ -693,9 +706,77 @@ function indexbar_select(d){
     d3.selectAll('.' + d.date.replace(' ',''))
         .style("fill","lightcoral")
         .style("font-weight","bold");
-    w4.selectDate(date);
-    refresh();
+    selectDate(d.month);
 }
 
+function selectDate(date, rate){
 
+    currentMonth = date;
+    rmean = parseFloat(usratesByDate[date]);
+    refresh();
+
+}
+
+/**
+*
+*/
+function ready(error, counties, states, unemployment, rates) {
+
+    data_unemployment  = unemployment;
+    data_us_rates = rates;
+
+    data_unemployment.forEach(function(d) { rate2009ById[d.id] = +d['January 2009'];});
+    
+
+    data_us_rates.forEach(function(d){
+
+      var obj = {};
+      obj['date'] = parseDate(d.month);
+      obj['US Rate'] = parseFloat(d.rate);
+      data_unemployment.forEach(function(u,i){
+        obj[u.state] = u[d.month];
+      });
+      usrates.push(obj);
+      usratesByDate[d.month] = parseFloat(d.rate);
+
+    });
+
+    maxunemployment = 0;
+    data_unemployment.forEach(function(d) { 
+
+      populationByState[d.id] = d['sep2012N']
+      if(d['sep2012N'] > maxunemployment){
+          maxunemployment = d['sep2012N'];
+      }
+
+    });
+  
+
+
+
+    legend_data = new Array();
+    k = 0;
+    for(var i = 1; i <= 18 ; i++){
+        legend_data[k++] = i;
+    }
+    rmean = parseFloat(data_us_rates[0]['rate']);
+
+
+
+    
+    unemployment.forEach(function(d) { rateById[d.id] = +parseFloat(d[currentMonth]);});
+    
+    draw_maplegend();
+    draw_map(states);
+    draw_leftgraph();
+    draw_currentstate_box();
+
+    
+    currentstate = 'US Rate';
+    draw_differenceChart();
+    refresh();
+    
+
+     
+}
 
