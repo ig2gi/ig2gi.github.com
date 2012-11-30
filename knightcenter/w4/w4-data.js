@@ -102,7 +102,8 @@ var w4 = {
         var k = 0;
         var step = (this.rate_max - this.rate_min) / 17;
         for(var i = this.rate_min; i <= this.rate_max  ; i = i + step){
-            this.ratesrange[k++] = parseFloat(i).toFixed(1);
+            var r = parseFloat(i).toFixed(1);
+            this.ratesrange[k++] = r;
         }
 
     }, // end of selectDate

@@ -17,10 +17,32 @@
 	--text-shadow: 3px 3px 7px #111;
 }
 
+.maptitle2 {
+ 	font-family: Arial;
+	font-size: 1.6em;
+	font-weight:bold;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.info {
+ 	font-family: Arial;
+	font-size: 1.0em;
+	font-style:italic;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.monthstitle {
+ 	font-family: Arial;
+	font-size: 0.9em;
+	font-style: italic;
+	--font-weight:bold;
+	--text-shadow: 3px 3px 7px #111;
+}
+
 
 .maplegendtitle {
  	font-family: Arial;
-font-weight:bold;
+	font-weight:bold;
 	font-size: 1.5em;
 	--text-shadow: 3px 3px 7px #111;
 }
@@ -181,6 +203,10 @@ rect.currentstate{
   fill: rgb(145,207,96);
 }
 
+rect.dcpointer{
+	fill-opacity: .5;
+}
+
 
 .population.legend{
 	fill: none;
@@ -220,9 +246,9 @@ rect.currentstate{
 .q5-9{fill:#9BCE3B}
 .q6-9{fill:#A3D24B}
 .q7-9{fill:#ABD65C}
-.q8-9{fill:#B4DA6C}
+.q8-9{fill:#E2E3AC}
 
-.p0-9{fill:#E28D8D}
+.p0-9{fill:#E2E3AC}
 .p1-9{fill:#DE7D7D}
 .p2-9{fill:#D96D6D}
 .p3-9{fill:#D55D5D}
