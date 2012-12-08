@@ -1,0 +1,72 @@
+
+
+.title{
+ 	font-family: Arial;
+	font-size: 1.5em;
+	font-weight:bold;
+	text-anchor: end;
+	fill:black;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle{
+ 	font-family: Arial;
+	font-size: 1.2em;
+	text-anchor: end;
+	fill:gray;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+.graphtitle{
+ 	font-family: Arial;
+	font-size: 0.8em;
+	font-weight:bold;
+	text-anchor: end;
+	fill:black;
+	--text-shadow: 3px 3px 7px #111;
+}
+
+body.graph3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: .8em 0em 0em .8em;
+  position: relative;
+  width: 960px;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+img { 
+	display: inline-block; 
+	vertical-align: middle; 
+}
+
+.chart {
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+}
+
+text {
+  font-size: 11px;
+}
+
+.cell.title{
+	font-family: Arial;
+	font-size: 0.8em;
+	text-anchor: middle;
+	font-weight:bold;
+}
+
+rect {
+  fill: none;
+}
+
+rect.treemap{
+	fill: none;
+	stroke:gray;
+	border: 2px;
+}

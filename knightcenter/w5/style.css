@@ -38,9 +38,9 @@ footer {
 
 aside {
   font-size: small;
-  left: 1000px;
+  left: 930px;
   position: absolute;
-  text-align: right;
+  text-align: left;
   width: 180px;
 }
 
@@ -111,9 +111,23 @@ aside,
   color: #e6550d;
 }
 
-iframe {
+.iframe1 {
   width: 900px;
   height: 950px;
+  border: 1px solid #555;
+  background-color: none;
+}
+
+.iframe2 {
+  width: 900px;
+  height: 400px;
+  border: 1px solid #555;
+  background-color: none;
+}
+
+.iframe3 {
+  width: 900px;
+  height: 600px;
   border: 1px solid #555;
   background-color: none;
 }

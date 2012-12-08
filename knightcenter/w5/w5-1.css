@@ -9,6 +9,10 @@
   font: 10px sans-serif;
 }
 
+.node.depth1{
+	font-weight: bold;
+}
+
 .link {
   fill: none;
   stroke: #ccc;
