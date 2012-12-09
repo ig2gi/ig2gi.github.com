@@ -631,7 +631,7 @@ mapChart = function(){
         g.selectAll("path")
             .data(states.features)
             .enter().append("path")
-            .attr("class", function(d) { return css_color(w4.rateById[d.id]); })
+            .attr("class", function(d) { return (d.id != 51)? css_color(w4.rateById[d.id]):''; })
             .attr("d", path)
             .on('mouseover', function (d) {
                     var rate = w4.rateById[d.id];
@@ -752,8 +752,8 @@ mapChart = function(){
     // 
     function update(){
         
-        g.selectAll("path")
-            .attr("class", function(d) { return css_color(w4.rateById[d.id]); })
+         g.selectAll("path")
+            .attr("class", function(d) { return (d.id != 51)? css_color(w4.rateById[d.id]):''; })
 
     }
 
