@@ -1,12 +1,13 @@
 
 
-var width = 1300,
-    height = 1000;
+var width = 1150,
+    height = 960;
 
 
 var parseDate = d3.time.format("%B %Y").parse;
 
-
+// states json paths
+var states = {}
 
 // D3 Global variables ---------------------------------
 
@@ -625,7 +626,7 @@ mapChart = function(){
         .attr('transform', 'translate(' + posx + ',' + posy+ ')');
 
     // 
-    function draw(states){
+    function draw(){
 
         g.selectAll("path")
             .data(states.features)
@@ -662,25 +663,27 @@ mapChart = function(){
           states.features.forEach(function(d, i) {
 
                 var radius = 0;
-                if(d.id in w4.unemployed2012ByState){
+                if(d.id != 51 && d.id in w4.unemployed2012ByState){
+                    
                     radius =  bubble_radius(w4.unemployed2012ByState[d.id]); 
+                    var centroid = path.centroid(d);
+                    var angle = Math.random()*360;
+                    centroid.x = centroid[0];
+                    centroid.y = centroid[1];
+                    centroid.feature = d;
+                    g.append("circle")
+                      .attr("cx", centroid.x)
+                      .attr("cy", centroid.y)
+                      .attr("class","population")
+                      .attr("r", radius);
+                    g.append("line")
+                      .attr("x1", centroid.x)
+                      .attr("y1", centroid.y)
+                      .attr("x2", centroid.x + Math.cos(angle) * radius)
+                      .attr("y2", centroid.y + Math.sin(angle) * radius)
+                      .attr("class","population");
+
                 }
-                var centroid = path.centroid(d);
-                var angle = Math.random()*360;
-                centroid.x = centroid[0];
-                centroid.y = centroid[1];
-                centroid.feature = d;
-                g.append("circle")
-                  .attr("cx", centroid.x)
-                  .attr("cy", centroid.y)
-                  .attr("class","population")
-                  .attr("r", radius);
-                g.append("line")
-                  .attr("x1", centroid.x)
-                  .attr("y1", centroid.y)
-                  .attr("x2", centroid.x + Math.cos(angle) * radius)
-                  .attr("y2", centroid.y + Math.sin(angle) * radius)
-                  .attr("class","population");
 
           });
 
@@ -748,7 +751,7 @@ mapChart = function(){
 
     // 
     function update(){
-
+        
         g.selectAll("path")
             .attr("class", function(d) { return css_color(w4.rateById[d.id]); })
 
@@ -802,14 +805,17 @@ var components = [mapLegend, infoBox1, infoBox2, diffChart, leftBarChart, mapCha
 /*
   Ready:
 */
-function ready(error, states, unemployment, rates) {
+function ready(error, statesjson, unemployment, rates) {
 
     // init data
     w4.init([unemployment, rates]);
 
+    //
+    states = statesjson
+
     // draw D3 components
     components.forEach(function(c){
-          c.draw(states);
+          c.draw();
     });
 
     refresh();
