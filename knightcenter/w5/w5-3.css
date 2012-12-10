@@ -56,9 +56,17 @@ text {
 
 .cell.title{
 	font-family: Arial;
-	font-size: 0.8em;
+	font-size: 0.7em;
 	text-anchor: middle;
 	font-weight:bold;
+	cursor: default;
+}
+
+.cell.value{
+	font-family: Arial;
+	font-size: 0.7em;
+	text-anchor: middle;
+	cursor: default;
 }
 
 rect {
@@ -66,7 +74,15 @@ rect {
 }
 
 rect.treemap{
-	fill: none;
-	stroke:gray;
-	border: 2px;
+	fill: black;
+	stroke:black;
+	border: 1px;
+}
+
+.legend{
+	font-family: Arial;
+	font-size: 0.8em;
+	text-anchor: start;
+	font-weight:bold;
+	cursor: default;
 }
