@@ -11,36 +11,43 @@
           "name": "Upper middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "SYC", 
               "name": "Seychelles", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ZAF", 
               "name": "South Africa", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "MYT", 
               "name": "Mayotte", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MUS", 
               "name": "Mauritius", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NAM", 
               "name": "Namibia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GAB", 
               "name": "Gabon", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BWA", 
               "name": "Botswana", 
               "children": []
@@ -52,16 +59,19 @@
           "name": "Lower middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "GHA", 
               "name": "Ghana", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MRT", 
               "name": "Mauritania", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "STP", 
               "name": "Sao Tome and Principe", 
               "children": []
@@ -72,51 +82,61 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SDN", 
               "name": "Sudan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ZMB", 
               "name": "Zambia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CPV", 
               "name": "Cape Verde", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LSO", 
               "name": "Lesotho", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SEN", 
               "name": "Senegal", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "COG", 
               "name": "Congo Rep.", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SWZ", 
               "name": "Swaziland", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NGA", 
               "name": "Nigeria", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CMR", 
               "name": "Cameroon", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CIV", 
               "name": "Cote d'Ivoire", 
               "children": []
@@ -128,6 +148,7 @@
           "name": "Low income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "MDG", 
               "name": "Madagascar", 
               "children": []
@@ -138,16 +159,19 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GIN", 
               "name": "Guinea", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ETH", 
               "name": "Ethiopia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "RWA", 
               "name": "Rwanda", 
               "children": []
@@ -158,101 +182,121 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BFA", 
               "name": "Burkina Faso", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BEN", 
               "name": "Benin", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MWI", 
               "name": "Malawi", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TGO", 
               "name": "Togo", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ZWE", 
               "name": "Zimbabwe", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GMB", 
               "name": "Gambia The", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SLE", 
               "name": "Sierra Leone", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ERI", 
               "name": "Eritrea", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TZA", 
               "name": "Tanzania", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CAF", 
               "name": "Central African Republic", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GNB", 
               "name": "Guinea-Bissau", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MLI", 
               "name": "Mali", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TCD", 
               "name": "Chad", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ZAR", 
               "name": "Congo Dem. Rep.", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MOZ", 
               "name": "Mozambique", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "UGA", 
               "name": "Uganda", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BDI", 
               "name": "Burundi", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "KEN", 
               "name": "Kenya", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NER", 
               "name": "Niger", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "COM", 
               "name": "Comoros", 
               "children": []
@@ -281,41 +325,49 @@
           "name": "Upper middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "PLW", 
               "name": "Palau", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "ASM", 
               "name": "American Samoa", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MYS", 
               "name": "Malaysia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CHN", 
               "name": "China", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NIU", 
               "name": "Niue", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "THA", 
               "name": "Thailand", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NRU", 
               "name": "Nauru", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "COK", 
               "name": "Cook Islands", 
               "children": []
@@ -327,81 +379,97 @@
           "name": "Lower middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "TON", 
               "name": "Tonga", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "VUT", 
               "name": "Vanuatu", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SLB", 
               "name": "Solomon Islands", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LAO", 
               "name": "Lao PDR", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "PHL", 
               "name": "Philippines", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "IDN", 
               "name": "Indonesia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MNG", 
               "name": "Mongolia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TMP", 
               "name": "Timor-Leste", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "WSM", 
               "name": "Samoa", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "VNM", 
               "name": "Vietnam", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MHL", 
               "name": "Marshall Islands", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "FSM", 
               "name": "Micronesia Fed. Sts.", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "PNG", 
               "name": "Papua New Guinea", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "KIR", 
               "name": "Kiribati", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "FJI", 
               "name": "Fiji", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TUV", 
               "name": "Tuvalu", 
               "children": []
@@ -413,6 +481,7 @@
           "name": "Low income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "PRK", 
               "name": "Korea Dem. Rep.", 
               "children": []
@@ -423,6 +492,7 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "KHM", 
               "name": "Cambodia", 
               "children": []
@@ -434,21 +504,25 @@
           "name": "High income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "AUS", 
               "name": "Australia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "KOR", 
               "name": "Korea Rep.", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SGP", 
               "name": "Singapore", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "GUM", 
               "name": "Guam", 
               "children": []
@@ -459,36 +533,43 @@
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "PYF", 
               "name": "French Polynesia", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "NCL", 
               "name": "New Caledonia", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "MAC", 
               "name": "Macao SAR China", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "JPN", 
               "name": "Japan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NZL", 
               "name": "New Zealand", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "HKG", 
               "name": "Hong Kong SAR China", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "MNP", 
               "name": "Northern Mariana Islands", 
               "children": []
@@ -496,11 +577,6 @@
           ]
         }
       ]
-    }, 
-    {
-      "code": "SID", 
-      "name": "Small island developing states", 
-      "children": []
     }, 
     {
       "code": "NME", 
@@ -511,253 +587,21 @@
           "name": "High income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "CAN", 
               "name": "Canada", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "USA", 
               "name": "United States", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "BMU", 
               "name": "Bermuda", 
-              "children": []
-            }
-          ]
-        }
-      ]
-    }, 
-    {
-      "code": "LAC", 
-      "name": "Latin America & Caribbean", 
-      "children": [
-        {
-          "code": "UMC", 
-          "name": "Upper middle income", 
-          "children": [
-            {
-              "code": "BRA", 
-              "name": "Brazil", 
-              "children": []
-            }, 
-            {
-              "code": "JAM", 
-              "name": "Jamaica", 
-              "children": []
-            }, 
-            {
-              "code": "VEN", 
-              "name": "Venezuela RB", 
-              "children": []
-            }, 
-            {
-              "code": "CHL", 
-              "name": "Chile", 
-              "children": []
-            }, 
-            {
-              "code": "SUR", 
-              "name": "Suriname", 
-              "children": []
-            }, 
-            {
-              "code": "CUB", 
-              "name": "Cuba", 
-              "children": []
-            }, 
-            {
-              "code": "VCT", 
-              "name": "St. Vincent and the Grenadines", 
-              "children": []
-            }, 
-            {
-              "code": "PAN", 
-              "name": "Panama", 
-              "children": []
-            }, 
-            {
-              "code": "MEX", 
-              "name": "Mexico", 
-              "children": []
-            }, 
-            {
-              "code": "CRI", 
-              "name": "Costa Rica", 
-              "children": []
-            }, 
-            {
-              "code": "PER", 
-              "name": "Peru", 
-              "children": []
-            }, 
-            {
-              "code": "KNA", 
-              "name": "St. Kitts and Nevis", 
-              "children": []
-            }, 
-            {
-              "code": "LCA", 
-              "name": "St. Lucia", 
-              "children": []
-            }, 
-            {
-              "code": "ATG", 
-              "name": "Antigua and Barbuda", 
-              "children": []
-            }, 
-            {
-              "code": "ECU", 
-              "name": "Ecuador", 
-              "children": []
-            }, 
-            {
-              "code": "COL", 
-              "name": "Colombia", 
-              "children": []
-            }, 
-            {
-              "code": "GRD", 
-              "name": "Grenada", 
-              "children": []
-            }, 
-            {
-              "code": "ARG", 
-              "name": "Argentina", 
-              "children": []
-            }, 
-            {
-              "code": "DOM", 
-              "name": "Dominican Republic", 
-              "children": []
-            }, 
-            {
-              "code": "DMA", 
-              "name": "Dominica", 
-              "children": []
-            }, 
-            {
-              "code": "URY", 
-              "name": "Uruguay", 
-              "children": []
-            }
-          ]
-        }, 
-        {
-          "code": "LMC", 
-          "name": "Lower middle income", 
-          "children": [
-            {
-              "code": "BLZ", 
-              "name": "Belize", 
-              "children": []
-            }, 
-            {
-              "code": "HND", 
-              "name": "Honduras", 
-              "children": []
-            }, 
-            {
-              "code": "SLV", 
-              "name": "El Salvador", 
-              "children": []
-            }, 
-            {
-              "code": "GTM", 
-              "name": "Guatemala", 
-              "children": []
-            }, 
-            {
-              "code": "GUY", 
-              "name": "Guyana", 
-              "children": []
-            }, 
-            {
-              "code": "PRY", 
-              "name": "Paraguay", 
-              "children": []
-            }, 
-            {
-              "code": "BOL", 
-              "name": "Bolivia", 
-              "children": []
-            }, 
-            {
-              "code": "NIC", 
-              "name": "Nicaragua", 
-              "children": []
-            }
-          ]
-        }, 
-        {
-          "code": "LIC", 
-          "name": "Low income", 
-          "children": [
-            {
-              "code": "HTI", 
-              "name": "Haiti", 
-              "children": []
-            }
-          ]
-        }, 
-        {
-          "code": "HIC", 
-          "name": "High income", 
-          "children": [
-            {
-              "code": "VIR", 
-              "name": "Virgin Islands (U.S.)", 
-              "children": []
-            }, 
-            {
-              "code": "BHS", 
-              "name": "Bahamas The", 
-              "children": []
-            }, 
-            {
-              "code": "CYM", 
-              "name": "Cayman Islands", 
-              "children": []
-            }, 
-            {
-              "code": "TTO", 
-              "name": "Trinidad and Tobago", 
-              "children": []
-            }, 
-            {
-              "code": "ABW", 
-              "name": "Aruba", 
-              "children": []
-            }, 
-            {
-              "code": "BRB", 
-              "name": "Barbados", 
-              "children": []
-            }, 
-            {
-              "code": "PRI", 
-              "name": "Puerto Rico", 
-              "children": []
-            }, 
-            {
-              "code": "SXM", 
-              "name": "Sint Maarten (Dutch part)", 
-              "children": []
-            }, 
-            {
-              "code": "TCA", 
-              "name": "Turks and Caicos Islands", 
-              "children": []
-            }, 
-            {
-              "code": "MAF", 
-              "name": "St. Martin (French part)", 
-              "children": []
-            }, 
-            {
-              "code": "CUW", 
-              "name": "Curacao", 
               "children": []
             }
           ]
@@ -773,6 +617,7 @@
           "name": "Upper middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "DZA", 
               "name": "Algeria", 
               "children": []
@@ -783,21 +628,25 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TUN", 
               "name": "Tunisia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LBN", 
               "name": "Lebanon", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "IRN", 
               "name": "Iran Islamic Rep.", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "JOR", 
               "name": "Jordan", 
               "children": []
@@ -809,26 +658,31 @@
           "name": "Lower middle income", 
           "children": [
             {
+              "unfccc": "no", 
               "code": "WBG", 
               "name": "West Bank and Gaza", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SYR", 
               "name": "Syrian Arab Republic", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "YEM", 
               "name": "Yemen Rep.", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MAR", 
               "name": "Morocco", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "DJI", 
               "name": "Djibouti", 
               "children": []
@@ -839,6 +693,7 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "EGY", 
               "name": "Egypt Arab Rep.", 
               "children": []
@@ -850,31 +705,37 @@
           "name": "High income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "BHR", 
               "name": "Bahrain", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ISR", 
               "name": "Israel", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ARE", 
               "name": "United Arab Emirates", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "QAT", 
               "name": "Qatar", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MLT", 
               "name": "Malta", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SAU", 
               "name": "Saudi Arabia", 
               "children": []
@@ -894,9 +755,280 @@
       ]
     }, 
     {
-      "code": "EMU", 
-      "name": "Euro area", 
-      "children": []
+      "code": "LAC", 
+      "name": "Latin America & Caribbean", 
+      "children": [
+        {
+          "code": "UMC", 
+          "name": "Upper middle income", 
+          "children": [
+            {
+              "unfccc": "yes", 
+              "code": "BRA", 
+              "name": "Brazil", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "JAM", 
+              "name": "Jamaica", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "VEN", 
+              "name": "Venezuela RB", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "CHL", 
+              "name": "Chile", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "SUR", 
+              "name": "Suriname", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "CUB", 
+              "name": "Cuba", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "VCT", 
+              "name": "St. Vincent and the Grenadines", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "PAN", 
+              "name": "Panama", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "MEX", 
+              "name": "Mexico", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "CRI", 
+              "name": "Costa Rica", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "PER", 
+              "name": "Peru", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "KNA", 
+              "name": "St. Kitts and Nevis", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "LCA", 
+              "name": "St. Lucia", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "ATG", 
+              "name": "Antigua and Barbuda", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "ECU", 
+              "name": "Ecuador", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "COL", 
+              "name": "Colombia", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "GRD", 
+              "name": "Grenada", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "ARG", 
+              "name": "Argentina", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "DOM", 
+              "name": "Dominican Republic", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "DMA", 
+              "name": "Dominica", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "URY", 
+              "name": "Uruguay", 
+              "children": []
+            }
+          ]
+        }, 
+        {
+          "code": "LMC", 
+          "name": "Lower middle income", 
+          "children": [
+            {
+              "unfccc": "yes", 
+              "code": "BLZ", 
+              "name": "Belize", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "HND", 
+              "name": "Honduras", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "SLV", 
+              "name": "El Salvador", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "GTM", 
+              "name": "Guatemala", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "GUY", 
+              "name": "Guyana", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "PRY", 
+              "name": "Paraguay", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "BOL", 
+              "name": "Bolivia", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "NIC", 
+              "name": "Nicaragua", 
+              "children": []
+            }
+          ]
+        }, 
+        {
+          "code": "LIC", 
+          "name": "Low income", 
+          "children": [
+            {
+              "unfccc": "yes", 
+              "code": "HTI", 
+              "name": "Haiti", 
+              "children": []
+            }
+          ]
+        }, 
+        {
+          "code": "HIC", 
+          "name": "High income", 
+          "children": [
+            {
+              "unfccc": "no", 
+              "code": "VIR", 
+              "name": "Virgin Islands (U.S.)", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "BHS", 
+              "name": "Bahamas The", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "CYM", 
+              "name": "Cayman Islands", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "TTO", 
+              "name": "Trinidad and Tobago", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "ABW", 
+              "name": "Aruba", 
+              "children": []
+            }, 
+            {
+              "unfccc": "yes", 
+              "code": "BRB", 
+              "name": "Barbados", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "PRI", 
+              "name": "Puerto Rico", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "SXM", 
+              "name": "Sint Maarten (Dutch part)", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "TCA", 
+              "name": "Turks and Caicos Islands", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "MAF", 
+              "name": "St. Martin (French part)", 
+              "children": []
+            }, 
+            {
+              "unfccc": "no", 
+              "code": "CUW", 
+              "name": "Curacao", 
+              "children": []
+            }
+          ]
+        }
+      ]
     }, 
     {
       "code": "SAS", 
@@ -907,6 +1039,7 @@
           "name": "Upper middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "MDV", 
               "name": "Maldives", 
               "children": []
@@ -918,21 +1051,25 @@
           "name": "Lower middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "LKA", 
               "name": "Sri Lanka", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "PAK", 
               "name": "Pakistan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "IND", 
               "name": "India", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BTN", 
               "name": "Bhutan", 
               "children": []
@@ -949,11 +1086,13 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NPL", 
               "name": "Nepal", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BGD", 
               "name": "Bangladesh", 
               "children": []
@@ -971,71 +1110,85 @@
           "name": "Upper middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "TUR", 
               "name": "Turkey", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ROM", 
               "name": "Romania", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BLR", 
               "name": "Belarus", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MKD", 
               "name": "Macedonia FYR", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LTU", 
               "name": "Lithuania", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "AZE", 
               "name": "Azerbaijan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LVA", 
               "name": "Latvia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ALB", 
               "name": "Albania", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BIH", 
               "name": "Bosnia and Herzegovina", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "RUS", 
               "name": "Russian Federation", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MNE", 
               "name": "Montenegro", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "KAZ", 
               "name": "Kazakhstan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SRB", 
               "name": "Serbia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BGR", 
               "name": "Bulgaria", 
               "children": []
@@ -1047,36 +1200,43 @@
           "name": "Lower middle income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "UKR", 
               "name": "Ukraine", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GEO", 
               "name": "Georgia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "TKM", 
               "name": "Turkmenistan", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "KSV", 
               "name": "Kosovo", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MDA", 
               "name": "Moldova", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "UZB", 
               "name": "Uzbekistan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ARM", 
               "name": "Armenia", 
               "children": []
@@ -1088,11 +1248,13 @@
           "name": "Low income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "TJK", 
               "name": "Tajikistan", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "KGZ", 
               "name": "Kyrgyz Republic", 
               "children": []
@@ -1104,116 +1266,139 @@
           "name": "High income", 
           "children": [
             {
+              "unfccc": "yes", 
               "code": "ITA", 
               "name": "Italy", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CZE", 
               "name": "Czech Republic", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SMR", 
               "name": "San Marino", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LUX", 
               "name": "Luxembourg", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "FRA", 
               "name": "France", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "ADO", 
               "name": "Andorra", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SVK", 
               "name": "Slovak Republic", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "GIB", 
               "name": "Gibraltar", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "IRL", 
               "name": "Ireland", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "FRO", 
               "name": "Faeroe Islands", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NOR", 
               "name": "Norway", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ISL", 
               "name": "Iceland", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "CHI", 
               "name": "Channel Islands", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SVN", 
               "name": "Slovenia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "DEU", 
               "name": "Germany", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "BEL", 
               "name": "Belgium", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "ESP", 
               "name": "Spain", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "NLD", 
               "name": "Netherlands", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "DNK", 
               "name": "Denmark", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "POL", 
               "name": "Poland", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "FIN", 
               "name": "Finland", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "LIE", 
               "name": "Liechtenstein", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "IMY", 
               "name": "Isle of Man", 
               "children": []
@@ -1224,51 +1409,61 @@
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "MCO", 
               "name": "Monaco", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "CHE", 
               "name": "Switzerland", 
               "children": []
             }, 
             {
+              "unfccc": "no", 
               "code": "GRL", 
               "name": "Greenland", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "PRT", 
               "name": "Portugal", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "EST", 
               "name": "Estonia", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "SWE", 
               "name": "Sweden", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GBR", 
               "name": "United Kingdom", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "AUT", 
               "name": "Austria", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "GRC", 
               "name": "Greece", 
               "children": []
             }, 
             {
+              "unfccc": "yes", 
               "code": "HUN", 
               "name": "Hungary", 
               "children": []

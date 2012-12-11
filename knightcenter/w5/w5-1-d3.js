@@ -82,11 +82,19 @@ dendro = function(){
             .attr("dy", ".31em")
             .attr("text-anchor", function(d) { return getTextAnchor(d)})
             .attr("transform", function(d) { return getTextTransform(d); })
-            .text(function(d) { return d.name; });
+            .text(function(d) { return getText(d); });
 
         //d3.select(self.frameElement).style("height", diameter - 150 + "px");
                
 
+    }
+
+    function getText(node){
+        if (node.depth == 3){
+            var prefix = node.unfccc == 'yes' ? '[v]':'[x]';
+            return (node.x < 180) ? prefix + ' ' + node.name: node.name + ' '+ prefix;
+        }
+        return node.name;
     }
 
     //

@@ -70,6 +70,11 @@ circle.population{
 
 }
 
+circle.gdp{
+	fill:lightgray;
+
+}
+
 circle.income.selected{
 	fill:gray;
 }
@@ -172,6 +177,12 @@ rect.graph{
 	text-anchor: start;
 }
 
+.gdp.year{
+ 	font-family: Arial;
+	font-size: 0.6em;
+	text-anchor: start;
+}
+
 .population.M{
  	font-family: Arial;
 	font-size: 0.6em;
@@ -179,6 +190,12 @@ rect.graph{
 	text-anchor: start;
 }
 
+.gdp.M{
+ 	font-family: Arial;
+	font-size: 0.6em;
+	font-weight: bold;
+	text-anchor: start;
+}
 
 rect.baryear{
 	fill:#eee;
@@ -197,10 +214,16 @@ line.x.axis{
 	--fill:none;
 }
 
-path.population {
+path.population{
 			  stroke: lightgray;
 			  stroke-width:3px;
 			  fill:none;
 			}
+
+path.gdp{
+  stroke: lightgray;
+  stroke-width:3px;
+  fill:none;
+}
 
 

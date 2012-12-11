@@ -13,8 +13,11 @@ var countryByCode = {}
 // lookup table: country code -> climate data 
 var dataByCode = {}
 
-// lookup table: country code -> economy data 
-var economyByCode = {}
+// lookup table: country code -> population data 
+var populationByCode = {}
+
+// lookup table: country code -> population data 
+var gdpByCode = {}
 
 // selected country
 var currentCode;
@@ -563,7 +566,7 @@ graphClimate = function(){
 */
 graphPopulation = function(){
     
-    var posx=500, posy=220;
+    var posx=490, posy=220;
 
     var g =  svg.append("g")
         .attr("class", "select")
@@ -590,24 +593,23 @@ graphPopulation = function(){
     //
     function draw(){
 
-        g.append("g")
-              .append("text")
+      
+        g.append("text")
               .attr("class", "graphtitle")
-              .attr("y", 100)
-              .attr("x", 110)
+              .attr("y", 10)
+              .attr("x", 8)
               .attr("dy", ".71em")
-              .style("text-anchor", "middle")
+              .style("text-anchor", "start")
               .text("Population .....");
 
         g.append("image")
             .attr("xlink:href", "resources/human.png")
-            .attr("x", 160)
-            .attr("y", 70)
-            .attr("width", 20)
+            .attr("x", -8)
+            .attr("y", -5)
+            .attr("width", 10)
             .attr("height", 40);
-
-         g.append("g")
-              .append("rect")
+     
+        g.append("rect")
               .attr("class", "graph")
               .attr("y", 0)
               .attr("x", -10)
@@ -620,7 +622,7 @@ graphPopulation = function(){
     // 
     function update(){
 
-       var obj = economyByCode[currentCode]; 
+       var obj = populationByCode[currentCode]; 
        var data = []
 
        g.selectAll(".population").remove();
@@ -681,6 +683,129 @@ graphPopulation = function(){
 
 /*
   =====================================
+    Graph GDP $ Component
+  
+
+  =====================================
+*/
+graphGdp = function(){
+    
+    var posx=490, posy=80;
+
+    var g =  svg.append("g")
+        .attr("class", "select")
+        .attr('transform', 'translate(' + posx + ',' + posy + ')');
+
+    var data = {};
+
+    var x = d3.time.scale()
+            .range([0,8]);
+
+    var y = d3.scale.linear()
+            .range([100, 30]);
+
+    x.domain(years);
+
+    var line = d3.svg.line()
+            .x(function(d,i) { 
+                return x(years[i]) + 10; 
+            })
+            .y(function(d) { 
+                return y(d); 
+            });
+
+    //
+    function draw(){
+
+        g.append("text")
+              .attr("class", "graphtitle")
+              .attr("y", 12)
+              .attr("x", 42)
+              .attr("dy", ".71em")
+              .style("text-anchor", "middle")
+              .text("GDP .....");
+
+        g.append("image")
+            .attr("xlink:href", "resources/dollar.png")
+            .attr("x", -15)
+            .attr("y", 0)
+            .attr("width", 35)
+            .attr("height", 35);
+
+        g.append("rect")
+              .attr("class", "graph")
+              .attr("y", 0)
+              .attr("x", -10)
+              .attr("width", 220)
+              .attr("height", 120);
+            
+
+    }
+
+    // 
+    function update(){
+
+       var obj = gdpByCode[currentCode]; 
+       var data = []
+
+       g.selectAll(".gdp").remove();
+
+       years.forEach(function(d, i){
+            data[i] = parseFloat(obj[d.getFullYear()]) / 1000000000.0;
+            //log(data[i]);
+       });
+        min = d3.min(data, function(d) { return d; });
+        max = d3.max(data, function(d) { return d; });
+        y.domain([min,max]);
+
+      
+        g.append("path")
+            .attr("class","gdp")
+            .attr("d", line(data));
+
+        data.forEach(function(d, i){
+            var xx = x(years[i]);
+            var yy = y(d) ;
+            if(i%10 == 0){
+                g.append("circle")
+                    .attr("class","gdp")
+                    .attr("cx", xx + 13)
+                    .attr("cy", yy -3)
+                    .attr("r",6);
+                g.append("g")
+                    .append("text")
+                    .attr("class", "gdp year")
+                    .attr("y", yy + 14)
+                    .attr("x", xx + 3)
+                    .text(d3.time.format('%Y')(years[i]));
+                g.append("g")
+                    .append("text")
+                    .attr("class", "gdp M")
+                    .attr("y", yy - 12)
+                    .attr("x", xx + 3)
+                    .text(d3.format(',.2f')(d) + 'Mrd');
+            }
+
+        });
+
+
+    }
+
+   
+
+    // public
+    return {
+
+        draw: draw,
+        update: update
+
+    }
+
+
+}();
+
+/*
+  =====================================
     Graph Ocean Level Component
   
 
@@ -688,7 +813,7 @@ graphPopulation = function(){
 */
 graphOcean = function(){
     
-    var posx=460, posy=90;
+    var posx=320, posy=110;
 
     var H = 50, W = 50, A = H * W;
 
@@ -702,36 +827,43 @@ graphOcean = function(){
     //
     function draw(){
 
-
+        g.append("g")
+              .append("text")
+              .attr("class", "graphtitle")
+              .attr("y", 95)
+              .attr("x", 90)
+              .attr("dy", ".71em")
+              .style("text-anchor", "middle")
+              .text("Land Area");
 
         g.append("g")
               .append("text")
               .attr("class", "graphtitle")
-              .attr("y", 100)
-              .attr("x", 110)
+              .attr("y", 107)
+              .attr("x", 90)
               .attr("dy", ".71em")
               .style("text-anchor", "middle")
-              .text("Land Area below 5m");
+              .text("Below 5m");
 
 
         g.append("image")
             .attr("xlink:href", "resources/waves.png")
-            .attr("x", 60)
+            .attr("x", 45)
             .attr("y", 71)
             .attr("width", 90)
             .attr("height", 30);
 
         g.append("line")
-            .attr("x1", 65)
+            .attr("x1", 60)
             .attr("y1", 30)
-            .attr("x2", 150)
+            .attr("x2", 120)
             .attr("y2", 30)
             .style("stroke","black","stroke-width","0.2px");
 
         g.append("text")
               .attr("class", "tmin")
               .attr("y", 25)
-              .attr("x", 60)
+              .attr("x", 50)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
               .text("5m");
@@ -739,7 +871,7 @@ graphOcean = function(){
         g.append("text")
               .attr("class", "tmin")
               .attr("y", 25)
-              .attr("x", 170)
+              .attr("x", 140)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
               .text("5m");
@@ -748,14 +880,14 @@ graphOcean = function(){
 
         garea.append("rect")
                 .attr("class", "area5m")
-                .attr("x", 80)
+                .attr("x", 65 )
                 .attr("y", 31)
                 .attr("width", W)
                 .attr("height", H);
         garea.append("text")
                 .attr("class", "area5m")
                 .attr("y", H + 34)
-                .attr("x", 125)
+                .attr("x", 110)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
                 .text('');
@@ -765,12 +897,8 @@ graphOcean = function(){
               .attr("class", "graph")
               .attr("y", -30)
               .attr("x", 30)
-              .attr("width", 160)
-              .attr("height", 150);
-
-
-            
-
+              .attr("width", 120)
+              .attr("height", 260);
 
 
     }
@@ -829,23 +957,28 @@ graphOcean = function(){
 queue()
 	    .defer(d3.csv, "data/countries.csv")
         .defer(d3.csv, "data/climate.csv")
-        .defer(d3.csv, "data/economy.csv")
+        .defer(d3.csv, "data/population.csv")
+        .defer(d3.csv, "data/gdp.csv")
 	    .await(ready);
 
 /*
   All graphic components.
 */
-var components = [selectCountry, selectPercentile, incomeBar, graphClimate, graphPopulation, graphOcean];
+var components = [selectCountry, selectPercentile, incomeBar, graphClimate, graphPopulation,graphGdp,  graphOcean];
 
 
 /*
   Ready:
 */
-function ready(error, countries, temperatures, economy) {
+function ready(error, countries, temperatures, population, gdp) {
 
     //
-    economy.forEach(function(d){
-        economyByCode[d.code] = d;
+    population.forEach(function(d){
+        populationByCode[d.code] = d;
+    });
+    //
+    gdp.forEach(function(d){
+        gdpByCode[d.code] = d;
     });
     //
     temperatures.forEach(function(d){
