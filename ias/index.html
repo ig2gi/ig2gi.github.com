@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <link type='text/css' rel='stylesheet' href='style.css'/>
+    <script type="text/javascript">
+		function getLastMod(){
+			var page = document.getElementById('map');
+			var lastModif = new Date(page.contentWindow.document.lastModified);
+			document.getElementById('LastModified').innerHTML = lastModif.toLocaleString();
+		};
+	</script>
+</head>
+
+<body>
+<a href="www.iasociety.org"><img src="images/logo_ias.gif"/></a>
+<h1>International AIDS Society - Development Page</h1>
+
+
+
+<aside style="margin-top:-100px;" class="gist-date">Last Modification: <span id="LastModified"></span></aside>
+
+<iframe id="map" src="map.html" scrolling="no" onload="getLastMod()">
+</iframe>
+
+<aside style="margin-top:-20px;" class="gist-date">Gilbert Perrin</aside>
+
+<h3>TODOs:</h3>
+<ul>
+	<li>Specifications </li>
+	
+</ul>
+
+</body>
+
+
+
+

@@ -1,0 +1,22 @@
+.map{
+  fill: #ccc;
+  stroke: #fff;
+}
+
+path {
+  fill: #ccc;
+  stroke: #fff;
+}
+
+svg {
+  width: 1000px;
+  height: 600px;
+  border: solid 1px #ccc;
+  background: #eee;
+}
+
+line {
+    stroke: brown;
+    stroke-dasharray: 4,2;
+    }
+
