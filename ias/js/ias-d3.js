@@ -127,7 +127,7 @@ worldmap = function(){
 // Load resources.
 //
 queue()
-	    .defer(d3.json, "/data/world-countries.json")
+	    .defer(d3.json, "/ias/data/world-countries.json")
 	    .await(ready);
 
 //
