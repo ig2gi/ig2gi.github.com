@@ -12,8 +12,20 @@
 	</head>
 	<body>
 
-
+		<div id="radio">
+		    <input type="radio" id="radio1" name="radio"><label for="radio1">Choice 1</label>
+		    <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Choice 2</label>
+		    <input type="radio" id="radio3" name="radio"><label for="radio3">Choice 3</label>
+		</div>
+		 
+		<script>
+			$( "#radio" ).buttonset();
+		</script>
+		
 		<div id="map"></div>
+		<div id="info"></div>
+
+		<script src="js/lib/colorbrewer.js"></script>
 		<script src="js/ias-domain.js"></script>
 		<script src="js/ias-d3.js"></script>
 	</body>

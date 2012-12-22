@@ -1,5 +1,5 @@
 .map{
-  fill: #ccc;
+  fill: #fff;
   stroke: #fff;
 }
 
@@ -9,14 +9,54 @@ path {
 }
 
 svg {
-  width: 1000px;
-  height: 600px;
+
   border: solid 1px #ccc;
-  background: #eee;
+  background: #fff;
 }
 
 line {
     stroke: brown;
+    stroke-width:1px;
     stroke-dasharray: 4,2;
     }
 
+.node circle {
+  fill: #fff;
+  stroke: #aaa;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.title {
+  font-family: Arial;
+  font-size: 1.5em;
+  fill: #666;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle {
+  font-family: Arial;
+  font-size: 1.0em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle.cohort{
+  text-anchor: end;
+}
+
+circle.cohort{
+  fill: steelblue;
+  -- stroke-width: 1.5px;
+}

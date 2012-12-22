@@ -1,0 +1,577 @@
+{
+  "cohorts": [
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "United Kingdom", 
+        "Ireland"
+      ], 
+      "code": 1, 
+      "name": "The UK and Ireland National Study of HIV in Pregnancy and Childhood (NSHPC)", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "Recruiting", 
+      "countries": [
+        "France"
+      ], 
+      "code": 2, 
+      "name": "ANRS CO19 COVERTE", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "Recruiting", 
+      "countries": [
+        "The Netherlands"
+      ], 
+      "code": 3, 
+      "name": "ATHENA cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Austria"
+      ], 
+      "code": 4, 
+      "name": "AHIVCOS", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Greece"
+      ], 
+      "code": 5, 
+      "name": "AMACS", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "France"
+      ], 
+      "code": 6, 
+      "name": "ANRS CO4 FHDH", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 7, 
+      "name": "\"Hospital St Pierre paediatric cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Denmark"
+      ], 
+      "code": 8, 
+      "name": "DANISH HIV Cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Greece"
+      ], 
+      "code": 9, 
+      "name": "Greek Haemophilia Cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Italy"
+      ], 
+      "code": 10, 
+      "name": "Italian Master", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Switzerland"
+      ], 
+      "code": 11, 
+      "name": "Swiss HIV Cohort Study", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "Has MoCHIV nested in it"
+      ]
+    }, 
+    {
+      "status": "ANRS CO3 Aquitaine Cohort", 
+      "countries": [
+        "No data"
+      ], 
+      "code": 12, 
+      "name": "EuroCoord/COHERE", 
+      "networks": [
+        "AIDS2012", 
+        "contact for IeDEA West Africa\""
+      ]
+    }, 
+    {
+      "status": " CO11)\"", 
+      "countries": [
+        "Recruiting"
+      ], 
+      "code": 13, 
+      "name": "\"ANRS-EPF French Perinatal Cohort (CO1", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": " 2000\"", 
+      "countries": [], 
+      "code": 14, 
+      "name": "Collaborative HIV Paediatric Study (CHIPS)", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 15, 
+      "name": "EPPICC", 
+      "networks": [
+        "AIDS2012\"", 
+        "EuroCoord/COHERE"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Spain"
+      ], 
+      "code": 16, 
+      "name": "CoRISPE-cat", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 17, 
+      "name": "CoRISPE-1", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 18, 
+      "name": "Italian Register for HIV", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Germany"
+      ], 
+      "code": 19, 
+      "name": "KOMPNET", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Spain"
+      ], 
+      "code": 20, 
+      "name": "MADRID Paediatric Cohort Study", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Spain"
+      ], 
+      "code": 21, 
+      "name": "NENEXP", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 22, 
+      "name": "Victor Babies Hospitl Cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 23, 
+      "name": "Swedish paediatric cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Switzerland"
+      ], 
+      "code": 24, 
+      "name": "MoCHIV", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "Nested within Swiss HIV Cohort Study"
+      ]
+    }, 
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "Ukraine"
+      ], 
+      "code": 25, 
+      "name": "Ukranian Pediatric HIV Cohort", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "PENTA"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 26, 
+      "name": "EuroCoord/COHERE", 
+      "networks": [
+        "AIDS2012", 
+        "Carlo PENTA Meeting Contact\""
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 27, 
+      "name": "PENTA 11 long-term follow-up", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "PENTA"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 28, 
+      "name": "PENTA 5 long-term follow-up", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "PENTA"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 29, 
+      "name": "PENTA 7 long-term follow-up", 
+      "networks": [
+        "EuroCoord", 
+        "COHERE", 
+        "PENTA"
+      ]
+    }, 
+    {
+      "status": "No data ", 
+      "countries": [
+        "Kenya"
+      ], 
+      "code": 30, 
+      "name": "AMPATH", 
+      "networks": [
+        "IeDEA", 
+        "East Africa - Academic Model for Prevention and Treatment of HIV/AIDS (AMPATH)"
+      ]
+    }, 
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "Malawi", 
+        "Mozambique", 
+        "South Africa", 
+        "Zimbabwe"
+      ], 
+      "code": 31, 
+      "name": "IeDEA Southern Africa - Pediatric Cohort", 
+      "networks": [
+        "IeDEA", 
+        "Southern Africa"
+      ]
+    }, 
+    {
+      "status": " causal modeling", 
+      "countries": [
+        "Bayesian statistics and probabilities record linkage\""
+      ], 
+      "code": 32, 
+      "name": " PEPFAR\"", 
+      "networks": [
+        "NICHD", 
+        "NCI"
+      ]
+    }, 
+    {
+      "status": "Recruiting", 
+      "countries": [
+        "Zambia"
+      ], 
+      "code": 33, 
+      "name": "Centre for Infectious Research in Zambia (CIDRZ)", 
+      "networks": [
+        "IeDEA", 
+        "Southern Africa"
+      ]
+    }, 
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "Lesotho", 
+        "Zimbabwe", 
+        "Mozambique", 
+        "Tanzania"
+      ], 
+      "code": 34, 
+      "name": "SolidarMed SMART program", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 35, 
+      "name": "TREAT Asia Pediatric HIV Observational Database (TApHOD)", 
+      "networks": [
+        "AIDS2012\"", 
+        "IeDEA"
+      ]
+    }, 
+    {
+      "status": "Completed", 
+      "countries": [
+        "Uganda and Zimbabwe"
+      ], 
+      "code": 36, 
+      "name": "ARROW (AntiRetroviral Research for Watoto) Trial Cohort", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Completed", 
+      "countries": [
+        "South Africa"
+      ], 
+      "code": 37, 
+      "name": "The Africa Centre Vertical Transmission Study South Africa Query: Data Collection Interval", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 38, 
+      "name": "\"Program for HIV Prevention and Treatment (PHPT) Adult and Pediatric Cohorts", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "ongoing", 
+      "countries": [
+        "Africa and Asia"
+      ], 
+      "code": 39, 
+      "name": "Medecins Sans Frontieres (MSF)*", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "United States"
+      ], 
+      "code": 40, 
+      "name": "HIV Research Network", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "Uganda"
+      ], 
+      "code": 41, 
+      "name": "Monitoring Antiretroviral Resistance in Children (MARCH)", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Ongoing", 
+      "countries": [
+        "United States"
+      ], 
+      "code": 42, 
+      "name": "Pediatric HIV/AIDS Cohort Study (PHACS)", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Recruiting", 
+      "countries": [
+        "Curacao", 
+        "Dutch Caribbean"
+      ], 
+      "code": 43, 
+      "name": "Curacao Cohort", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 44, 
+      "name": "IMPAACT P1074", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 45, 
+      "name": "Baylor International Pediatric AIDS Initiative", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Completed", 
+      "countries": [], 
+      "code": 46, 
+      "name": "PACTG/IMPAACT 219C ", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Norway"
+      ], 
+      "code": 47, 
+      "name": "Oslo and Ulleval Hospital Cohorts", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [
+        "Jamaica"
+      ], 
+      "code": 48, 
+      "name": "Pediatric and Adolescent HIV/AIDS Cohort ", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Completed", 
+      "countries": [], 
+      "code": 49, 
+      "name": "LEGACY", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 50, 
+      "name": "PLANTA (Pediatric Latino-American Network for Treatment of AIDS)", 
+      "networks": [
+        "Independent"
+      ]
+    }
+  ], 
+  "name": "IAS DB"
+}
