@@ -459,9 +459,9 @@ cohortmap = function(){
 // Load resources.
 //
 queue()
-	    .defer(d3.json, "ias/data/world-countries.json")
-      .defer(d3.json, "ias/data/networks.json")
-      .defer(d3.json, "ias/data/ias-db.json")
+	    .defer(d3.json, "/ias/data/world-countries.json")
+      .defer(d3.json, "/ias/data/networks.json")
+      .defer(d3.json, "/ias/data/ias-db.json")
 	    .await(ready);
 
 //
