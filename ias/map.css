@@ -3,9 +3,10 @@
   stroke: #fff;
 }
 
-path {
+path.country {
   fill: #ccc;
   stroke: #fff;
+  stroke-width: 0.5px;
 }
 
 svg {
@@ -30,6 +31,11 @@ line {
   font: 10px sans-serif;
 }
 
+
+text{
+  cursor: default;
+}
+
 .link {
   fill: none;
   stroke: #ccc;
@@ -44,9 +50,17 @@ line {
   --text-shadow: 3px 3px 7px #111;
 }
 
-.subtitle {
+.subtitle.country {
   font-family: Arial;
   font-size: 1.0em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.info.country {
+  font-family: Arial;
+  font-size: 0.8em;
   fill: #aaa;
   font-weight:bold;
   --text-shadow: 3px 3px 7px #111;
@@ -60,3 +74,40 @@ circle.cohort{
   fill: steelblue;
   -- stroke-width: 1.5px;
 }
+
+
+text.pin {
+  font: 5px Arial;
+  fill: black;
+  opacity: 1;
+}
+
+path.pin{
+  fill: steelblue;
+  stroke: #333;
+  stroke-width: 0px;
+  opacity: 1;
+}
+
+
+
+text.legend  {
+
+   font-family: Arial;
+  font-size: 0.5em;
+  text-anchor: start;
+  fill: gray;
+
+ }
+
+ text.legend.title  {
+
+
+  font-size: 0.8em;
+
+ }
+
+
+
+
+

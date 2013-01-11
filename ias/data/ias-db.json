@@ -1,4 +1,99 @@
 {
+  "networks":
+    {
+  "code": "ALL", 
+  "name": "All Networks", 
+  "children": [
+    {
+      "code": "EuroCoord", 
+      "name": "EuroCoord", 
+      "children": [
+          {
+            "code": "CASCADE", 
+            "name": "CASCADE", 
+            "children": []
+          },
+          {
+            "code": "COHERE", 
+            "name": "COHERE", 
+            "children": []
+          },
+          {
+            "code": "PENTA", 
+            "name": "PENTA", 
+            "children": []
+          },
+          {
+            "code": "EPPICC", 
+            "name": "EPPICC", 
+            "children": []
+          },
+          {
+            "code": "EDCTP", 
+            "name": "EDCTP", 
+            "children": []
+          },
+          {
+            "code": "ANRS", 
+            "name": "ANRS", 
+            "children": []
+          }
+          ]
+    },
+    {
+      "code": "IeDEA", 
+      "name": "IeDEA", 
+      "children": [
+          {
+            "code": "TREATAsia", 
+            "name": "TREAT Asia", 
+            "children": []
+          },
+          {
+            "code": "CCASAnet", 
+            "name": "CCASAnet", 
+            "children": []
+          },
+          {
+            "code": "EastAfricaConsortium", 
+            "name": "East Africa Consortium", 
+            "children": []
+          },
+          {
+            "code": "CentralAfrica", 
+            "name": "Central Africa", 
+            "children": []
+          },
+          {
+            "code": "WestAfrica", 
+            "name": "West Africa", 
+            "children": []
+          },
+          {
+            "code": "SouthernAfrica", 
+            "name": "Southern Africa", 
+            "children": []
+          }
+          ]
+    },
+    {
+      "code": "PHACS", 
+      "name": "PHACS", 
+      "children": []
+    },
+    {
+      "code": "Independent", 
+      "name": "Independent", 
+      "children": []
+    },
+    {
+      "code": "Other", 
+      "name": "Other", 
+      "children": []
+    }]
+},
+
+
   "cohorts": [
     {
       "status": "Ongoing", 
@@ -28,7 +123,7 @@
     {
       "status": "Recruiting", 
       "countries": [
-        "The Netherlands"
+        "Netherlands"
       ], 
       "code": 3, 
       "name": "ATHENA cohort", 
@@ -75,9 +170,11 @@
     }, 
     {
       "status": "", 
-      "countries": [], 
+      "countries": [
+        "Belgium"
+      ], 
       "code": 7, 
-      "name": "\"Hospital St Pierre paediatric cohort", 
+      "name": "Hospital St Pierre paediatric cohort; Brussels", 
       "networks": [
         "EuroCoord", 
         "COHERE"
@@ -133,24 +230,25 @@
       ]
     }, 
     {
-      "status": "ANRS CO3 Aquitaine Cohort", 
+      "status": "No data ", 
       "countries": [
-        "No data"
+        "France"
       ], 
       "code": 12, 
-      "name": "EuroCoord/COHERE", 
+      "name": "ANRS CO3 Aquitaine Cohort", 
       "networks": [
-        "AIDS2012", 
-        "contact for IeDEA West Africa\""
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
       ]
     }, 
     {
-      "status": " CO11)\"", 
+      "status": "Recruiting", 
       "countries": [
-        "Recruiting"
+        "France"
       ], 
       "code": 13, 
-      "name": "\"ANRS-EPF French Perinatal Cohort (CO1", 
+      "name": "ANRS-EPF French Perinatal Cohort (CO1; CO10; CO11)", 
       "networks": [
         "EuroCoord", 
         "COHERE", 
@@ -172,10 +270,11 @@
       "status": "", 
       "countries": [], 
       "code": 15, 
-      "name": "EPPICC", 
+      "name": "Warsaw", 
       "networks": [
-        "AIDS2012\"", 
-        "EuroCoord/COHERE"
+        "EuroCoord", 
+        "COHERE", 
+        "EPPICC"
       ]
     }, 
     {
@@ -304,16 +403,6 @@
       "status": "", 
       "countries": [], 
       "code": 26, 
-      "name": "EuroCoord/COHERE", 
-      "networks": [
-        "AIDS2012", 
-        "Carlo PENTA Meeting Contact\""
-      ]
-    }, 
-    {
-      "status": "", 
-      "countries": [], 
-      "code": 27, 
       "name": "PENTA 11 long-term follow-up", 
       "networks": [
         "EuroCoord", 
@@ -324,7 +413,7 @@
     {
       "status": "", 
       "countries": [], 
-      "code": 28, 
+      "code": 27, 
       "name": "PENTA 5 long-term follow-up", 
       "networks": [
         "EuroCoord", 
@@ -335,7 +424,7 @@
     {
       "status": "", 
       "countries": [], 
-      "code": 29, 
+      "code": 28, 
       "name": "PENTA 7 long-term follow-up", 
       "networks": [
         "EuroCoord", 
@@ -348,7 +437,7 @@
       "countries": [
         "Kenya"
       ], 
-      "code": 30, 
+      "code": 29, 
       "name": "AMPATH", 
       "networks": [
         "IeDEA", 
@@ -363,7 +452,7 @@
         "South Africa", 
         "Zimbabwe"
       ], 
-      "code": 31, 
+      "code": 30, 
       "name": "IeDEA Southern Africa - Pediatric Cohort", 
       "networks": [
         "IeDEA", 
@@ -371,23 +460,11 @@
       ]
     }, 
     {
-      "status": " causal modeling", 
-      "countries": [
-        "Bayesian statistics and probabilities record linkage\""
-      ], 
-      "code": 32, 
-      "name": " PEPFAR\"", 
-      "networks": [
-        "NICHD", 
-        "NCI"
-      ]
-    }, 
-    {
       "status": "Recruiting", 
       "countries": [
         "Zambia"
       ], 
-      "code": 33, 
+      "code": 31, 
       "name": "Centre for Infectious Research in Zambia (CIDRZ)", 
       "networks": [
         "IeDEA", 
@@ -400,30 +477,21 @@
         "Lesotho", 
         "Zimbabwe", 
         "Mozambique", 
-        "Tanzania"
+        "United Republic of Tanzania"
       ], 
-      "code": 34, 
+      "code": 32, 
       "name": "SolidarMed SMART program", 
       "networks": [
         "Independent"
       ]
     }, 
     {
-      "status": "", 
-      "countries": [], 
-      "code": 35, 
-      "name": "TREAT Asia Pediatric HIV Observational Database (TApHOD)", 
-      "networks": [
-        "AIDS2012\"", 
-        "IeDEA"
-      ]
-    }, 
-    {
       "status": "Completed", 
       "countries": [
-        "Uganda and Zimbabwe"
+        "Uganda", 
+        "Zimbabwe"
       ], 
-      "code": 36, 
+      "code": 33, 
       "name": "ARROW (AntiRetroviral Research for Watoto) Trial Cohort", 
       "networks": [
         "Independent"
@@ -434,17 +502,19 @@
       "countries": [
         "South Africa"
       ], 
-      "code": 37, 
+      "code": 34, 
       "name": "The Africa Centre Vertical Transmission Study South Africa Query: Data Collection Interval", 
       "networks": [
         "Independent"
       ]
     }, 
     {
-      "status": "", 
-      "countries": [], 
-      "code": 38, 
-      "name": "\"Program for HIV Prevention and Treatment (PHPT) Adult and Pediatric Cohorts", 
+      "status": "Ongoing", 
+      "countries": [
+        "Thailand"
+      ], 
+      "code": 35, 
+      "name": "Program for HIV Prevention and Treatment (PHPT) Adult and Pediatric Cohorts; Thailand", 
       "networks": [
         "Independent"
       ]
@@ -454,7 +524,7 @@
       "countries": [
         "Africa and Asia"
       ], 
-      "code": 39, 
+      "code": 36, 
       "name": "Medecins Sans Frontieres (MSF)*", 
       "networks": [
         "Independent"
@@ -463,9 +533,9 @@
     {
       "status": "Ongoing", 
       "countries": [
-        "United States"
+        "United States of America"
       ], 
-      "code": 40, 
+      "code": 37, 
       "name": "HIV Research Network", 
       "networks": [
         "Independent"
@@ -476,7 +546,7 @@
       "countries": [
         "Uganda"
       ], 
-      "code": 41, 
+      "code": 38, 
       "name": "Monitoring Antiretroviral Resistance in Children (MARCH)", 
       "networks": [
         "Independent"
@@ -485,9 +555,9 @@
     {
       "status": "Ongoing", 
       "countries": [
-        "United States"
+        "United States of America"
       ], 
-      "code": 42, 
+      "code": 39, 
       "name": "Pediatric HIV/AIDS Cohort Study (PHACS)", 
       "networks": [
         "Independent"
@@ -499,7 +569,7 @@
         "Curacao", 
         "Dutch Caribbean"
       ], 
-      "code": 43, 
+      "code": 40, 
       "name": "Curacao Cohort", 
       "networks": [
         "Independent"
@@ -508,7 +578,7 @@
     {
       "status": "", 
       "countries": [], 
-      "code": 44, 
+      "code": 41, 
       "name": "IMPAACT P1074", 
       "networks": [
         "Independent"
@@ -517,8 +587,26 @@
     {
       "status": "", 
       "countries": [], 
-      "code": 45, 
+      "code": 42, 
+      "name": "Children with Early Antiretroviral Therapy (CHER)", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "", 
+      "countries": [], 
+      "code": 43, 
       "name": "Baylor International Pediatric AIDS Initiative", 
+      "networks": [
+        "Independent"
+      ]
+    }, 
+    {
+      "status": "Closed to data collection", 
+      "countries": [], 
+      "code": 44, 
+      "name": "NISDI (NICHD International Site Development Initiative) pediatric protocol", 
       "networks": [
         "Independent"
       ]
@@ -526,7 +614,7 @@
     {
       "status": "Completed", 
       "countries": [], 
-      "code": 46, 
+      "code": 45, 
       "name": "PACTG/IMPAACT 219C ", 
       "networks": [
         "Independent"
@@ -537,7 +625,7 @@
       "countries": [
         "Norway"
       ], 
-      "code": 47, 
+      "code": 46, 
       "name": "Oslo and Ulleval Hospital Cohorts", 
       "networks": [
         "Independent"
@@ -548,7 +636,7 @@
       "countries": [
         "Jamaica"
       ], 
-      "code": 48, 
+      "code": 47, 
       "name": "Pediatric and Adolescent HIV/AIDS Cohort ", 
       "networks": [
         "Independent"
@@ -557,7 +645,7 @@
     {
       "status": "Completed", 
       "countries": [], 
-      "code": 49, 
+      "code": 48, 
       "name": "LEGACY", 
       "networks": [
         "Independent"
@@ -566,7 +654,7 @@
     {
       "status": "", 
       "countries": [], 
-      "code": 50, 
+      "code": 49, 
       "name": "PLANTA (Pediatric Latino-American Network for Treatment of AIDS)", 
       "networks": [
         "Independent"
