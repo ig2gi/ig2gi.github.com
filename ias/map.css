@@ -1,3 +1,5 @@
+
+
 .map{
   fill: #fff;
   stroke: #fff;
@@ -9,11 +11,7 @@ path.country {
   stroke-width: 0.5px;
 }
 
-svg {
 
-  border: solid 1px #ccc;
-  background: #fff;
-}
 
 line {
     stroke: brown;
@@ -89,6 +87,10 @@ path.pin{
   opacity: 1;
 }
 
+circle.pin{
+  opacity: 1;
+}
+
 
 
 text.legend  {
@@ -106,6 +108,119 @@ text.legend  {
   font-size: 0.8em;
 
  }
+
+
+/**
+    HTML CSS
+
+*/
+
+aside{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  margin: 1em 1em 1em 1em;
+  font-size: small;
+  left: 810px;
+  position: absolute;
+  text-align: left;
+  width: 240px;
+  height:540px;
+  color: #636363;
+  box-shadow: 2px 3px 5px 2px #888888;
+  padding: 0.5em 0em 0em 1em;
+
+}
+
+select{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+
+  font-size: small;
+  
+  color: #636363;
+}
+
+#graphpanel{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: small;
+  width: 800px;
+  height:550px;
+
+  box-shadow: 2px 3px 5px 2px #888888;
+  padding: 0.1em 0em 0em 1em;
+  margin:0em;
+
+}
+
+#map{
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+
+}
+
+svg {
+  width: 780px;
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+
+  border-top: solid 1px #ccc;
+  background: #fff;
+}
+
+
+label.network{
+   font-size: 0.4em;
+
+}
+span.network{
+   font-size: 0.4em;
+   margin: 0em 0.2em 0em 0em;
+
+}
+
+label.network.title{
+    font-weight:bold;
+    text-decoration:underline;
+
+}
+
+input.network{
+  background: red;
+}
+
+
+
+
+#wrapper {
+  max-width: 200px;
+  overflow: auto; 
+  padding: 0em 0em 0em 1em;  
+}
+
+#Other{
+  max-width: 200px;
+  overflow: auto; 
+  padding: 0em 0em 0em 1em; 
+  width: 200px;
+}
+
+#EuroCoord {
+  width: 80px;
+  height: 140px;
+  overflow: auto;
+  --background-color: yellow;
+}
+
+#IeDEA {
+      max-width: 120px;
+     -- background-color: cyan;
+}
+.fl {
+  float: left;
+}
+
+.clr {
+  clear: both;
+}
+
 
 
 

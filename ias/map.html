@@ -1,33 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 	<meta charset="utf-8">
+	
 	<head>
 	    <link type='text/css' rel='stylesheet' href='map.css'/>
 	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 	    <script src="http://d3js.org/d3.v3.min.js"></script>
 		<script src="http://d3js.org/queue.v1.min.js"></script>
-		<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-	    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-
 	</head>
+
 	<body>
 
-		<div id="radio">
-		    <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">HIV Prevalence Rate (2011)</label>
-		    <input type="radio" id="radio2" name="radio" ><label for="radio2">ARV Treatment Coverage Rate</label>
+		<div id="graphpanel">
+
+			<h4 style="color:steelblue">CIPHER Interactive Map of Cohorts</h4>
+			<!-- Map Panel (SVG) -->
+			<div id="map"></div>
+			<!-- Legend Panel (SVG) -->
+			<div id="legend"></div>
+
 		</div>
-		 
-		<script>
-			$( "#radio" ).buttonset();
-		</script>
 		
-		<div id="map"></div>
-		<div id="legend"></div>
-		<div id="info"></div>
+		
+		<!-- Filter Panel (HTML) -->
+		<div id="filter">
+			
+			<aside style="margin-top:-550px;margin-left:30px;">
+				
+					<h4 style="color:steelblue">Options</h4>
+					
+					<b>Background Information:</b><br>
+					<select id="backgroundInfo" name="backgroundInfo">
+					    <option value ="HIV" selected>HIV Prevalence Rate</option>
+					    <option value ="ARV">ARV Treatment Coverage Rate</option>
+					</select>​
+					
+					<br><br>
+					
+					<b>Filtering Cohorts:</b><br>
+					. Year of Initiation &gt;
+					<select id="year" name="year">
+						<option value ="1980" selected>1980</option>
+					</select>
+
+					<br>
+					. Networks:<br><br>
+					 <div id="wrapper">
+						<div id="EuroCoord" class="fl"></div>
+						<div id="IeDEA" class="fl"></div>
+						<div class="clr"></div>
+					</div>
+					<div id="Other"></div>
+					<br><br><br><br>
+					<br><br>
+
+					<b>View:</b><br>
+					. Pins:<input type="checkbox" id="viewCountryPins">
+					<label for="viewCountryPins">Country</label>
+					<input type="checkbox" id="viewCohortPins">
+					<label for="viewCohortPins" checked="checked">Cohort</label>
+				
+			</aside>
+
+		</div>
 
 		<script src="js/lib/colorbrewer.js"></script>
+		<script src="js/ias-config.js"></script>
+		<script src="js/ias-filter.js"></script>
 		<script src="js/ias-model.js"></script>
 		<script src="js/ias-graph.js"></script>
 		<script src="js/ias-app.js"></script>
+
 	</body>
+
 </html>

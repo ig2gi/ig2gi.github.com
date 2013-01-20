@@ -1,181 +1,190 @@
 /**
-* IAS (International AIDS Society). 
-*
-* @author Gilbert Perrin (gilbert.perrin@gmail.com)
-* @year 2013
-*/
+ * ---------------------------------
+ * IAS (International AIDS Society)
+ * ---------------------------------
+ *
+ *
+ * @author Gilbert Perrin (gilbert.perrin@gmail.com)
+ * @year 2013
+ */
 var IAS = IAS || {};
-IAS.model = (function(){
+IAS.model = (function () {
+	"use strict";
 
+	var that    = {},
+		log 	= IAS.log;
 
-	// log wrapper
-	var log = log || function(){
-	    if(console && console.log)
-	      console.log.apply(console, arguments);
-	}
-
-	var _ias = {};
-
-	 // GEO JSON world countries
-	_ias.worldJson = {};
+	// GEO JSON world countries
+	that.worldJson = {};
 
 	// Network JSON data
-	_ias.networks =  {};
+	that.networks = {};
 
-	//
-	_ias.countries = [];
+	// all countries references
+	that.allcountries = [];
 
-	//
-	_ias.hivRatesRange = [];
+	// lookup table Country Code <-> Country object
+	that.allcountriesByName = {};
 
-	// Lookup table Country Code <-> Country object
-	_ias.countriesByName =  {};
+	// country references with cohorts only
+	that.countriesWithCohorts = [];
 
-	//
-	_ias.cohorts =  [];
+	// all cohort references
+	that.cohorts = [];
 
-
+	// 
+	that.hivRatesRange = [];
 
 	//
 	// Country Object Prototype
 	//
-	Country = {
+	var Country = {
 
-		feature: {}, // JSON feature object
-		networks: [],
-		cohorts: [],
-		hivPrevalenceRate: undefined,
+			feature: {},
+			// JSON feature object
+			networks: [],
+			cohorts: [],
+			hivPrevalenceRate: undefined,
 
-		id: function(){
-			return this.feature.id;
-		},
+			id: function () {
+				return this.feature.id;
+			},
 
-		name: function(){
-			return this.feature.properties.name;
-		},
+			name: function () {
+				return this.feature.properties.name;
+			},
 
-		numberOfCohorts: function(){
-			return this.cohorts ? this.cohorts.length : 0;
-		},
+			numberOfCohorts: function () {
+				return this.cohorts ? this.cohorts.length : 0;
+			}
 
+		};
 
-	}; // end of country prototype
+	var CountryData = {
 
+			countryId: "",
+			size: 0
 
+		};
 
 	//
 	// Cohort Object Prototype
 	//
-	Cohort = {
+	var Cohort = {
 
-		status: "",
-		code: "",
-		name: "",
-		networks: [],
-		countries: [],
+			status: "",
+			code: "",
+			name: "",
+			year: 1980,
+			objectives: "",
+			size: 0,
+			networks: [],
+			countryData: {},
 
-	}; // end of cohort prototype
+			getCountryData: function (countryId) {
+				return this.countryData[countryId];
+			},
 
-
-
-	//
-	// INIT FUNCTION
-	//
-	_ias.init = function(world, iasdb, hivrates){
-
-		this.worldJson = world;
-		this.networks = iasdb['networks'];
-		
-		// init countries
-		this.worldJson.features.forEach(function (f){
-			addCountry(f);
-		});
-		hivrates.forEach(function(r){
-			c = _ias.countriesByName[r.country];
-			if (c !== undefined){
-				c.hivPrevalenceRate = parseFloat(r.rate);
-				_ias.hivRatesRange.push(r.rate);
-			}else{
-				log('no country found for ' + r.country);
+			addCountryData: function (id, size) {
+				var d = Object.create(CountryData);
+				d.countryId = id;
+				d.size = size;
+				this.countryData[id] = d;
 			}
-		});
 
-		// init cohorts
-		iasdb['cohorts'].forEach(function(d){
-			addCohort(d);
-		});
+		};
 
-
-
-		//log(this);
-
-	};
-
-	//
-	//
-	//
-	_ias.getCountry = function(name){
-
-		var c = _ias.countriesByName[name];
-		return c;
-	
-	}
-
-
-
-
-	// PRIVATE:
 
 	//
 	// ADD COUNTRY FUNCTION
 	//
-	addCountry = function(feature){
+	function addCountry(feature) {
 
 		var c = Object.create(Country);
 		c.feature = feature;
 		c.cohorts = [];
-		_ias.countries.push(c);
-		_ias.countriesByName[c.name()] = c;
+		that.allcountries.push(c);
+		that.allcountries.push(c);
+		that.allcountriesByName[c.name()] = c;
 
-
-	};
+	}
 
 	//
 	// ADD COHORT FUNCTION
 	//
-	addCohort = function(cohortJson){
+	function addCohort(cohortJson) {
 
 		var c = Object.create(Cohort);
 		c.status = cohortJson.status;
 		c.code = cohortJson.code;
 		c.name = cohortJson.name;
-		c.countries = [];
-		cohortJson.countries.forEach(function(d){
-			var country = _ias.countriesByName[d];
-			if(country){
-				c.countries.push(country);
+		c.objectives = cohortJson.objectives;
+		c.year = cohortJson.year;
+		c.size = cohortJson.size;
+		c.countryData = {};
+		cohortJson.countries.forEach(function (d) {
+			var country = that.allcountriesByName[d];
+			if (country) {
+				c.addCountryData(country.id(), 10);
 				country.cohorts.push(c); // bidirectional link
 				country.networks = [];
 				country.networks.push(cohortJson.networks);
+			} else {
+				log("no country found for " + d);
 			}
-			else log("no country found for " + d)
 		});
 		c.networks = cohortJson.networks;
-		_ias.cohorts.push(c);
+		that.cohorts.push(c);
+
+	}
+
+	//
+	// INIT FUNCTION
+	//
+	that.init = function (world, networksJson, cohortsJson, hivrates) {
+
+		that.worldJson = world;
+		that.networks = networksJson.networks;
+
+		// init countries
+		that.worldJson.features.forEach(function (f) {
+			addCountry(f);
+		});
+		hivrates.forEach(function (r) {
+			var c = that.allcountriesByName[r.country];
+			if (c !== undefined) {
+				c.hivPrevalenceRate = parseFloat(r.rate);
+				that.hivRatesRange.push(r.rate);
+			} else {
+				log('no country found for ' + r.country);
+			}
+		});
+
+		// init cohorts
+		cohortsJson.cohorts.forEach(function (d) {
+			addCohort(d);
+		});
+
+		//
+		that.allcountries.forEach(function (c) {
+			if (c.numberOfCohorts() > 0) {
+				that.countriesWithCohorts.push(c);
+			}
+		});
+
+	};
+
+	//
+	// Returns Country object from the given country name.
+	//
+	that.getCountry = function (name) {
+
+		var c = that.allcountriesByName[name];
+		return c;
 
 	};
 
 
+	return that;
 
-	return _ias;
-
-
-
-
-}());// end of IAS module
-
-
-
-
-
-
+}()); // end of IAS module

@@ -1,0 +1,93 @@
+{
+  "networks": [
+	{
+	"code": "EuroCoord", 
+	"name": "EuroCoord", 
+	"children": [
+		{
+			"code": "CASCADE", 
+			"name": "CASCADE", 
+			"children": []
+		},
+		{
+			"code": "COHERE", 
+			"name": "COHERE", 
+			"children": []
+		},
+		{
+			"code": "PENTA", 
+			"name": "PENTA", 
+			"children": []
+		},
+		{
+			"code": "EPPICC", 
+			"name": "EPPICC", 
+			"children": []
+		},
+		{
+			"code": "EDCTP", 
+			"name": "EDCTP", 
+			"children": []
+		},
+		{
+			"code": "ANRS", 
+			"name": "ANRS", 
+			"children": []
+		}
+		]
+	},
+	{
+	"code": "IeDEA", 
+	"name": "IeDEA", 
+	"children": [
+		{
+			"code": "TREATAsia", 
+			"name": "TREAT Asia", 
+			"children": []
+		},
+		{
+			"code": "CCASAnet", 
+			"name": "CCASAnet", 
+			"children": []
+		},
+		{
+			"code": "EastAfricaConsortium", 
+			"name": "East Africa Consortium", 
+			"children": []
+		},
+		{
+			"code": "CentralAfrica", 
+			"name": "Central Africa", 
+			"children": []
+		},
+		{
+			"code": "WestAfrica", 
+			"name": "West Africa", 
+			"children": []
+		},
+		{
+			"code": "SouthernAfrica", 
+			"name": "Southern Africa", 
+			"children": []
+		}
+		]
+	},
+	{
+	"code": "Other", 
+	"name": "Other", 
+	"children": [
+		{
+		"code": "PHACS", 
+		"name": "PHACS", 
+		"children": []
+		},
+		{
+		"code": "Independent", 
+		"name": "Independent", 
+		"children": []
+		}
+	]
+	}
+]
+
+}
