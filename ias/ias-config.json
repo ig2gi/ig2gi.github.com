@@ -1,0 +1,35 @@
+{
+	"map":{
+		"width": 780,
+		"height": 400,
+		"cohort": {
+			"fullProfile": "http://blablabla/cohort/$code$",
+			"pinsize": 5,
+			"pincolor": "#555",
+			"pinsymbol": "square",
+			"link": {
+				"interpolate": "cardinal"
+			},
+			"limit": 150000
+		},
+		"background":{
+			"scheme": "Reds",
+			"maxColors": 6,
+			"opacity": 0.8
+		},
+		"tooltip": {
+			"country": [20, 270],
+			"cohort": [550, 120]
+		}
+	},
+
+	"legend":{
+		"width": 780,
+		"height": 80
+	},
+
+	"filter": {
+		"status": ["All", "Ongoing","Closed"]
+	}
+
+}

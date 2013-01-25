@@ -11,6 +11,7 @@ IAS.app = (function () {
     "use strict";
 
     var that    = {},
+        util    = IAS.util,
         model   = IAS.model,
         graph   = IAS.graph,
         filter  = IAS.filter,
@@ -32,13 +33,14 @@ IAS.app = (function () {
     //
     // Ready function
     //
-    function ready(error, world, centroids, networks, cohorts, hivrates) {
+    function ready(error, configuration, world, centroids, networks, cohorts, hivrates) {
 
         if (error) {
             log(error);
         }
 
         // init IAS modules
+        util.init(configuration);
         filter.init(networks);
         model.init(world, networks, cohorts, hivrates);
         graph.init(centroids);
@@ -59,7 +61,8 @@ IAS.app = (function () {
     //
     that.load = function () {
 
-        queue().defer(d3.json, "/ias/data/world-countries.json")
+        queue().defer(d3.json, "/ias/ias-config.json")
+            .defer(d3.json, "/ias/data/world-countries.json")
             .defer(d3.json, "/ias/data/centroids.json")
             .defer(d3.json, "/ias/data/ias-networks.json")
             .defer(d3.json, "/ias/data/ias-cohorts.json")

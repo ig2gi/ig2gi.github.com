@@ -14,7 +14,8 @@ IAS.filter = (function () {
         listeners   = [],
         years       = [],
         log         = IAS.log,
-        config      = IAS.config,
+        util        = IAS.util,
+        config      = {},
         y;
 
     that.backgroundInfo     = "";
@@ -22,6 +23,7 @@ IAS.filter = (function () {
     that.viewCountryPins    = false;
     that.viewCohortPins     = true;
     that.networks           = {};
+    that.enrollmentStatus   = "All";
 
     for (y = 1980; y <= 2013; y++) {
         years.push(y);
@@ -76,28 +78,28 @@ IAS.filter = (function () {
         .text(function (d) {return d; });
 
     //
-    // View Options
-    //
-    d3.select("#viewCountryPins")
-        .on("click", function (d) {
-            that.viewCountryPins = this.checked;
-            dispatchFilterEvent();
-        });
-
-    d3.select("#viewCohortPins")
-        .attr("checked", true)
-        .on("click", function (d) {
-            that.viewCohortPins = this.checked;
-            dispatchFilterEvent();
-        });
-
-    //
     // INIT FUNCTION
     //
     that.init = function (networksJson) {
 
+        config = IAS.util.config;
+
         var n = networksJson.networks,
-                data, nodeEnter;
+            data,
+            nodeEnter;
+
+        d3.select("#status")
+            .on("change", function (y) {
+                that.enrollmentStatus = this.options[this.selectedIndex].value;
+                dispatchFilterEvent();
+            })
+            .selectAll("option")
+            .data(config.filter.status)
+            .enter()
+            .append("option")
+            .attr("value", function (d) {return d; })
+            .text(function (d) {return d; });
+
 
          //
         function getClass(network, networkParent) {
@@ -113,14 +115,14 @@ IAS.filter = (function () {
             if (code === "EuroCoord" || code === "IeDEA" || code === "Other") {
                 return "white";
             }
-            return config.networkColors.getColor(code, parentNetwork);
+            return util.networkColor.getColor(code, parentNetwork);
         }
 
         //
         function click(input, network) {
             var code = network.code;
             if (code === "EuroCoord" || code === "IeDEA" || code === "Other") {
-                d3.selectAll("input.network." + code).each(function(n) {
+                d3.selectAll("input.network." + code).each(function (n) {
                     d3.select(this).property("checked", input.checked);
                     that.networks[n.code] = input.checked;
                 });
@@ -134,13 +136,15 @@ IAS.filter = (function () {
         ["EuroCoord", "IeDEA", "Other"].forEach(function (d, index) {
 
             data = n[index].children;
-            data.forEach(function(d) {
+            data.forEach(function (d) {
                 that.networks[d.code] = true;
             });
             data.unshift({code: d, name: d});
             nodeEnter = d3.select("#" + d).selectAll("div")
-                            .data(data)
-                            .enter().append("div");
+                        .data(data)
+                        .enter()
+                        .append("div")
+                        .attr("class", function (v) {return d !== v.code ? "subnetwork" : "network"; });
 
             nodeEnter.append("input")
                 .attr("checked", true)
@@ -152,14 +156,15 @@ IAS.filter = (function () {
             nodeEnter.append("span")
                 .attr("class", "network")
                 .style("background", function (v) {return color(v.code, d); })
-                .text("  ");
+                .style("color", function (v) {return color(v.code, d); })
+                .text('\u0020.\u0020');
 
             nodeEnter.append("label")
                 .attr("class", function (v) {return d === v.code ? "network title" : "network"; })
                 .attr("for", function (d) {return 'n' + d.code; })
                 .text(function (d) {return d.name; });
 
-            if (d !== "Other"){
+            if (d !== "Other") {
                 nodeEnter.append("br");
             }
 

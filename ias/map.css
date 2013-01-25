@@ -88,7 +88,7 @@ path.pin{
 }
 
 circle.pin{
-  opacity: 1;
+  opacity: 0.7;
 }
 
 
@@ -105,7 +105,7 @@ text.legend  {
  text.legend.title  {
 
 
-  font-size: 0.8em;
+  font-size: 0.9em;
 
  }
 
@@ -165,11 +165,87 @@ svg {
   background: #fff;
 }
 
+svg.tooltip {
+  width: 12px;
+  height: 12px;
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+  border: 0px;
+  border: solid 1px #ccc;
+  background: rgba(255,255,255,0.8);  
+  float:left; 
+}
 
-label.network{
-   font-size: 0.4em;
+div.tooltip {   
+  position: absolute;           
+  text-align: left;           
+  width: 210px;                  
+  --height: 170px; 
+  min-height: 60px;                
+  padding: 0em 0em 1em 0.5em;            
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.75em;        
+  background: rgba(255,255,255,0.9);   
+  border:2px solid steelblue;   
+  border-radius: 6px;           
+  pointer-events: none;      
+}
+
+a.tooltip {
+  pointer-events: all;
+}
+
+span.tooltip.title {
+
+  color: lightgray;
+}
+
+div.tooltip.cohort{  
+  width: 230px;   
+}
+
+div.tooltip table, td, th{   
+  font-size: 0.6em;
+  padding: 0em 0em 0em 0em; 
+  overflow: hidden; 
+  white-space: nowrap;
+  --border: 1px solid black;
+}
+
+.tooltip.objectives {
+  font-size: 0.7em;
+  font-style:italic;
+}
+
+div.tooltip td:not(.secondcol){   
+  text-overflow: ellipsis; 
+}
+
+div.tooltip table{
+  width:200px;
+  table-layout:fixed;
+}
+
+div.tooltip td.firstcol {
+    width:150px
+}
+
+div.tooltip td.secondcol {
+    width:50px;
+    border-left: 1px solid lightgray;
+    padding: 0em 0em 0em 0.3em; ;
 
 }
+
+h1.tooltip{
+  color: steelblue;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1em; 
+}
+
+
+
+
 span.network{
    font-size: 0.4em;
    margin: 0em 0.2em 0em 0em;
@@ -182,35 +258,38 @@ label.network.title{
 
 }
 
-input.network{
-  background: red;
+label.network{
+   font-size: 0.8em;
+
 }
 
-
-
+div.subnetwork {
+    padding: 0em 0em 0em 1em; 
+}
 
 #wrapper {
-  max-width: 200px;
+  max-width: 220px;
   overflow: auto; 
-  padding: 0em 0em 0em 1em;  
+  padding: 0em 0em 0em 0.2em;  
 }
 
 #Other{
-  max-width: 200px;
+  max-width: 150px;
   overflow: auto; 
-  padding: 0em 0em 0em 1em; 
+  padding: 0em 0em 0em 0.2em; 
   width: 200px;
 }
 
 #EuroCoord {
-  width: 80px;
-  height: 140px;
+  width: 150px;
   overflow: auto;
+  padding: 0em 0em 1em 0.2em; 
   --background-color: yellow;
 }
 
 #IeDEA {
-      max-width: 120px;
+      max-width: 150px;
+      padding: 0em 0em 1em 0.2em; 
      -- background-color: cyan;
 }
 .fl {

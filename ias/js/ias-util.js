@@ -15,24 +15,16 @@ IAS.log = function () {
     }
 };
 
-// config
-IAS.config = (function () {
+// util
+IAS.util = (function () {
     "use strict";
 
-    var that        = {"static": {}};
-
-    that.init = function (config) {
-
-        that.static = config;
-        IAS.log(that);
-
-    };
+    var that        = {"config": {}, "networkColor": {}};
 
     //
-    // Network Color Schemes
+    // Network Color
     //
-    that.networkColors = {};
-    that.networkColors = function () {
+    function networkColor() {
 
         var colors = {},
             scheme1 = d3.scale.ordinal()
@@ -73,16 +65,30 @@ IAS.config = (function () {
             get: get
         };
 
-    };
+    }
 
     //
-    // Background Color Scheme
+    // Background Color
     //
-    that.mapColors = function () {
+    function mapColors() {
         return d3.scale.quantile()
-                    .domain([0, 26])
-                    .range(colorbrewer[that.map.background.scheme][that.map.background.maxColors]);
+                .domain([0, 26])
+                .range(colorbrewer[that.config.map.background.scheme][that.config.map.background.maxColors]);
+    }
+
+    //
+    // Init Function
+    //
+    that.init = function (configuration) {
+
+        that.config = configuration;
+
+        that.networkColor = networkColor();
+
+        that.mapColors = mapColors();
+
     };
+
 
     return that;
 

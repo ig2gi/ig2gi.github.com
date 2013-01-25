@@ -12,7 +12,9 @@ IAS.model = (function () {
 	"use strict";
 
 	var that    = {},
-		log 	= IAS.log;
+		log 	= IAS.log,
+		util 	= IAS.util,
+		config;
 
 	// GEO JSON world countries
 	that.worldJson = {};
@@ -25,6 +27,9 @@ IAS.model = (function () {
 
 	// lookup table Country Code <-> Country object
 	that.allcountriesByName = {};
+
+	// lookup table Country Id <-> Country object
+	that.allcountriesById = {};
 
 	// country references with cohorts only
 	that.countriesWithCohorts = [];
@@ -41,10 +46,10 @@ IAS.model = (function () {
 	var Country = {
 
 			feature: {},
-			// JSON feature object
 			networks: [],
 			cohorts: [],
 			hivPrevalenceRate: undefined,
+			arvCoverageRate: undefined,
 
 			id: function () {
 				return this.feature.id;
@@ -56,6 +61,23 @@ IAS.model = (function () {
 
 			numberOfCohorts: function () {
 				return this.cohorts ? this.cohorts.length : 0;
+			},
+
+			html: function () {
+				var h 		= "<span class='tooltip title'>Country</span><h1 class='tooltip'>" + this.name() + "</h1><table>",
+					color 	= "white";
+
+				h += "<tr><td class='firstcol'>HIV Prevalence Rate</td><td class='secondcol'>" + (this.hivPrevalenceRate || 'na') + " %</td></tr>";
+				h += "<tr><td>ARV Coverage Rate</td><td class='secondcol'>" + (this.arvCoverageRate || 'na')  + " %</td></tr>";
+				if (this.cohorts && this.cohorts.length > 0) {
+					h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
+					this.cohorts.forEach(function (c) {
+						color = util.networkColor.get(c.networks[0]);
+						h += "<tr><td class='firstcol'><span style='background:" + color + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp;" + c.name + "</td><td class='secondcol'>" + c.size + "</td></tr>";
+					});
+				}
+				h += "</table>";
+				return h;
 			}
 
 		};
@@ -80,6 +102,7 @@ IAS.model = (function () {
 			size: 0,
 			networks: [],
 			countryData: {},
+			numberOfCountries: 0,
 
 			getCountryData: function (countryId) {
 				return this.countryData[countryId];
@@ -90,6 +113,31 @@ IAS.model = (function () {
 				d.countryId = id;
 				d.size = size;
 				this.countryData[id] = d;
+				this.numberOfCountries += 1;
+			},
+
+			html: function () {
+				var h 		= "<span class='tooltip title'>Cohort</span><h1 class='tooltip'>" + this.name + ":</h1>",
+					color 	= "white",
+					country,
+					rate,
+					k;
+				h += "<div id='ctooltippin'></div>&nbsp;" + this.size + " subjects ";
+				h += "&nbsp;<span style='background:" + util.networkColor.get(this.networks[0]) + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp" + this.networks[0];
+				h += "<br><br><b>Status:</b>&nbsp;" + this.status + "<br>";
+				h += "<br><b>Objectives:</b><br>";
+				h += "<span class='tooltip objectives'>" + this.objectives + "</span>";
+				h += "<br><br><b>Countries:</b><br><table>";
+				for (k in this.countryData) {
+					country = that.allcountriesById[k];
+					rate = country.hivPrevalenceRate;
+					color = util.mapColors(rate);
+					h += "<tr><td class='firstcol'><span style='background:" + color + ";'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;" + country.name() + "</td></tr>";
+				}
+				h += "</table>";
+				h += "<br><br><a class='tooltip' target='_blank' href='" + config.map.cohort.fullProfile.replace('$code$', this.code) + "'>View Full Profile</a>";
+
+				return h;
 			}
 
 		};
@@ -104,8 +152,8 @@ IAS.model = (function () {
 		c.feature = feature;
 		c.cohorts = [];
 		that.allcountries.push(c);
-		that.allcountries.push(c);
 		that.allcountriesByName[c.name()] = c;
+		that.allcountriesById[c.id()] = c;
 
 	}
 
@@ -146,6 +194,8 @@ IAS.model = (function () {
 		that.worldJson = world;
 		that.networks = networksJson.networks;
 
+		config = IAS.util.config;
+
 		// init countries
 		that.worldJson.features.forEach(function (f) {
 			addCountry(f);
@@ -159,6 +209,7 @@ IAS.model = (function () {
 				log('no country found for ' + r.country);
 			}
 		});
+		util.mapColors.domain(that.hivRatesRange);
 
 		// init cohorts
 		cohortsJson.cohorts.forEach(function (d) {
