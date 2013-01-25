@@ -27,6 +27,12 @@ div.title {
   display:block;
 }
 
+.thumbnail img {
+  width: 120px;
+  height: 100px;
+  border: 1px solid lightgray;
+}
+
 
 h2 {
   margin-top: 2em;
