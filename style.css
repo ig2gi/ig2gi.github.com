@@ -9,12 +9,24 @@ body {
   width: 960px;
 }
 
-h1 {
-  font-size: 64px;
+
+h1,.title{
+  font-size: 54px;
   font-weight: 300;
   letter-spacing: -2px;
   margin: .3em 0 .1em 0;
+  
 }
+
+.title img{
+  vertical-align: middle;
+  --border: 1px solid darkgray;
+}
+
+div.title {
+  display:block;
+}
+
 
 h2 {
   margin-top: 2em;
@@ -31,6 +43,10 @@ h2 a {
   width: 740px;
 }
 
+header {
+
+}
+
 footer {
   font-size: small;
   margin-top: 8em;
@@ -38,7 +54,7 @@ footer {
 
 aside {
   font-size: small;
-  left: 1000px;
+  left: 800px;
   position: absolute;
   text-align: right;
   width: 180px;
