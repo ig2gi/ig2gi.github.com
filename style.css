@@ -1,38 +1,35 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Serif|PT+Serif:b|PT+Serif:i|PT+Sans|PT+Sans:b);
+
 html {
-  min-width: 840px;
+  min-width: 1040px;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  margin: 1em auto 1em 3em;
+  background: #fcfcfa;
+  color: #333;
+  font-family: "PT Serif", serif;
+  margin: 1em auto 4em auto;
   position: relative;
   width: 960px;
 }
 
+header,
+footer,
+h1,
+h2,
+h3,
+h4,
+aside {
+  color: #000;
+  font-family: "PT Sans", sans-serif;
+}
 
-h1,.title{
-  font-size: 54px;
+h1 {
+  font-size: 64px;
   font-weight: 300;
   letter-spacing: -2px;
   margin: .3em 0 .1em 0;
-  
 }
-
-.title img{
-  vertical-align: middle;
-  --border: 1px solid darkgray;
-}
-
-div.title {
-  display:block;
-}
-
-.thumbnail img {
-  width: 120px;
-  height: 100px;
-  border: 1px solid lightgray;
-}
-
 
 h2 {
   margin-top: 2em;
@@ -49,29 +46,44 @@ h2 a {
   width: 740px;
 }
 
-header {
-
-}
-
 footer {
   font-size: small;
   margin-top: 8em;
 }
 
-aside {
-  font-size: small;
-  left: 700px;
-  position: absolute;
+header aside {
+  margin-top: 80px;
+}
+
+header aside,
+footer aside {
+  color: #636363;
   text-align: right;
+}
+
+aside {
+  color: #636363;
+  font-family: "PT Sans", sans-serif;
+  font-size: small;
+  right: 0;
+  position: absolute;
   width: 180px;
 }
 
-p {
+.attribution {
+  font-size: small;
+  margin-bottom: 2em;
+}
+
+body > p, li > p {
   line-height: 1.5em;
+}
+
+body > p {
   width: 720px;
 }
 
-blockquote {
+body > blockquote {
   width: 640px;
 }
 
@@ -89,19 +101,20 @@ a:not(:hover) {
 
 pre, code, textarea {
   font-family: "Menlo", monospace;
-  line-height: normal;
+}
+
+code {
+  line-height: 1em;
 }
 
 textarea {
   font-size: 100%;
 }
 
-pre {
+body > pre {
   border-left: solid 2px #ccc;
   padding-left: 18px;
   margin: 2em 0 2em -20px;
-  width: 960px;
-  overflow-x: auto;
 }
 
 .html .value,
@@ -116,7 +129,6 @@ pre {
   color: #3182bd;
 }
 
-aside,
 .comment {
   color: #636363;
 }
@@ -133,18 +145,44 @@ aside,
   color: #e6550d;
 }
 
-iframe {
-  width: 900px;
-  height: 950px;
-  border: 1px solid #555;
-  background-color: none;
+svg {
+  font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+sup, sub {
+  line-height: 0;
+}
+
+q:before,
+blockquote:before {
+  content: "“";
+}
+
+q:after,
+blockquote:after {
+  content: "”";
+}
+
+blockquote:before {
+  position: absolute;
+  left: 2em;
+}
+
+blockquote:after {
+  position: absolute;
 }
 
 .preview {
   border: solid 1px #ccc;
   height: 80px;
   margin-bottom: .5em;
-  width: 680px;
+  width: 720px;
 }
 
 .date {
@@ -153,17 +191,39 @@ iframe {
   font-size: smaller;
   margin: 2px 0 0 480px;
   position: absolute;
-  text-align: right;
+  text-align: left;
   width: 240px;
 }
 
-.nytimes:before {
-  background-image: url(nytimes.png);
-  background-size: contain;
-  content: "";
-  display: inline-block;
-  height: 16px;
-  position: relative;
-  top: 2px;
-  width: 16px;
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Sans'), local('PTSans-Regular'), url(http://themes.googleusercontent.com/static/fonts/ptsans/v4/7YGmE4Ls5b94ct65u07hVQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
 }
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Sans Bold'), local('PTSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/ptsans/v4/0XxGQsSc1g4rdRdjJKZrNL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Serif'), local('PTSerif-Regular'), url(http://themes.googleusercontent.com/static/fonts/ptserif/v4/sDRi4fY9bOiJUbgq53yZCXYhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Serif Bold'), local('PTSerif-Bold'), url(http://themes.googleusercontent.com/static/fonts/ptserif/v4/QABk9IxT-LFTJ_dQzv7xpLrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: local('PT Serif Italic'), local('PTSerif-Italic'), url(http://themes.googleusercontent.com/static/fonts/ptserif/v4/03aPdn7fFF3H6ngCgAlQzL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+
