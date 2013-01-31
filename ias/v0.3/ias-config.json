@@ -13,13 +13,13 @@
 			"limit": 150000
 		},
 		"background":{
-			"scheme": "Blues",
-			"steps": [0.1, 2, 5, 10, 15, 20],
+			"scheme": "Reds",
+			"maxColors": 6,
 			"opacity": 0.8
 		},
 		"tooltip": {
 			"country": [20, 270],
-			"cohort": [550, 80]
+			"cohort": [550, 120]
 		}
 	},
 
@@ -30,10 +30,6 @@
 
 	"filter": {
 		"status": ["All", "Ongoing","Closed"]
-	},
-
-	"network":{
-		"colorSchemes":["Greens", "Oranges", "Reds"]
 	}
 
 }

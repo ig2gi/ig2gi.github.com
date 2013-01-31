@@ -50,6 +50,16 @@ ias.graph = {};
         };
 
         //
+        that.getCountryColorByFeature = function (feature) {
+            var country = ias.model.getCountry(feature.properties.name),
+                rate    = country.hivPrevalenceRate;
+            if (rate !== undefined) {
+                return that.getBackgroundColor(rate);
+            }
+            return "gray";
+        };
+
+        //
         that.getCountryId = function (feature) {
             var i = feature.id;
             if (i === "-99") { // exotic countries!
@@ -471,7 +481,7 @@ ias.graph = {};
                     .style('stroke', "steelblue")
                     .style('stroke-width', "1px");
             } catch (err) {
-                log(err); // TODO exotic countries with id = -99!
+                //log(err); // TODO exotic countries with id = -99!
             }
         };
 
@@ -485,27 +495,10 @@ ias.graph = {};
                     .style('stroke', "white")
                     .style('stroke-width', "0px;");
             } catch (err) {
-                log(err); // TODO exotic countries with id = -99!
+                //log(err); // TODO exotic countries with id = -99!
             }
 
         };
-
-        //
-        //
-        //
-        function zoom() {
-
-            if (d3.event.scale >= 4) {
-                d3.event.scale = 4;
-                return;
-            }
-            if (d3.event.scale >= 1 && d3.event.scale <= 4) {
-                d3.select("#mapcontainer")
-                    //.transition().duration(500)
-                    .attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
-            }
-
-        }
 
         //
         // Init Function:
@@ -889,7 +882,6 @@ ias.graph = {};
 
         var posx            = -100,
             posy            = -20,
-            centered,
             g               = svg.append("g")
                                 .attr("id", "mapcontainer")
                                 .attr('transform', 'translate(' + posx + ',' + posy + ')'),
@@ -907,60 +899,104 @@ ias.graph = {};
                                 .attr("id", "pins_cohort")
                                 .attr("class", "pin cohort"),
             cohortPins      = [],
-            zoomIn          = false;
+            zoomFactor      = 1,
+            draging         = false,
+            centeredCountry,
+            center,
+            m0;
 
+        //
+        function recenter(dur) {
+            var tx = -center[0] + config.map.width / 2 / zoomFactor,
+                ty = -center[1] + config.map.height / 2 / zoomFactor;
+            g.transition().duration(dur)
+                .attr("transform", "scale(" + zoomFactor + ") translate(" + tx + "," + ty + ")");
+        }
+
+        //
+        function move(xy, duration) {
+            center[0] += xy[0];
+            center[1] += xy[1];
+            recenter(duration);
+        }
 
         //
         function click(d) {
 
-            var x   = 0,
-                y   = 0,
-                tx  = posx,
-                ty  = posy,
-                k   = 1,
-                centroid;
-
-            if (d && centered !== d) { // zoom in + move by click
+            var centroid;
+            if (d && centeredCountry !== d) { // zoom in + move by click
                 centroid = ias.graph.path.centroid(d);
-                x = -centroid[0];
-                y = -centroid[1];
-                k = 3;
-                tx = x + config.map.width / 2 / k;
-                ty = y + config.map.height / 2 / k;
-                centered = d;
+                center = [centroid[0], centroid[1]];
+                zoomFactor = 3;
+                centeredCountry = d;
             } else { // zoom out
-                centered = null;
-
+                centeredCountry = null;
+                zoomFactor = 1;
+                center = ias.graph.projection([0, 0]);
+                center[1] += posy;
+                svg.style("cursor", "default");
             }
+            ias.graph.legend.zoom(zoomFactor);
+            recenter(1000);
 
-            zoomIn = (k !== 1);
-            log("click " + k);
-            ias.graph.legend.zoom(k);
-
-            // gmap.selectAll("path")
-            //     .classed("active", centered && function(d) { return d === centered; });
-            g.transition().duration(1000)
-                .attr("transform", "scale(" + k + ") translate(" + tx + "," + ty + ")").style("stroke-width", 1.5 / k + "px");
-
-        }
-
-          //
-        function zoomOut() {
-            click(null);
-            log("zoomout");
         }
 
         //
-        function getCountryColor(d) {
-
-            var country = ias.model.getCountry(d.properties.name),
-                rate    = country.hivPrevalenceRate;
-            if (rate !== undefined) {
-                return ias.util.getBackgroundColor(rate);
-            }
-            return "gray";
-
+        function zoomOut() {
+            click(null);
         }
+
+        //
+        function moveUp() {
+            move([0, -10], 500);
+        }
+
+        //
+        function moveDown() {
+            move([0, +10], 500);
+        }
+
+        //
+        function moveRight() {
+            move([+10, 0], 500);
+        }
+
+        //
+        function moveLeft() {
+            move([-10, 0], 500);
+        }
+
+        //
+        function mousemove() {
+            var delta;
+            if (draging) {
+                delta = [-(d3.event.x - m0[0]), -(d3.event.y - m0[1])];
+                m0 = [d3.event.x, d3.event.y];
+                move(delta, 0); 
+                d3.event.preventDefault();
+                d3.event.stopPropagation();
+            }
+        }
+
+        //
+        function mousedown() {
+            if (zoomFactor > 1) {
+                d3.event.preventDefault();
+                d3.event.stopPropagation();
+                svg.style("cursor", "move");
+                draging = true;
+                m0 = [d3.event.x, d3.event.y];
+                log(m0);
+            }
+        }
+
+        //
+        function mouseup() {
+            draging = false;
+            svg.style("cursor", "pointer");
+        }
+
+
 
         //
         function draw() {
@@ -969,6 +1005,10 @@ ias.graph = {};
                 lnk         = {},
                 key;
 
+            svg.on("mousemove", mousemove)
+                .on("mousedown", mousedown)
+                .on("mouseup", mouseup);
+
             // draw map
             gmap.selectAll("path")
                 .data(ias.model.worldJson.features)
@@ -976,7 +1016,7 @@ ias.graph = {};
                 .append("path")
                 .attr("class", "country")
                 .attr("d", ias.graph.path)
-                .style("fill", function (d) {return getCountryColor(d); })
+                .style("fill", function (d) {return ias.util.getCountryColorByFeature(d); })
                 .attr("id", function (d) {return ias.util.getCountryId(d); })
                 .on('mouseover', function (d) {ias.graph.enterCountry(ias.util.getCountryId(d)); })
                 .on('mouseout', function (d) {ias.graph.exitCountry(ias.util.getCountryId(d)); })
@@ -1030,11 +1070,6 @@ ias.graph = {};
         }
 
         //
-        function getCountryId(feature) {
-
-        }
-
-        //
         function filterUpdate() {
 
             gpins_country.style("display", ias.filter.viewCountryPins ? 'inline' : 'none');
@@ -1051,7 +1086,11 @@ ias.graph = {};
             draw: draw,
             update: update,
             filterUpdate: filterUpdate,
-            zoomOut: zoomOut
+            zoomout: zoomOut,
+            moveup: moveUp,
+            movedown: moveDown,
+            moveright: moveRight,
+            moveleft: moveLeft
 
         };
 
@@ -1078,13 +1117,37 @@ ias.graph = {};
                                 .attr("x", config.legend.width - 50)
                                 .attr("y", 20)
                                 .style("display", "none")
-                                .style("cursor", "pointer");
+                                .style("cursor", "pointer"),
+            gbuttons        = svg.append("g")
+                                .attr("id", "buttons")
+                                .style("pointer-events", "none")
+                                .style("opacity", "0.2")
+                                .attr('transform', 'translate(' + (posx + 720) + ',' + 5 + ')');
+
+
+        //
+        function addButton(name, x, y) {
+            gbuttons.append("image")
+                                .attr("xlink:href", "images/" + name + ".png")
+                                .attr("width", 20)
+                                .attr("height", 20)
+                                .attr("x", x)
+                                .attr("y", y)
+                                .style("cursor", "pointer")
+                                .on("click", ias.graph.map[name]);
+        }
 
         //
         function draw() {
 
             var data        = ias.util.getBackgroundColorSteps(),
                 maxColors   = data.length;
+
+            addButton("zoomout", 25, 20);
+            addButton("moveup", -20, 10);
+            addButton("movedown", -20, 30);
+            addButton("moveleft", -35, 20);
+            addButton("moveright", -5, 20);
 
             gbackground.selectAll("rect")
                 .data(data)
@@ -1171,9 +1234,6 @@ ias.graph = {};
                 .style("font-size", "0.7em")
                 .style("fill", "gray")
                 .text("status: " + ias.version + " - " + ias.mode);
-
-            zoomOut.on("click", function (d) {ias.graph.map.zoomOut(); });
-
         }
 
         // 
@@ -1183,7 +1243,9 @@ ias.graph = {};
 
         //
         function zoom(factor) {
-            zoomOut.transition(1000).style("display", factor === 1 ? "none" : "inline");
+            gbuttons.transition().duration(1000)
+                .style("opacity", factor === 1 ? "0.2" : "1")
+                .style("pointer-events", factor === 1 ? "none" : "all");
         }
 
         //
@@ -1247,12 +1309,12 @@ ias.graph = {};
 
         that.load = function () {
 
-            queue().defer(d3.json, "/ias/dev/ias-config.json")
-                .defer(d3.json, "/ias/dev//data/world-countries.json")
-                .defer(d3.json, "/ias/dev//data/centroids.json")
-                .defer(d3.json, "/ias/dev//data/ias-networks.json")
-                .defer(d3.json, "/ias/dev//data/ias-cohorts.json")
-                .defer(d3.csv, "/ias/dev//data/hiv-prevalence-rate.csv")
+            queue().defer(d3.json, "/ias/ias-config.json")
+                .defer(d3.json, "/ias/data/world-countries.json")
+                .defer(d3.json, "/ias/data/centroids.json")
+                .defer(d3.json, "/ias/data/ias-networks.json")
+                .defer(d3.json, "/ias/data/ias-cohorts.json")
+                .defer(d3.csv, "/ias/data/hiv-prevalence-rate.csv")
                 .await(ready);
 
         };
