@@ -1,5 +1,5 @@
 html {
-  min-width: 1040px;
+  min-width: 840px;
 }
 
 body {
@@ -60,7 +60,7 @@ footer {
 
 aside {
   font-size: small;
-  left: 800px;
+  left: 700px;
   position: absolute;
   text-align: right;
   width: 180px;
@@ -138,4 +138,32 @@ iframe {
   height: 950px;
   border: 1px solid #555;
   background-color: none;
+}
+
+.preview {
+  border: solid 1px #ccc;
+  height: 80px;
+  margin-bottom: .5em;
+  width: 680px;
+}
+
+.date {
+  color: #636363;
+  font-family: "PT Sans", sans-serif;
+  font-size: smaller;
+  margin: 2px 0 0 480px;
+  position: absolute;
+  text-align: right;
+  width: 240px;
+}
+
+.nytimes:before {
+  background-image: url(nytimes.png);
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 16px;
+  position: relative;
+  top: 2px;
+  width: 16px;
 }
