@@ -81,6 +81,7 @@ body > p, li > p {
 
 body > p {
   width: 720px;
+  font-family: "PT Sans", sans-serif;
 }
 
 body > blockquote {
@@ -93,6 +94,7 @@ li {
 
 a {
   color: steelblue;
+  font-family: "PT Sans", sans-serif;
 }
 
 a:not(:hover) {
