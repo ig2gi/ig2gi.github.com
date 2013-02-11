@@ -197,6 +197,16 @@ blockquote:after {
   width: 240px;
 }
 
+div.logo{
+  background-image: url(images/logo2.png);
+  background-repeat:no-repeat;
+  width:100px;
+  height:100px;
+  position: absolute;
+  right: 200px;
+  top: 5px;
+  border: 1px solid lightgray;
+}
 
 @font-face {
   font-family: 'PT Sans';
