@@ -256,7 +256,7 @@ div.tooltip.cohort{
 }
 
 div.tooltip table, td, th{   
-  font-size: 0.7em;
+  font-size: 0.9em;
   padding: 0em 0em 0em 0em; 
   overflow: hidden; 
   white-space: nowrap;
@@ -264,7 +264,7 @@ div.tooltip table, td, th{
 }
 
 .tooltip.objectives {
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-style:italic;
 }
 

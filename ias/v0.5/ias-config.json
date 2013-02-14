@@ -13,7 +13,7 @@
 			"limit": 150000
 		},
 		"background":{
-			"scheme": "Blues",
+			"scheme": "Greys",
 			"steps": [0.1, 2, 5, 10, 15, 20],
 			"opacity": 0.8
 		},
@@ -33,7 +33,7 @@
 	},
 
 	"network":{
-		"colorSchemes":["Greens", "Oranges", "Reds"]
+		"colorSchemes":["Greens", "Blues", "PiYG"]
 	}
 
 }
