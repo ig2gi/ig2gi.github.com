@@ -41,12 +41,12 @@ var ias = (function (my) {
     }
 
     my.load = function () {
-        queue().defer(d3.json, "/ias-config.json")
-            .defer(d3.json, "/data/world-countries.json")
-            .defer(d3.json, "/data/centroids.json")
-            .defer(d3.json, "/data/ias-networks.json")
-            .defer(d3.json, "/data/ias-cohorts.json")
-            .defer(d3.csv, "/data/hiv-prevalence-rate.csv")
+        queue().defer(d3.json, "/ias/v0.5/ias-config.json")
+            .defer(d3.json, "/ias/v0.5/data/world-countries.json")
+            .defer(d3.json, "/ias/v0.5/data/centroids.json")
+            .defer(d3.json, "/ias/v0.5/data/ias-networks.json")
+            .defer(d3.json, "/ias/v0.5/data/ias-cohorts.json")
+            .defer(d3.csv, "/ias/v0.5/data/hiv-prevalence-rate.csv")
             .await(ready);
     };
 
