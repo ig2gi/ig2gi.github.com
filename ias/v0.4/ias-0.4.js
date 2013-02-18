@@ -1309,12 +1309,12 @@ ias.graph = {};
 
         that.load = function () {
 
-            queue().defer(d3.json, "/ias/ias-config.json")
-                .defer(d3.json, "/ias/data/world-countries.json")
-                .defer(d3.json, "/ias/data/centroids.json")
-                .defer(d3.json, "/ias/data/ias-networks.json")
-                .defer(d3.json, "/ias/data/ias-cohorts.json")
-                .defer(d3.csv, "/ias/data/hiv-prevalence-rate.csv")
+            queue().defer(d3.json, "/ias/v0.4/ias-config.json")
+                .defer(d3.json, "/ias/v0.4/data/world-countries.json")
+                .defer(d3.json, "/ias/v0.4/data/centroids.json")
+                .defer(d3.json, "/ias/v0.4/data/ias-networks.json")
+                .defer(d3.json, "/ias/v0.4/data/ias-cohorts.json")
+                .defer(d3.csv, "/ias/v0.4/data/hiv-prevalence-rate.csv")
                 .await(ready);
 
         };

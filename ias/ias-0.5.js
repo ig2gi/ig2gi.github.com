@@ -41,12 +41,12 @@ var ias = (function (my) {
     }
 
     my.load = function () {
-        queue().defer(d3.json, "/ias/v0.5/ias-config.json")
-            .defer(d3.json, "/ias/v0.5/data/world-countries.json")
-            .defer(d3.json, "/ias/v0.5/data/centroids.json")
-            .defer(d3.json, "/ias/v0.5/data/ias-networks.json")
-            .defer(d3.json, "/ias/v0.5/data/ias-cohorts.json")
-            .defer(d3.csv, "/ias/v0.5/data/hiv-prevalence-rate.csv")
+        queue().defer(d3.json, "/ias/ias-config.json")
+            .defer(d3.json, "/ias/data/world-countries.json")
+            .defer(d3.json, "/ias/data/centroids.json")
+            .defer(d3.json, "/ias/data/ias-networks.json")
+            .defer(d3.json, "/ias/data/ias-cohorts.json")
+            .defer(d3.csv, "/ias/data/hiv-prevalence-rate.csv")
             .await(ready);
     };
 
@@ -316,46 +316,6 @@ ias.model = (function () {
 
 	};
 
-
-	function addCountry(feature) {
-
-		var c = Object.create(ias.model.Country);
-		c.feature = feature;
-		c.cohorts = [];
-		c.networks = [];
-		that.allcountries.push(c);
-		that.allcountriesByName[c.name()] = c;
-		that.allcountriesById[c.id()] = c;
-
-	}
-
-
-	function addCohort(cohortJson) {
-
-		var c = Object.create(ias.model.Cohort);
-		c.status = cohortJson.status;
-		c.code = cohortJson.code;
-		c.name = cohortJson.name;
-		c.objectives = cohortJson.objectives;
-		c.year = cohortJson.year;
-		c.size = cohortJson.size;
-		c.countryData = {};
-		cohortJson.countries.forEach(function (d) {
-			var country = that.allcountriesByName[d];
-			if (country) {
-				c.addCountryData(country.id(), 10);
-				country.cohorts.push(c); // bidirectional link
-				country.addNetwork(cohortJson.networks[0]);
-			} else {
-				ias.log("no country found for " + d);
-			}
-		});
-		c.networks = cohortJson.networks;
-		that.cohorts.push(c);
-
-	}
-
-
 	that.getCountry = function (name) {
 		var c = that.allcountriesByName[name];
 		return c;
@@ -366,63 +326,6 @@ ias.model = (function () {
 		return c;
 	};
 
-	function vertex(id, code, name, type, size) {
-		return {
-			"id": id,
-			"code": code,
-			"name": name,
-			"type": type,
-			"size": size,
-			"children": [],
-			addChild: function (child) {
-				this.children.push(child);
-			},
-			total: function () {
-				var total = size;
-				if (this.children.length > 0) {
-					this.children.forEach(function (c) {
-						total += c.total();
-					});
-				}
-				return total;
-			}
-		};
-	}
-
-	that.getCountryGraph = function (graph, countryId, filter) {
-
-		var c 	= that.getCountryById(countryId),
-			v 	= vertex(countryId, countryId, c.name(), 'country', 0),
-			coh = {},
-			net = {};
-		if (filter.hasOwnProperty(countryId) === false) {
-			graph.vertices.push(v);
-			filter[countryId] = v;
-		}
-
-		c.getNetworks().forEach(function (n) {
-			net = vertex(n + "-" + countryId, n, n, 'network', 0);
-			v.addChild(net);
-			filter[n + "-" + countryId] = net;
-		});
-
-		c.cohorts.forEach(function (cohort) {
-
-			coh = vertex(cohort.code + '-' + v.id, cohort.code, cohort.name, 'cohort', cohort.size);
-			filter[coh.id] = coh;
-			filter[cohort.getNetwork() + "-" + countryId].addChild(coh);
-
-			cohort.getCountryIds().forEach(function (cid) {
-				if (cid !== countryId && filter.hasOwnProperty(cid) === false) {
-					that.getCountryGraph(graph, cid, filter);
-				}
-			});
-
-		});
-
-	};
-
-
 	that.init = function (params) {
 
 		that.worldJson = params.world;
@@ -430,7 +333,10 @@ ias.model = (function () {
 
 		// init countries
 		that.worldJson.features.forEach(function (f) {
-			addCountry(f);
+			var c = new ias.model.Country(f);
+			that.allcountries.push(c);
+			that.allcountriesByName[c.name] = c;
+			that.allcountriesById[c.id] = c;
 		});
 		params.hivrates.forEach(function (r) {
 			var c = that.allcountriesByName[r.country];
@@ -443,7 +349,7 @@ ias.model = (function () {
 
 		// init cohorts
 		params.cohorts.cohorts.forEach(function (d) {
-			addCohort(d);
+			that.cohorts.push(new ias.model.Cohort(d));
 		});
 
 		//
@@ -466,57 +372,55 @@ ias.model = (function () {
 ias.model = (function (model) {
 	"use strict";
 
-	model.Country = {
+	// Constructor
+	model.Country = function Country(feature) {
+		this.feature = feature;
+		this.networks = {};
+		this.cohorts = [];
+		this.hivPrevalenceRate = undefined;
+		this.arvCoverageRate = undefined;
+		this.id = feature.id;
+        if (this.id === "-99") { // exotic countries!
+            this.id = "9" + feature.properties.name.substring(0, 2);
+        }
+        this.name = this.feature.properties.name;
+    };
 
-		feature: {},
-		networks: {},
-		cohorts: [],
-		hivPrevalenceRate: undefined,
-		arvCoverageRate: undefined,
-
-		id: function () {
-			return ias.util.getCountryId(this.feature);
-		},
-
-		addNetwork: function (network) {
-			if (this.networks.hasOwnProperty(network) === false) {
-				this.networks[network] = network;
-			}
-		},
-
-		getNetworks: function () {
-			return Object.keys(this.networks);
-		},
-
-		name: function () {
-			return this.feature.properties.name;
-		},
-
-		numberOfCohorts: function () {
-			return this.cohorts ? this.cohorts.length : 0;
-		},
-
-		html: function () {
-			var h 		= "<span class='tooltip title'>Country " + "  " + this.id() + "</span><h1 class='tooltip'>" + this.name() +  "</h1><table>",
-				color 	= "white";
-
-			h += "<tr><td class='firstcol'>HIV Prevalence Rate</td><td class='secondcol'>" + (this.hivPrevalenceRate || 'na') + " %</td></tr>";
-			h += "<tr><td>ARV Coverage Rate</td><td class='secondcol'>" + (this.arvCoverageRate || 'na')  + " %</td></tr>";
-			if (this.cohorts && this.cohorts.length > 0) {
-				h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
-				this.cohorts.forEach(function (c) {
-					color = ias.util.getNetworkColor(c.networks[0]);
-					h += "<tr><td class='firstcol'><span style='background:" + color + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp;" + c.name + "</td><td class='secondcol'>" + c.size + "</td></tr>";
-				});
-			}
-			h += "</table>";
-			return h;
+	model.Country.prototype.addNetwork = function (network) {
+		if (this.networks.hasOwnProperty(network) === false) {
+			this.networks[network] = network;
 		}
+	};
+
+	model.Country.prototype.getNetworks = function () {
+		return Object.keys(this.networks);
+	};
+
+	model.Country.prototype.numberOfCohorts = function () {
+		return this.cohorts ? this.cohorts.length : 0;
+	};
+
+	model.Country.prototype.html = function () {
+		var h 		= "<span class='tooltip title'>Country " + "  " + this.id + "</span><h1 class='tooltip'>" + this.name +  "</h1><table>",
+			color 	= "white";
+
+		h += "<tr><td class='firstcol'>HIV Prevalence Rate</td><td class='secondcol'>" + (this.hivPrevalenceRate || 'na') + " %</td></tr>";
+		h += "<tr><td>ARV Coverage Rate</td><td class='secondcol'>" + (this.arvCoverageRate || 'na')  + " %</td></tr>";
+		if (this.cohorts && this.cohorts.length > 0) {
+			h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
+			this.cohorts.forEach(function (c) {
+				color = ias.util.getNetworkColor(c.networks[0]);
+				h += "<tr><td class='firstcol'><span style='background:" + color + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp;" + c.name + "</td><td class='secondcol'>" + c.size + "</td></tr>";
+			});
+		}
+		h += "</table>";
+		return h;
 	};
 
 	return model;
 
 }(ias.model || {}));
+
 
 // augment model with CountryData object
 ias.model = (function (model) {
@@ -535,73 +439,88 @@ ias.model = (function (model) {
 ias.model = (function (model) {
 	"use strict";
 
-	model.Cohort = {
-		status: "",
-		code: "",
-		name: "",
-		year: 1980,
-		objectives: "",
-		size: 0,
-		networks: [],
-		countryData: {},
-		numberOfCountries: 0,
+	// Constructor
+	model.Cohort = function Cohort(cohortJson) {
 
-		getCountryData: function (countryId) {
-			return this.countryData[countryId];
-		},
+		this.status = cohortJson.status;
+		this.code = cohortJson.code;
+		this.name = cohortJson.name;
+		this.objectives = cohortJson.objectives;
+		this.year = cohortJson.year;
+		this.size = cohortJson.size;
+		this.networks = cohortJson.networks;
+		this.countryData = {};
 
-		getCountryIds: function () {
-			return Object.keys(this.countryData);
-		},
+		var that = this;
 
-		addCountryData: function (id, size) {
-			var d = Object.create(ias.model.CountryData);
-			d.countryId = id;
-			d.size = size;
-			this.countryData[id] = d;
-			this.numberOfCountries += 1;
-		},
-
-		getNetwork: function () {
-			return this.networks[0];
-		},
-
-		html: function () {
-			var h 		= "<span class='tooltip title'>Cohort</span><h1 class='tooltip'>"
-							+ this.name
-							+ ":</h1>",
-				color 	= "white",
-				country,
-				rate,
-				k;
-
-			h += "<div id='ctooltippin'></div>&nbsp;" + this.size + " subjects ";
-			h += "&nbsp;<span style='background:" + ias.util.getNetworkColor(this.networks[0]) + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp" + this.networks[0];
-			h += "<br><br><b>Status:</b>&nbsp;" + this.status + "<br>";
-			h += "<br><b>Objectives:</b><br>";
-			h += "<span class='tooltip objectives'>" + this.objectives + "</span>";
-			h += "<br><br><b>Countries:</b><br><table>";
-			for (k in this.countryData) {
-				if (this.countryData.hasOwnProperty(k)) {
-					country = ias.model.allcountriesById[k];
-					rate = country.hivPrevalenceRate;
-					color = ias.util.getBackgroundColor(rate);
-					h += "<tr><td class='firstcol'><span style='background:"
-						+ color + ";'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;"
-						+ country.name()
-						+ "</td></tr>";
-				}
+		cohortJson.countries.forEach(function (d) {
+			var country = model.allcountriesByName[d];
+			if (country) {
+				that.addCountryData(country.id, 10);
+				country.cohorts.push(that); // bidirectional link
+				country.addNetwork(cohortJson.networks[0]);
+			} else {
+				ias.log("no country found for " + d);
 			}
-			h += "</table>";
-			h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', this.code) + "'>View Full Profile</a>";
+		});
 
-			return h;
+	};
+
+	model.Cohort.prototype.getCountryData = function (countryId) {
+		return this.countryData[countryId];
+	};
+
+	model.Cohort.prototype.getCountryIds = function () {
+		return Object.keys(this.countryData);
+	};
+
+	model.Cohort.prototype.addCountryData = function (id, size) {
+		var d = Object.create(ias.model.CountryData);
+		d.countryId = id;
+		d.size = size;
+		this.countryData[id] = d;
+		this.numberOfCountries += 1;
+	};
+
+	model.Cohort.prototype.getNetwork = function () {
+		return this.networks[0];
+	};
+
+	model.Cohort.prototype.html = function () {
+		var h 		= "<span class='tooltip title'>Cohort</span><h1 class='tooltip'>"
+						+ this.name
+						+ ":</h1>",
+			color 	= "white",
+			country,
+			rate,
+			k;
+		h += "<div id='ctooltippin'></div>&nbsp;" + this.size + " subjects ";
+		h += "&nbsp;<span style='background:" + ias.util.getNetworkColor(this.networks[0]) + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp" + this.networks[0];
+		h += "<br><br><b>Status:</b>&nbsp;" + this.status + "<br>";
+		h += "<br><b>Objectives:</b><br>";
+		h += "<span class='tooltip objectives'>" + this.objectives + "</span>";
+		h += "<br><br><b>Countries:</b><br><table>";
+		for (k in this.countryData) {
+			if (this.countryData.hasOwnProperty(k)) {
+				country = ias.model.allcountriesById[k];
+				rate = country.hivPrevalenceRate;
+				color = ias.util.getBackgroundColor(rate);
+				h += "<tr><td class='firstcol'><span style='background:"
+					+ color + ";'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;"
+					+ country.name
+					+ "</td></tr>";
+			}
 		}
+		h += "</table>";
+		h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', this.code) + "'>View Full Profile</a>";
+
+		return h;
 	};
 
 	return model;
 
 }(ias.model || {}));
+
 
 ias.graph = (function () {
     "use strict";
@@ -668,22 +587,11 @@ ias.graph = (function () {
                 .attr("width", ias.config.legend.width)
                 .attr("height", ias.config.legend.height);
 
-        cohortssvg = d3.select("#cohorts")
-                .append("svg")
-                .attr("class", "cohorts")
-                .attr("width", 220)
-                .attr("height", 800)
-                .style("overflow-y", "scroll")
-                .attr("viewBox", "0 0 220 780");
-
         that.map = ias.graph.map(mapsvg);
         that.components.push(that.map);
 
         that.legend = ias.graph.legend(legendsvg);
         that.components.push(that.legend);
-
-        that.cohortsTable = ias.graph.cohortsTable(cohortssvg);
-        that.components.push(that.cohortsTable);
 
         params.centroids.forEach(function (c) {
             overloadCentroids[c.id] = c.ll;
@@ -696,7 +604,7 @@ ias.graph = (function () {
         ias.model.countriesWithCohorts.forEach(function (country) {
             // check if centroid is modified
             var coords      = [],
-                overcoords  = overloadCentroids[country.name()],
+                overcoords  = overloadCentroids[country.name],
                 d,
                 scale,
                 delta,
@@ -712,14 +620,14 @@ ias.graph = (function () {
             country.centroidy = coords[1];
             // compute cohorts x,y coordinates
             if (country.cohorts.length === 1) {
-                d = country.cohorts[0].getCountryData(country.id());
+                d = country.cohorts[0].getCountryData(country.id);
                 d.x = coords[0];
                 d.y = coords[1];
             } else {
                 n = country.cohorts.length;
                 scale = d3.scale.linear().domain([0, n]).range([-n / 2, n / 2]);
                 country.cohorts.forEach(function (cohort, index) {
-                    d = cohort.getCountryData(country.id());
+                    d = cohort.getCountryData(country.id);
                     delta = scale(index) * (ias.config.map.cohort.pinsize + 1);
                     d.x = coords[0] + delta;
                     d.y = coords[1];
@@ -858,8 +766,9 @@ ias.graph = (function (graph) {
         that.draw = function () {
             g.append("path")
                 .attr("d", d3line(pathInfo))
-                .style("stroke-width", "1px")
+                .style("stroke-width", "0.5px")
                 .style("stroke", ias.config.map.cohort.pincolor)
+                .style("stroke-dasharray", "1,1")
                 .style("fill", "none");
             return that;
         };
@@ -878,7 +787,7 @@ ias.graph = (function (graph) {
     graph.pin = function (parent, cohort, country) {
 
         var that            = {"cohort": cohort, "country": country},
-            countryData     = cohort.getCountryData(country.id()),
+            countryData     = cohort.getCountryData(country.id),
             color           = ias.util.getNetworkColor(cohort.networks[0]),
             pincolor        = ias.config.map.cohort.pincolor,
             maxRadius       = 15,
@@ -957,14 +866,14 @@ ias.graph = (function (graph) {
                 } else {
                     that.select(true);
                 }
-                ias.graph.enterCountry(that.country.id());
+                ias.graph.enterCountry(that.country.id);
                 tooltip();
             }
 
             parent.selectAll("g:not([code='" + cohort.code + "'])")
-                    .style("opacity", 0.5);
+                    .style("opacity", 0.4);
             parent.selectAll("g[code='" + cohort.code + "']")
-                    .each(function (d) {this.parentNode.appendChild(this)});
+                    .each(function (d) {this.parentNode.appendChild(this); });
 
             pin.style("opacity", 1);
         }
@@ -978,7 +887,7 @@ ias.graph = (function (graph) {
                 } else {
                     that.select(false);
                 }
-                ias.graph.exitCountry(that.country.id());
+                ias.graph.exitCountry(that.country.id);
                 ias.graph.tooltip.cohort.hide();
             }
 
@@ -1068,9 +977,17 @@ ias.graph = (function (graph) {
 
         function pin2() {
 
+            g.append("line")
+                .attr("x1", 0)
+                .attr("y1", -8)
+                .attr("x2", 0)
+                .attr("y2", 0)
+                .style("stroke", pincolor)
+                .style("stroke-width", "0.5px");
+
             pin = g.append("circle")
                 .attr("cx", 0)
-                .attr("cy", 0)
+                .attr("cy", -8 - size)
                 .attr("class", "pin")
                 .style("fill", color)
                 .style("opacity", 0.8)
@@ -1381,30 +1298,19 @@ ias.graph = (function (graph) {
                                 .on("click", ias.graph.map[name]);
         }
 
+
         //
-        function draw() {
+        function legend1() {
 
             var data        = ias.util.getBackgroundColorSteps(),
-                maxColors   = data.length,
-                data2       = [ias.config.map.cohort.limit / 6],
-                i           = 0;
-
-            for (i = 1; i <= 4; i += 1) {
-                data2[i] = ias.config.map.cohort.limit * i / 4;
-            }
-
-            addButton("zoomout", 25, 20);
-            addButton("moveup", -20, 10);
-            addButton("movedown", -20, 30);
-            addButton("moveleft", -35, 20);
-            addButton("moveright", -5, 20);
+                maxColors   = data.length;
 
             gbackground.selectAll("rect")
                 .data(data)
                 .enter().append("rect")
                 .attr('class', 'legend')
                 .attr("x", function (d, i) {return i * 20 + 10; })
-                .attr("y", 20)
+                .attr("y", 30)
                 .attr("width", 20)
                 .attr("height", 20)
                 .style("stroke", "#000")
@@ -1417,7 +1323,8 @@ ias.graph = (function (graph) {
             gbackground.append("rect")
                 .attr('class', 'legend')
                 .attr("x", maxColors * 20 + 15)
-                .attr("y", 20).attr("width", 20)
+                .attr("y", 30)
+                .attr("width", 20)
                 .attr("height", 20)
                 .style("stroke", "#000")
                 .style("stroke-width", ".3px")
@@ -1431,44 +1338,61 @@ ias.graph = (function (graph) {
                 .data(data)
                 .enter().append("text")
                 .attr("x", function (d, i) {return i * 20 + ((d !== 'n/a') ? 10 : 15); })
-                .attr("y", 18).attr("class", "legend").text(function (d) {return (d !== 'n/a') ? '>' + parseFloat(d).toFixed(1) : d; });
+                .attr("y", 28).attr("class", "legend").text(function (d) {return (d !== 'n/a') ? '>' + parseFloat(d).toFixed(1) : d; });
 
             gbackground.append("text")
                 .attr("x", 10)
-                .attr("y", 8)
+                .attr("y", 0)
                 .attr("class", "title legend")
                 .text("HIV Prevalence Rate (%)");
+        }
+
+        //
+        function legend2() {
+
+            var data        = ias.config.legend.cohorts,
+                i           = 0,
+                scale       = d3.scale.linear()
+                                .domain([0, 300000])
+                                .range([2, 15]);
 
             gcohort.selectAll("circle")
-                .data(data2).enter()
+                .data(data).enter()
                 .append("circle")
-                .attr("cx", function (d, index) { return index * 26 + 17; })
-                .attr("cy", 30)
+                .attr("cx", 20)
+                .attr("cy", function (d) {return 50 - scale(d); })
                 .style("fill", "none", "opacity", 1)
                 .style('stroke', ias.config.map.cohort.pincolor)
-                .style('stroke-width', "4px")
-                .attr("r", 9);
+                .style('stroke-width', "1px")
+                .attr("r", function (d) {return scale(d); });
 
-            gcohort.selectAll("path")
-                .data(data2).enter()
-                .append("path")
-                .attr("class", "")
-                .attr("transform", function (d, index) { return "translate(" + (index * 26 + 17) + ",30)"; })
-                .style("fill", ias.config.map.cohort.pincolor, "opacity", 1)
-                .attr("d", arc.endAngle(function (d) { return (d / ias.config.map.cohort.limit) * 2 * Math.PI; }));
 
             gcohort.selectAll("text")
-                .data(data2)
+                .data(data)
                 .enter().append("text")
-                .attr("x", function (d, i) {return i * 26 + 4; })
-                .attr("y", 18).attr("class", "legend")
+                .attr("y", function (d, i) {return 50 - 2 * scale(d) + 4; })
+                .attr("x", 40)
+                .attr("class", "legend")
                 .text(function (d, i) {return (i === 4) ? '>' + d : d; });
 
             gbackground.append("text")
                 .attr("x", 200)
-                .attr("y", 8)
+                .attr("y", 0)
                 .attr("class", "title legend")
                 .text("Cohort Size");
+        }
+
+        //
+        function draw() {
+
+            addButton("zoomout", 25, 20);
+            addButton("moveup", -20, 10);
+            addButton("movedown", -20, 30);
+            addButton("moveleft", -35, 20);
+            addButton("moveright", -5, 20);
+
+            legend1();
+            legend2();
 
             svg.append("g")
                 .append("text")
@@ -1510,109 +1434,6 @@ ias.graph = (function (graph) {
 }(ias.graph || {}));
 
 
-// augment graph module with cohorts table
-ias.graph = (function (graph) {
-    "use strict";
-
-    graph.cohortsTable = function (svg) {
-
-        var posx            = 0,
-            posy            = 20,
-            g               = svg.append("g")
-                                .attr('transform', 'translate(' + posx + ',' + posy + ')')
-                                .attr("width", 120),
-            bars            = g.append("g"),
-            scale           = d3.scale.linear()
-                                .domain([0, 300000])
-                                .range([4, 50]);
-
-
-    
-
-        //
-        function draw() {
-
-            svg.append("defs")
-                .append("clipPath")
-                .attr("id", "clip")
-                .append("rect")
-                .attr("width", 150)
-                .attr("height", 900);
- 
-            var data  = ias.model.cohorts;
-            data.sort(function (a, b) {return a.name > b.name ? 1 : -1; });
-
-
-            g.selectAll("text")
-                .data(data)
-                .enter()
-                .append("text")
-                .attr("class", "cohort table")
-                .attr("clip-path", "url(#clip)")
-                .attr("y", function (d,i) {return i * 15; })
-                .text(function (d) {
-                    var w = this.getComputedTextLength();
-                    return d.name; 
-                });
-
-            bars.selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("y", function (d,i) {return i * 15 + 5; })
-                .attr("x", 154)
-                .attr("height", 8)
-                .attr("rx", 2)
-                .attr("ry", 2)
-                .attr("width", 50)
-                .style("fill", "lightgray")
-                .style("opacity", 0.7);
-
-            g.append("g").selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("y", function (d,i) {return i * 15 + 5; })
-                .attr("x", 154)
-                .attr("height", 8)
-                .attr("rx", 2)
-                .attr("ry", 2)
-                .attr("width", function (d,i) {return scale(d.size); })
-                .style("fill", function (d,i) {return ias.util.getNetworkColor(d.getNetwork()); });
-
-
-
-
-
-
-           
-        }
-
-        // 
-        function update() {
-
-        }
-
-        //
-        function filterUpdate() {
-
-        }
-
-        return {
-            draw: draw,
-            update: update,
-            filterUpdate: filterUpdate
-        };
-    };
-
-    return graph;
-
-}(ias.graph || {}));
-
-
-$(function () {
-    $("#tabs").tabs();
-});
 
 // launch IAS app
 ias.load();

@@ -8,12 +8,12 @@
 			"pincolor": "#555",
 			"pinsymbol": "square",
 			"link": {
-				"interpolate": "linear"
+				"interpolate": "cardinal"
 			},
 			"limit": 150000
 		},
 		"background":{
-			"scheme": "Greys",
+			"scheme": "Blues",
 			"steps": [0.1, 2, 5, 10, 15, 20],
 			"opacity": 0.8
 		},
@@ -33,7 +33,7 @@
 	},
 
 	"network":{
-		"colorSchemes":["Greens", "Blues", "PiYG"]
+		"colorSchemes":["Greens", "Oranges", "Reds"]
 	}
 
 }

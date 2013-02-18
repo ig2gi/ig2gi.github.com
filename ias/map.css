@@ -11,14 +11,6 @@ path.country {
   stroke-width: 0.5px;
 }
 
-
-
-line {
-    stroke: brown;
-    stroke-width:1px;
-    stroke-dasharray: 4,2;
-    }
-
 .node circle {
   fill: #fff;
   stroke: #aaa;
@@ -95,7 +87,7 @@ circle.pin{
 
 text.legend  {
 
-   font-family: Arial;
+  font-family: Arial;
   font-size: 0.5em;
   text-anchor: start;
   fill: gray;
@@ -130,11 +122,19 @@ aside{
 
 }
 
+.filter {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: small;
+  color: #636363;
+  background: transparent;
+  border: 0px;
+  
+}
+
+
 select{
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-
   font-size: small;
-  
   color: #636363;
 }
 
@@ -148,6 +148,12 @@ select{
   padding: 0.1em 0em 0em 1em;
   margin:0em;
 
+}
+
+#cohorts {
+  padding: 0.2em 0.2em 0.2em 0.2em;
+  overflow: auto;
+  height: 490px;
 }
 
 #map{
@@ -171,6 +177,18 @@ svg {
     user-select: none;
 }
 
+svg.cohorts {
+  width: 220px;
+}
+
+text.cohort.table {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.8em;        
+  text-anchor: start;
+  fill: gray;
+  text-overflow: ellipsis;
+}
+
 svg.tooltip {
   width: 12px;
   height: 12px;
@@ -192,8 +210,8 @@ div.tooltip {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 0.8em;        
   background: rgba(255,255,255,0.9);   
-  border:2px solid steelblue;   
-  border-radius: 6px;           
+  border:1px solid steelblue;   
+  --border-radius: 6px;           
   pointer-events: none;      
 }
 
@@ -211,7 +229,7 @@ div.tooltip.cohort{
 }
 
 div.tooltip table, td, th{   
-  font-size: 0.7em;
+  font-size: 0.9em;
   padding: 0em 0em 0em 0em; 
   overflow: hidden; 
   white-space: nowrap;
@@ -219,7 +237,7 @@ div.tooltip table, td, th{
 }
 
 .tooltip.objectives {
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-style:italic;
 }
 
@@ -320,7 +338,7 @@ td.filter {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: small;
   width: 800px;
-  height:300px;
+  height:400px;
 
   box-shadow: 2px 3px 5px 2px #888888;
   padding: 0.1em 0em 0em 1em;
@@ -328,19 +346,18 @@ td.filter {
 
 }
 
-.axis.dev path,
-.axis.dev line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+text.country.title {
+  font-family: Arial;
+  font-size: 0.9em;
+  text-anchor: end;
+  fill: gray;
 }
 
-.bar.dev {
-  fill: steelblue;
-}
-
-.x.axis.dev path {
-  display: none;
+text.country.size {
+  font-family: Arial;
+  font-size: 0.7em;
+  text-anchor: start;
+  fill: gray;
 }
 
 
