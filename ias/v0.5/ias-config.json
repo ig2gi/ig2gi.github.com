@@ -1,12 +1,15 @@
 {
-	"version": "0.6.0",
 	"map":{
 		"width": 780,
 		"height": 400,
 		"cohort": {
 			"fullProfile": "http://blablabla/cohort/$code$",
-			"linkcolor": "#555",
-			"linkinterpolate": "linear",
+			"pinsize": 5,
+			"pincolor": "#555",
+			"pinsymbol": "square",
+			"link": {
+				"interpolate": "linear"
+			},
 			"limit": 200000
 		},
 		"background":{
@@ -27,9 +30,7 @@
 	},
 
 	"filter": {
-		"enrollmentStatus": ["All", "Ongoing","Closed"],
-		"ageGroup": ["children", "adolescents", "adults"],
-		"subjectStatus": ["perinatally infected", "behaviourally infected", "HIV-exposed and uninfected", " infected through other routes"]
+		"status": ["All", "Ongoing","Closed"]
 	},
 
 	"network":{

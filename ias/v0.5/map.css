@@ -1,5 +1,107 @@
 
 
+.map{
+  fill: #fff;
+  stroke: #fff;
+}
+
+path.country {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: 0.5px;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: #aaa;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+
+text{
+  cursor: default;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.title {
+  font-family: Arial;
+  font-size: 1.5em;
+  fill: #666;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle.country {
+  font-family: Arial;
+  font-size: 1.0em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.info.country {
+  font-family: Arial;
+  font-size: 0.8em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle.cohort{
+  text-anchor: end;
+}
+
+circle.cohort{
+  fill: steelblue;
+  -- stroke-width: 1.5px;
+}
+
+
+text.pin {
+  font: 5px Arial;
+  fill: black;
+  opacity: 1;
+}
+
+path.pin{
+  fill: steelblue;
+  stroke: #333;
+  stroke-width: 0px;
+  opacity: 1;
+}
+
+circle.pin{
+  opacity: 0.7;
+}
+
+
+
+text.legend  {
+
+  font-family: Arial;
+  font-size: 0.5em;
+  text-anchor: start;
+  fill: gray;
+
+ }
+
+ text.legend.title  {
+
+
+  font-size: 0.9em;
+
+ }
+
+
 /**
     HTML CSS
 
@@ -12,7 +114,7 @@ aside{
   left: 810px;
   position: absolute;
   text-align: left;
-  width: 270px;
+  width: 240px;
   height:540px;
   color: #636363;
   box-shadow: 2px 3px 5px 2px #888888;
@@ -26,7 +128,6 @@ aside{
   color: #636363;
   background: transparent;
   border: 0px;
-  font-weight: normal;
   
 }
 
@@ -61,7 +162,43 @@ select{
 
 }
 
+svg {
+  width: 780px;
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
 
+  border-top: solid 1px #ccc;
+  background: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+svg.cohorts {
+  width: 220px;
+}
+
+text.cohort.table {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.8em;        
+  text-anchor: start;
+  fill: gray;
+  text-overflow: ellipsis;
+}
+
+svg.tooltip {
+  width: 12px;
+  height: 12px;
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+  border: 0px;
+  border: solid 1px #ccc;
+  background: rgba(255,255,255,0.8);  
+  float:left; 
+}
 
 div.tooltip {   
   position: absolute;           
@@ -131,6 +268,8 @@ h1.tooltip{
 }
 
 
+
+
 span.network{
    font-size: 0.4em;
    margin: 0em 0.2em 0em 0em;
@@ -148,40 +287,41 @@ label.network{
    font-size: 0.8em;
 }
 
-label.ageGroup, label.subjectStatus{
-   font-size: 0.8em;
-}
-
 div.subnetwork {
     padding: 0em 0em 0em 1em; 
 }
 
 #wrapper {
-  max-width: 240px;
-  padding: 0em 0em 0em 0em;
-  -moz-column-count: 2; /* Firefox */
-  -webkit-column-count: 2; /* Safari and Chrome */
-  column-count: 2;
+  max-width: 220px;
+  overflow: auto; 
+  padding: 0em 0em 0em 0.2em;  
 }
 
 #Other{
   --max-width: 100px;
   overflow: auto; 
-  padding: 0em 0em 0em 0em; 
+  padding: 0em 0em 0em 0.2em; 
   width: 100px;
 }
 
 #EuroCoord {
-  width: 100px;
+  width: 110px;
   overflow: auto;
-  padding: 0em 0em 1em 0em; 
+  padding: 0em 0em 1em 0.2em; 
   --background-color: yellow;
 }
 
 #IeDEA {
-      width: 200px;
-      padding: 0em 0em 1em 0em; 
+      max-width: 150px;
+      padding: 0em 0em 1em 0.2em; 
      -- background-color: cyan;
+}
+.fl {
+  float: left;
+}
+
+.clr {
+  clear: both;
 }
 
 p.filter { 
@@ -191,9 +331,35 @@ p.filter {
 
 td.filter {
     font-size: small;
-    vertical-align:top;
-    padding: 0em 1em 0em 0em;
 }
+
+
+#devpanel{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: small;
+  width: 800px;
+  height:400px;
+
+  box-shadow: 2px 3px 5px 2px #888888;
+  padding: 0.1em 0em 0em 1em;
+  margin:0em;
+
+}
+
+text.country.title {
+  font-family: Arial;
+  font-size: 0.9em;
+  text-anchor: end;
+  fill: gray;
+}
+
+text.country.size {
+  font-family: Arial;
+  font-size: 0.7em;
+  text-anchor: start;
+  fill: gray;
+}
+
 
 
 

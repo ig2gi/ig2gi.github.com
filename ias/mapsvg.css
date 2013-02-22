@@ -1,0 +1,167 @@
+
+
+.map{
+  fill: #fff;
+  stroke: #fff;
+}
+
+path.country {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: 0.5px;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: #aaa;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+
+text{
+  cursor: default;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.title {
+  font-family: Arial;
+  font-size: 1.5em;
+  fill: #666;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle.country {
+  font-family: Arial;
+  font-size: 1.0em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.info.country {
+  font-family: Arial;
+  font-size: 0.8em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle.cohort{
+  text-anchor: end;
+}
+
+circle.cohort{
+  fill: steelblue;
+  -- stroke-width: 1.5px;
+}
+
+
+text.pin {
+  font: 5px Arial;
+  fill: black;
+  opacity: 1;
+}
+
+path.pin{
+  fill: steelblue;
+  stroke: #333;
+  stroke-width: 0px;
+  opacity: 1;
+}
+
+circle.pin{
+  opacity: 0.7;
+}
+
+
+
+text.legend  {
+
+  font-family: Arial;
+  font-size: 0.5em;
+  text-anchor: start;
+  fill: gray;
+
+ }
+
+text.legend.title  {
+
+  font-size: 0.9em;
+
+}
+
+
+svg {
+  width: 780px;
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+
+  border-top: solid 1px #ccc;
+  background: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+svg.cohorts {
+  width: 220px;
+}
+
+text.cohort.table {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.8em;        
+  text-anchor: start;
+  fill: gray;
+  text-overflow: ellipsis;
+}
+
+svg.tooltip {
+  width: 12px;
+  height: 12px;
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+  border: 0px;
+  border: solid 1px #ccc;
+  background: rgba(255,255,255,0.8);  
+  float:left; 
+}
+
+
+
+text.country.title {
+  font-family: Arial;
+  font-size: 0.9em;
+  text-anchor: end;
+  fill: gray;
+}
+
+text.country.size {
+  font-family: Arial;
+  font-size: 0.7em;
+  text-anchor: start;
+  fill: gray;
+}
+
+g.cohort.link {
+  stroke-width: 0.5px;
+  stroke-dasharray: 1,1;
+}
+
+
+
+
+
+
