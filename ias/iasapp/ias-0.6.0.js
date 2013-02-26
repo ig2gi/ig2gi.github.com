@@ -257,12 +257,12 @@ var ias = (function (my) {
     }
 
     my.load = function () {
-        queue().defer(d3.json, "/ias/ias-config.json")
-            .defer(d3.json, "/ias/data/world-countries.json")
-            .defer(d3.json, "/ias/data/centroids.json")
-            .defer(d3.json, "/ias/data/ias-networks.json")
-            .defer(d3.json, "/ias/data/ias-cohorts.json")
-            .defer(d3.csv, "/ias/data/hiv-prevalence-rate.csv")
+        queue().defer(d3.json, "./ias-config.json")
+            .defer(d3.json, "./data/world-countries.json")
+            .defer(d3.json, "./data/centroids.json")
+            .defer(d3.json, "./data/ias-networks.json")
+            .defer(d3.json, "./data/ias-cohorts.json")
+            .defer(d3.csv, "./data/hiv-prevalence-rate.csv")
             .await(ready);
     };
 

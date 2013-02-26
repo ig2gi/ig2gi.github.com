@@ -2,30 +2,21 @@
 <meta charset="utf-8">
 <head>
     <link type='text/css' rel='stylesheet' href='style.css'/>
-    <script type="text/javascript">
-		function getLastMod(){
-			var page = document.getElementById('map');
-			var lastModif = new Date(page.contentWindow.document.lastModified);
-			document.getElementById('LastModified').innerHTML = lastModif.toDateString();
-		};
-	</script>
 </head>
 
 <body>
-<a href="www.iasociety.org"><img src="images/logo_ias.gif"/></a>
-<h1>International AIDS Society - Development Page</h1>
+	<a href="www.iasociety.org"><img src="images/logo_ias.gif"/></a>
+	<h1>International AIDS Society - Development Page</h1>
+	<img src="images/warning.png" width="20" style="vertical-align:middle">&nbsp;This is a development page, use only Chrome for testsimg <img src="images/warning.png" width="20" style="vertical-align:middle"/>
+	<ul>
+		<li><a href="readme/readme.html" target="_blank">Readme</a> file for further informations on the project</li>
+		<li><a href="test/test.html" target="_blank">Tests Page</a> Javascript unit tests page</li>
+	</ul>
+	[<span style="color: dimgray"> Current release: v0.6.0 - Tue Feb 26 2013 17:52:42</span>]
+	<br><br>
 
-
-
-
-<aside style="margin-top:-120px;" class="gist-date">date:&nbsp;<span id="LastModified"></span></aside>
-
-<iframe id="map" src="map.html" scrolling="no" onload="getLastMod()">
-</iframe>
-
+	<iframe id="map" src="iasapp/map.html" scrolling="no">
+	</iframe>
 
 </body>
-
-
-
 
