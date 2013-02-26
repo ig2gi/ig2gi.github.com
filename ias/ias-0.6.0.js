@@ -55,6 +55,7 @@ var g2g = (function (my) {
     //
     my.GraphComponent.prototype.moveOnTop = function () {
         this.parent.appendChild(this);
+        return this;
     };
 
     //
@@ -179,9 +180,6 @@ var g2g = (function (my) {
         if (!this.hasOwnProperty(opt)) {
             return;
         }
-        if (!this.listeners.hasOwnProperty(opt)) {
-            return; // no listener registered for this option
-        }
         if (value === newValue) {
             return; // no change!
         }
@@ -191,10 +189,13 @@ var g2g = (function (my) {
         } else {
             this[opt] = newValue;
         }
-        // call listeners
-        listeners = this.listeners[opt];
-        for (i = 0; i < listeners.length; i += 1) {
-            listeners[i].call(this, opt);
+
+        if (this.listeners.hasOwnProperty(opt)) {   
+            // call listeners
+            listeners = this.listeners[opt];
+            for (i = 0; i < listeners.length; i += 1) {
+                listeners[i].call(this, opt);
+            }
         }
 
     };
@@ -223,9 +224,9 @@ var ias = (function (my) {
 
 	// log wrapper
 	my.log = function () {
-	    if (console && console.log) {
-	        console.log.apply(console, arguments);
-	    }
+        if (console && console.log) {
+            console.log.apply(console, arguments);
+        }
 	};
 
     function ready(error, configuration, world, centroids, networks, cohorts, hivrates) {
@@ -238,7 +239,14 @@ var ias = (function (my) {
         my.version = configuration.version;
         // init IAS modules
         my.modules.forEach(function (m) {
-            m.init({"world": world, "centroids": centroids, "networks": networks, "cohorts": cohorts, "hivrates": hivrates});
+            m.init(
+                {   
+                    "world": world, 
+                    "centroids": centroids, 
+                    "networks": networks, 
+                    "cohorts": cohorts, 
+                    "hivrates": hivrates
+                });
         });
         // run IAS modules (if they are runnable)
         my.modules.forEach(function (m) {
@@ -316,6 +324,60 @@ ias.util = (function () {
             return "9" + feature.properties.name.substring(0, 2);
         }
         return feature.id;
+    };
+
+    //
+    that.getCohortHtml = function (cohort) {
+        var h       = "<span class='tooltip title'>Cohort</span><h1 class='tooltip'>" + cohort.name + ":</h1>",
+            color   = "white",
+            country,
+            rate,
+            k;
+        h += "<div id='ctooltippin'></div>&nbsp;" + cohort.size + " subjects ";
+        h += "&nbsp;<span style='background:" + ias.util.getNetworkColor(cohort.getNetwork());
+        h += ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp" + cohort.getNetwork();
+        h += "<br><br><b>Status:</b>&nbsp;" + cohort.status + "<br>";
+        h += "<br><b>Objectives:</b><br>";
+        h += "<span class='tooltip objectives'>" + cohort.objectives + "</span>";
+        h += "<br><br><b>Countries:</b><br><table>";
+        for (k in cohort.countryData) {
+            if (cohort.countryData.hasOwnProperty(k)) {
+                country = ias.model.allcountriesById[k];
+                rate = country.hivPrevalenceRate;
+                color = ias.util.getBackgroundColor(rate);
+                h += "<tr><td class='firstcol'><span style='background:";
+                h += color + ";'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;";
+                h += country.name;
+                h += "</td></tr>";
+            }
+        }
+        h += "</table>";
+        h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', cohort.code) + "'>View Full Profile</a>";
+
+        return h;
+    };
+
+    //
+    that.getCountryHtml = function (country) {
+        var h       = "<span class='tooltip title'>Country " + "  " + country.id + "</span><h1 class='tooltip'>" + country.name +  "</h1><table>",
+            color   = "white";
+
+        h += "<tr><td class='firstcol'>HIV Prevalence Rate</td><td class='secondcol'>";
+        h += (country.hivPrevalenceRate || 'na') + " %</td></tr>";
+        h += "<tr><td>ARV Coverage Rate</td><td class='secondcol'>";
+        h += (country.arvCoverageRate || 'na')  + " %</td></tr>";
+        if (country.cohorts && country.cohorts.length > 0) {
+            h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
+            country.cohorts.forEach(function (c) {
+                color = ias.util.getNetworkColor(c.networks[0]);
+                h += "<tr><td class='firstcol'><span style='background:";
+                h += color + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp;";
+                h += c.name + "</td><td class='secondcol'>";
+                h += c.size + "</td></tr>";
+            });
+        }
+        h += "</table>";
+        return h;
     };
 
     //
@@ -472,7 +534,7 @@ ias.filter = (function () {
         //
         function color(code) {
             if (code === "EuroCoord" || code === "IeDEA" || code === "Other") {
-                return "white";
+                return "rgb(255,255,255)";
             }
             return ias.util.getNetworkColor(code);
         }
@@ -488,6 +550,13 @@ ias.filter = (function () {
             } else {
                 options.change(that.NETWORKS + "." + code, input.checked);
             }
+        }
+
+        //
+        function luminance(color) {
+            var rgb = color.replace(/^rgb?\(|\s+|\)$/g,'').split(','),
+                lum = 0.3 * rgb[0] + 0.59 * rgb[1] + 0.11 * rgb[2];
+            return lum;
         }
 
         //
@@ -513,15 +582,22 @@ ias.filter = (function () {
                 .attr("id", function (v) {return 'n' + v.code; })
                 .on("click", function (v) {return click(this, v); });
 
-            nodeEnter.append("span")
-                .attr("class", "network")
-                .style("background", function (v) {return color(v.code); })
-                .style("color", function (v) {return color(v.code); })
-                .text('\u0020.\u0020');
+            // nodeEnter.append("span")
+            //     .attr("class", "network")
+            //     .style("background", function (v) {return color(v.code); })
+            //     .style("color", function (v) {return color(v.code); })
+            //     .text('\\u0020.\\u0020');
 
             nodeEnter.append("label")
                 .attr("class", function (v) {return d.code === v.code ? "network title" : "network"; })
                 .attr("for", function (v) {return 'n' + v.code; })
+                .style("background", function (v) {luminance(color(v.code)) ; return color(v.code); })
+                .style("color", function (v) {
+                    var c = color(v.code),
+                        l = luminance(c); 
+                    if (l < 130) {return "lightgray"; }
+                    return "#666";
+                })
                 .text(function (d) {return d.name; });
 
             if (d !== "Other") {
@@ -635,23 +711,6 @@ ias.model = (function (model) {
 		return this.cohorts ? this.cohorts.length : 0;
 	};
 
-	model.Country.prototype.html = function () {
-		var h 		= "<span class='tooltip title'>Country " + "  " + this.id + "</span><h1 class='tooltip'>" + this.name +  "</h1><table>",
-			color 	= "white";
-
-		h += "<tr><td class='firstcol'>HIV Prevalence Rate</td><td class='secondcol'>" + (this.hivPrevalenceRate || 'na') + " %</td></tr>";
-		h += "<tr><td>ARV Coverage Rate</td><td class='secondcol'>" + (this.arvCoverageRate || 'na')  + " %</td></tr>";
-		if (this.cohorts && this.cohorts.length > 0) {
-			h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
-			this.cohorts.forEach(function (c) {
-				color = ias.util.getNetworkColor(c.networks[0]);
-				h += "<tr><td class='firstcol'><span style='background:" + color + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp;" + c.name + "</td><td class='secondcol'>" + c.size + "</td></tr>";
-			});
-		}
-		h += "</table>";
-		return h;
-	};
-
 	return model;
 
 }(ias.model || {}));
@@ -719,37 +778,6 @@ ias.model = (function (model) {
 		return this.networks[0];
 	};
 
-	model.Cohort.prototype.html = function () {
-		var h 		= "<span class='tooltip title'>Cohort</span><h1 class='tooltip'>"
-						+ this.name
-						+ ":</h1>",
-			color 	= "white",
-			country,
-			rate,
-			k;
-		h += "<div id='ctooltippin'></div>&nbsp;" + this.size + " subjects ";
-		h += "&nbsp;<span style='background:" + ias.util.getNetworkColor(this.networks[0]) + ";'>&nbsp;&nbsp;&nbsp;</span>&nbsp" + this.networks[0];
-		h += "<br><br><b>Status:</b>&nbsp;" + this.status + "<br>";
-		h += "<br><b>Objectives:</b><br>";
-		h += "<span class='tooltip objectives'>" + this.objectives + "</span>";
-		h += "<br><br><b>Countries:</b><br><table>";
-		for (k in this.countryData) {
-			if (this.countryData.hasOwnProperty(k)) {
-				country = ias.model.allcountriesById[k];
-				rate = country.hivPrevalenceRate;
-				color = ias.util.getBackgroundColor(rate);
-				h += "<tr><td class='firstcol'><span style='background:"
-					+ color + ";'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;"
-					+ country.name
-					+ "</td></tr>";
-			}
-		}
-		h += "</table>";
-		h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', this.code) + "'>View Full Profile</a>";
-
-		return h;
-	};
-
 	return model;
 
 }(ias.model || {}));
@@ -776,7 +804,7 @@ ias.graph = (function () {
     //
     that.enterCountry = function (countryId) {
         var country = ias.model.allcountriesById[countryId];
-        that.tooltip.country.html(country.html()).show();
+        that.tooltip.country.html(ias.util.getCountryHtml(country)).show();
         try {
             d3.select("#" + countryId)
                 .style('stroke', "darkgray")
@@ -975,7 +1003,7 @@ ias.graph = (function (graph) {
 
     //
     graph.Pin.prototype.tooltip = function () {
-        ias.graph.tooltip.cohort.html(this.cohort.html()).show();
+        ias.graph.tooltip.cohort.html(ias.util.getCohortHtml(this.cohort)).show();
     };
 
     //
@@ -1164,6 +1192,16 @@ ias.graph = (function (graph) {
         }
 
         //
+        function zoomIn() {
+            centeredCountry = null;
+            zoomFactor = 3;
+            center = ias.graph.projection([0, 0]);
+            center[1] += posy;
+            ias.graph.legend.zoom(zoomFactor);
+            recenter(1000);
+        }
+
+        //
         function moveUp() {
             move([0, -10], 500);
         }
@@ -1266,18 +1304,21 @@ ias.graph = (function (graph) {
 
             // make and draw cohort links
             for (key in gCohortPins) {
-
                 if (gCohortPins.hasOwnProperty(key) && gCohortPins[key].length > 1) {
                     lnk = new g2g.Link(glinks_cohort, ias.config.map.cohort.linkinterpolate, ias.config.map.cohort.linkcolor, "link cohort").setVisible(false);
-                    gCohortPins[key].forEach(function (p) {
-                        lnk.addElement(p);
-                        p.addLink(lnk);
-                    });
+                    linkAll(lnk, gCohortPins[key]); // TODO refactor this
                     lnk.draw();
                 }
-
             }
 
+        }
+
+        //
+        function linkAll(lnk, elements) {
+            elements.forEach(function (e) {
+                lnk.addElement(e);
+                e.addLink(lnk);
+            });
         }
 
         // 
@@ -1287,11 +1328,9 @@ ias.graph = (function (graph) {
 
         //
         function filterUpdate(event) {
-
             cohortPins.forEach(function (d) {
                 d.filter();
             });
-
         }
 
         ias.filter.addListener([ias.filter.NETWORKS, ias.filter.YEAR, ias.filter.ENROLLMENT_STATUS], filterUpdate);
@@ -1303,6 +1342,7 @@ ias.graph = (function (graph) {
             update: update,
             filterUpdate: filterUpdate,
             zoomout: zoomOut,
+            zoomin: zoomIn,
             moveup: moveUp,
             movedown: moveDown,
             moveright: moveRight,
@@ -1329,35 +1369,25 @@ ias.graph = (function (graph) {
             gcohort         = svg.append("g")
                                 .attr("id", "clegend")
                                 .attr('transform', 'translate(' + (posx + 200) + ',' + posy + ')'),
-            arc             = d3.svg.arc()
-                                .innerRadius(0)
-                                .outerRadius(8)
-                                .startAngle(0),
-            zoomOut         = svg.append("g").append("image")
-                                .attr("xlink:href", "images/zoomout.png")
-                                .attr("width", 22)
-                                .attr("height", 22)
-                                .attr("x", ias.config.legend.width - 50)
-                                .attr("y", 20)
-                                .style("display", "none")
-                                .style("cursor", "pointer"),
             gbuttons        = svg.append("g")
                                 .attr("id", "buttons")
                                 .style("pointer-events", "none")
-                                .style("opacity", "0.2")
-                                .attr('transform', 'translate(' + (posx + 720) + ',' + 5 + ')');
-
+                                //.style("opacity", "0.2")
+                                .attr('transform', 'translate(' + (posx + 700) + ',' + 5 + ')');
 
         //
-        function addButton(name, x, y) {
+        function addButton(name, x, y, opacity) {
             gbuttons.append("image")
-                                .attr("xlink:href", "images/" + name + ".png")
-                                .attr("width", 20)
-                                .attr("height", 20)
-                                .attr("x", x)
-                                .attr("y", y)
-                                .style("cursor", "pointer")
-                                .on("click", ias.graph.map[name]);
+                    .attr("xlink:href", "images/" + name + ".png")
+                    .attr("width", 20)
+                    .attr("height", 20)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("id", name)
+                    .style("cursor", "pointer")
+                    .style("opacity", function (d) {return opacity ? opacity : 0.2; })
+                    .style("pointer-events", function (d) {return opacity ? "all" : "none"; })
+                    .on("click", ias.graph.map[name]);
         }
 
 
@@ -1447,6 +1477,7 @@ ias.graph = (function (graph) {
         //
         function draw() {
 
+            addButton("zoomin", 50, 20, 1);
             addButton("zoomout", 25, 20);
             addButton("moveup", -20, 10);
             addButton("movedown", -20, 30);
@@ -1473,9 +1504,14 @@ ias.graph = (function (graph) {
 
         //
         function zoom(factor) {
-            gbuttons.transition().duration(1000)
+            gbuttons.selectAll("#moveup, #movedown, #moveright, #moveleft, #zoomout")
+                .transition().duration(1000)
                 .style("opacity", factor === 1 ? "0.2" : "1")
                 .style("pointer-events", factor === 1 ? "none" : "all");
+            gbuttons.select("#zoomin")
+                .transition().duration(1000)
+                .style("opacity", factor === 1 ? "1" : "0.2")
+                .style("pointer-events", factor === 1 ? "all" : "none");
         }
 
         //
