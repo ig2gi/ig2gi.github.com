@@ -1,5 +1,17 @@
 {
-	"version": "0.6.0",
+	"version": "0.7.0",
+	"timestamp": "Thu Mar 14 2013 15:00:56",
+	
+	"data": {
+		"hivPrevalenceRate": "./data/hiv-prevalence-rate.csv",
+		"mapGeoJson": "./data/world-countries.json",
+		"mapCentroids": "./data/centroids.json",
+		"offlineCohorts": "./data/ias-cohorts.json",
+		"onlineCohorts": "http://svn.iasociety.org:8041/Cipher/CipherService.svc/cohorts",
+		"offlineNetworks": "./data/ias-networks.json",
+		"onlineNetworks": "./data/ias-networks.json"
+	},
+
 	"map":{
 		"width": 780,
 		"height": 400,
@@ -27,13 +39,30 @@
 	},
 
 	"filter": {
-		"enrollmentStatus": ["All", "Ongoing","Closed"],
-		"ageGroup": ["children", "adolescents", "adults"],
-		"subjectStatus": ["perinatally infected", "behaviourally infected", "HIV-exposed and uninfected", " infected through other routes"]
+		"enrollmentStatus": [
+			"All",
+			"Ongoing",
+			"Closed"
+		],
+		"ageGroup": [
+			"children",
+			"adolescents",
+			"adults"
+		],
+		"subjectStatus": [
+			"perinatally infected", 
+			"behaviourally infected",
+			"HIV-exposed and uninfected", 
+			"Infected through other routes"
+		]
 	},
 
 	"network":{
-		"colorSchemes":["Greens", "Blues", "PiYG"]
+		"colorSchemes":[
+			"Greens",
+			"Blues",
+			"PiYG"
+		]
 	}
 
 }

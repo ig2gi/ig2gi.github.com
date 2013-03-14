@@ -8,14 +8,7 @@ The project is hosted by [github](github.com) in a private repository. ([email m
 
 # Technical Presentation
 
-Project is built with [Grunt](http://gruntjs.com/).
-
 todo ...
-
-# Data
-- Geographic Map: 
- - format: GeoJson 
- - country code: [ISO 3166-1 Alpha-3](http://countrycodes.co/country-codes/iso-3166-1-alpha-3/)
 
 # Browser Support
 
@@ -26,27 +19,22 @@ todo ...
 **dist** directory contains all releases.
 
     dist
-    |--+ 0.7.0    // latest release version
-       |-- index.html       // <--- html development page
-       |-- style.css
-       |--+ readme
-       |--+ test
-       |--+ iasapp          // <--- IAS app
-          |-- ias-0.7.0.js      // ias javascript file 
-          |-- ias-0.7.0.min.js  // ias minified javascript file 
-          |-- map.css               // css for html elements
-          |-- mapsvg.css            // css for svg elements
-          |-- map.html              // ias graph html page (svg map + html filter panel)
-          |-- ias-config.json       // ias configuration file
-          |--+ images               // image resources
-          |--+ lib                  // javascript dependency files
-          |--+ data                 // data files
-             |-- centroids.json           // GeoJson modified state centroids
-             |-- hiv-prevalence-rate.csv  // to be replaced by an AJAX call
-             |-- ias-cohorts.json         // to be replaced by an AJAX call
-             |-- ias-networks.json        // to be replaced by an AJAX call
-             |-- world-countries.json     // GeoJSON worl map
-      
+    |-- 0.6.0    // release version
+       |-- index.html       // html development page
+       |-- ias-0.0.6.js     // ias javascript file 
+       |-- ias-0.6.0.min.js // ias minified javascript file 
+       |-- map.css          // css for html elements
+       |-- mapsvg.css       // css for svg elements
+       |-- map.html         // ias graph html page (svg map + html filter panel)
+       |-- ias-config.json  // ias configuration file
+       |-- images           // image resources
+       |-- lib              // javascript dependency files
+       |-- data             // data files
+           |-- centroids.json           // GeoJson modified state centroids
+           |-- hiv-prevalence-rate.csv  // to be replaced by an AJAX call
+           |-- ias-cohorts.json         // to be replaced by an AJAX call
+           |-- ias-networks.json        // to be replaced by an AJAX call
+           |-- world-countries.json     // GeoJSON worl map
            
 # Links
 

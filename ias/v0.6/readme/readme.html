@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type='text/css' rel='stylesheet' href='../style.css'/>
+    <script src="markdown.js"></script>
+    <script src="../iasapp/lib/d3.v3.min.js"></script>
+    <script>
+      	function loadReadme() {
+      		d3.text("README.md", function(content) {
+      			d3.select("#preview").html(markdown.toHTML(content));
+			});
+      	}
+    </script>
+</head>
+
+  <body>
+    <div id="preview"> </div>
+    <script type="text/javascript">
+    	loadReadme();
+    </script>
+  </body>
+  
+</html>

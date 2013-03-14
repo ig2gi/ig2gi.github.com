@@ -1,0 +1,39 @@
+{
+	"version": "0.6.0",
+	"map":{
+		"width": 780,
+		"height": 400,
+		"cohort": {
+			"fullProfile": "http://blablabla/cohort/$code$",
+			"linkcolor": "#555",
+			"linkinterpolate": "linear",
+			"limit": 200000
+		},
+		"background":{
+			"scheme": "Greys",
+			"steps": [0.1, 2, 5, 10, 15, 20],
+			"opacity": 0.8
+		},
+		"tooltip": {
+			"country": [20, 270],
+			"cohort": [550, 80]
+		}
+	},
+
+	"legend":{
+		"width": 780,
+		"height": 80,
+		"cohorts": [5000, 75000, 150000, 300000]
+	},
+
+	"filter": {
+		"enrollmentStatus": ["All", "Ongoing","Closed"],
+		"ageGroup": ["children", "adolescents", "adults"],
+		"subjectStatus": ["perinatally infected", "behaviourally infected", "HIV-exposed and uninfected", " infected through other routes"]
+	},
+
+	"network":{
+		"colorSchemes":["Greens", "Blues", "PiYG"]
+	}
+
+}

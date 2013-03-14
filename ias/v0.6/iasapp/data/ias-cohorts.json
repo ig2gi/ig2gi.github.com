@@ -1,4 +1,5 @@
-[
+{
+  "cohorts": [
     {
       "status": "Ongoing", 
       "code": 1, 
@@ -6,8 +7,8 @@
       "year": 1980, 
       "objectives": "pediatric AIDS surveillance (1986); extended to include obstetric HIV surveillance (1989)", 
       "countries": [
-        "GBR", 
-        "IRL"
+        "United Kingdom", 
+        "Ireland"
       ], 
       "networks": [
         "COHERE"
@@ -21,26 +22,12 @@
       "year": 1980, 
       "objectives": "transition to adulthood and evolution of HIV-1 and HIV-2 perinatally infected young adults", 
       "countries": [
-        "FRA"
+        "France"
       ], 
       "networks": [
         "COHERE"
-      ],
-      "subjects": [
-          {
-          "female": 20,
-          "group": "adolescents",
-          "male": 20,
-          "subgroup": "Perinatally infected"
-          },
-          {
-          "female": 50,
-          "group": "adult",
-          "male": 60,
-          "subgroup": "Perinatally infected"
-          }
-        ],
-      "size": 605
+      ], 
+      "size": 160
     }, 
     {
       "status": "Recruiting", 
@@ -49,7 +36,7 @@
       "year": 1980, 
       "objectives": "monitor epidemiology and course of treated and untreated HIV-1 infected patients in the Netherlands; 25 hospitals and 4 paediatric HIV treatment centers", 
       "countries": [
-        "NLD"
+        "Netherlands"
       ], 
       "networks": [
         "COHERE"
@@ -63,12 +50,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "AUT"
+        "Austria"
       ], 
       "networks": [
         "COHERE"
       ], 
-      "size": 3000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -77,12 +64,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "GRC"
+        "Greece"
       ], 
       "networks": [
         "COHERE"
       ], 
-      "size": 23000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -91,12 +78,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "FRA"
+        "France"
       ], 
       "networks": [
         "COHERE"
       ], 
-      "size": 20000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -105,12 +92,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "BEL"
+        "Belgium"
       ], 
       "networks": [
         "COHERE"
       ], 
-      "size": 500
+      "size": 0
     }, 
     {
       "status": "", 
@@ -119,12 +106,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "DNK"
+        "Denmark"
       ], 
       "networks": [
         "COHERE"
       ], 
-      "size": 5000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -133,12 +120,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "GRC"
+        "Greece"
       ], 
       "networks": [
         "COHERE"
       ], 
-      "size": 300
+      "size": 0
     }, 
     {
       "status": "", 
@@ -147,7 +134,7 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "ITA"
+        "Italy"
       ], 
       "networks": [
         "COHERE"
@@ -161,7 +148,7 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "CHE"
+        "Switzerland"
       ], 
       "networks": [
         "HasMoCHIVnestedinit"
@@ -175,7 +162,7 @@
       "year": 1980, 
       "objectives": "Biological/clinical progression of HIV infection; ageing; occcurence of severe morbidities/mortality; tolerance of ARVs; including genotyping", 
       "countries": [
-        "FRA"
+        "France"
       ], 
       "networks": [
         "EPPICC"
@@ -189,7 +176,7 @@
       "year": 1980, 
       "objectives": "changes in MTCT rate and identify risk factors for MTCT; impact of MTCT prophylaxis; natural history of HIV in children", 
       "countries": [
-        "FRA"
+        "France"
       ], 
       "networks": [
         "EPPICC"
@@ -203,8 +190,8 @@
       "year": 2000, 
       "objectives": "information exchange; describe clinical; laboratory and treatment information in HIV infected children under care in the UK and Ireland", 
       "countries": [
-        "GBR", 
-        "IRL"
+        "United Kingdom", 
+        "Ireland"
       ], 
       "networks": [
         "EPPICC"
@@ -221,7 +208,7 @@
       "networks": [
         "EPPICC"
       ], 
-      "size": 800
+      "size": 0
     }, 
     {
       "status": "", 
@@ -230,12 +217,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "ESP"
+        "Spain"
       ], 
       "networks": [
         "EPPICC"
       ], 
-      "size": 2000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -247,7 +234,7 @@
       "networks": [
         "EPPICC"
       ], 
-      "size": 23000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -259,7 +246,7 @@
       "networks": [
         "EPPICC"
       ], 
-      "size": 56000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -268,12 +255,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "DEU"
+        "Germany"
       ], 
       "networks": [
         "EPPICC"
       ], 
-      "size": 4500
+      "size": 0
     }, 
     {
       "status": "", 
@@ -282,12 +269,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "ESP"
+        "Spain"
       ], 
       "networks": [
         "EPPICC"
       ], 
-      "size": 3000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -296,12 +283,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "ESP"
+        "Spain"
       ], 
       "networks": [
         "EPPICC"
       ], 
-      "size": 300
+      "size": 0
     }, 
     {
       "status": "", 
@@ -325,7 +312,7 @@
       "networks": [
         "EPPICC"
       ], 
-      "size": 34000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -334,7 +321,7 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "CHE"
+        "Switzerland"
       ], 
       "networks": [
         "NestedwithinSwissHIVCohortStudy"
@@ -348,12 +335,12 @@
       "year": 1980, 
       "objectives": "Investigate HIV disease progression and management; including estimation of AIDS-free survival; response to HAART; ID of prognostic factors and assessment of TB; HCV; and HBV co-infection impact; estimate prevalence/incidence of ART-rlated toxicities; model growth patterns", 
       "countries": [
-        "UKR"
+        "Ukraine"
       ], 
       "networks": [
         "PENTA"
       ], 
-      "size": 10000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -398,7 +385,7 @@
       "year": 1980, 
       "objectives": "NS", 
       "countries": [
-        "KEN"
+        "Kenya"
       ], 
       "networks": [
         "EastAfricaConsortium"
@@ -412,10 +399,10 @@
       "year": 1980, 
       "objectives": "Aims to collect and harmonize paediatric HIV data to address research questions unanswerable within a single cohort", 
       "countries": [
-        "MWI", 
-        "MOZ", 
-        "ZAF", 
-        "ZWE"
+        "Malawi", 
+        "Mozambique", 
+        "South Africa", 
+        "Zimbabwe"
       ], 
       "networks": [
         "SouthernAfrica"
@@ -429,7 +416,7 @@
       "year": 1980, 
       "objectives": "adherence to therapy; retention in care; mortality/causes of death; toxicities and Aes; clinical outcomes; program monitoring; HIV epidemiology; treatment outcomes and risk factors for poor outcomes; regimen switches", 
       "countries": [
-        "ZMB"
+        "Zambia"
       ], 
       "networks": [
         "SouthernAfrica"
@@ -443,10 +430,10 @@
       "year": 1980, 
       "objectives": "described issues related to health care provision in rural southern Africa (focus of ART delivery); describe ARV issues in adults and children (e.g. immunologic recovery; clinical outcomes; Aes); describe issues related to complications of HIV-infection", 
       "countries": [
-        "LSO", 
-        "ZWE", 
-        "MOZ", 
-        "TZA"
+        "Lesotho", 
+        "Zimbabwe", 
+        "Mozambique", 
+        "United Republic of Tanzania"
       ], 
       "networks": [
         "Independent"
@@ -460,8 +447,8 @@
       "year": 1980, 
       "objectives": "determine if ARTs can be given in absence of routine lab tests; two difference treatment strategies (4 vs 3 ARTs); optimal use of ARTs in resource limited settings", 
       "countries": [
-        "UGA", 
-        "ZWE"
+        "Uganda", 
+        "Zimbabwe"
       ], 
       "networks": [
         "Independent"
@@ -475,7 +462,7 @@
       "year": 1980, 
       "objectives": "Whether breastfeeding in a high HIV prevalence poor  rural setting could be made safe in terms of both HIV transmissiona nd morbidity/mortality balance; estimate risk of postnatal transmission in exclusively breastfed infants", 
       "countries": [
-        "ZAF"
+        "South Africa"
       ], 
       "networks": [
         "Independent"
@@ -489,12 +476,26 @@
       "year": 1980, 
       "objectives": "Assess long-term evolution of HIV_infection in adults and children on ARV; long term immune and virologic response; HIV resistance; dosing and PK od drugs", 
       "countries": [
-        "THA"
+        "Thailand"
       ], 
       "networks": [
         "Independent"
       ], 
       "size": 2479
+    }, 
+    {
+      "status": "ongoing", 
+      "code": 36, 
+      "name": "Medecins Sans Frontieres (MSF)*", 
+      "year": 1980, 
+      "objectives": "data monitoring system originally designed to evaluate MS HIV programs; objectives were expanded to facilitate data collection for treatment; clinical and health service research; and to facilitate patient management at program level; routine analyses per site are carried out regularly and include elaboration of activity reports and description of trends in patient characteristics at program inclusion and ART start; as well as program and treatment outcomes for both adults and children", 
+      "countries": [
+        "Africa and Asia"
+      ], 
+      "networks": [
+        "Independent"
+      ], 
+      "size": 100000
     }, 
     {
       "status": "Ongoing", 
@@ -503,7 +504,7 @@
       "year": 1980, 
       "objectives": "Investigate health care utilization patterns; costs of care; disparities in access to care; patient safety; impact of comorbid substance abuse and/or mental health comorbid disease on HIV outcomes", 
       "countries": [
-        "USA"
+        "United States of America"
       ], 
       "networks": [
         "Independent"
@@ -517,7 +518,7 @@
       "year": 1980, 
       "objectives": "Assess extent of HIV drug resistance in HIV+ children on ART in Uganda", 
       "countries": [
-        "UGA"
+        "Uganda"
       ], 
       "networks": [
         "Independent"
@@ -531,7 +532,7 @@
       "year": 1980, 
       "objectives": "Two US-based studies of children borin to HIV+ mothers (1) SMARTT study of HIV-exposed but uninfected infants and children; (2) AMP study of perintally HIV-infected children and adolescents", 
       "countries": [
-        "USA"
+        "United States of America"
       ], 
       "networks": [
         "Independent"
@@ -545,7 +546,8 @@
       "year": 1980, 
       "objectives": "monitor HIV infection in treated and untreated patients for the development of integrated HIV care in a Carribean setting", 
       "countries": [
-        "CUW"
+        "Curacao", 
+        "Dutch Caribbean"
       ], 
       "networks": [
         "Independent"
@@ -619,12 +621,12 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "NOR"
+        "Norway"
       ], 
       "networks": [
         "Independent"
       ], 
-      "size": 67000
+      "size": 0
     }, 
     {
       "status": "", 
@@ -633,7 +635,7 @@
       "year": 1980, 
       "objectives": "", 
       "countries": [
-        "JAM"
+        "Jamaica"
       ], 
       "networks": [
         "Independent"
@@ -664,4 +666,6 @@
       ], 
       "size": 0
     }
-  ]
+  ], 
+  "name": "IAS DB"
+}
