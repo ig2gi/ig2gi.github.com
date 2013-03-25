@@ -88,7 +88,7 @@ circle.pin{
 text.legend  {
 
   font-family: Arial;
-  font-size: 0.8em;
+  font-size: 0.5em;
   text-anchor: start;
   fill: gray;
 
@@ -162,7 +162,7 @@ g.cohort.link {
 
 circle.country {
   fill-opacity: .15;
-  stroke: #333;                         
+  stroke: #333;                         ;
   stroke-width: 0.5px;
   stroke-dasharray: 0.2,0.2;
 }
@@ -172,7 +172,7 @@ circle.cohort {
 }
 
 circle.cohort.selected {
-  stroke: darkred;                           
+  stroke: darkred;                           ;
   stroke-width: 0.5px;
   stroke-dasharray: 0.2,0.2;
 }
@@ -193,27 +193,6 @@ text.country.subjects {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     font-size: 0.7em;
     fill: darkgray;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #ccc;
-  shape-rendering: crispEdges;
-}
-
-.x.axis {
-  font-size: 0.8em;
-  fill: gray;
-}
-
-.x.axis.selected {
-  fill: #333;
-  font-size: 0.7em;
-}
-
-.x.axis path {
-  display: none;
 }
 
 
