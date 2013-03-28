@@ -1529,11 +1529,11 @@ ias.graph = (function (graph) {
                 .style("opacity", ias.config.map.background.opacity)
                 .on('click', click);
 
-            gmap.append("circle")
-                .attr("cx", origin[0] - posx / 2)
-                .attr("cy", origin[1] - posy / 2)
-                .attr("r", 5)
-                .style("fill", "black");
+            // gmap.append("circle")
+            //     .attr("cx", origin[0] - posx / 2)
+            //     .attr("cy", origin[1] - posy / 2)
+            //     .attr("r", 5)
+            //     .style("fill", "black");
 
             gmap.select("#ATA").remove(); // remove Antartic
             // draw pins layer
