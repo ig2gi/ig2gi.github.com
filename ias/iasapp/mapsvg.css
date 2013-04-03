@@ -1,43 +1,74 @@
 
+/**
+* ----> GLOBAL SVG
+*/
+
+svg {
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+  background: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .1px;
+  stroke-opacity: .4;
+}
+
+/**
+* ----> MAP
+*/
 
 .map{
   fill: #fff;
   stroke: #fff;
 }
 
+svg.map {
+  border: 3px solid #156994;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+}
+
+svg.title , svg.zoom, svg.legend{
+  border: 3px solid #156994;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+}
+
+
 path.country {
   fill: #ccc;
-  stroke: #fff;
+  stroke: #000;
   stroke-width: 0.1px;
 }
 
-.node circle {
-  fill: #fff;
-  stroke: #aaa;
-  stroke-width: 1.5px;
+/**
+* ----> TITLE
+*/
+
+text.graphtitle {
+  stroke: steelblue; 
+  font-size: 1.2em; 
+  text-align: center;
+  font-weight: normal;
 }
 
-.node {
-  font: 10px sans-serif;
-}
 
 
 text{
   cursor: default;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
-}
-
-.title {
-  font-family: Arial;
-  font-size: 1.5em;
-  fill: #666;
-  font-weight:bold;
-  --text-shadow: 3px 3px 7px #111;
 }
 
 .subtitle.country {
@@ -60,61 +91,6 @@ text{
   text-anchor: end;
 }
 
-circle.cohort{
-  fill: steelblue;
-  -- stroke-width: 1.5px;
-}
-
-
-text.pin {
-  font: 5px Arial;
-  fill: black;
-  opacity: 1;
-}
-
-path.pin{
-  fill: steelblue;
-  stroke: #333;
-  stroke-width: 0px;
-  opacity: 1;
-}
-
-circle.pin{
-  opacity: 0.7;
-}
-
-
-
-text.legend  {
-
-  font-family: Arial;
-  font-size: 0.8em;
-  text-anchor: start;
-  fill: gray;
-
- }
-
-text.legend.title  {
-
-  font-size: 0.9em;
-
-}
-
-
-svg {
-  width: 780px;
-  padding: 0em 0em 0em 0em;
-  margin: 0em 0em 0em 0em;
-
-  border-top: solid 1px #ccc;
-  background: #fff;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 
 svg.cohorts {
   width: 220px;
@@ -127,19 +103,6 @@ text.cohort.table {
   fill: gray;
   text-overflow: ellipsis;
 }
-
-svg.tooltip {
-  width: 12px;
-  height: 12px;
-  padding: 0em 0em 0em 0em;
-  margin: 0em 0em 0em 0em;
-  border: 0px;
-  border: solid 1px #ccc;
-  background: rgba(255,255,255,0.8);  
-  float:left; 
-}
-
-
 
 text.country.title {
   font-family: Arial;
@@ -155,10 +118,6 @@ text.country.size {
   fill: gray;
 }
 
-g.cohort.link {
-  stroke-width: 0.5px;
-  stroke-dasharray: 1,1;
-}
 
 circle.country {
   fill-opacity: .15;
@@ -168,25 +127,23 @@ circle.country {
 }
 
 circle.cohort {
-  fill-opacity: 0.9;
+  fill-opacity: 0.95;
+  stroke-width: 0px;
+  stroke: darkgray;
 }
 
 circle.cohort.selected {
-  stroke: darkred;                           
-  stroke-width: 0.5px;
-  stroke-dasharray: 0.2,0.2;
+  stroke: darkred;
+  stroke-width: 0.5px;                          
 }
 
-text.country {
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 0.25em;
-    text-decoration: italic;
+text.country.pin {
+    font-size: 0.3em;
+    font-family: Arial;
+    font-weight: normal;
     fill: #333;
-    text-decoration-color: #333;
-}
-
-text.country.subjects {
-    font-size: 0.2em;
+    stroke: #333;
+    stroke-width: 0px;
 }
 
 #zoomFactor {
@@ -194,6 +151,10 @@ text.country.subjects {
     font-size: 0.7em;
     fill: darkgray;
 }
+
+/**
+* ----> LEGEND
+*/
 
 .axis path,
 .axis line {
@@ -216,6 +177,16 @@ text.country.subjects {
   display: none;
 }
 
+text.legend  {
+  font-family: Arial;
+  font-size: 0.8em;
+  text-anchor: start;
+  fill: gray;
+ }
+
+text.legend.title  {
+  font-size: 0.9em;
+}
 
 
 

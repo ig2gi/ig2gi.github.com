@@ -1,82 +1,27 @@
+
+
 /**
-* ----> GLOBALS
+    HTML CSS
+
 */
-body {
+
+aside{
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-}
-
-/**
-* ----> MAP
-*/
-
-#map{
-  padding: 0em 0em 0em 0em;
-  margin: 0em 0em 0em 0em;
-}
-
-#graphpanel{
-  font-size: small;
-  width: 800px;
-  height:600px;
-  padding: 0.1em 0em 0em 1em;
-  margin:0em;
-  top:50px;
-  left: 0px;
-  position: absolute;
-}
-
-/**
-* ----> VIEWING OPTIONS
-*/
-
-.aside{
   margin: 1em 1em 1em 1em;
   font-size: small;
-  left: 900px;
+  left: 810px;
   position: absolute;
   text-align: left;
-  width: 300px;
-  color: #636363;
-  padding: 0.5em 0em 0em 1em;
-}
-
-#filterPanel {
-  --border-left: solid 1px #ccc;
+  width: 270px;
   height:540px;
-  top:50px;
-}
+  color: #636363;
+  box-shadow: 2px 3px 5px 2px #888888;
+  padding: 0.5em 0em 0em 1em;
 
-#legendPanel {
-  height:100px;
-  width: 300px;
-  margin: 0em 0em 0em 0em;
-  padding: 0em 0em 0em 0em;
-  top:600px;
-  left:550px;
-  background-color: "white";
-}
-
-#titlePanel {
-  height:50px;
-  width: 380px;
-  margin: 0em 0em 0em 0em;
-  padding: 0em 0em 0em 0em;
-  top:25px;
-  left:450px;
-  background-color: "white";
-}
-
-#zoomPanel {
-  height:60px;
-  width: 160px;
-  margin: 0em 0em 0em 0em;
-  padding: 0em 0em 0em 0em;
-  top:620px;
-  left:100px;
-  background-color: "white";
 }
 
 .filter {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: small;
   color: #636363;
   background: transparent;
@@ -87,10 +32,22 @@ body {
 
 
 select{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: small;
   color: #636363;
 }
 
+#graphpanel{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: small;
+  width: 800px;
+  height:550px;
+
+  box-shadow: 2px 3px 5px 2px #888888;
+  padding: 0.1em 0em 0em 1em;
+  margin:0em;
+
+}
 
 #cohorts {
   padding: 0.2em 0.2em 0.2em 0.2em;
@@ -98,10 +55,13 @@ select{
   height: 490px;
 }
 
+#map{
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
 
-/**
-* ----> MAP TOOLTIPS
-*/
+}
+
+
 
 div.tooltip {   
   position: absolute;           
@@ -110,6 +70,7 @@ div.tooltip {
   --height: 170px; 
   min-height: 60px;                
   padding: 0em 0em 1em 0.5em;            
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 0.8em;        
   background: rgba(255,255,255,0.9);   
   border:1px solid steelblue;   
@@ -165,8 +126,10 @@ div.tooltip td.secondcol {
 
 h1.tooltip{
   color: steelblue;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1em; 
 }
+
 
 span.network{
    font-size: 0.4em;
@@ -182,11 +145,11 @@ label.network.title{
 }
 
 label.network{
-   font-size: 0.9em;
+   font-size: 0.8em;
 }
 
 label.ageGroup, label.subjectStatus{
-   font-size: 0.9em;
+   font-size: 0.8em;
 }
 
 div.subnetwork {

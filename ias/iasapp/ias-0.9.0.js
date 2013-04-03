@@ -238,7 +238,7 @@ var ias = (function (my) {
     //
     //
     //
-    function showMap(error, world, centroids, networks, cohorts, hivrates, arvrates) {
+    function showMap(error, world, centroids, networks, cohorts, unaidsinfo) {
 		var module, mess;
         if (error) {
             mess = "Error while loading data: " + error.message;
@@ -254,8 +254,7 @@ var ias = (function (my) {
                             "centroids": centroids, 
                             "networks": networks, 
                             "cohorts": cohorts, 
-                            "hivrates": hivrates,
-                            "arvrates": arvrates
+                            "unaidsinfo": unaidsinfo
                         });
                 });
                 // run IAS modules (if they are runnable)
@@ -332,8 +331,7 @@ var ias = (function (my) {
             .defer(d3.json, my.config.data.mapCentroids)
             .defer(d3.json, my.config.data[mode + "Networks"])
             .defer(d3.json, my.config.data[mode + "Cohorts"])
-            .defer(d3.csv, my.config.data.hivPrevalenceRate)
-            .defer(d3.csv, my.config.data.arvCoverageRate)
+            .defer(d3.json, my.config.data[mode + "UnaidsInfo"])
             .await(showMap);
         return my;
     };
@@ -360,8 +358,7 @@ ias.util = (function () {
 
     var that            = {},
         backgroundScale = d3.scale.linear(),
-        networkColors   = {},
-        networkSchemes,
+        networkColors   =  {},
         domainRates     = {};
 
     //
@@ -369,7 +366,6 @@ ias.util = (function () {
         if (networkColors.hasOwnProperty(code)) {
             return networkColors[code];
         }
-        ias.log("network color for" + code + " not found");
         return "white";
     };
 
@@ -458,24 +454,22 @@ ias.util = (function () {
 
     //
     that.init = function (params) {
+        var d, codes, nScale;
         // network colors
-        var colorScale, d;
-        networkSchemes = ias.config.network.colorSchemes;
-        params.networks.children.forEach(function (n, index) {
-            colorScale = d3.scale.ordinal().range(colorbrewer[networkSchemes[index]][6]);
-            n.children.forEach(function (d) {
-                networkColors[d.code] = colorScale(d.code);
-            });
+        codes = params.networks.map(function (n, index) { return n.code; });
+        nScale = d3.scale.category20c().domain(codes);
+        codes.forEach(function (c) {
+            networkColors[c] = nScale(c);
         });
         // background (country) colors
-        d = params.hivrates
-            .filter(function (d) {return !isNaN(d.rate); })
-            .map(function (d) {return parseFloat(d.rate); });
+        d = params.unaidsinfo
+            .filter(function (d) {return !isNaN(d.hiv); })
+            .map(function (d) {return parseFloat(d.hiv); });
         domainRates.hivPrevalenceRate = [d3.min(d), d3.max(d)];
 
-        d = params.arvrates
-            .filter(function (d) {return !isNaN(d.rate); })
-            .map(function (d) {return parseFloat(d.rate); });
+        d = params.unaidsinfo
+            .filter(function (d) {return !isNaN(d.arv); })
+            .map(function (d) {return parseFloat(d.arv); });
         domainRates.arvCoverageRate = [d3.min(d), d3.max(d)];
         that.initBackgroundColors();
     };
@@ -483,7 +477,7 @@ ias.util = (function () {
     //
     that.initBackgroundColors = function () {
         backgroundScale.domain(that.getSelectedDomainRates());
-        backgroundScale.range([ias.config.map.background.startColor, ias.config.map.background.endColor]);
+        backgroundScale.range(ias.config.map.background[ias.filter.getBackgroundInfoOption()]);
     };
 
     //
@@ -593,6 +587,11 @@ ias.filter = (function () {
 
         config = ias.config.filter;
 
+        d3.select("#mapInfo")
+                .text("version: " + ias.config.version + " - " +
+                    ias.config.timestamp + "  (" + ias.mode + ")"
+                );
+
         d3.select("#status")
             .on("change", function (y) {
                 var newEnrollmentStatus = this.options[this.selectedIndex].value;
@@ -608,81 +607,48 @@ ias.filter = (function () {
         createCheckBoxes("ageGroup", config.ageGroup);
         createCheckBoxes("subjectStatus", config.subjectStatus);
 
-         //
-        function getClass(network, networkParent) {
-            var code = network.code;
-            if (code === "EuroCoord" || code === "IeDEA" || code === "Other") {
-                return "network";
-            }
-            return "network " + networkParent;
-        }
-
-        //
-        function color(code) {
-            if (code === "EuroCoord" || code === "IeDEA" || code === "Other") {
-                return "rgb(255,255,255)";
-            }
-            return ias.util.getNetworkColor(code);
-        }
-
         //
         function click(input, network) {
             var code = network.code;
-            if (code === "EuroCoord" || code === "IeDEA" || code === "Other") {
-                d3.selectAll("input.network." + code).each(function (n) {
-                    d3.select(this).property("checked", input.checked);
-                    options.change(that.NETWORKS + "." + n.code, input.checked);
-                });
-            } else {
-                options.change(that.NETWORKS + "." + code, input.checked);
-            }
+            options.change(that.NETWORKS + "." + code, input.checked);
         }
 
         //
-        function luminance(color) {
-            var rgb = color.replace(/^rgb?\(|\s+|\)$/g, '').split(','),
-                lum = 0.3 * rgb[0] + 0.59 * rgb[1] + 0.11 * rgb[2];
-            return lum;
-        }
+        params.networks.sort(function (a, b) {return d3.ascending(a.code, b.code); });
+        var i = Math.round(params.networks.length / 2);
+        var n = [params.networks.slice(0, i),
+                 params.networks.slice(i, params.networks.length)
+                 ];
 
-        //
-        params.networks.children.forEach(function (d, index) {
+        n.forEach(function (data, index) {
 
-            data = d.children;
-            data.forEach(function (d) {
-                options.networks[d.code] = true;
+            data.forEach(function (n) {
+                options.networks[n.code] = true;
             });
 
-            data.unshift({code: d.code, name: d.name});
-
-            nodeEnter = d3.select("#" + d.code).selectAll("div")
+            nodeEnter = d3.select("#net" + (index + 1)).selectAll("div")
                         .data(data)
                         .enter()
                         .append("div")
-                        .attr("class", function (v) {return d.code !== v.code ? "subnetwork" : "network"; });
+                        .attr("class", "network");
 
             nodeEnter.append("input")
                 .attr("checked", true)
-                .attr("class", function (v) {return getClass(v, d.code); })
+                .attr("class", "network")
                 .attr("type", "checkbox")
                 .attr("id", function (v) {return 'n' + v.code; })
                 .on("click", function (v) {return click(this, v); });
 
-            nodeEnter.append("label")
-                .attr("class", function (v) {return d.code === v.code ? "network title" : "network"; })
-                .attr("for", function (v) {return 'n' + v.code; })
-                .style("background", function (v) {luminance(color(v.code)); return color(v.code); })
-                .style("color", function (v) {
-                    var c = color(v.code),
-                        l = luminance(c); 
-                    if (l < 130) {return "lightgray"; }
-                    return "#666";
-                })
-                .text(function (d) {return d.name; });
+            nodeEnter.append("span")
+                    .text("__")
+                    .style("color", function (v) {return ias.util.getNetworkColor(v.code); })
+                    .style("background", function (v) {return ias.util.getNetworkColor(v.code); });
 
-            if (d !== "Other") {
-                nodeEnter.append("br");
-            }
+            nodeEnter.append("label")
+                .attr("class", "network")
+                .attr("for", function (v) {return 'n' + v.code; })
+                //.style("background", function (v) {return ias.util.getNetworkColor(v.code); })
+                .text(function (d) {return " " + d.name; });
 
         });
 
@@ -734,21 +700,13 @@ ias.model = (function () {
 			that.allcountriesByName[c.name] = c;
 			that.allcountriesById[c.id] = c;
 		});
-		params.hivrates.forEach(function (r) {
-			var c = that.allcountriesByName[r.country];
+		params.unaidsinfo.forEach(function (r) {
+			var c = that.allcountriesByName[r.name];
 			if (c !== undefined) {
-				c.hivPrevalenceRate = parseFloat(r.rate);
+				c.hivPrevalenceRate = parseFloat(r.hiv);
+				c.arvCoverageRate = parseFloat(r.arv);
 			} else {
-				ias.log('HIV Rates: no country found for ' + r.country);
-			}
-		});
-		params.arvrates.forEach(function (r) {
-			var c = that.allcountriesByName[r.country],
-				rate = parseFloat(r.rate);
-			if (c !== undefined) {
-				c.arvCoverageRate = isNaN(rate) ? 'na' : rate;
-			} else {
-				ias.log('ARV Rates: no country found for ' + r.country);
+				ias.log('HIV/ARV Rates: no country found for ' + r.name);
 			}
 		});
 
@@ -913,7 +871,6 @@ ias.graph = (function () {
     var that  = {
 
         components: [],
-        selectedCohort: undefined,
         tooltip: {
             country: {},
             cohort: {}
@@ -1006,20 +963,6 @@ ias.graph = (function () {
         });
     };
 
-    //
-    that.selectCohort = function (cohort) {
-        if (that.selectedCohort === cohort) {
-            return;
-        }
-        if (typeof that.selectedCohort !== "undefined") {
-            that.map.deselect(that.selectedCohort);
-        }
-        that.selectedCohort = cohort;
-        if (typeof cohort !== "undefined") {
-            that.map.select(that.selectedCohort);
-        }
-    };
-
     ias.modules.push(that);
     return that;
 
@@ -1083,9 +1026,6 @@ ias.graph = (function (graph) {
     function mouseover(pin, d) {
         if (!d.cohorts) {
             onCohort(pin, d, true);
-            if (ias.graph.selectedCohort) {
-                ias.graph.tooltip.cohort.hide();
-            }
         }
     }
 
@@ -1093,9 +1033,6 @@ ias.graph = (function (graph) {
     function mouseout(pin, d) {
         if (!d.cohorts) {
             onCohort(pin, d, false);
-            if (ias.graph.selectedCohort) {
-                ias.graph.tooltip.cohort.show();
-            }
         }
     }
 
@@ -1103,13 +1040,13 @@ ias.graph = (function (graph) {
     function click(pin, d) {
         d3.event.stopPropagation();
         if (!d.cohorts) {
-            ias.graph.selectCohort(d);
+            ias.graph.map.select(d);
+            onCohort(pin, d, true);
         }
     }
 
     // Extend the GraphComponent prototype using Object.create()
     graph.CountryPin.prototype = Object.create(g2g.GraphComponent.prototype);
-
 
     //
     graph.CountryPin.prototype.filter = function () {
@@ -1290,18 +1227,8 @@ ias.graph = (function (graph) {
 
         //
         function draw() {
-
             legend1();
             legend2();
-
-            svg.append("g")
-                .append("text")
-                .attr("x", ias.config.legend.width - 3)
-                .attr("y", ias.config.legend.height - 3)
-                .style("text-anchor", "end")
-                .style("font-size", "0.7em")
-                .style("fill", "gray")
-                .text("version: " + ias.config.version + " - " + ias.config.timestamp + "  (" + ias.mode + ")");
         }
 
         // 
@@ -1353,36 +1280,17 @@ ias.graph = (function (graph) {
                                 .attr("id", "pins_country")
                                 .attr("class", "pin country"),
             countryPins     = [],
-            selectedCountry,
-            currentScale    = 1,
-            width           = ias.config.map.width,
-            height          = ias.config.map.height,
-            origin              = ias.graph.projection([0, 0]), // center Lat:0 Long:0      
-            currentTranslation = [0, 0];
-
+            controller      = createController();
 
         //
-        function zz() {
-
-            var t = "translate(" + currentTranslation.join(",") + ")";
-            t += "scale(" + currentScale + ")";
+        function zoomAndPan(scale, translate) {
+            var t = "translate(" + translate.join(",") + ")";
+            t += "scale(" + scale + ")";
             gmap.attr("transform", t);
             gmap.selectAll("path")  
                 .attr("d", ias.graph.path.projection(ias.graph.projection)); 
             gpins_country.attr("transform", t);
-            ias.graph.zoom.zoomed(currentScale);
         }
-        
-        // zoom and pan
-        var z = d3.behavior.zoom().scaleExtent([1, 6])
-            .on("zoom", function () {
-                ias.log(currentScale + ":" + d3.event.scale);
-                ias.log(currentTranslation + ":" + d3.event.translate);
-                currentTranslation = d3.event.translate;
-                currentScale = d3.event.scale;
-                zz();
-            });
-        svg.call(z);
 
         //
         function click(d) {
@@ -1390,9 +1298,7 @@ ias.graph = (function (graph) {
             d3.event.stopPropagation();
             if (d) {
                 centroid = ias.graph.path.centroid(d);
-                currentTranslation[0] = (-centroid[0] + origin[0]);
-                currentTranslation[1] = (-centroid[1] + origin[1]);
-                zz();
+                // TODO: recenter the map (if asked)
                 clickOnCountry(d);
             }
         }
@@ -1401,106 +1307,13 @@ ias.graph = (function (graph) {
         function clickOnCountry(d) {
             var countryId = ias.util.getCountryId(d),
                 country = ias.model.allcountriesById[countryId];
-            if (selectedCountry) {
-                selectCountry(false);
-            }
-            selectedCountry = country;
-            ias.graph.tooltip.country.html(ias.util.getCountryHtml(country)).show();
-            selectCountry(true);
+            controller.select(country);
         }
 
         //
-        function clickOnOcean(d) {
-            selectCountry(false);
-            ias.graph.tooltip.country.hide();
-            selectedCountry = null;
-            ias.graph.selectCohort();
+        function clickOnOcean() {
+            controller.reset();
         }
-
-        //
-        function selectCountry(selected) {
-            var color   = selected ? "darkred" : "#000",
-                w       = selected ? 0.5 : 0.1;
-            try {
-                d3.select("#" + selectedCountry.id)
-                    .style('stroke', color)
-                    .style('stroke-width', w + "px");
-            } catch (err) {
-                //log(err); // TODO exotic countries with id = -99!
-            }
-        }
-
-        //
-        function zoomOut() {
-            var s = currentScale, delta = 1;
-            if (s <= 2) {
-                currentScale = 1;
-            } else if (s <= 4) {
-                currentScale = 2;
-                delta = 2;
-            } else if (s <= 6) {
-                currentScale = 4;
-                delta = 2;
-            }
-            z.scale(currentScale);
-            if (currentScale === 1) {
-                currentTranslation[0] = 0;
-                currentTranslation[1] = 0;
-            } else {
-                currentTranslation[0] += delta * (width / 2 - posx);
-                currentTranslation[1] += delta * (height / 2 - posy);
-            }
-            z.translate(currentTranslation);
-            zz();
-        }
-
-        //
-        function zoomIn() {
-            var s = currentScale, delta = 1;
-            if (s < 2) {
-                currentScale = 2;
-            } else if (s < 4) {
-                currentScale = 4;
-                delta = 2;
-            } else if (s < 6) {
-                currentScale = 6;
-                delta = 2;
-            }
-            z.scale(currentScale);
-            currentTranslation[0] -= delta * (width / 2 - posx);
-            currentTranslation[1] -= delta * (height / 2 - posy);
-            z.translate(currentTranslation);
-            zz();
-        }
-
-        //
-        function moveUp() {
-            currentTranslation[1] -= 10;
-            z.translate(currentTranslation);
-            zz();
-        }
-
-        //
-        function moveDown() {
-            currentTranslation[1] += 10;
-            z.translate(currentTranslation);
-            zz();
-        }
-
-        //
-        function moveRight() {
-            currentTranslation[0] += 10;
-            z.translate(currentTranslation);
-            zz();
-        }
-
-        //
-        function moveLeft() {
-            currentTranslation[0] -= 10;
-            z.translate(currentTranslation);
-            zz();
-        }
-
 
         //
         function draw() {
@@ -1528,12 +1341,6 @@ ias.graph = (function (graph) {
                 .attr("id", function (d) {return ias.util.getCountryId(d); })
                 .style("opacity", ias.config.map.background.opacity)
                 .on('click', click);
-
-            // gmap.append("circle")
-            //     .attr("cx", origin[0] - posx / 2)
-            //     .attr("cy", origin[1] - posy / 2)
-            //     .attr("r", 5)
-            //     .style("fill", "black");
 
             gmap.select("#ATA").remove(); // remove Antartic
             // draw pins layer
@@ -1571,27 +1378,88 @@ ias.graph = (function (graph) {
             });
         }
 
-        //
-        function select(d) {
-            // cohorts
-            if (d.constructor.name === "Cohort") {
-                ias.graph.tooltip.cohort.html(ias.util.getCohortHtml(d)).show();
-                gpins_country.selectAll("circle.cohort." + d.cssIdClass)
-                    .classed("selected", true); // add css class selected
+        /**
+        *
+        *
+        */
+        function createController() {
+
+            var country, cohort; //selected country & cohort
+
+            //
+            function select(d) {
+                // cohort
+                if (d && d.constructor.name === "Cohort") {
+                    selectCohort(d);
+                    selectCountry(null);
+                    return;
+                }
+                // country
+                if (d && d.constructor.name === "Country") {
+                    selectCohort(null);
+                    selectCountry(d);
+                    return;
+                }
             }
+
+            //
+            function reset() {
+                selectCohort(null);
+                selectCountry(null);
+            }
+
+            //
+            function selectCohort(c) {
+                if (cohort === c) {
+                    return;
+                }
+                if (cohort) {
+                    gpins_country.selectAll("circle.cohort." + cohort.cssIdClass)
+                        .classed("selected", false); // remove css class selected
+                }
+                cohort = c;
+                if (cohort) {
+                    ias.graph.tooltip.cohort.html(ias.util.getCohortHtml(cohort)).show();
+                    gpins_country.selectAll("circle.cohort." + cohort.cssIdClass)
+                        .classed("selected", true); // add css class selected
+                } else {
+                    ias.graph.tooltip.cohort.hide(); 
+                }   
+            }
+
+            //
+            function selectCountry(c) {
+                if (country === c) {
+                    return;
+                }
+                if (country) {
+                    d3.select("#" + country.id)
+                        .style('stroke', "#000")
+                        .style('stroke-width', 0.1 + "px");
+                }
+                country = c;
+                if (country) {
+                    ias.graph.tooltip.country.html(ias.util.getCountryHtml(country)).show();
+                    try {
+                        d3.select("#" + country.id)
+                            .style('stroke', "darkred")
+                            .style('stroke-width', 0.5 + "px");
+                    } catch (err) {
+                        //log(err); // TODO exotic countries with id = -99!
+                    }
+                } else {
+                    ias.graph.tooltip.country.hide(); 
+                }  
+            }
+
+            return {
+                select: select,
+                reset: reset
+            };
+
         }
 
-        //
-        function deselect(d) {
-            // cohorts
-            if (d.constructor.name === "Cohort") {
-                ias.graph.tooltip.cohort.hide();
-                gpins_country.selectAll("circle.cohort." + d.cssIdClass)
-                    .classed("selected", false); // remove css class selected
-            }
-        }
-
-        //
+        // Register Map as Filter Listener
         ias.filter.addListener([
             ias.filter.NETWORKS, 
             ias.filter.YEAR,
@@ -1599,19 +1467,15 @@ ias.graph = (function (graph) {
             ias.filter.BACKGROUND_INFO
         ], filterUpdate);
 
-        // public
+        // Register Map to Zoom Component
+        ias.graph.zoom.register(svg, zoomAndPan, [posx, posy]);
+
+        // Public Map Interface
         return {
             draw: draw,
             update: update,
             filterUpdate: filterUpdate,
-            zoomout: zoomOut,
-            zoomin: zoomIn,
-            moveup: moveUp,
-            movedown: moveDown,
-            moveright: moveRight,
-            moveleft: moveLeft,
-            select: select,
-            deselect: deselect
+            select: controller.select
         };
 
     };
@@ -1713,14 +1577,16 @@ ias.graph = (function (graph) {
 ias.graph = (function (graph) {
     "use strict";
 
-    graph.zoom = function (svg) {
+    graph.zoom = function (parentSvg) {
 
         var posx            = 50,
             posy            = 0,
-            gbuttons        = svg.append("g")
+            gbuttons        = parentSvg.append("g")
                                 .attr("id", "buttons")
                                 .style("pointer-events", "none")
-                                .attr('transform', 'translate(' + posx + ',' + posy + ')');
+                                .attr('transform', 'translate(' + posx + ',' + posy + ')'),
+            buttons         = ["zoomin", "zoomout", "moveup", "movedown", "moveleft", "moveright"],
+            control;
 
         //
         function addButton(name, x, y, opacity) {
@@ -1734,7 +1600,7 @@ ias.graph = (function (graph) {
                 .style("cursor", "pointer")
                 .style("opacity", function (d) {return opacity ? opacity : 0.2; })
                 .style("pointer-events", function (d) {return opacity ? "all" : "none"; })
-                .on("click", ias.graph.map[name]);
+                .on("click", function (d) {control[name](); });
         }
 
         //
@@ -1756,6 +1622,11 @@ ias.graph = (function (graph) {
         function update() {
         }
 
+        // 
+        function register(svg, callback, offset) {
+            control = controller(svg, callback, offset);
+        }
+
         //
         function zoomed(scale) {
             gbuttons.selectAll("#moveup, #movedown, #moveright, #moveleft, #zoomout")
@@ -1767,10 +1638,111 @@ ias.graph = (function (graph) {
             gbuttons.select("#zoomFactor").text("scale:" + scale.toFixed(1));
         }
 
+        //
+        function controller(svg, callback, offset) {
+
+            var scale       = 1, // current scale
+                translate   = [0, 0], // current translation
+                width       = ias.config.map.width,
+                height      = ias.config.map.height,
+                origin      = ias.graph.projection([0, 0]), // center Lat:0 Long:0  
+                zoom        = d3.behavior.zoom().scaleExtent([1, 6])
+                                .on("zoom", function () {
+                                    scale = d3.event.scale;
+                                    translate = d3.event.translate;
+                                    callback(scale, translate);
+                                    zoomed(scale);
+                                });
+            svg.call(zoom);
+
+             //
+            function zoomOut() {
+                var s = scale, delta = 1;
+                if (s <= 2) {
+                    scale = 1;
+                } else if (s <= 4) {
+                    scale = 2;
+                    delta = 2;
+                } else if (s <= 6) {
+                    scale = 4;
+                    delta = 2;
+                }
+                zoom.scale(scale);
+                if (scale === 1) {
+                    translate[0] = 0;
+                    translate[1] = 0;
+                } else {
+                    translate[0] += delta * (width / 2 - offset[0]);
+                    translate[1] += delta * (height / 2 - offset[1]);
+                }
+                zoom.translate(translate);
+                callback(scale, translate);
+                zoomed(scale);
+            }
+
+            //
+            function zoomIn() {
+                var s = scale, delta = 1;
+                if (s < 2) {
+                    scale = 2;
+                } else if (s < 4) {
+                    scale = 4;
+                    delta = 2;
+                } else if (s < 6) {
+                    scale = 6;
+                    delta = 2;
+                }
+                zoom.scale(scale);
+                translate[0] -= delta * (width / 2 - offset[0]);
+                translate[1] -= delta * (height / 2 - offset[1]);
+                zoom.translate(translate);
+                callback(scale, translate);
+                zoomed(scale);
+            }
+
+            //
+            function moveUp() {
+                translate[1] -= 10;
+                zoom.translate(translate);
+                callback(scale, translate);
+            }
+
+            //
+            function moveDown() {
+                translate[1] += 10;
+                zoom.translate(translate);
+                callback(scale, translate);
+            }
+
+            //
+            function moveRight() {
+                translate[0] += 10;
+                zoom.translate(translate);
+                callback(scale, translate);
+            }
+
+            //
+            function moveLeft() {
+                translate[0] -= 10;
+                zoom.translate(translate);
+                callback(scale, translate);
+            }
+
+            return {
+                zoomin: zoomIn,
+                zoomout: zoomOut,
+                moveleft: moveLeft,
+                moveright: moveRight,
+                moveup: moveUp,
+                movedown: moveDown
+            };
+
+        }
+
         return {
             draw: draw,
             update: update,
-            zoomed: zoomed
+            register: register
         };
     };
 

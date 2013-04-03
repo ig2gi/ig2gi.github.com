@@ -6,7 +6,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   margin: 1em auto 1em 3em;
   position: relative;
-  width: 1000px;
+  width: 980px;
 }
 
 h1
@@ -40,10 +40,10 @@ footer {
 
 aside {
   font-size: small;
-  left: 900px;
+  left: 800px;
   position: absolute;
   text-align: right;
-  width: 220px;
+  width: 180px;
 }
 
 p {
@@ -114,7 +114,7 @@ aside,
 }
 
 iframe {
-  width: 1230px;
-  height: 750px;
+  width: 1130px;
+  height: 600px;
   border: 0px;
 }

@@ -26,14 +26,14 @@ todo ...
 **dist** directory contains all releases.
 
     dist
-    |--+ 0.8.0    // latest release version
+    |--+ 0.9.0    // latest release version
        |-- index.html       // <--- html development page
        |-- style.css
        |--+ readme
        |--+ test
        |--+ iasapp          // <--- IAS app
-          |-- ias-0.8.0.js      // ias javascript file 
-          |-- ias-0.8.0.min.js  // ias minified javascript file 
+          |-- ias-0.9.0.js      // ias javascript file 
+          |-- ias-0.9.0.min.js  // ias minified javascript file 
           |-- map.css               // css for html elements
           |-- mapsvg.css            // css for svg elements
           |-- map.html              // ias graph html page (svg map + html filter panel)
@@ -43,6 +43,7 @@ todo ...
           |--+ data                 // data files
              |-- centroids.json           // GeoJson modified state centroids
              |-- hiv-prevalence-rate.csv  // to be replaced by an AJAX call
+             |-- arv-coverage-rate.csv  // to be replaced by an AJAX call
              |-- ias-cohorts.json         // to be replaced by an AJAX call
              |-- ias-networks.json        // to be replaced by an AJAX call
              |-- world-countries.json     // GeoJSON worl map

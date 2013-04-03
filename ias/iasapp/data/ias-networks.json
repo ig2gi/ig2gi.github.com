@@ -1,93 +1,70 @@
-{
-  "children": [
+[
 	{
-	"code": "EuroCoord", 
-	"name": "EuroCoord", 
-	"children": [
-		{
-			"code": "CASCADE", 
-			"name": "CASCADE", 
-			"children": []
-		},
-		{
-			"code": "COHERE", 
-			"name": "COHERE", 
-			"children": []
-		},
-		{
-			"code": "PENTA", 
-			"name": "PENTA", 
-			"children": []
-		},
-		{
-			"code": "EPPICC", 
-			"name": "EPPICC", 
-			"children": []
-		},
-		{
-			"code": "EDCTP", 
-			"name": "EDCTP", 
-			"children": []
-		},
-		{
-			"code": "ANRS", 
-			"name": "ANRS", 
-			"children": []
-		}
-		]
+		"code": "EuroCoord", 
+		"name": "EuroCoord" 
 	},
 	{
-	"code": "IeDEA", 
-	"name": "IeDEA", 
-	"children": [
-		{
-			"code": "TREATAsia", 
-			"name": "TREAT Asia", 
-			"children": []
-		},
-		{
-			"code": "CCASAnet", 
-			"name": "CCASAnet", 
-			"children": []
-		},
-		{
-			"code": "EastAfricaConsortium", 
-			"name": "East Africa Consortium", 
-			"children": []
-		},
-		{
-			"code": "CentralAfrica", 
-			"name": "Central Africa", 
-			"children": []
-		},
-		{
-			"code": "WestAfrica", 
-			"name": "West Africa", 
-			"children": []
-		},
-		{
-			"code": "SouthernAfrica", 
-			"name": "Southern Africa", 
-			"children": []
-		}
-		]
+		"code": "CASCADE", 
+		"name": "CASCADE"
 	},
 	{
-	"code": "Other", 
-	"name": "Other", 
-	"children": [
-		{
+		"code": "COHERE", 
+		"name": "COHERE"
+	},
+	{
+		"code": "PENTA", 
+		"name": "PENTA"
+	},
+	{
+		"code": "EPPICC", 
+		"name": "EPPICC"
+	},
+	{
+		"code": "EDCTP", 
+		"name": "EDCTP"
+	},
+	{
+		"code": "ANRS", 
+		"name": "ANRS"
+	},
+	{
+		"code": "IeDEA", 
+		"name": "IeDEA"
+	},
+	{
+		"code": "TREATAsia", 
+		"name": "TREAT Asia"
+	},
+	{
+		"code": "CCASAnet", 
+		"name": "CCASAnet"
+	},
+	{
+		"code": "EastAfricaConsortium", 
+		"name": "East Africa Consortium"
+	},
+	{
+		"code": "CentralAfrica", 
+		"name": "Central Africa"
+	},
+	{
+		"code": "WestAfrica", 
+		"name": "West Africa"
+	},
+	{
+		"code": "SouthernAfrica", 
+		"name": "Southern Africa"
+	},
+	{
+		"code": "Other", 
+		"name": "Other" 
+	},
+	{
 		"code": "PHACS", 
-		"name": "PHACS", 
-		"children": []
-		},
-		{
+		"name": "PHACS"
+	},
+	{
 		"code": "Independent", 
-		"name": "Independent", 
-		"children": []
-		}
-	]
+		"name": "Independent"
 	}
 ]
-
-}
