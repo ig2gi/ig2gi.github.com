@@ -26,14 +26,14 @@ todo ...
 **dist** directory contains all releases.
 
     dist
-    |--+ 0.9.0    // latest release version
+    |--+ 0.9.1    // latest release version
        |-- index.html       // <--- html development page
        |-- style.css
        |--+ readme
        |--+ test
        |--+ iasapp          // <--- IAS app
-          |-- ias-0.9.0.js      // ias javascript file 
-          |-- ias-0.9.0.min.js  // ias minified javascript file 
+          |-- ias-0.9.1.js      // ias javascript file 
+          |-- ias-0.9.1.min.js  // ias minified javascript file 
           |-- map.css               // css for html elements
           |-- mapsvg.css            // css for svg elements
           |-- map.html              // ias graph html page (svg map + html filter panel)

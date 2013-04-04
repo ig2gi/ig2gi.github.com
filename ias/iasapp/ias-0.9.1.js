@@ -373,14 +373,14 @@ ias.util = (function () {
     that.getCountryColor = function (id) {
         var country = ias.model.getCountryById(id),
             rate    = country[ias.filter.getBackgroundInfoOption()];
-        if (rate !== undefined && rate !== 'na') {
-            return that.getBackgroundColor(rate);
-        }
-        return ias.config.map.background.naColor;
+        return that.getBackgroundColor(rate);
     };
 
     //
     that.getBackgroundColor = function (rate) {
+        if (isNaN(rate)) {
+            return ias.config.map.background.naColor;
+        }
         return backgroundScale(rate);
     };
 
@@ -393,10 +393,7 @@ ias.util = (function () {
     that.getCountryColorByFeature = function (feature) {
         var country = ias.model.getCountry(feature.properties.name),
             rate    = country[ias.filter.getBackgroundInfoOption()];
-        if (rate !== undefined && rate !== 'na') {
-            return that.getBackgroundColor(rate);
-        }
-        return ias.config.map.background.naColor;
+        return that.getBackgroundColor(rate);
     };
 
     //
