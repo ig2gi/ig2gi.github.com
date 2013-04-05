@@ -416,11 +416,12 @@ ias.util = (function () {
         h += "<b>Network:&nbsp;</b>" + cohort.getNetwork() + "<br>";
         h += "<b>Status:</b>&nbsp;" + cohort.status + "<br>";
         h += "<b>Countries:</b>&nbsp;";
-        h += cohort.getCountries().map(function (d) {return d.name; }).join(", ") + "<br>";
+        h += cohort.getCountries().map(function (d) {return d.name; }).join(", ") + "<br><br>";
         h += "<b>Objectives:&nbsp;</b>";
         h += "<span class='tooltip objectives'>" + cohort.objectives + "</span>";
-        h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', cohort.code) + "'>View Full Profile</a>";
-
+        h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', cohort.code) + "'>View Full Profile</a><br><br>";
+        h += "<b>Subjects:&nbsp;</b>";
+        h += "<br><div id='tooltipsvg'></div>";
         return h;
     };
 
@@ -741,6 +742,7 @@ ias.model = (function (model) {
 		this.status = cohortJson.status;
 		this.code = cohortJson.code;
 		this.name = cohortJson.name;
+		this.subjects = cohortJson.subjects;
 		this.objectives = cohortJson.objectives;
 		this.year = cohortJson.year;
 		this.size = cohortJson.size;
@@ -791,6 +793,42 @@ ias.model = (function (model) {
 
 	model.Cohort.prototype.getNetwork = function () {
 		return this.networks[0];
+	};
+
+	model.Cohort.prototype.getSubjects = function () {
+		if (this.subjects) {
+			var result = {
+				groups: d3.map(),
+				subgroups: d3.map(),
+				data: {}
+			};
+			this.subjects.forEach(function (s) {
+				result.subgroups.set(s.subgroup, s.subgroup);
+				result.groups.set(s.group, s.group);
+				if (s.group in result.data) {
+					result.data[s.group].subjects.push({
+						name: s.subgroup,
+						total: s.male + s.female,
+						male: s.male,
+						female: s.female
+					});
+					result.data[s.group].total += s.male + s.female;
+				} else {
+					result.data[s.group] = {
+						group: s.group,
+						total: s.male + s.female,
+						subjects: [{
+								name: s.subgroup,
+								total: s.male + s.female,
+								male: s.male,
+								female: s.female
+							}]
+						};
+				}
+			});
+			return result;
+		}
+		return undefined;		
 	};
 
 	return model;
@@ -1416,7 +1454,10 @@ ias.graph = (function (graph) {
                 }
                 cohort = c;
                 if (cohort) {
-                    ias.graph.tooltip.cohort.html(ias.util.getCohortHtml(cohort)).show();
+                    var newHtml = ias.util.getCohortHtml(cohort);
+                    ias.graph.tooltip.cohort.html(newHtml);
+                    ias.graph.createSubjectsGraph(cohort.getSubjects());
+                    ias.graph.tooltip.cohort.show();
                     gpins_country.selectAll("circle.cohort." + cohort.cssIdClass)
                         .classed("selected", true); // add css class selected
                 } else {
@@ -1479,7 +1520,169 @@ ias.graph = (function (graph) {
 
     return graph;
 
-}(ias.graph || {}));;
+}(ias.graph || {}));;// augment graph module with graph of subjects
+ias.graph = (function (graph) {
+    "use strict";
+
+    var humanImages = {
+        male: "./images/male_adult.png",
+        female: "./images/female_adult.png"    
+    };
+
+    /**
+    *
+    *
+    */
+    graph.createSubjectsGraph = function (subjects) {
+		
+        var svg = d3.select("#tooltipsvg")
+				.append("svg")
+				.attr("width", 200)
+				.attr("height", subjects ? Object.keys(subjects).length * 200 : 100);
+		var color = d3.scale.category10();
+
+        if (subjects) {
+			// loop through age groups
+            var i = 0;
+            var offset = drawLegend(svg, subjects);
+			for (var group in subjects.data) {
+				if (subjects.data.hasOwnProperty(group)) {
+					drawGraph(svg, subjects.data[group], i, offset);
+                    i += 1;
+				}
+			}
+		} else {
+			svg.append("g")
+				.append("text")
+				.attr("x", 0)
+                .attr("y", 10)
+                .attr("class", "tooltip")
+				.text("No subject details.");
+		}
+
+        //
+        function drawLegend(svg, subjects) {
+            var data = subjects.subgroups.keys();
+            svg.append("g")
+                .attr("transform", "translate(10, 10)")
+                .selectAll("text")
+                .data(data)
+                .enter()
+                .append("svg:text")
+                .attr("class", "label subjects")
+                .attr("dy", ".35em")
+                .attr("x", 10) 
+                .attr("text-anchor", "start")
+                .attr("y", function (d, i) {return (1 * i) + "em"; }) 
+                .text(function (d, i) { return d; })
+                .style("stroke", function (d) { return color(d); });
+            return data.length * 12;
+        }
+
+        // TODO refactor this code
+        function drawGraph(svg, data, i, offset) {
+
+            var innerRadius = 50,
+                outerRadius = 70,
+                posy = 2.4 * outerRadius * (i) + outerRadius + 30 + offset,
+                posx = 30 + outerRadius;
+
+            var categories = data.subjects.map(function (d) {return d.name; });
+
+            var g = svg.append("svg:g")
+                .attr("transform", "translate(" + posx + "," + posy + ")");
+
+            var arc = d3.svg.arc()
+                .outerRadius(innerRadius - 10)
+                .innerRadius(innerRadius - 40);
+
+            var arc2 = d3.svg.arc()
+                .outerRadius(innerRadius + 10)
+                .innerRadius(innerRadius - 38);
+
+            var arc3 = d3.svg.arc()
+                .outerRadius(innerRadius + 4)
+                .innerRadius(innerRadius + 2);
+
+            var arc4 = d3.svg.arc()
+                .outerRadius(innerRadius + 22)
+                .innerRadius(innerRadius + 20);
+
+            var pie = d3.layout.pie()
+                .sort(null)
+                .value(function (d) { return d.total; });
+
+            var garcs = g.selectAll("g.arc")
+                        .data(pie(data.subjects))
+                        .enter()
+                        .append("g")
+                        .attr("class", "arc");
+
+            // draw title + total
+            g.append("text")
+                .attr("class", "title subjects")
+                .attr("transform", "translate(0," + (-outerRadius - 10) + ")")
+                .attr("text-anchor", "middle")
+                .text(data.group + ": " + data.total);
+
+            // draw arc paths
+            garcs.append("path")
+                .attr("d", arc)
+                .attr("class", "subjects")
+                .style("fill", function (d, i) { return color(d.data.name); });
+
+            garcs.append("path")
+                .attr("d", arc4)
+                .attr("class", "label subjects")
+                .attr("id", function (d, i) { return "c" + i; });
+
+            //level2
+            var level2 = garcs.append("g").selectAll("path")
+                            .data(function (d) {
+                                var pp = d3.layout.pie()
+                                            .sort(null)
+                                            .value(function (o) { return o.total; })
+                                            .startAngle(d.startAngle)
+                                            .endAngle(d.endAngle);
+                                var col = color(d.data.name);
+                                return pp([{name: "male", total: d.data.male, color: col},
+                                    {name: "female", total: d.data.female, color: col}]);
+                            })
+                            .enter()
+                            .append("g");
+
+            level2.append("path")
+                .attr("class", function (d) {return d.data.name + " subjects"; })
+                .attr("d", arc2)
+                .style("stroke", function (d) { return d.data.color; });
+
+            level2.append("svg:image").attr("xlink:href", function (d) {return humanImages[d.data.name]; })
+                .attr("x", function (d) {return arc3.centroid(d)[0] - 7; }) 
+                .attr("y", function (d) {return arc3.centroid(d)[1] - 20; }) 
+                .attr("width", 14) 
+                .attr("height", 30)
+                .style("opacity", 0.8);
+
+            level2.append("svg:text")
+                .attr("class", "label subjects")
+                .attr("dy", ".35em")
+                .attr("text-anchor", function (d) {
+                    return (d.startAngle + d.endAngle) / 2 > Math.PI ? "end" : "start"; 
+                })
+                .attr("x", function (d) {return arc4.centroid(d)[0]; }) 
+                .attr("y", function (d) {return arc4.centroid(d)[1]; }) 
+                 .text(function (d, i) { return d.data.total; })
+                .style("stroke", function (d) { return d.data.color; });
+                    
+        }
+
+    };
+
+
+	return graph;
+
+}(ias.graph || {}));
+;
 // augment graph module with zoom commands
 ias.graph = (function (graph) {
     "use strict";

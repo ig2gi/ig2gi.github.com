@@ -188,5 +188,36 @@ text.legend.title  {
   font-size: 0.9em;
 }
 
+/**
+* ---> SUBJECTS
+*/
+text.subjects {
+  font-family: Arial;
+  font-size: 0.8em;
+  fill: #666;
+}
+
+.label.subjects {
+    font-size: 0.8em;
+}
+
+path.label.subjects {
+    fill: none;
+    stroke: none;
+}
+
+.title.subjects {
+    font-weight: bold;
+    font-size: 0.9em;
+    
+}
+
+path.male.subjects,.female.subjects {
+    fill: none;
+    stroke-width: 1px;
+    stroke: darkgray;
+    stroke-dasharray: 2,2;
+}
+
 
 

@@ -1,6 +1,6 @@
 {
-	"version": "0.9.1",
-	"timestamp": "2013-04-04",
+	"version": "0.9.2",
+	"timestamp": "2013-04-05",
 	
 	"title": "CIPHER Interactive Map of Paediatric Cohorts",
 
@@ -25,8 +25,8 @@
 			"limit": 200000
 		},
 		"background":{
-			"hivPrevalenceRate": ["#D3F8D3", "orangered"],
-			"arvCoverageRate": ["#D3F8D3", "orangered"],
+			"hivPrevalenceRate": ["#99cc99", "orangered"],
+			"arvCoverageRate": ["#99cc99", "orangered"],
 			"opacity": 0.7,
 			"naColor": "lightgray"
 		},

@@ -38,6 +38,12 @@
           "group": "adult",
           "male": 60,
           "subgroup": "Perinatally infected"
+          },
+          {
+          "female": 30,
+          "group": "adult",
+          "male": 10,
+          "subgroup": "HIV-exposed and uninfected"
           }
         ],
       "size": 605
@@ -433,8 +439,28 @@
       ], 
       "networks": [
         "SouthernAfrica"
-      ], 
-      "size": 282377
+      ],
+      "subjects": [
+          {
+          "female": 20000,
+          "group": "adult",
+          "male": 28000,
+          "subgroup": "Infected through other routes"
+          },
+          {
+          "female": 56000,
+          "group": "adult",
+          "male": 33000,
+          "subgroup": "Perinatally infected"
+          },
+          {
+          "female": 87000,
+          "group": "adult",
+          "male": 50000,
+          "subgroup": "HIV-exposed and uninfected"
+          }
+        ],
+      "size": 274000
     }, 
     {
       "status": "Ongoing", 

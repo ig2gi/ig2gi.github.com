@@ -35,7 +35,7 @@ body {
   position: absolute;
   text-align: left;
   width: 300px;
-  color: darkgray;
+  color: #333;
   padding: 0.5em 0em 0em 1em;
 }
 
@@ -111,17 +111,18 @@ select{
 
 div.tooltip {   
   position: absolute;           
-  text-align: left;           
-  width: 210px;                  
-  --height: 170px; 
+  text-align: left;                            
+  height: 350px; 
   min-height: 60px;                
-  padding: 0em 0em 1em 0.5em;            
+  padding: 0em 0.5em 1em 0.5em;            
   font-size: 0.8em;        
   background: rgba(255,255,255,1);   
-  border:1px solid darkred;
-  border-left: 1px dotted;
-  --border-radius: 10px;           
-  pointer-events: none;      
+  border:2px solid darkgray;
+  --border-right: 2px solid darkgray;
+  --border-radius: 8px;           
+  --pointer-events: none; 
+  overflow-y: scroll;
+  opacity: 0.8; 
 }
 
 a.tooltip {
@@ -133,8 +134,15 @@ span.tooltip.title {
 }
 
 div.tooltip.cohort{  
-  width: 230px;   
+  width: 210px; 
+  height: 400px;  
 }
+
+div.tooltip.country{  
+  height: 180px;
+  width: 210px;    
+}
+
 
 div.tooltip table, td, th{   
   font-size: 0.9em;
