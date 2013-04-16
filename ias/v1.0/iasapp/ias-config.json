@@ -1,0 +1,75 @@
+{
+	"version": "1.0.0",
+	"timestamp": "2013-04-16",
+	
+	"title": "CIPHER Interactive Map of Paediatric Cohorts",
+
+	"data": {
+		"offlineUnaidsInfo": "./data/unaids-info.json",
+		"onlineUnaidsInfo": "http://svn.iasociety.org:8041/Cipher/CipherService.svc/unaidsinfo",
+		"mapGeoJson": "./data/world-countries.json",
+		"mapCentroids": "./data/centroids.json",
+		"offlineCohorts": "./data/ias-cohorts.json",
+		"onlineCohorts": "http://svn.iasociety.org:8041/Cipher/CipherService.svc/cohorts",
+		"offlineNetworks": "./data/ias-networks.json",
+		"onlineNetworks": "http://svn.iasociety.org:8041/Cipher/CipherService.svc/networks"
+	},
+
+	"map":{
+		"width": 900,
+		"height": 600,
+		"cohort": {
+			"fullProfile": "http://blablabla/cohort/$code$",
+			"linkcolor": "#555",
+			"linkinterpolate": "linear",
+			"limit": 200000
+		},
+		"background":{
+			"hivPrevalenceRate": {
+				"colors": ["#FDAAAA", "#FB5656", "#FB0219", "#BF0210","#7F0107", "#440002"],
+				"bands": [0.1, 0.5, 1, 5, 15, 28]
+				},
+			"arvCoverageRate": {
+				"colors": ["#DCF5FC", "B4E6F8", "#64C3F2", "#2796FA", "#1C32E4"],
+				"bands": [0, 20, 40, 60, 100]
+				},
+			"opacity": 0.7,
+			"naColor": "lightgray"
+		},
+		"tooltip": {
+			"country": [20, 80],
+			"cohort": [20, 80]
+		}
+	},
+
+	"legend":{
+		"width": 300,
+		"height": 100,
+		"cohorts": [5000, 75000, 150000, 300000],
+		"hivPrevalenceRate": "HIV Prevalence Rate (%)",
+		"arvCoverageRate": "ARV Coverage Rate (%)"
+	},
+
+	"filter": {
+		"enrollmentStatus": [
+			"All",
+			"Ongoing",
+			"Closed"
+		],
+		"ageGroup": [
+			"children",
+			"adolescents",
+			"adults"
+		],
+		"subjectStatus": [
+			"perinatally infected", 
+			"HIV-exposed and uninfected", 
+			"Infected through other routes"
+		]
+	},
+
+	"network":{
+		
+	}
+
+}

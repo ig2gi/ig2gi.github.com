@@ -1,0 +1,224 @@
+
+/**
+* ----> GLOBAL SVG
+*/
+
+svg {
+  padding: 0em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
+  background: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .1px;
+  stroke-opacity: .4;
+}
+
+/**
+* ----> MAP
+*/
+
+.map{
+  fill: #fff;
+  stroke: #fff;
+}
+
+svg.map {
+  border: 2px solid #156994;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+}
+
+svg.title , svg.zoom, svg.legend{
+  border: 2px solid #156994;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+}
+
+
+path.country {
+  fill: #ccc;
+  stroke: #000;
+  stroke-width: 0.2px;
+}
+
+/**
+* ----> TITLE
+*/
+
+text.graphtitle {
+  stroke: steelblue; 
+  font-size: 1.2em; 
+  text-align: center;
+  font-weight: normal;
+}
+
+
+
+text{
+  cursor: default;
+}
+
+.subtitle.country {
+  font-family: Arial;
+  font-size: 1.0em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.info.country {
+  font-family: Arial;
+  font-size: 0.8em;
+  fill: #aaa;
+  font-weight:bold;
+  --text-shadow: 3px 3px 7px #111;
+}
+
+.subtitle.cohort{
+  text-anchor: end;
+}
+
+
+svg.cohorts {
+  width: 220px;
+}
+
+text.cohort.table {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.8em;        
+  text-anchor: start;
+  fill: gray;
+  text-overflow: ellipsis;
+}
+
+text.country.title {
+  font-family: Arial;
+  font-size: 0.9em;
+  text-anchor: end;
+  fill: gray;
+}
+
+text.country.size {
+  font-family: Arial;
+  font-size: 0.7em;
+  text-anchor: start;
+  fill: gray;
+}
+
+
+circle.country {
+  fill-opacity: .15;
+  stroke: #333;                         
+  stroke-width: 0.5px;
+  stroke-dasharray: 0.2,0.2;
+}
+
+circle.cohort {
+  fill-opacity: 0.95;
+  stroke-width: 0px;
+  stroke: darkgray;
+}
+
+circle.cohort.selected {
+  stroke: darkred;
+  stroke-width: 0.5px;                          
+}
+
+text.country.pin {
+    font-size: 0.3em;
+    font-family: Arial;
+    font-weight: normal;
+    fill: #333;
+    stroke: #333;
+    stroke-width: 0px;
+}
+
+#zoomFactor {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 0.7em;
+    fill: darkgray;
+}
+
+/**
+* ----> LEGEND
+*/
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+}
+
+.x.axis {
+  font-size: 0.8em;
+  fill: gray;
+}
+
+.x.axis.selected {
+  fill: #333;
+  font-size: 0.7em;
+}
+
+.x.axis path {
+  display: none;
+}
+
+text.legend  {
+  font-family: Arial;
+  font-size: 0.8em;
+  text-anchor: start;
+  fill: gray;
+ }
+
+text.legend.title  {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/**
+* ---> SUBJECTS
+*/
+text.subjects {
+  font-family: Arial;
+  font-size: 0.8em;
+  fill: #666;
+}
+
+.label.subjects {
+    font-size: 0.8em;
+}
+
+path.label.subjects {
+    fill: none;
+    stroke: none;
+}
+
+.title.subjects {
+    font-weight: bold;
+    font-size: 0.9em;
+    
+}
+
+path.male.subjects,.female.subjects {
+    fill: none;
+    stroke-width: 1px;
+    stroke: darkgray;
+    stroke-dasharray: 2,2;
+}
+
+
+
