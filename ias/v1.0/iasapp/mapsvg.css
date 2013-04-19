@@ -187,6 +187,7 @@ text.legend  {
 text.legend.title  {
   font-size: 0.9em;
   font-weight: bold;
+  fill: steelblue;
 }
 
 /**

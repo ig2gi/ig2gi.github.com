@@ -47,10 +47,22 @@ var g2g = (function (my) {
         return this;
     };
 
-     //
+    //
     my.GraphComponent.prototype.select = function (selected) {
         return this;
     };
+
+    //
+    my.GraphComponent.prototype.id = function (id) {
+        this.g.attr("id", id);
+        return this;
+    };
+
+    //
+    my.GraphComponent.prototype.on = function (event, callback) {
+        this.g.on(event, callback);
+        return this;
+    };    
 
     //
     my.GraphComponent.prototype.moveOnTop = function () {
@@ -198,6 +210,84 @@ var g2g = (function (my) {
             }
         }
 
+    };
+
+    //
+    //
+    //
+    //
+    my.Pin = function (svg, x, y, text, color1, color2, size, classes, amount) {
+
+        // call super constructor
+        my.GraphComponent.call(this, svg, x, y, color1, classes);
+
+        this.text = text;
+        this.color1 = color1;
+        this.color2 = color2;
+        this.size = size;
+        this.x = x;
+        this.y = y;
+        this.amount = amount;
+
+    };
+
+    // Extend the GraphComponent prototype using Object.create()
+    my.Pin.prototype = Object.create(my.GraphComponent.prototype);
+
+    //
+    my.Pin.prototype.draw = function () {
+        var pi      = Math.PI,
+            radius  = this.size / 2,
+            height  = 4 * radius;
+
+        var arc = d3.svg.arc()
+                    .innerRadius(0)
+                    .outerRadius(radius)
+                    .startAngle(pi / 2)
+                    .endAngle(-pi / 2),
+            arccoh = d3.svg.arc()
+                    .innerRadius(0)
+                    .outerRadius(radius - 4)
+                    .startAngle(0)
+                    .endAngle(2 * pi * this.amount);
+
+        this.g.append("path")
+            .attr("class", "pin")
+            .attr("d", arc)
+            .attr("transform", "translate(0, +1)")
+            .style("fill", this.color1)
+            .style("stroke-width", 0);
+                
+        this.g.append('path')
+            .attr("class", "pin")
+            .attr('d', function (d) { 
+                return 'M ' + (-radius) + ' 0 l ' + 2 * radius + ' 0 l ' + (-radius) + ' '  + height + ' z';
+            })
+            .style("fill", this.color1)
+            .style("stroke-width", 0);
+  
+        this.g.append("circle")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("class", "pin")
+            .style("fill", this.color2)
+            .attr("r", radius - 3)
+            .style("stroke-width", 0)
+            .style("opacity", 1);
+
+        this.g.append("path")
+                .attr("d", arccoh)
+                .style("fill", "steelblue")
+                .style("stroke-width", 0);
+        
+        this.g.append("text")
+            .attr("dx", 0)
+            .attr("dy", "0.35em")
+            .attr("class", 'pin')
+            .style("text-anchor", "middle")
+            .text(this.text);
+        this.g.attr('transform', 'translate(' + this.x + ',' + (this.y + -height) + ')');
+        return this; // chaining
     };
 
 
@@ -1008,21 +1098,15 @@ ias.graph = (function (graph) {
 
     //
     //
-    //
     graph.CountryPin = function CountryPin(parent, country) {
 
-        this.country        = country;
-        this.maxRadius      = 20;
-        this.minRadius      = 5;
-        this.scale          = d3.scale.sqrt()
-                                .domain([0, 300000])
-                                .range([this.minRadius, this.maxRadius]);
-        this.radius         = this.scale(this.country.size);
-        this.pack           = d3.layout.pack()
-                                .size([this.radius, this.radius])
-                                .value(function (d) { return d.size; })
-                                .children(function (d) { return d.cohorts; });
-        this.nodes          = this.pack.nodes(this.country);
+        this.country    = country;
+        this.cohortPins = [];
+        this.pinSize = ias.config.map.cohort.pinSize;
+        this.pinScale = d3.scale.threshold()
+                .domain(ias.config.map.cohort.pinScale)
+                .range([0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.865, 1]);
+
         // 
         var cssCohortClass = "";
         this.country.cohorts.forEach(function (coh) {
@@ -1033,8 +1117,8 @@ ias.graph = (function (graph) {
 
         // Call the super constructor.
         g2g.GraphComponent.call(this, parent, 
-            this.country.centroidx - this.radius / 2, 
-            this.country.centroidy - this.radius / 2, 
+            this.country.centroidx, 
+            this.country.centroidy, 
             ias.util.getCountryColor(this.country.id), 
             this.classes);
 
@@ -1042,20 +1126,9 @@ ias.graph = (function (graph) {
 
     //
     function onCohort(pin, cohort, enter) {
-        var opacity = enter ? 0.15 : 0.9,
-            color   = enter ? "black" : "#333",
-            font    = enter ? "bold" : "normal";
-        pin.parent.selectAll("circle.cohort:not(." + cohort.cssIdClass +  ")")
+        var opacity = enter ? 0.15 : 0.9;
+        pin.parent.selectAll(".pin.cohort:not(." + cohort.cssIdClass +  ")")
             .style("opacity", opacity);
-        pin.parent.selectAll("g.country.pin:not(." + cohort.cssIdClass +  ")")
-            .style("opacity", opacity);
-        pin.parent.selectAll("circle.country.pin." + cohort.cssIdClass)
-            .style("stroke", color);
-        pin.parent.selectAll("text.country.pin." + cohort.cssIdClass)
-            .style("fill", color)
-            .style("font-weight", font);
-        pin.parent.selectAll("text.country.pin.subjects." + cohort.cssIdClass)
-            .style("display", enter ? "none" : "inline");
     }
 
     //
@@ -1100,32 +1173,37 @@ ias.graph = (function (graph) {
     };
 
     //
+    graph.CountryPin.prototype.zoomAndPan = function (scale, translate) {
+        var tt = [translate[0] + this.x * scale, translate[1] + this.y * scale];
+        this.g.attr("transform", "translate(" + tt.join(",") + ")");
+    };
+
+    //
     graph.CountryPin.prototype.draw = function () {
-        var node    = this.g.selectAll("circle")
-                        .data(this.nodes).enter(),
-            that    = this; // keep CountryPin reference context
-        
-        // add pins: country and its cohorts
-        node.append("svg:circle")
-            .attr("class", function (d) { return d.cohorts ? that.classes : "cohort " + d.getNetwork() + " " + d.cssIdClass; })
-            .attr("cx", function (d) { return d.x; })
-            .attr("cy", function (d) { return d.y; })
-            .attr("r", function (d) { return d.r; })
-            .attr("id", function (d) { return that.country.id + "-" + d.code; })
-            .style("fill", function (d) { return d.cohorts ? "gray" : ias.util.getNetworkColor(d.getNetwork()); })
-            .on("mouseover", function (d) { mouseover(that, d); })
-            .on("mouseout", function (d) {mouseout(that, d); })
-            .on("click", function (d) {click(that, d); });
-
-        // add text for country name
-        this.g.append("svg:text")
-            .attr("x", this.country.x)
-            .attr("y", this.country.y - 1 * this.radius / 2)
-            .attr("dy", "-.3em")
-            .attr("text-anchor", "middle")
-            .attr("class", this.classes)
-            .text(this.country.name);
-
+        var that = this; // keep CountryPin reference context
+        var col, 
+            n = this.country.cohorts.length, 
+            xc = (n + 1) / 2 * this.pinSize, 
+            yc, 
+            amount;
+        this.g.append("path")
+            .attr("d", d3.svg.symbol().type("circle"))
+            .style("fill", "none")
+            .style("stroke-width", 0.5)
+            .style("stroke", "gray");
+        this.country.cohorts.forEach(function (c) {
+            col = ias.util.getNetworkColor(c.getNetwork());
+            xc -= that.pinSize;
+            yc = 0;
+            amount = that.pinScale(c.size / 1000);
+            var p = new g2g.Pin(that.g, xc, yc, "", col, "white",  that.pinSize, "pin cohort " + c.cssIdClass, amount)
+                .on("mouseover", function (d) { mouseover(that, c); })
+                .on("mouseout", function (d) {mouseout(that, c); })
+                .on("click", function (d) {click(that, c); })
+                .draw();
+            p.id(that.country.id + "-" + c.code);
+            that.cohortPins.push(p);
+        });
         return this; // chaining
     };
 
@@ -1140,14 +1218,14 @@ ias.graph = (function (graph) {
 
     graph.legend = function (svg) {
 
-        var posx            = 0,
+        var posx            = 10,
             posy            = 20,
             gbackground     = svg.append("g")
                                 .attr("id", "blegend")
                                 .attr('transform', 'translate(' + posx + ',' + posy + ')'),
             gcohort         = svg.append("g")
                                 .attr("id", "clegend")
-                                .attr('transform', 'translate(' + (posx + 200) + ',' + posy + ')');
+                                .attr('transform', 'translate(' + (posx + 210) + ',' + posy + ')');
 
         //
         function legend1() {
@@ -1197,36 +1275,52 @@ ias.graph = (function (graph) {
         //
         function legend2() {
 
-            var data        = ias.config.legend.cohorts,
-                i           = 0,
-                scale       = d3.scale.sqrt()
-                                .domain([0, 300000])
-                                .range([2, 15]);
-
-            gcohort.selectAll("circle")
-                .data(data).enter()
-                .append("circle")
-                .attr("cx", 20)
-                .attr("cy", function (d) {return 50 - scale(d); })
-                .style("fill", "none", "opacity", 1)
-                .style('stroke', ias.config.map.cohort.linkcolor)
-                .style('stroke-width', "1px")
-                .attr("r", function (d) {return scale(d); });
-
-            gcohort.selectAll("text")
-                .data(data)
-                .enter().append("text")
-                .attr("y", function (d, i) {return 50 - 2 * scale(d) + 4; })
-                .attr("x", 40)
-                .attr("class", "legend")
-                .text(function (d, i) {return (i === 4) ? '>' + d : d; });
-
+            var data = ias.config.map.cohort.pinScale,
+                n = data.length,
+                s = "", d0,
+                arc;
+       
+            data.forEach(function (d, i) {
+                if (i === 0) {
+                    s += "< " + d;
+                } else if (i === n) {
+                    s += "> " + d;
+                } else {
+                    s += d0 + " - " + d;
+                }
+                gcohort.append("text")
+                    .attr("y", 15 + i * 10)
+                    .attr("x", 40)
+                    .attr("class", "legend")
+                    .text(s);
+                d0 = d;
+                s = "";
+                arc = d3.svg.arc()
+                    .innerRadius(0)
+                    .outerRadius(4)
+                    .startAngle(0)
+                    .endAngle(2 * Math.PI * (i + 1) * 0.125);
+                gcohort.append("path")
+                    .attr("d", arc)
+                    .attr("transform", "translate(30," + (12 + i * 10) + ")")
+                    .style("fill", "steelblue")
+                    .style("stroke", "steelblue")
+                    .style("stroke-width", 0);
+                gcohort.append("circle")
+                    .attr("cx", 30)
+                    .attr("cy", 12 + i * 10)
+                    .attr("r", 4)
+                    .style("fill", "none")
+                    .style("stroke", "steelblue")
+                    .style("stroke-width", 0.5);
+            });
             gbackground.append("text")
                 .attr("x", 200)
                 .attr("y", 0)
                 .attr("class", "title legend")
-                .text("Cohort Size");
-
+                .text("Cohort Size (K)");
+            new g2g.Pin(gcohort, 10, 55, "", "gray", "white", 15, "", 0.25)
+                .draw();
         }
 
         //
@@ -1321,12 +1415,14 @@ ias.graph = (function (graph) {
 
         //
         function zoomAndPan(scale, translate) {
-            var t = "translate(" + translate.join(",") + ")";
-            t += "scale(" + scale + ")";
-            gmap.attr("transform", t);
+            var tt = "translate(" + translate.join(",") + ")";
+            var ts = "scale(" + scale + ")";
+            gmap.attr("transform", tt + ts);
             gmap.selectAll("path")  
                 .attr("d", ias.graph.path.projection(ias.graph.projection)); 
-            gpins_country.attr("transform", t);
+            countryPins.forEach(function (p) {
+                p.zoomAndPan(scale, translate);
+            });
         }
 
         //
