@@ -35,15 +35,15 @@
           },
           {
           "female": 50,
-          "group": "adult",
+          "group": "adults",
           "male": 60,
           "subgroup": "Perinatally infected"
           },
           {
           "female": 30,
-          "group": "adult",
+          "group": "adults",
           "male": 10,
-          "subgroup": "HIV-exposed and uninfected"
+          "subgroup": "HIV-exposed uninfected"
           }
         ],
       "size": 605
@@ -122,7 +122,7 @@
       "status": "", 
       "code": 8, 
       "name": "DANISH HIV Cohort", 
-      "year": 1980, 
+      "year": 1989, 
       "objectives": "", 
       "countries": [
         "DNK"
@@ -164,7 +164,7 @@
       "status": "", 
       "code": 11, 
       "name": "Swiss HIV Cohort Study", 
-      "year": 1980, 
+      "year": 1985, 
       "objectives": "", 
       "countries": [
         "CHE"
@@ -247,7 +247,7 @@
       "status": "", 
       "code": 17, 
       "name": "CoRISPE-1", 
-      "year": 1980, 
+      "year": 2003, 
       "objectives": "", 
       "countries": [], 
       "networks": [
@@ -285,7 +285,7 @@
       "status": "", 
       "code": 20, 
       "name": "MADRID Paediatric Cohort Study", 
-      "year": 1980, 
+      "year": 2008, 
       "objectives": "", 
       "countries": [
         "ESP"
@@ -443,21 +443,21 @@
       "subjects": [
           {
           "female": 20000,
-          "group": "adult",
+          "group": "adults",
           "male": 28000,
           "subgroup": "Infected through other routes"
           },
           {
           "female": 56000,
-          "group": "adult",
+          "group": "adults",
           "male": 33000,
           "subgroup": "Perinatally infected"
           },
           {
           "female": 87000,
-          "group": "adult",
+          "group": "adults",
           "male": 50000,
-          "subgroup": "HIV-exposed and uninfected"
+          "subgroup": "HIV-exposed uninfected"
           }
         ],
       "size": 274000

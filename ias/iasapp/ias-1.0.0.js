@@ -448,8 +448,7 @@ ias.util = (function () {
 
     var that            = {},
         backgroundScale = d3.scale.quantile(),
-        networkColors   =  {},
-        domainRates     = {};
+        networkColors   =  {};
 
     //
     that.getNetworkColor = function (code) {
@@ -462,7 +461,7 @@ ias.util = (function () {
     //
     that.getCountryColor = function (id) {
         var country = ias.model.getCountryById(id),
-            rate    = country[ias.filter.getBackgroundInfoOption()];
+            rate    = country.getUnaidsinfo(ias.filter.getBackgroundInfoOption());
         return that.getBackgroundColor(rate);
     };
 
@@ -475,14 +474,12 @@ ias.util = (function () {
     };
 
     //
-    that.getSelectedDomainRates = function () {
-        return domainRates[ias.filter.getBackgroundInfoOption()];
-    };
-
-    //
     that.getCountryColorByFeature = function (feature) {
-        var country = ias.model.getCountry(feature.properties.name),
-            rate    = country[ias.filter.getBackgroundInfoOption()];
+        var country = ias.model.getCountryById(feature.id);
+        var rate;
+        if (country) {
+            rate  = country.getUnaidsinfo(ias.filter.getBackgroundInfoOption());
+        }
         return that.getBackgroundColor(rate);
     };
 
@@ -497,35 +494,38 @@ ias.util = (function () {
 
     //
     that.getCohortHtml = function (cohort) {
-        var h       = "<span class='tooltip title'>Cohort</span><h1 class='tooltip'>" + cohort.name + ":</h1>",
+        var h       = "<h1 class='tooltip'>" + cohort.name + "</h1>",
             color   = "white",
             country,
             rate,
             k;
+        h += "<a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', cohort.code) + "'>View Full Profile</a><br><br>";
         h += "<b>Number of subjects:</b>&nbsp;" + cohort.size + "<br>";
         h += "<b>Network:&nbsp;</b>" + cohort.getNetwork() + "<br>";
         h += "<b>Status:</b>&nbsp;" + cohort.status + "<br>";
+        h += "<b>Year of initiation:</b>&nbsp;" + cohort.year + "<br>";
         h += "<b>Countries:</b>&nbsp;";
-        h += cohort.getCountries().map(function (d) {return d.name; }).join(", ") + "<br><br>";
-        h += "<b>Objectives:&nbsp;</b>";
-        h += "<span class='tooltip objectives'>" + cohort.objectives + "</span>";
-        h += "<br><br><a class='tooltip' target='_blank' href='" + ias.config.map.cohort.fullProfile.replace('$code$', cohort.code) + "'>View Full Profile</a><br><br>";
-        h += "<b>Subjects:&nbsp;</b>";
+        h += cohort.getCountries().map(function (d) {return d.name; }).join(", ") + "<br>";
+        h += "<b>Subjects:&nbsp;</b><br>";
         h += "<br><div id='tooltipsvg'></div>";
         return h;
     };
 
     //
     that.getCountryHtml = function (country) {
-        var h       = "<span class='tooltip title'>Country " + "  " + country.id + "</span><h1 class='tooltip'>" + country.name +  "</h1><table>",
+        var h       = "<h1 class='tooltip'>" + country.name +  "</h1><table>",
             color   = "white";
 
-        h += "<tr><td class='firstcol'>HIV Prevalence Rate</td><td class='secondcol'>";
-        h += (country.hivPrevalenceRate || 'na') + " %</td></tr>";
-        h += "<tr><td>ARV Coverage Rate</td><td class='secondcol'>";
-        h += (country.arvCoverageRate || 'na')  + " %</td></tr>";
+        ias.config.map.background.types.forEach(function (t) {
+            h += "<tr><td class='firstcol'>";
+            h += ias.config.map.background[t].label;
+            h += "</td><td class='secondcol'>";
+            h += country.getUnaidsinfo(t) + " " + ias.config.map.background[t].unit;
+            h += "</td></tr>";
+        });
+
+        h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
         if (country.cohorts && country.cohorts.length > 0) {
-            h += "<tr><td colspane='2'><br><b>COHORTS:</b></td></tr>";
             country.cohorts.forEach(function (c) {
                 color = ias.util.getNetworkColor(c.networks[0]);
                 h += "<tr><td class='firstcol'><span style='background:";
@@ -535,6 +535,8 @@ ias.util = (function () {
             });
             h += "<tr><td class='firstcol' style='text-align:right;'><b>Total</b></td><td class='secondcol'><b>";
             h += country.size + "</b></td></tr>";
+        } else {
+            h += "<tr><td class='firstcol'>No cohorts.</td></tr>";
         }
         h += "</table>";
         return h;
@@ -550,15 +552,6 @@ ias.util = (function () {
             networkColors[c] = nScale(c);
         });
         // background (country) colors
-        d = params.unaidsinfo
-            .filter(function (d) {return !isNaN(d.hiv); })
-            .map(function (d) {return parseFloat(d.hiv); });
-        domainRates.hivPrevalenceRate = [d3.min(d), d3.max(d)];
-
-        d = params.unaidsinfo
-            .filter(function (d) {return !isNaN(d.arv); })
-            .map(function (d) {return parseFloat(d.arv); });
-        domainRates.arvCoverageRate = [d3.min(d), d3.max(d)];
         that.initBackgroundColors();
     };
 
@@ -598,12 +591,14 @@ ias.filter = (function () {
     that.NETWORKS = "networks";
     that.ENROLLMENT_STATUS = "enrollmentStatus";
     that.AGE_GROUP = "ageGroup";
+    that.SUBJECT_STATUS = "subjectStatus";
 
-    baseOptions[that.BACKGROUND_INFO] = "hivPrevalenceRate";
-    baseOptions[that.YEAR] = "1980";
+    baseOptions[that.BACKGROUND_INFO] = "HIV";
+    baseOptions[that.YEAR] = 1980;
     baseOptions[that.NETWORKS] = {};
     baseOptions[that.ENROLLMENT_STATUS] = "All";
-    baseOptions[that.AGE_GROUP] = "All";
+    baseOptions[that.AGE_GROUP] = {};
+    baseOptions[that.SUBJECT_STATUS] = {};
 
     //
     options = new g2g.Options(baseOptions);
@@ -624,8 +619,7 @@ ias.filter = (function () {
     };
 
     //
-    function createCheckBoxes(node, data) {
-
+    function createCheckBoxes(node, data, type) {
         var nodeEnter = d3.select("#" + node)
                             .selectAll("input")
                             .data(data)
@@ -634,23 +628,21 @@ ias.filter = (function () {
         nodeEnter.append("input")
             .attr("checked", true)
             .attr("type", "checkbox")
-            .attr("id", function (v) {return node + v; })
+            .attr("id", function (v) {return node + "." + v; })
             .attr("value", function (d) {return d; })
-            .attr("selected", "selected");
+            .attr("selected", "selected")
+            .on("click", function (d) {
+                options.change(type + "." + d, this.checked);
+            });
         nodeEnter.append("label")
-                .attr("for", function (v) {return node + v; })
-                .attr("class", node)
-                .text(function (d) {return d; });
-
+            .attr("for", function (v) {return node + v; })
+            .attr("class", node)
+            .text(function (d) {return d; });
+        // init options
+        data.forEach(function (d) {
+            options[type][d] = true;
+        });
     }
-
-    //
-    // Background Information Option
-    //
-    d3.select("#backgroundInfo").on("change", function (d) {
-        var v = this.options[this.selectedIndex].value;
-        options.change(that.BACKGROUND_INFO, v);
-    });
 
     //
     // Filtering Options
@@ -676,6 +668,20 @@ ias.filter = (function () {
 
         config = ias.config.filter;
 
+        //
+        // Background Information Option
+        //
+        d3.select("#backgroundInfo")
+            .on("change", function (d) {
+                var v = this.options[this.selectedIndex].value;
+                options.change(that.BACKGROUND_INFO, v);
+            })
+            .selectAll("option")
+            .data(ias.config.map.background.types).enter()
+            .append("option")
+            .attr("value", function (d) {return d; })
+            .text(function (d) {return ias.config.map.background[d].label; });
+
         d3.select("#mapInfo")
                 .text("version: " + ias.config.version + " - " +
                     ias.config.timestamp + "  (" + ias.mode + ")"
@@ -693,8 +699,8 @@ ias.filter = (function () {
             .attr("value", function (d) {return d; })
             .text(function (d) {return d; });
 
-        createCheckBoxes("ageGroup", config.ageGroup);
-        createCheckBoxes("subjectStatus", config.subjectStatus);
+        createCheckBoxes("ageGroup", config.ageGroup, that.AGE_GROUP);
+        createCheckBoxes("subjectStatus", config.subjectStatus, that.SUBJECT_STATUS);
 
         //
         function click(input, network) {
@@ -790,12 +796,11 @@ ias.model = (function () {
 			that.allcountriesById[c.id] = c;
 		});
 		params.unaidsinfo.forEach(function (r) {
-			var c = that.allcountriesByName[r.name];
+			var c = that.allcountriesById[r.iso];
 			if (c !== undefined) {
-				c.hivPrevalenceRate = parseFloat(r.hiv);
-				c.arvCoverageRate = parseFloat(r.arv);
+				c.setUnaidsinfos(r);
 			} else {
-				ias.log('HIV/ARV Rates: no country found for ' + r.name);
+				ias.log('Unaids Infos: no country found for ' + r.iso);
 			}
 		});
 
@@ -833,9 +838,8 @@ ias.model = (function (model) {
 		this.status = cohortJson.status;
 		this.code = cohortJson.code;
 		this.name = cohortJson.name;
-		this.subjects = cohortJson.subjects;
 		this.objectives = cohortJson.objectives;
-		this.year = cohortJson.year;
+		this.year = parseFloat(cohortJson.year);
 		this.size = cohortJson.size;
 		this.networks = cohortJson.networks;
 		this.countryData = {};
@@ -852,6 +856,8 @@ ias.model = (function (model) {
 				ias.log("Cohort country not found for " + d);
 			}
 		});
+
+		this.subjects = getSubjects(cohortJson.subjects);
 
 	};
 
@@ -886,14 +892,15 @@ ias.model = (function (model) {
 		return this.networks[0];
 	};
 
-	model.Cohort.prototype.getSubjects = function () {
-		if (this.subjects) {
+	//
+	function getSubjects(json) {
+		if (json) {
 			var result = {
 				groups: d3.map(),
 				subgroups: d3.map(),
 				data: {}
 			};
-			this.subjects.forEach(function (s) {
+			json.forEach(function (s) {
 				result.subgroups.set(s.subgroup, s.subgroup);
 				result.groups.set(s.group, s.group);
 				if (s.group in result.data) {
@@ -920,7 +927,7 @@ ias.model = (function (model) {
 			return result;
 		}
 		return undefined;		
-	};
+	}
 
 	return model;
 
@@ -935,20 +942,34 @@ ias.model = (function (model) {
 		this.feature = feature;
 		this.networks = {};
 		this.cohorts = [];
-		this.hivPrevalenceRate = 'na';
-		this.arvCoverageRate = 'na';
 		this.size = 0; // number of subjects in that country
 		this.id = feature.id;
         if (this.id === "-99") { // exotic countries!
             this.id = "9" + feature.properties.name.substring(0, 2);
         }
         this.name = this.feature.properties.name;
+        this.unaidsinfos = {};
     };
 
 	model.Country.prototype.addNetwork = function (network) {
 		if (this.networks.hasOwnProperty(network) === false) {
 			this.networks[network] = network;
 		}
+	};
+
+	model.Country.prototype.getUnaidsinfo = function (type) {
+		if (this.unaidsinfos.hasOwnProperty(type)) {
+			return this.unaidsinfos[type];
+		}
+		return NaN;
+	};
+
+	model.Country.prototype.setUnaidsinfos = function (infos) {
+		var types = ias.config.map.background.types,
+			that = this;
+		types.forEach(function (t) {
+			that.unaidsinfos[t] = parseFloat(infos[t]) * ias.config.map.background[t].factor;
+		});
 	};
 
 	model.Country.prototype.getNetworks = function () {
@@ -1028,7 +1049,7 @@ ias.graph = (function () {
         titlesvg = d3.select("#title")
                 .append("svg")
                 .attr("class", "title")
-                .attr("width", 360)
+                .attr("width", 380)
                 .attr("height", 50);
 
         zoomsvg = d3.select("#zoom")
@@ -1074,7 +1095,6 @@ ias.graph = (function () {
             country.centroidx = coords[0];
             country.centroidy = coords[1];
         });
-
 
     };
 
@@ -1126,6 +1146,9 @@ ias.graph = (function (graph) {
 
     //
     function onCohort(pin, cohort, enter) {
+        if (ias.graph.map.isCohortSelected()) {
+            return;
+        }
         var opacity = enter ? 0.15 : 0.9;
         pin.parent.selectAll(".pin.cohort:not(." + cohort.cssIdClass +  ")")
             .style("opacity", opacity);
@@ -1148,10 +1171,25 @@ ias.graph = (function (graph) {
     //
     function click(pin, d) {
         d3.event.stopPropagation();
-        if (!d.cohorts) {
-            ias.graph.map.select(d);
+        if (!d.cohorts && ias.graph.map.isCohortSelected() === false) {
             onCohort(pin, d, true);
+            ias.graph.map.select(d);
         }
+    }
+
+    //
+    function match(cohort, filter, groupname) {
+        for (var prop in filter) {
+            if (filter.hasOwnProperty(prop) && filter[prop] === true) {
+                if (cohort.subjects === undefined) {
+                    return false;
+                }
+                if (!(cohort.subjects[groupname].has(prop))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // Extend the GraphComponent prototype using Object.create()
@@ -1161,10 +1199,16 @@ ias.graph = (function (graph) {
     graph.CountryPin.prototype.filter = function () {
         var networksFilter  = ias.filter.getValue(ias.filter.NETWORKS),
             statusFilter    = ias.filter.getValue(ias.filter.ENROLLMENT_STATUS),
+            yearFilter      = ias.filter.getValue(ias.filter.YEAR),
+            ageGroupFilter  = ias.filter.getValue(ias.filter.AGE_GROUP),
+            subjectStatusFilter   = ias.filter.getValue(ias.filter.SUBJECT_STATUS),
             that            = this;
         this.country.cohorts.forEach(function (c) {
             var show = networksFilter[c.getNetwork()];
-            show &= ((statusFilter === "All") || (c.status === statusFilter));
+            show = show && ((statusFilter === "All") || (c.status === statusFilter));
+            show = show && c.year >= yearFilter;
+            show = show && match(c, ageGroupFilter, "groups");
+            show = show && match(c, subjectStatusFilter, "subgroups");
             that.g.select("#" + that.country.id + "-" + c.code)
                     .style("display", show ? "inline" : "none");
 
@@ -1225,7 +1269,7 @@ ias.graph = (function (graph) {
                                 .attr('transform', 'translate(' + posx + ',' + posy + ')'),
             gcohort         = svg.append("g")
                                 .attr("id", "clegend")
-                                .attr('transform', 'translate(' + (posx + 210) + ',' + posy + ')');
+                                .attr('transform', 'translate(' + (posx + 240) + ',' + posy + ')');
 
         //
         function legend1() {
@@ -1261,14 +1305,14 @@ ias.graph = (function (graph) {
                 .attr("y", 0)
                 .attr("id", "backgroundInfoTitle")
                 .attr("class", "title legend")
-                .text(ias.config.legend.hivPrevalenceRate);
+                .text(ias.config.map.background.HIV.label + " (" + ias.config.map.background.HIV.unit + ")"); // TODO
 
             gbackground.append("text")
                 .attr("x", 20)
                 .attr("y", 65)
                 .attr("class", "title legend")
                 .style("font-style", "italic")
-                .text("Source: AIDSinfo");
+                .text("Source: AIDSinfo 2011");
 
         }
 
@@ -1314,12 +1358,12 @@ ias.graph = (function (graph) {
                     .style("stroke", "steelblue")
                     .style("stroke-width", 0.5);
             });
-            gbackground.append("text")
-                .attr("x", 200)
+            gcohort.append("text")
+                .attr("x", -20)
                 .attr("y", 0)
                 .attr("class", "title legend")
                 .text("Cohort Size (K)");
-            new g2g.Pin(gcohort, 10, 55, "", "gray", "white", 15, "", 0.25)
+            new g2g.Pin(gcohort, 0, 55, "", "gray", "white", 15, "", 0.25)
                 .draw();
         }
 
@@ -1376,7 +1420,8 @@ ias.graph = (function (graph) {
         //
         function filterUpdate(event) {
             var backgroundInfo = ias.filter.getBackgroundInfoOption();
-            gbackground.select("#backgroundInfoTitle").text(ias.config.legend[backgroundInfo]);
+            var t = ias.config.map.background[backgroundInfo].label + " (" + ias.config.map.background[backgroundInfo].unit + ")";
+            gbackground.select("#backgroundInfoTitle").text(t);
             drawLegendBackgound();
         }
 
@@ -1441,11 +1486,15 @@ ias.graph = (function (graph) {
             var countryId = ias.util.getCountryId(d),
                 country = ias.model.allcountriesById[countryId];
             controller.select(country);
+            gpins_country.selectAll(".pin.cohort")
+                .style("opacity", 0.9);
         }
 
         //
         function clickOnOcean() {
             controller.reset();
+            gpins_country.selectAll(".pin.cohort")
+                .style("opacity", 0.9);
         }
 
         //
@@ -1480,6 +1529,7 @@ ias.graph = (function (graph) {
             ias.model.countriesWithCohorts.forEach(function (country) {
                 var pin = new ias.graph.CountryPin(gpins_country, country).draw();
                 countryPins.push(pin);
+                pin.filter();
             });
 
         }
@@ -1511,6 +1561,11 @@ ias.graph = (function (graph) {
             });
         }
 
+        // 
+        function isCohortSelected() {
+            return typeof(controller.getCohort()) != "undefined";
+        }
+
         /**
         *
         *
@@ -1524,12 +1579,12 @@ ias.graph = (function (graph) {
                 // cohort
                 if (d && d.constructor.name === "Cohort") {
                     selectCohort(d);
-                    selectCountry(null);
+                    selectCountry(undefined);
                     return;
                 }
                 // country
                 if (d && d.constructor.name === "Country") {
-                    selectCohort(null);
+                    selectCohort(undefined);
                     selectCountry(d);
                     return;
                 }
@@ -1537,8 +1592,13 @@ ias.graph = (function (graph) {
 
             //
             function reset() {
-                selectCohort(null);
-                selectCountry(null);
+                selectCohort(undefined);
+                selectCountry(undefined);
+            }
+
+            //
+            function getCohort() {
+                return cohort;
             }
 
             //
@@ -1546,23 +1606,17 @@ ias.graph = (function (graph) {
                 if (cohort === c) {
                     return;
                 }
-                if (cohort) {
-                    gpins_country.selectAll("circle.cohort." + cohort.cssIdClass)
-                        .classed("selected", false); // remove css class selected
-                }
                 cohort = c;
                 if (cohort) {
                     var newHtml = ias.util.getCohortHtml(cohort);
                     ias.graph.tooltip.cohort.html(newHtml);
-                    ias.graph.createSubjectsGraph(cohort.getSubjects());
+                    ias.graph.createSubjectsGraph(cohort.subjects);
                     ias.graph.tooltip.cohort.show();
-                    gpins_country.selectAll("circle.cohort." + cohort.cssIdClass)
-                        .classed("selected", true); // add css class selected
                 } else {
                     ias.graph.tooltip.cohort.hide(); 
                 }   
             }
-
+        
             //
             function selectCountry(c) {
                 if (country === c) {
@@ -1590,7 +1644,8 @@ ias.graph = (function (graph) {
 
             return {
                 select: select,
-                reset: reset
+                reset: reset,
+                getCohort: getCohort
             };
 
         }
@@ -1600,7 +1655,9 @@ ias.graph = (function (graph) {
             ias.filter.NETWORKS, 
             ias.filter.YEAR,
             ias.filter.ENROLLMENT_STATUS,
-            ias.filter.BACKGROUND_INFO
+            ias.filter.BACKGROUND_INFO,
+            ias.filter.AGE_GROUP,
+            ias.filter.SUBJECT_STATUS,
         ], filterUpdate);
 
         // Register Map to Zoom Component
@@ -1611,7 +1668,8 @@ ias.graph = (function (graph) {
             draw: draw,
             update: update,
             filterUpdate: filterUpdate,
-            select: controller.select
+            select: controller.select,
+            isCohortSelected: isCohortSelected
         };
 
     };
@@ -1635,7 +1693,7 @@ ias.graph = (function (graph) {
 		
         var svg = d3.select("#tooltipsvg")
 				.append("svg")
-				.attr("width", 200)
+				.attr("width", 240)
 				.attr("height", subjects ? Object.keys(subjects).length * 200 : 100);
 		var color = d3.scale.category10();
 
@@ -1660,9 +1718,9 @@ ias.graph = (function (graph) {
 
         //
         function drawLegend(svg, subjects) {
-            var data = subjects.subgroups.keys();
+            var data = ias.config.filter.subjectStatus;
             svg.append("g")
-                .attr("transform", "translate(10, 10)")
+                .attr("transform", "translate(0, 10)")
                 .selectAll("text")
                 .data(data)
                 .enter()
@@ -1683,7 +1741,7 @@ ias.graph = (function (graph) {
             var innerRadius = 50,
                 outerRadius = 70,
                 posy = 2.4 * outerRadius * (i) + outerRadius + 30 + offset,
-                posx = 30 + outerRadius;
+                posx = 40 + outerRadius;
 
             var categories = data.subjects.map(function (d) {return d.name; });
 
@@ -1721,7 +1779,7 @@ ias.graph = (function (graph) {
                 .attr("class", "title subjects")
                 .attr("transform", "translate(0," + (-outerRadius - 10) + ")")
                 .attr("text-anchor", "middle")
-                .text(data.group + ": " + data.total);
+                .text(data.group.toUpperCase() + ": " + data.total);
 
             // draw arc paths
             garcs.append("path")
@@ -1835,6 +1893,7 @@ ias.graph = (function (graph) {
             tooltip.transition()
                 .duration(100)
                 .style("opacity", 1);
+            tooltip.style("pointer-events", "all");
             return that;
         };
 
@@ -1843,6 +1902,7 @@ ias.graph = (function (graph) {
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0);
+            tooltip.style("pointer-events", "none");
             return that;
         };
 

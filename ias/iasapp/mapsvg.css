@@ -32,7 +32,7 @@ svg {
 }
 
 svg.map {
-  border: 3px solid #156994;
+  border: 2px solid #156994;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -khtml-border-radius: 10px;
@@ -40,7 +40,7 @@ svg.map {
 }
 
 svg.title , svg.zoom, svg.legend{
-  border: 3px solid #156994;
+  border: 2px solid #156994;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -khtml-border-radius: 10px;
@@ -119,24 +119,6 @@ text.country.size {
 }
 
 
-circle.country {
-  fill-opacity: .15;
-  stroke: #333;                         
-  stroke-width: 0.5px;
-  stroke-dasharray: 0.2,0.2;
-}
-
-circle.cohort {
-  fill-opacity: 0.95;
-  stroke-width: 0px;
-  stroke: darkgray;
-}
-
-circle.cohort.selected {
-  stroke: darkred;
-  stroke-width: 0.5px;                          
-}
-
 text.country.pin {
     font-size: 0.3em;
     font-family: Arial;
@@ -186,6 +168,8 @@ text.legend  {
 
 text.legend.title  {
   font-size: 0.9em;
+  font-weight: bold;
+  fill: steelblue;
 }
 
 /**

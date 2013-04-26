@@ -1,1496 +1,1744 @@
-[
- {
-  "hiv": "1", 
-  "iso": "STP", 
-  "name": "Sao Tome and Principe", 
-  "arv": "52.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Saint Helena", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Saint Kitts and Nevis", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Aruba", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Svalbard and Jan Mayen Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Channel Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "American Samoa", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Northern Mariana Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Martinique", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "United States Virgin Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Niue", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Monaco", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Samoa", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Slovak Republic", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Guam", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Saint Vincent and the Grenadines", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "South-Sudan", 
-  "arv": "6.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Turks and Caicos Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Saint Lucia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "San Marino", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Nauru", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Seychelles", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Cook Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "-", 
-  "name": "Bahrain", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Antigua and Barbuda", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Hong Kong SAR", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Tonga", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.000000", 
-  "iso": "-", 
-  "name": "Mauritius", 
-  "arv": "37.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "British Virgin Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Tokelau", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Liechtenstein", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "-", 
-  "name": "Kyrgyz Republic", 
-  "arv": "23.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Isle of Man", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Taiwan Province of China", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Pitcairn", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.000000", 
-  "iso": "-", 
-  "name": "Cape Verde", 
-  "arv": "46.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Andorra", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Gibraltar", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Saint-Pierre and Miquelon", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Palau", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Tuvalu", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Marshall Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.500000", 
-  "iso": "-", 
-  "name": "Gambia The", 
-  "arv": "54.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "French Guiana", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "French Polynesia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Guinea-Bissau", 
-  "arv": "56.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Grenada", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Wallis and Futuna Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "West Bank and Gaza", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Timor-Leste", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Dominica", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Reunion", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.900000", 
-  "iso": "-", 
-  "name": "Barbados", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Macao SAR", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Kiribati", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "-", 
-  "name": "Malta", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Brunei Darussalam", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "-", 
-  "name": "Comoros", 
-  "arv": "19.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "-", 
-  "name": "Maldives", 
-  "arv": "22.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Bermuda", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Cayman Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Anguilla", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Holy See", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Micronesia Fed. States of", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Mayotte", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Montserrat", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Guadeloupe", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Korea Dem. People's Rep. of", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Faeroe Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "-", 
-  "name": "Singapore", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Macedonia former Yugoslav Republic of", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-", 
-  "name": "Netherlands Antilles", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-99", 
-  "name": "Western Sahara", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-99", 
-  "name": "Somaliland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-99", 
-  "name": "Kosovo", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "-99", 
-  "name": "Northern Cyprus", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "AFG", 
-  "name": "Afghanistan", 
-  "arv": "6.0"
- }, 
- {
-  "hiv": "2.100000", 
-  "iso": "AGO", 
-  "name": "Angola", 
-  "arv": "36.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "ALB", 
-  "name": "Albania", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "ARE", 
-  "name": "United Arab Emirates", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "ARG", 
-  "name": "Argentina", 
-  "arv": "79.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "ARM", 
-  "name": "Armenia", 
-  "arv": "22.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "ATA", 
-  "name": "Antarctica", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "ATF", 
-  "name": "French Southern and Antarctic Lands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "AUS", 
-  "name": "Australia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "AUT", 
-  "name": "Austria", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "AZE", 
-  "name": "Azerbaijan", 
-  "arv": "28.0"
- }, 
- {
-  "hiv": "1.300000", 
-  "iso": "BDI", 
-  "name": "Burundi", 
-  "arv": "54.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "BEL", 
-  "name": "Belgium", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.200000", 
-  "iso": "BEN", 
-  "name": "Benin", 
-  "arv": "61.0"
- }, 
- {
-  "hiv": "1.100000", 
-  "iso": "BFA", 
-  "name": "Burkina Faso", 
-  "arv": "57.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "BGD", 
-  "name": "Bangladesh", 
-  "arv": "31.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "BGR", 
-  "name": "Bulgaria", 
-  "arv": "25.0"
- }, 
- {
-  "hiv": "2.800000", 
-  "iso": "BHS", 
-  "name": "The Bahamas", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "BIH", 
-  "name": "Bosnia and Herzegovina", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "BLR", 
-  "name": "Belarus", 
-  "arv": "40.0"
- }, 
- {
-  "hiv": "2.300000", 
-  "iso": "BLZ", 
-  "name": "Belize", 
-  "arv": "62.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "BOL", 
-  "name": "Bolivia", 
-  "arv": "15.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "BRA", 
-  "name": "Brazil", 
-  "arv": "71.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "BRN", 
-  "name": "Brunei", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "BTN", 
-  "name": "Bhutan", 
-  "arv": "24.0"
- }, 
- {
-  "hiv": "23.400000", 
-  "iso": "BWA", 
-  "name": "Botswana", 
-  "arv": "95.0"
- }, 
- {
-  "hiv": "4.600000", 
-  "iso": "CAF", 
-  "name": "Central African Republic", 
-  "arv": "22.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "CAN", 
-  "name": "Canada", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "CHE", 
-  "name": "Switzerland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "CHL", 
-  "name": "Chile", 
-  "arv": "66.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "CHN", 
-  "name": "China", 
-  "arv": "na"
- }, 
- {
-  "hiv": "3.000000", 
-  "iso": "CIV", 
-  "name": "Ivory Coast", 
-  "arv": "41.0"
- }, 
- {
-  "hiv": "4.600000", 
-  "iso": "CMR", 
-  "name": "Cameroon", 
-  "arv": "41.0"
- }, 
- {
-  "hiv": "3.300000", 
-  "iso": "COD", 
-  "name": "Democratic Republic of the Congo", 
-  "arv": "44.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "COG", 
-  "name": "Republic of the Congo", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "COL", 
-  "name": "Colombia", 
-  "arv": "46.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "CRI", 
-  "name": "Costa Rica", 
-  "arv": "73.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "CUB", 
-  "name": "Cuba", 
-  "arv": "95.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "CYP", 
-  "name": "Cyprus", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "CZE", 
-  "name": "Czech Republic", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "DEU", 
-  "name": "Germany", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.400000", 
-  "iso": "DJI", 
-  "name": "Djibouti", 
-  "arv": "27.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "DNK", 
-  "name": "Denmark", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.700000", 
-  "iso": "DOM", 
-  "name": "Dominican Republic", 
-  "arv": "80.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "DZA", 
-  "name": "Algeria", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "ECU", 
-  "name": "Ecuador", 
-  "arv": "68.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "EGY", 
-  "name": "Egypt", 
-  "arv": "21.0"
- }, 
- {
-  "hiv": "0.600000", 
-  "iso": "ERI", 
-  "name": "Eritrea", 
-  "arv": "49.0"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "ESP", 
-  "name": "Spain", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.300000", 
-  "iso": "EST", 
-  "name": "Estonia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.400000", 
-  "iso": "ETH", 
-  "name": "Ethiopia", 
-  "arv": "56.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "FIN", 
-  "name": "Finland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "FJI", 
-  "name": "Fiji", 
-  "arv": "87.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "FLK", 
-  "name": "Falkland Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "FRA", 
-  "name": "France", 
-  "arv": "na"
- }, 
- {
-  "hiv": "5.000000", 
-  "iso": "GAB", 
-  "name": "Gabon", 
-  "arv": "53.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "GBR", 
-  "name": "United Kingdom", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "GEO", 
-  "name": "Georgia", 
-  "arv": "76.0"
- }, 
- {
-  "hiv": "1.500000", 
-  "iso": "GHA", 
-  "name": "Ghana", 
-  "arv": "47.0"
- }, 
- {
-  "hiv": "1.400000", 
-  "iso": "GIN", 
-  "name": "Guinea", 
-  "arv": "58.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "GMB", 
-  "name": "Gambia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "2.500000", 
-  "iso": "GNB", 
-  "name": "Guinea Bissau", 
-  "arv": "na"
- }, 
- {
-  "hiv": "4.700000", 
-  "iso": "GNQ", 
-  "name": "Equatorial Guinea", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "GRC", 
-  "name": "Greece", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "GRL", 
-  "name": "Greenland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.800000", 
-  "iso": "GTM", 
-  "name": "Guatemala", 
-  "arv": "56.0"
- }, 
- {
-  "hiv": "1.100000", 
-  "iso": "GUY", 
-  "name": "Guyana", 
-  "arv": "82.0"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "HND", 
-  "name": "Honduras", 
-  "arv": "41.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "HRV", 
-  "name": "Croatia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.800000", 
-  "iso": "HTI", 
-  "name": "Haiti", 
-  "arv": "58.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "HUN", 
-  "name": "Hungary", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "IDN", 
-  "name": "Indonesia", 
-  "arv": "24.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "IND", 
-  "name": "India", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "IRL", 
-  "name": "Ireland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "IRN", 
-  "name": "Iran", 
-  "arv": "7.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "IRQ", 
-  "name": "Iraq", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "ISL", 
-  "name": "Iceland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "ISR", 
-  "name": "Israel", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "ITA", 
-  "name": "Italy", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.800000", 
-  "iso": "JAM", 
-  "name": "Jamaica", 
-  "arv": "60.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "JOR", 
-  "name": "Jordan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "JPN", 
-  "name": "Japan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "KAZ", 
-  "name": "Kazakhstan", 
-  "arv": "27.0"
- }, 
- {
-  "hiv": "6.200000", 
-  "iso": "KEN", 
-  "name": "Kenya", 
-  "arv": "72.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "KGZ", 
-  "name": "Kyrgyzstan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.600000", 
-  "iso": "KHM", 
-  "name": "Cambodia", 
-  "arv": "95.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "KOR", 
-  "name": "South Korea", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "KWT", 
-  "name": "Kuwait", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "LAO", 
-  "name": "Laos", 
-  "arv": "53.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "LBN", 
-  "name": "Lebanon", 
-  "arv": "36.0"
- }, 
- {
-  "hiv": "1.000000", 
-  "iso": "LBR", 
-  "name": "Liberia", 
-  "arv": "38.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "LBY", 
-  "name": "Libya", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "LKA", 
-  "name": "Sri Lanka", 
-  "arv": "21.0"
- }, 
- {
-  "hiv": "23.300000", 
-  "iso": "LSO", 
-  "name": "Lesotho", 
-  "arv": "58.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "LTU", 
-  "name": "Lithuania", 
-  "arv": "25.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "LUX", 
-  "name": "Luxembourg", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.700000", 
-  "iso": "LVA", 
-  "name": "Latvia", 
-  "arv": "18.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "MAR", 
-  "name": "Morocco", 
-  "arv": "37.0"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "MDA", 
-  "name": "Moldova", 
-  "arv": "29.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "MDG", 
-  "name": "Madagascar", 
-  "arv": "3.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "MEX", 
-  "name": "Mexico", 
-  "arv": "84.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "MKD", 
-  "name": "Macedonia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.100000", 
-  "iso": "MLI", 
-  "name": "Mali", 
-  "arv": "53.0"
- }, 
- {
-  "hiv": "0.600000", 
-  "iso": "MMR", 
-  "name": "Myanmar", 
-  "arv": "32.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "MNE", 
-  "name": "Montenegro", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "MNG", 
-  "name": "Mongolia", 
-  "arv": "27.0"
- }, 
- {
-  "hiv": "11.300000", 
-  "iso": "MOZ", 
-  "name": "Mozambique", 
-  "arv": "46.0"
- }, 
- {
-  "hiv": "1.100000", 
-  "iso": "MRT", 
-  "name": "Mauritania", 
-  "arv": "21.0"
- }, 
- {
-  "hiv": "10.000000", 
-  "iso": "MWI", 
-  "name": "Malawi", 
-  "arv": "67.0"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "MYS", 
-  "name": "Malaysia", 
-  "arv": "37.0"
- }, 
- {
-  "hiv": "13.400000", 
-  "iso": "NAM", 
-  "name": "Namibia", 
-  "arv": "95.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "NCL", 
-  "name": "New Caledonia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.800000", 
-  "iso": "NER", 
-  "name": "Niger", 
-  "arv": "34.0"
- }, 
- {
-  "hiv": "3.700000", 
-  "iso": "NGA", 
-  "name": "Nigeria", 
-  "arv": "30.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "NIC", 
-  "name": "Nicaragua", 
-  "arv": "65.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "NLD", 
-  "name": "Netherlands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "NOR", 
-  "name": "Norway", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "NPL", 
-  "name": "Nepal", 
-  "arv": "24.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "NZL", 
-  "name": "New Zealand", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "OMN", 
-  "name": "Oman", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "PAK", 
-  "name": "Pakistan", 
-  "arv": "10.0"
- }, 
- {
-  "hiv": "0.800000", 
-  "iso": "PAN", 
-  "name": "Panama", 
-  "arv": "49.0"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "PER", 
-  "name": "Peru", 
-  "arv": "60.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "PHL", 
-  "name": "Philippines", 
-  "arv": "51.0"
- }, 
- {
-  "hiv": "0.700000", 
-  "iso": "PNG", 
-  "name": "Papua New Guinea", 
-  "arv": "68.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "POL", 
-  "name": "Poland", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "PRI", 
-  "name": "Puerto Rico", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "PRK", 
-  "name": "North Korea", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.700000", 
-  "iso": "PRT", 
-  "name": "Portugal", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "PRY", 
-  "name": "Paraguay", 
-  "arv": "69.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "PSE", 
-  "name": "West Bank", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "QAT", 
-  "name": "Qatar", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "ROU", 
-  "name": "Romania", 
-  "arv": "74.0"
- }, 
- {
-  "hiv": "1.100000", 
-  "iso": "RUS", 
-  "name": "Russia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "2.900000", 
-  "iso": "RWA", 
-  "name": "Rwanda", 
-  "arv": "82.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "SAU", 
-  "name": "Saudi Arabia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.400000", 
-  "iso": "SDN", 
-  "name": "Sudan", 
-  "arv": "9.0"
- }, 
- {
-  "hiv": "3.100000", 
-  "iso": "SDS", 
-  "name": "South Sudan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.700000", 
-  "iso": "SEN", 
-  "name": "Senegal", 
-  "arv": "56.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "SLB", 
-  "name": "Solomon Islands", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.600000", 
-  "iso": "SLE", 
-  "name": "Sierra Leone", 
-  "arv": "41.0"
- }, 
- {
-  "hiv": "0.600000", 
-  "iso": "SLV", 
-  "name": "El Salvador", 
-  "arv": "72.0"
- }, 
- {
-  "hiv": "0.700000", 
-  "iso": "SOM", 
-  "name": "Somalia", 
-  "arv": "7.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "SRB", 
-  "name": "Serbia", 
-  "arv": "65"
- }, 
- {
-  "hiv": "1.000000", 
-  "iso": "SUR", 
-  "name": "Suriname", 
-  "arv": "53.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "SVK", 
-  "name": "Slovakia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "SVN", 
-  "name": "Slovenia", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "SWE", 
-  "name": "Sweden", 
-  "arv": "na"
- }, 
- {
-  "hiv": "26.000000", 
-  "iso": "SWZ", 
-  "name": "Swaziland", 
-  "arv": "83.0"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "SYR", 
-  "name": "Syria", 
-  "arv": "na"
- }, 
- {
-  "hiv": "3.100000", 
-  "iso": "TCD", 
-  "name": "Chad", 
-  "arv": "34.0"
- }, 
- {
-  "hiv": "3.400000", 
-  "iso": "TGO", 
-  "name": "Togo", 
-  "arv": "42.0"
- }, 
- {
-  "hiv": "1.200000", 
-  "iso": "THA", 
-  "name": "Thailand", 
-  "arv": "71.0"
- }, 
- {
-  "hiv": "0.300000", 
-  "iso": "TJK", 
-  "name": "Tajikistan", 
-  "arv": "22.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "TKM", 
-  "name": "Turkmenistan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "TLS", 
-  "name": "East Timor", 
-  "arv": "na"
- }, 
- {
-  "hiv": "1.500000", 
-  "iso": "TTO", 
-  "name": "Trinidad and Tobago", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "TUN", 
-  "name": "Tunisia", 
-  "arv": "67.0"
- }, 
- {
-  "hiv": "0.100000", 
-  "iso": "TUR", 
-  "name": "Turkey", 
-  "arv": "50.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "TWN", 
-  "name": "Taiwan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "5.800000", 
-  "iso": "TZA", 
-  "name": "United Republic of Tanzania", 
-  "arv": "40"
- }, 
- {
-  "hiv": "7.200000", 
-  "iso": "UGA", 
-  "name": "Uganda", 
-  "arv": "54.0"
- }, 
- {
-  "hiv": "0.800000", 
-  "iso": "UKR", 
-  "name": "Ukraine", 
-  "arv": "22.0"
- }, 
- {
-  "hiv": "0.600000", 
-  "iso": "URY", 
-  "name": "Uruguay", 
-  "arv": "41.0"
- }, 
- {
-  "hiv": "0.600000", 
-  "iso": "USA", 
-  "name": "United States of America", 
-  "arv": "na"
- }, 
- {
-  "hiv": "na", 
-  "iso": "UZB", 
-  "name": "Uzbekistan", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "VEN", 
-  "name": "Venezuela", 
-  "arv": "79.0"
- }, 
- {
-  "hiv": "0.500000", 
-  "iso": "VNM", 
-  "name": "Vietnam", 
-  "arv": "58.0"
- }, 
- {
-  "hiv": "na", 
-  "iso": "VUT", 
-  "name": "Vanuatu", 
-  "arv": "na"
- }, 
- {
-  "hiv": "0.200000", 
-  "iso": "YEM", 
-  "name": "Yemen", 
-  "arv": "8.0"
- }, 
- {
-  "hiv": "17.300000", 
-  "iso": "ZAF", 
-  "name": "South Africa", 
-  "arv": "66.0"
- }, 
- {
-  "hiv": "12.500000", 
-  "iso": "ZMB", 
-  "name": "Zambia", 
-  "arv": "82.0"
- }, 
- {
-  "hiv": "14.900000", 
-  "iso": "ZWE", 
-  "name": "Zimbabwe", 
-  "arv": "77.0"
- }
-]
+[{
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ABW",
+	"name": "Aruba     "
+}, {
+	"ARV": 6,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "AFG",
+	"name": "Afghanista"
+}, {
+	"ARV": 36,
+	"HIV": 2.1,
+	"HIVP": 0.16,
+	"NHIV": 5300,
+	"iso": "AGO",
+	"name": "Angola    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "AIA",
+	"name": "Anguilla  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ALB",
+	"name": "Albania   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "AND",
+	"name": "Andorra   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ANT",
+	"name": null
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ARE",
+	"name": "United Ara"
+}, {
+	"ARV": 79,
+	"HIV": 0.4,
+	"HIVP": 0.56,
+	"NHIV": null,
+	"iso": "ARG",
+	"name": "Argentina "
+}, {
+	"ARV": 22,
+	"HIV": 0.2,
+	"HIVP": 0.45,
+	"NHIV": null,
+	"iso": "ARM",
+	"name": "Armenia   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ASM",
+	"name": "American S"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ATA",
+	"name": null
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ATF",
+	"name": null
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ATG",
+	"name": "Antigua an"
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "AUS",
+	"name": "Australia "
+}, {
+	"ARV": null,
+	"HIV": 0.4,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "AUT",
+	"name": "Austria   "
+}, {
+	"ARV": 28,
+	"HIV": 0.1,
+	"HIVP": 0.68,
+	"NHIV": null,
+	"iso": "AZE",
+	"name": "Azerbaijan"
+}, {
+	"ARV": 54,
+	"HIV": 1.3,
+	"HIVP": 0.52,
+	"NHIV": 1200,
+	"iso": "BDI",
+	"name": "Burundi   "
+}, {
+	"ARV": null,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BEL",
+	"name": "Belgium   "
+}, {
+	"ARV": 61,
+	"HIV": 1.2,
+	"HIVP": 0.3,
+	"NHIV": 1000,
+	"iso": "BEN",
+	"name": "Benin     "
+}, {
+	"ARV": 57,
+	"HIV": 1.1,
+	"HIVP": 0.46,
+	"NHIV": 2200,
+	"iso": "BFA",
+	"name": "Burkina Fa"
+}, {
+	"ARV": 31,
+	"HIV": 0.1,
+	"HIVP": 0.47,
+	"NHIV": null,
+	"iso": "BGD",
+	"name": "Bangladesh"
+}, {
+	"ARV": 25,
+	"HIV": 0.1,
+	"HIVP": 0.24,
+	"NHIV": null,
+	"iso": "BGR",
+	"name": "Bulgaria  "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BHR",
+	"name": "Bahrain   "
+}, {
+	"ARV": null,
+	"HIV": 2.8,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BHS",
+	"name": "Bahamas   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BIH",
+	"name": "Bosnia and"
+}, {
+	"ARV": 40,
+	"HIV": 0.4,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BLR",
+	"name": "Belarus   "
+}, {
+	"ARV": 62,
+	"HIV": 2.3,
+	"HIVP": 0.64,
+	"NHIV": null,
+	"iso": "BLZ",
+	"name": "Belize    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BMU",
+	"name": "Bermuda   "
+}, {
+	"ARV": 15,
+	"HIV": 0.3,
+	"HIVP": 0.95,
+	"NHIV": null,
+	"iso": "BOL",
+	"name": "Bolivia (P"
+}, {
+	"ARV": 71,
+	"HIV": 0.3,
+	"HIVP": 0.79,
+	"NHIV": null,
+	"iso": "BRA",
+	"name": "Brazil    "
+}, {
+	"ARV": null,
+	"HIV": 0.9,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BRB",
+	"name": "Barbados  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BRN",
+	"name": "Brunei Dar"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "BRN",
+	"name": "Brunei Dar"
+}, {
+	"ARV": 24,
+	"HIV": 0.3,
+	"HIVP": 0.26,
+	"NHIV": null,
+	"iso": "BTN",
+	"name": "Bhutan    "
+}, {
+	"ARV": 95,
+	"HIV": 23.4,
+	"HIVP": 0.94,
+	"NHIV": 1000,
+	"iso": "BWA",
+	"name": "Botswana  "
+}, {
+	"ARV": 22,
+	"HIV": 4.6,
+	"HIVP": 0.48,
+	"NHIV": 1800,
+	"iso": "CAF",
+	"name": "Central Af"
+}, {
+	"ARV": null,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CAN",
+	"name": "Canada    "
+}, {
+	"ARV": null,
+	"HIV": 0.4,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CHE",
+	"name": "Switzerlan"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CHI",
+	"name": "Channel Is"
+}, {
+	"ARV": 66,
+	"HIV": 0.5,
+	"HIVP": 0.72,
+	"NHIV": null,
+	"iso": "CHL",
+	"name": "Chile     "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CHN",
+	"name": "China     "
+}, {
+	"ARV": 41,
+	"HIV": 3,
+	"HIVP": 0.68,
+	"NHIV": 4400,
+	"iso": "CIV",
+	"name": "Côte d'Ivo"
+}, {
+	"ARV": 41,
+	"HIV": 4.6,
+	"HIVP": 0.53,
+	"NHIV": 6800,
+	"iso": "CMR",
+	"name": "Cameroon  "
+}, {
+	"ARV": 44,
+	"HIV": 3.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "COD",
+	"name": "Democratic"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": 0.06,
+	"NHIV": 1700,
+	"iso": "COG",
+	"name": "Congo     "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "COK",
+	"name": "Cook Islan"
+}, {
+	"ARV": 46,
+	"HIV": 0.5,
+	"HIVP": 0.5,
+	"NHIV": null,
+	"iso": "COL",
+	"name": "Colombia  "
+}, {
+	"ARV": 19,
+	"HIV": 0.1,
+	"HIVP": 0,
+	"NHIV": null,
+	"iso": "COM",
+	"name": "Comoros   "
+}, {
+	"ARV": 46,
+	"HIV": 1,
+	"HIVP": 0.52,
+	"NHIV": null,
+	"iso": "CPV",
+	"name": "Cape Verde"
+}, {
+	"ARV": 73,
+	"HIV": 0.3,
+	"HIVP": 0.17,
+	"NHIV": null,
+	"iso": "CRI",
+	"name": "Costa Rica"
+}, {
+	"ARV": 95,
+	"HIV": 0.2,
+	"HIVP": 0.95,
+	"NHIV": null,
+	"iso": "CUB",
+	"name": "Cuba      "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CYM",
+	"name": "Cayman Isl"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CYP",
+	"name": "Cyprus    "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CYP",
+	"name": "Cyprus    "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "CZE",
+	"name": "Czech Repu"
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "DEU",
+	"name": "Germany   "
+}, {
+	"ARV": 27,
+	"HIV": 1.4,
+	"HIVP": 0.14,
+	"NHIV": 200,
+	"iso": "DJI",
+	"name": "Djibouti  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "DMA",
+	"name": "Dominica  "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "DNK",
+	"name": "Denmark   "
+}, {
+	"ARV": 80,
+	"HIV": 0.7,
+	"HIVP": 0.79,
+	"NHIV": null,
+	"iso": "DOM",
+	"name": "Dominican "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": 0.53,
+	"NHIV": null,
+	"iso": "DZA",
+	"name": "Algeria   "
+}, {
+	"ARV": 68,
+	"HIV": 0.4,
+	"HIVP": 0.66,
+	"NHIV": null,
+	"iso": "ECU",
+	"name": "Ecuador   "
+}, {
+	"ARV": 21,
+	"HIV": 0.1,
+	"HIVP": 0.085,
+	"NHIV": null,
+	"iso": "EGY",
+	"name": "Egypt     "
+}, {
+	"ARV": 49,
+	"HIV": 0.6,
+	"HIVP": 0,
+	"NHIV": 500,
+	"iso": "ERI",
+	"name": "Eritrea   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ESH",
+	"name": "Western Sa"
+}, {
+	"ARV": null,
+	"HIV": 0.4,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ESP",
+	"name": "Spain     "
+}, {
+	"ARV": null,
+	"HIV": 1.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "EST",
+	"name": "Estonia   "
+}, {
+	"ARV": 56,
+	"HIV": 1.4,
+	"HIVP": 0.24,
+	"NHIV": 13000,
+	"iso": "ETH",
+	"name": "Ethiopia  "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "FIN",
+	"name": "Finland   "
+}, {
+	"ARV": 87,
+	"HIV": 0.1,
+	"HIVP": 0,
+	"NHIV": null,
+	"iso": "FJI",
+	"name": "Fiji      "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "FLK",
+	"name": "Falkland I"
+}, {
+	"ARV": null,
+	"HIV": 0.4,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "FRA",
+	"name": "France    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "FRO",
+	"name": "Faeroe Isl"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "FSM",
+	"name": "Micronesia"
+}, {
+	"ARV": 53,
+	"HIV": 5,
+	"HIVP": 0.48,
+	"NHIV": 500,
+	"iso": "GAB",
+	"name": "Gabon     "
+}, {
+	"ARV": null,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GBR",
+	"name": "United Kin"
+}, {
+	"ARV": 76,
+	"HIV": 0.2,
+	"HIVP": 0.67,
+	"NHIV": null,
+	"iso": "GEO",
+	"name": "Georgia   "
+}, {
+	"ARV": 47,
+	"HIV": 1.5,
+	"HIVP": 0.75,
+	"NHIV": 2700,
+	"iso": "GHA",
+	"name": "Ghana     "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GIB",
+	"name": "Gibraltar "
+}, {
+	"ARV": 58,
+	"HIV": 1.4,
+	"HIVP": 0.4,
+	"NHIV": 1300,
+	"iso": "GIN",
+	"name": "Guinea    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GLP",
+	"name": "Guadeloupe"
+}, {
+	"ARV": null,
+	"HIV": 1.5,
+	"HIVP": 0.71,
+	"NHIV": null,
+	"iso": "GMB",
+	"name": "Gambia    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GMB",
+	"name": "Gambia    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": 0.32,
+	"NHIV": 1000,
+	"iso": "GNB",
+	"name": "Guinea-Bis"
+}, {
+	"ARV": null,
+	"HIV": 2.5,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GNB",
+	"name": "Guinea-Bis"
+}, {
+	"ARV": null,
+	"HIV": 4.7,
+	"HIVP": null,
+	"NHIV": 500,
+	"iso": "GNQ",
+	"name": "Equatorial"
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GRC",
+	"name": "Greece    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GRD",
+	"name": "Grenada   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GRL",
+	"name": "Greenland "
+}, {
+	"ARV": 56,
+	"HIV": 0.8,
+	"HIVP": 0.495,
+	"NHIV": null,
+	"iso": "GTM",
+	"name": "Guatemala "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GUF",
+	"name": "French Gui"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "GUM",
+	"name": "Guam      "
+}, {
+	"ARV": 82,
+	"HIV": 1.1,
+	"HIVP": 0.95,
+	"NHIV": null,
+	"iso": "GUY",
+	"name": "Guyana    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "HKG",
+	"name": "China, Hon"
+}, {
+	"ARV": 41,
+	"HIV": 0.5,
+	"HIVP": 0.47,
+	"NHIV": null,
+	"iso": "HND",
+	"name": "Honduras  "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "HRV",
+	"name": "Croatia   "
+}, {
+	"ARV": 58,
+	"HIV": 1.8,
+	"HIVP": 0.77,
+	"NHIV": 1000,
+	"iso": "HTI",
+	"name": "Haiti     "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "HUN",
+	"name": "Hungary   "
+}, {
+	"ARV": 24,
+	"HIV": 0.3,
+	"HIVP": 0.155,
+	"NHIV": null,
+	"iso": "IDN",
+	"name": "Indonesia "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "IMN",
+	"name": "Isle of Ma"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "IND",
+	"name": "India     "
+}, {
+	"ARV": null,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "IRL",
+	"name": "Ireland   "
+}, {
+	"ARV": 7,
+	"HIV": 0.2,
+	"HIVP": 0.2,
+	"NHIV": null,
+	"iso": "IRN",
+	"name": "Iran (Isla"
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "IRQ",
+	"name": "Iraq      "
+}, {
+	"ARV": null,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ISL",
+	"name": "Iceland   "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ISR",
+	"name": "Israel    "
+}, {
+	"ARV": null,
+	"HIV": 0.5,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ITA",
+	"name": "Italy     "
+}, {
+	"ARV": 60,
+	"HIV": 1.8,
+	"HIVP": 0.67,
+	"NHIV": null,
+	"iso": "JAM",
+	"name": "Jamaica   "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "JOR",
+	"name": "Jordan    "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "JPN",
+	"name": "Japan     "
+}, {
+	"ARV": 27,
+	"HIV": 0.2,
+	"HIVP": 0.865,
+	"NHIV": null,
+	"iso": "KAZ",
+	"name": "Kazakhstan"
+}, {
+	"ARV": 72,
+	"HIV": 6.2,
+	"HIVP": 0.67,
+	"NHIV": 13000,
+	"iso": "KEN",
+	"name": "Kenya     "
+}, {
+	"ARV": null,
+	"HIV": 0.4,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KGZ",
+	"name": "Kyrgyzstan"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KGZ",
+	"name": "Kyrgyzstan"
+}, {
+	"ARV": 95,
+	"HIV": 0.6,
+	"HIVP": 0.58,
+	"NHIV": null,
+	"iso": "KHM",
+	"name": "Cambodia  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KIR",
+	"name": "Kiribati  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KNA",
+	"name": "Saint Kitt"
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KOR",
+	"name": "Republic o"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KOS",
+	"name": null
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "KWT",
+	"name": "Kuwait    "
+}, {
+	"ARV": 53,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "LAO",
+	"name": "Lao People"
+}, {
+	"ARV": 36,
+	"HIV": 0.1,
+	"HIVP": 0,
+	"NHIV": null,
+	"iso": "LBN",
+	"name": "Lebanon   "
+}, {
+	"ARV": 38,
+	"HIV": 1,
+	"HIVP": 0.59,
+	"NHIV": 500,
+	"iso": "LBR",
+	"name": "Liberia   "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "LBY",
+	"name": "Libya     "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "LCA",
+	"name": "Saint Luci"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "LIE",
+	"name": "Liechtenst"
+}, {
+	"ARV": 21,
+	"HIV": 0.1,
+	"HIVP": 0.1,
+	"NHIV": null,
+	"iso": "LKA",
+	"name": "Sri Lanka "
+}, {
+	"ARV": 58,
+	"HIV": 23.3,
+	"HIVP": 0.62,
+	"NHIV": 3800,
+	"iso": "LSO",
+	"name": "Lesotho   "
+}, {
+	"ARV": 25,
+	"HIV": 0.1,
+	"HIVP": 0.755,
+	"NHIV": null,
+	"iso": "LTU",
+	"name": "Lithuania "
+}, {
+	"ARV": null,
+	"HIV": 0.3,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "LUX",
+	"name": "Luxembourg"
+}, {
+	"ARV": 18,
+	"HIV": 0.7,
+	"HIVP": 0.7,
+	"NHIV": null,
+	"iso": "LVA",
+	"name": "Latvia    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MAC",
+	"name": "China, Mac"
+}, {
+	"ARV": 37,
+	"HIV": 0.2,
+	"HIVP": 0.215,
+	"NHIV": null,
+	"iso": "MAR",
+	"name": "Morocco   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MCO",
+	"name": "Monaco    "
+}, {
+	"ARV": 29,
+	"HIV": 0.5,
+	"HIVP": 0.62,
+	"NHIV": null,
+	"iso": "MDA",
+	"name": "Republic o"
+}, {
+	"ARV": 3,
+	"HIV": 0.3,
+	"HIVP": 0.12,
+	"NHIV": null,
+	"iso": "MDG",
+	"name": "Madagascar"
+}, {
+	"ARV": 22,
+	"HIV": 0.1,
+	"HIVP": 0,
+	"NHIV": null,
+	"iso": "MDV",
+	"name": "Maldives  "
+}, {
+	"ARV": 84,
+	"HIV": 0.2,
+	"HIVP": 0.515,
+	"NHIV": null,
+	"iso": "MEX",
+	"name": "Mexico    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MHL",
+	"name": "Marshall I"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MKD",
+	"name": "The former"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MKD",
+	"name": "The former"
+}, {
+	"ARV": 53,
+	"HIV": 1.1,
+	"HIVP": 0.31,
+	"NHIV": null,
+	"iso": "MLI",
+	"name": "Mali      "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MLT",
+	"name": "Malta     "
+}, {
+	"ARV": 32,
+	"HIV": 0.6,
+	"HIVP": 0.775,
+	"NHIV": null,
+	"iso": "MMR",
+	"name": "Myanmar   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MNE",
+	"name": "Montenegro"
+}, {
+	"ARV": 27,
+	"HIV": 0.1,
+	"HIVP": 0.13,
+	"NHIV": null,
+	"iso": "MNG",
+	"name": "Mongolia  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MNP",
+	"name": "Northern M"
+}, {
+	"ARV": 46,
+	"HIV": 11.3,
+	"HIVP": 0.51,
+	"NHIV": 27000,
+	"iso": "MOZ",
+	"name": "Mozambique"
+}, {
+	"ARV": 21,
+	"HIV": 1.1,
+	"HIVP": 0.025,
+	"NHIV": null,
+	"iso": "MRT",
+	"name": "Mauritania"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MSR",
+	"name": "Montserrat"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MTQ",
+	"name": "Martinique"
+}, {
+	"ARV": 37,
+	"HIV": 1,
+	"HIVP": 0.72,
+	"NHIV": null,
+	"iso": "MUS",
+	"name": "Mauritius "
+}, {
+	"ARV": 67,
+	"HIV": 10,
+	"HIVP": 0.53,
+	"NHIV": 16000,
+	"iso": "MWI",
+	"name": "Malawi    "
+}, {
+	"ARV": 37,
+	"HIV": 0.4,
+	"HIVP": 0.86,
+	"NHIV": null,
+	"iso": "MYS",
+	"name": "Malaysia  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "MYT",
+	"name": "Mayotte   "
+}, {
+	"ARV": 95,
+	"HIV": 13.4,
+	"HIVP": 0.85,
+	"NHIV": null,
+	"iso": "NAM",
+	"name": "Namibia   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "NCL",
+	"name": "New Caledo"
+}, {
+	"ARV": 34,
+	"HIV": 0.8,
+	"HIVP": 0.345,
+	"NHIV": null,
+	"iso": "NER",
+	"name": "Niger     "
+}, {
+	"ARV": 30,
+	"HIV": 3.7,
+	"HIVP": 0.18,
+	"NHIV": 69000,
+	"iso": "NGA",
+	"name": "Nigeria   "
+}, {
+	"ARV": 65,
+	"HIV": 0.2,
+	"HIVP": 0.325,
+	"NHIV": null,
+	"iso": "NIC",
+	"name": "Nicaragua "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "NIU",
+	"name": "Niue      "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "NLD",
+	"name": "Netherland"
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "NOR",
+	"name": "Norway    "
+}, {
+	"ARV": 24,
+	"HIV": 0.3,
+	"HIVP": 0.18,
+	"NHIV": null,
+	"iso": "NPL",
+	"name": "Nepal     "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "NRU",
+	"name": "Nauru     "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "NZL",
+	"name": "New Zealan"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "OMN",
+	"name": "Oman      "
+}, {
+	"ARV": 10,
+	"HIV": 0.1,
+	"HIVP": 0.03,
+	"NHIV": null,
+	"iso": "PAK",
+	"name": "Pakistan  "
+}, {
+	"ARV": 49,
+	"HIV": 0.8,
+	"HIVP": 0.68,
+	"NHIV": null,
+	"iso": "PAN",
+	"name": "Panama    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PCN",
+	"name": "Pitcairn  "
+}, {
+	"ARV": 60,
+	"HIV": 0.4,
+	"HIVP": 0.56,
+	"NHIV": null,
+	"iso": "PER",
+	"name": "Peru      "
+}, {
+	"ARV": 51,
+	"HIV": 0.1,
+	"HIVP": 0.06,
+	"NHIV": null,
+	"iso": "PHL",
+	"name": "Philippine"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PLW",
+	"name": "Palau     "
+}, {
+	"ARV": 68,
+	"HIV": 0.7,
+	"HIVP": 0.21,
+	"NHIV": 500,
+	"iso": "PNG",
+	"name": "Papua New "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "POL",
+	"name": "Poland    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PRI",
+	"name": "Puerto Ric"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PRK",
+	"name": "Democratic"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PRK",
+	"name": "Democratic"
+}, {
+	"ARV": null,
+	"HIV": 0.7,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PRT",
+	"name": "Portugal  "
+}, {
+	"ARV": 69,
+	"HIV": 0.3,
+	"HIVP": 0.5,
+	"NHIV": null,
+	"iso": "PRY",
+	"name": "Paraguay  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PSE",
+	"name": "State of P"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PSE",
+	"name": "State of P"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "PYF",
+	"name": "French Pol"
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "QAT",
+	"name": "Qatar     "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "REU",
+	"name": "Réunion   "
+}, {
+	"ARV": 74,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "ROU",
+	"name": "Romania   "
+}, {
+	"ARV": null,
+	"HIV": 1.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "RUS",
+	"name": "Russian Fe"
+}, {
+	"ARV": 82,
+	"HIV": 2.9,
+	"HIVP": 0.56,
+	"NHIV": 1800,
+	"iso": "RWA",
+	"name": "Rwanda    "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SAU",
+	"name": "Saudi Arab"
+}, {
+	"ARV": 9,
+	"HIV": 0.4,
+	"HIVP": 0.03,
+	"NHIV": null,
+	"iso": "SDN",
+	"name": "Sudan     "
+}, {
+	"ARV": null,
+	"HIV": 3.1,
+	"HIVP": 0.06,
+	"NHIV": 2700,
+	"iso": "SDS",
+	"name": null
+}, {
+	"ARV": 56,
+	"HIV": 0.7,
+	"HIVP": 0.315,
+	"NHIV": null,
+	"iso": "SEN",
+	"name": "Senegal   "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SGP",
+	"name": "Singapore "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SHN",
+	"name": "Saint Hele"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SJM",
+	"name": "Svalbard a"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SLB",
+	"name": "Solomon Is"
+}, {
+	"ARV": 41,
+	"HIV": 1.6,
+	"HIVP": 0.74,
+	"NHIV": 1000,
+	"iso": "SLE",
+	"name": "Sierra Leo"
+}, {
+	"ARV": 72,
+	"HIV": 0.6,
+	"HIVP": 0.405,
+	"NHIV": null,
+	"iso": "SLV",
+	"name": "El Salvado"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SMR",
+	"name": "San Marino"
+}, {
+	"ARV": 7,
+	"HIV": null,
+	"HIVP": 0.04,
+	"NHIV": null,
+	"iso": "SOM",
+	"name": "Somalia   "
+}, {
+	"ARV": null,
+	"HIV": 0.7,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SOM",
+	"name": "Somalia   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SPM",
+	"name": "Saint Pier"
+}, {
+	"ARV": 65,
+	"HIV": 0.1,
+	"HIVP": 0.22,
+	"NHIV": null,
+	"iso": "SRB",
+	"name": "Serbia    "
+}, {
+	"ARV": 6,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SSD",
+	"name": "South Suda"
+}, {
+	"ARV": 52,
+	"HIV": 1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "STP",
+	"name": "Sao Tome a"
+}, {
+	"ARV": 53,
+	"HIV": 1,
+	"HIVP": 0.915,
+	"NHIV": null,
+	"iso": "SUR",
+	"name": "Suriname  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SVK",
+	"name": "Slovakia  "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SVK",
+	"name": "Slovakia  "
+}, {
+	"ARV": null,
+	"HIV": 0.1,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SVN",
+	"name": "Slovenia  "
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SWE",
+	"name": "Sweden    "
+}, {
+	"ARV": 83,
+	"HIV": 26,
+	"HIVP": 0.95,
+	"NHIV": 1300,
+	"iso": "SWZ",
+	"name": "Swaziland "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SYC",
+	"name": "Seychelles"
+}, {
+	"ARV": null,
+	"HIV": 0.2,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "SYR",
+	"name": "Syrian Ara"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TCA",
+	"name": "Turks and "
+}, {
+	"ARV": 34,
+	"HIV": 3.1,
+	"HIVP": 0.11,
+	"NHIV": 4800,
+	"iso": "TCD",
+	"name": "Chad      "
+}, {
+	"ARV": 42,
+	"HIV": 3.4,
+	"HIVP": 0.61,
+	"NHIV": 1400,
+	"iso": "TGO",
+	"name": "Togo      "
+}, {
+	"ARV": 71,
+	"HIV": 1.2,
+	"HIVP": 0.84,
+	"NHIV": null,
+	"iso": "THA",
+	"name": "Thailand  "
+}, {
+	"ARV": 22,
+	"HIV": 0.3,
+	"HIVP": 0.315,
+	"NHIV": null,
+	"iso": "TJK",
+	"name": "Tajikistan"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TKL",
+	"name": "Tokelau   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TKM",
+	"name": "Turkmenist"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TLS",
+	"name": "Timor-Lest"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TLS",
+	"name": "Timor-Lest"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TON",
+	"name": "Tonga     "
+}, {
+	"ARV": null,
+	"HIV": 1.5,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TTO",
+	"name": "Trinidad a"
+}, {
+	"ARV": 67,
+	"HIV": 0.1,
+	"HIVP": 0.69,
+	"NHIV": null,
+	"iso": "TUN",
+	"name": "Tunisia   "
+}, {
+	"ARV": 50,
+	"HIV": 0.1,
+	"HIVP": 0,
+	"NHIV": null,
+	"iso": "TUR",
+	"name": "Turkey    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TUV",
+	"name": "Tuvalu    "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TWN",
+	"name": null
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "TWN",
+	"name": null
+}, {
+	"ARV": 40,
+	"HIV": 5.8,
+	"HIVP": 0.74,
+	"NHIV": 22000,
+	"iso": "TZA",
+	"name": "United Rep"
+}, {
+	"ARV": 54,
+	"HIV": 7.2,
+	"HIVP": 0.45,
+	"NHIV": 21000,
+	"iso": "UGA",
+	"name": "Uganda    "
+}, {
+	"ARV": 22,
+	"HIV": 0.8,
+	"HIVP": 0.95,
+	"NHIV": null,
+	"iso": "UKR",
+	"name": "Ukraine   "
+}, {
+	"ARV": 41,
+	"HIV": 0.6,
+	"HIVP": 0.575,
+	"NHIV": null,
+	"iso": "URY",
+	"name": "Uruguay   "
+}, {
+	"ARV": null,
+	"HIV": 0.6,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "USA",
+	"name": "United Sta"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "UZB",
+	"name": "Uzbekistan"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "VAT",
+	"name": "Holy See  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "VCT",
+	"name": "Saint Vinc"
+}, {
+	"ARV": 79,
+	"HIV": 0.5,
+	"HIVP": 0.385,
+	"NHIV": null,
+	"iso": "VEN",
+	"name": "Venezuela "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "VGB",
+	"name": "British Vi"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "VIR",
+	"name": "United Sta"
+}, {
+	"ARV": 58,
+	"HIV": 0.5,
+	"HIVP": 0.325,
+	"NHIV": null,
+	"iso": "VNM",
+	"name": "Viet Nam  "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "VUT",
+	"name": "Vanuatu   "
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "WLF",
+	"name": "Wallis and"
+}, {
+	"ARV": null,
+	"HIV": null,
+	"HIVP": null,
+	"NHIV": null,
+	"iso": "WSM",
+	"name": "Samoa     "
+}, {
+	"ARV": 8,
+	"HIV": 0.2,
+	"HIVP": 0.015,
+	"NHIV": null,
+	"iso": "YEM",
+	"name": "Yemen     "
+}, {
+	"ARV": 66,
+	"HIV": 17.3,
+	"HIVP": 0.95,
+	"NHIV": 29000,
+	"iso": "ZAF",
+	"name": "South Afri"
+}, {
+	"ARV": 82,
+	"HIV": 12.5,
+	"HIVP": 0.86,
+	"NHIV": 9500,
+	"iso": "ZMB",
+	"name": "Zambia    "
+}, {
+	"ARV": 77,
+	"HIV": 14.9,
+	"HIVP": 0.54,
+	"NHIV": 15000,
+	"iso": "ZWE",
+	"name": "Zimbabwe  "
+}]

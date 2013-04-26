@@ -1,8 +1,8 @@
 {
-	"version": "0.9.2",
-	"timestamp": "2013-04-05",
+	"version": "1.0.0",
+	"timestamp": "2013-04-26",
 	
-	"title": "CIPHER Interactive Map of Paediatric Cohorts",
+	"title": "Interactive Map of HIV-related Paediatric Cohorts",
 
 	"data": {
 		"offlineUnaidsInfo": "./data/unaids-info.json",
@@ -20,13 +20,39 @@
 		"height": 600,
 		"cohort": {
 			"fullProfile": "http://blablabla/cohort/$code$",
-			"linkcolor": "#555",
-			"linkinterpolate": "linear",
-			"limit": 200000
+			"pinSize": 18,
+			"pinScale": [10, 50, 75, 100, 150, 200, 300]
 		},
 		"background":{
-			"hivPrevalenceRate": ["#99cc99", "orangered"],
-			"arvCoverageRate": ["#99cc99", "orangered"],
+			"types": ["HIV", "ARV", "HIVP", "NHIV"],
+			"HIV": {
+				"colors": ["#FDAAAA", "#FB5656", "#FB0219", "#BF0210","#7F0107", "#440002"],
+				"bands": [0.1, 0.5, 1, 5, 15, 28],
+				"label": "HIV Prevalence Rate",
+				"factor": 1,
+				"unit": "%"
+				},
+			"ARV": {
+				"colors": ["#DCF5FC", "B4E6F8", "#64C3F2", "#2796FA", "#1C32E4"],
+				"bands": [20, 40, 60, 80, 100],
+				"label": "ARV Treatment Coverage Rate",
+				"factor": 1,
+				"unit": "%"
+				},
+			"HIVP": {
+				"colors": ["#DCF5FC", "B4E6F8", "#2796FA", "#1C32E4"],
+				"bands": [25, 50, 75, 100],
+				"label": "HIV+ pregnant, ARV for PMTCT",
+				"factor": 100,
+				"unit": "%"
+				},
+			"NHIV": {
+				"colors": ["#DCF5FC", "B4E6F8", "#2796FA", "#1C32E4"],
+				"bands": [1, 5, 20, 70],
+				"label": "new HIV infections (Ages 0-14)",
+				"factor": 0.001,
+				"unit": "K"
+				},
 			"opacity": 0.7,
 			"naColor": "lightgray"
 		},
@@ -37,11 +63,8 @@
 	},
 
 	"legend":{
-		"width": 300,
-		"height": 100,
-		"cohorts": [5000, 75000, 150000, 300000],
-		"hivPrevalenceRate": "HIV Prevalence Rate (%)",
-		"arvCoverageRate": "ARV Coverage Rate (%)"
+		"width": 350,
+		"height": 110
 	},
 
 	"filter": {
@@ -56,8 +79,8 @@
 			"adults"
 		],
 		"subjectStatus": [
-			"perinatally infected", 
-			"HIV-exposed and uninfected", 
+			"Perinatally infected", 
+			"HIV-exposed uninfected", 
 			"Infected through other routes"
 		]
 	},

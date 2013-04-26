@@ -43,7 +43,7 @@ body {
   border: solid 0px #156994;
   height:650px;
   top:40px;
-  left: 930px;
+  left: 920px;
   width: 300px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -54,17 +54,17 @@ body {
 
 #legendPanel {
   height:100px;
-  width: 300px;
+  width: 350px;
   margin: 0em 0em 0em 0em;
   padding: 0em 0em 0em 0em;
   top:600px;
-  left:550px;
+  left:540px;
   background-color: "white";
 }
 
 #titlePanel {
   height:50px;
-  width: 380px;
+  width: 400px;
   margin: 0em 0em 0em 0em;
   padding: 0em 0em 0em 0em;
   top:25px;
@@ -118,10 +118,11 @@ div.tooltip {
   font-size: 0.8em;        
   background: rgba(255,255,255,1);   
   border:2px solid darkgray;
-  --border-right: 2px solid darkgray;
-  --border-radius: 8px;           
-  --pointer-events: none; 
+  --border-left: 0px solid darkgray;
+  border-radius: 8px;           
+  pointer-events: none; 
   overflow-y: scroll;
+  overflow-y: none;
   opacity: 0.8; 
 }
 
@@ -134,13 +135,13 @@ span.tooltip.title {
 }
 
 div.tooltip.cohort{  
-  width: 210px; 
+  width: 260px; 
   height: 400px;  
 }
 
 div.tooltip.country{  
   height: 180px;
-  width: 210px;    
+  width: 240px;    
 }
 
 
@@ -162,12 +163,12 @@ div.tooltip td:not(.secondcol){
 }
 
 div.tooltip table{
-  width:200px;
+  width:220px;
   table-layout:fixed;
 }
 
 div.tooltip td.firstcol {
-    width:150px
+    width:170px
 }
 
 div.tooltip td.secondcol {
@@ -242,6 +243,13 @@ td.filter {
   display: block;
 }
 
+hr {
+  border-top: solid 1px #CCC;
+  border-bottom:0;
+  border-left: 0;
+  border-right: 0;
+  height:1px;
+}
 
 
 
