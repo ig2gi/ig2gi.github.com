@@ -296,7 +296,7 @@ var g2g = (function (my) {
 }(g2g_info));
 
 
-;//
+//
 //
 //
 var ias_info = {
@@ -441,7 +441,7 @@ var ias = (function (my) {
 
 }(ias_info));
 
-;
+
 
 ias.util = (function () {
     "use strict";
@@ -571,7 +571,7 @@ ias.util = (function () {
     return that;
 
 }());
-;
+
 ias.filter = (function () {
     "use strict";
 
@@ -757,7 +757,7 @@ ias.filter = (function () {
     return that;
 
 }());
-;
+
 ias.model = (function () {
 	"use strict";
 
@@ -827,7 +827,7 @@ ias.model = (function () {
 	return that;
 
 }());
-;
+
 // augment model with Cohort object
 ias.model = (function (model) {
 	"use strict";
@@ -932,7 +932,7 @@ ias.model = (function (model) {
 	return model;
 
 }(ias.model || {}));
-;
+
 // augment model with Country object
 ias.model = (function (model) {
 	"use strict";
@@ -999,7 +999,7 @@ ias.model = (function (model) {
 	return model;
 
 }(ias.model || {}));
-;
+
 // augment model with CountryData object
 ias.model = (function (model) {
 	"use strict";
@@ -1012,7 +1012,7 @@ ias.model = (function (model) {
 
 	return model;
 
-}(ias.model || {}));;
+}(ias.model || {}));
 ias.graph = (function () {
     "use strict";
     var that  = {
@@ -1112,7 +1112,7 @@ ias.graph = (function () {
     ias.modules.push(that);
     return that;
 
-}());;// augment graph module with pin
+}());// augment graph module with pin
 ias.graph = (function (graph) {
     "use strict";
 
@@ -1179,16 +1179,17 @@ ias.graph = (function (graph) {
 
     //
     function match(cohort, filter, groupname) {
+        /*
         for (var prop in filter) {
             if (filter.hasOwnProperty(prop) && filter[prop] === true) {
                 if (cohort.subjects === undefined) {
                     return false;
                 }
-                if (!(cohort.subjects[groupname].has(prop))) {
+                if (!(cohort.subjects[groupname].hasOwnProperty(prop))) {
                     return false;
                 }
             }
-        }
+        }*/
         return true;
     }
 
@@ -1255,7 +1256,7 @@ ias.graph = (function (graph) {
 
 }(ias.graph || {}));
 
-;
+
 // augment graph module with legend
 ias.graph = (function (graph) {
     "use strict";
@@ -1438,7 +1439,7 @@ ias.graph = (function (graph) {
     return graph;
 
 }(ias.graph || {}));
-;// augment graph module with tooltip
+// augment graph module with tooltip
 ias.graph = (function (graph) {
     "use strict";
 
@@ -1676,7 +1677,7 @@ ias.graph = (function (graph) {
 
     return graph;
 
-}(ias.graph || {}));;// augment graph module with graph of subjects
+}(ias.graph || {}));// augment graph module with graph of subjects
 ias.graph = (function (graph) {
     "use strict";
 
@@ -1838,7 +1839,7 @@ ias.graph = (function (graph) {
 	return graph;
 
 }(ias.graph || {}));
-;
+
 // augment graph module with zoom commands
 ias.graph = (function (graph) {
     "use strict";
@@ -1873,7 +1874,7 @@ ias.graph = (function (graph) {
     return graph;
 
 }(ias.graph || {}));
-;// augment graph module with tooltip
+// augment graph module with tooltip
 ias.graph = (function (graph) {
     "use strict";
 
@@ -1930,7 +1931,7 @@ ias.graph = (function (graph) {
 
     return graph;
 
-}(ias.graph || {}));;
+}(ias.graph || {}));
 // augment graph module with zoom commands
 ias.graph = (function (graph) {
     "use strict";
@@ -2107,7 +2108,7 @@ ias.graph = (function (graph) {
     return graph;
 
 }(ias.graph || {}));
-;
+
 
 // launch IAS app
 ias.launchApp();
