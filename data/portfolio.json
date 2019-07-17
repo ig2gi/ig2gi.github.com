@@ -2,7 +2,7 @@
     {
         "title": "Dashboard & Metrics",
         "date": "2019",
-        "description": "",
+        "description": "A serie of graphs and visualisations of key indicators, generated automatically server side (Node.js) and constantly updated for a 'dashboard' usage.",
         "company": "Sophia Genetics",
         "technology": "HTML5 D3.js CSS3 / Node.js®",
         "url": "/stats/",
