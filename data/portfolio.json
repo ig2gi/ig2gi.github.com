@@ -1,0 +1,148 @@
+[
+    {
+        "title": "Dashboard & Metrics",
+        "date": "2019",
+        "description": "",
+        "company": "Sophia Genetics",
+        "technology": "HTML5 D3.js CSS3 / Node.js®",
+        "url": "/stats/",
+        "image": "/images/dashboards.png"
+    },
+    {
+        "title": "UI Prototypes",
+        "date": "2017 - 2019",
+        "description": "",
+        "company": "Sophia Genetics",
+        "technology": "D3.js NODEBOX3",
+        "url": "/prototypes/",
+        "image": "/images/protos.png"
+    },
+    {
+        "title": "WorldMap Sequencing Usage",
+        "date": "2018",
+        "description": "The worldmap displays information about statistics on patient analyses done on the SophiA Data Driven Medicine Platform",
+        "company": "Sophia Genetics",
+        "technology": "HTML5 D3.js CSS3 / Node.js® server + Express",
+        "url": "",
+        "image": "/images/sgmap.png"
+    },
+    {
+        "title": "Medical Study",
+        "date": "2017",
+        "description": "Study on panel of 3000 patients diagnosed with breast cancer between age of 40 to 70",
+        "company": "Sophia Genetics",
+        "technology": "HTML5 D3.js CSS3",
+        "url": "/images/prevent.png",
+        "image": "/images/prevent.png"
+    },
+    {
+        "title": "Optical Illusion",
+        "date": "2016",
+        "description": "Just for fun!",
+        "company": "Personal",
+        "technology": "HTML5 D3.js CSS3",
+        "url": "https://observablehq.com/@ig2gi/illusion",
+        "image": "/images/illusion.png"
+    },
+    {
+        "title": "Global Surface Temperature Change",
+        "date": "2015 - 2018",
+        "description": "The GISS Surface Temperature Analysis (GISTEMP v4) is an estimate of global surface temperature change.",
+        "technology": "HTML5 D3.js CSS3 / NODEBOX3",
+        "company": "Personal",
+        "url": "https://observablehq.com/@ig2gi/global-surface-temperature-change",
+        "image": "/images/gtc.png"
+    },
+    {
+        "title": "Transcript Viewer",
+        "date": "2016",
+        "description": "RefSeq (NCBI Reference Sequence Database) Gene Transcript Viewer.",
+        "company": "Personal",
+        "technology": "HTML5 D3.js CSS3 - server Spring Boot",
+        "url": "",
+        "image": "/images/refseq.png"
+    },
+    {
+        "title": "Medical Study",
+        "date": "2016",
+        "description": "Tumor Suppressor Genes vs Oncogenes",
+        "company": "Personal",
+        "technology": "NODEBOX3",
+        "url": "/images/cancer.png",
+        "image": "/images/cancer-small.png"
+    },
+    {
+        "title": "Circos View",
+        "date": "2014",
+        "description": "Designed & implemented a dynamic Circular Genomic Viewer (circos plot), first implemented in D3.js & HTML5, then integrated into a JavaFX application.",
+        "company": "Sophia Genetics",
+        "technology": "HTML5 D3.js CSS3",
+        "url": "/images/circos.jpeg",
+        "image": "/images/circos.jpeg"
+    },
+  
+    {
+        "title": "Freelance project",
+        "date": "Jan - Mar 2013",
+        "description": "CIPHER Interactive Map of Cohorts: the interactive map is a quick way of viewing where the different cohorts are located around the world.",
+        "technology": "HTML5 D3.js CSS3",
+        "company": "International AIDS Society",
+        "url": "/ias/index.html",
+        "image": "/images/ias.png"
+    },
+    {
+        "title": "Graphic Resume",
+        "date": "Dec 2012",
+        "description": "My Graphic Resume",
+        "technology": "NODEBOX3",
+        "company": "Personal",
+        "url": "/images/cv_1.png",
+        "image": "/images/cv_1.png"
+    },
+    {
+        "title": "Climate Change",
+        "date": "Dec 2012",
+        "description": "Data Journalism MOOC: Infographics & Data Visualization. World Development Indicators and Climate Change Knowledge Portal on climate systems.",
+        "technology": "HTML5 D3.js CSS3",
+        "company": "Personal",
+        "url": "/knightcenter/w5/",
+        "image": "/images/w5.png"
+    },
+    {
+        "title": "US Jobless Rate Mapped",
+        "date": "Nov 2012",
+        "description": "Data Journalism MOOC: Infographics & Data Visualization. Guardian’s DataBlog post about US state unemployment.",
+        "technology": "HTML5 D3.js CSS3",
+        "company": "Personal",
+        "url": "/knightcenter/w4/",
+        "image": "/images/w4.png"
+    },
+    {
+        "title": "Aid Transparency Index",
+        "date": "Oct 2012",
+        "description": "Data Journalism MOOC: Infographics & Data Visualization.",
+        "technology": "NODEBOX3",
+        "url": "/knightcenter/w3/",
+        "company": "Personal",
+        "image": "/images/w3.png"
+    },
+    {
+        "title": "U.S. Election",
+        "date": "Oct 2012",
+        "description": "Data Journalism MOOC: Infographics & Data Visualization. At the national conventions, the words they used!",
+        "technology": "NODEBOX3",
+        "company": "Personal",
+        "url": "/knightcenter/w2/w2_v2.png",
+        "image": "/images/w2.png"
+    },
+    {
+        "title": "Philosophy",
+        "date": "2006 - 2012",
+        "description": "Personal Project - The Philosophy River",
+        "technology": "NODEBOX3",
+        "company": "Personal",
+        "url": "https://github.com/ig2gi/philo_graph/wiki",
+        "image": "/images/philo.png"
+    }
+
+]
