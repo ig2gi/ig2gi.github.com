@@ -5,8 +5,8 @@
         "description": "A serie of graphs and visualisations of key indicators, generated automatically server side (Node.js) and constantly updated for a 'dashboard' usage.",
         "company": "Sophia Genetics",
         "technology": "HTML5 D3.js CSS3 / Node.js®",
-        "url": "/stats/",
-        "image": "/images/dashboards.png"
+        "url": "stats/",
+        "image": "images/dashboards.png"
     },
     {
         "title": "UI Prototypes",
@@ -14,8 +14,8 @@
         "description": "",
         "company": "Sophia Genetics",
         "technology": "D3.js NODEBOX3",
-        "url": "/prototypes/",
-        "image": "/images/protos.png"
+        "url": "prototypes/",
+        "image": "images/protos.png"
     },
     {
         "title": "WorldMap Sequencing Usage",
@@ -24,7 +24,7 @@
         "company": "Sophia Genetics",
         "technology": "HTML5 D3.js CSS3 / Node.js® server + Express",
         "url": "",
-        "image": "/images/sgmap.png"
+        "image": "images/sgmap.png"
     },
     {
         "title": "Medical Study",
@@ -32,8 +32,8 @@
         "description": "Study on panel of 3000 patients diagnosed with breast cancer between age of 40 to 70",
         "company": "Sophia Genetics",
         "technology": "HTML5 D3.js CSS3",
-        "url": "/images/prevent.png",
-        "image": "/images/prevent.png"
+        "url": "images/prevent.png",
+        "image": "images/prevent.png"
     },
     {
         "title": "Optical Illusion",
@@ -42,7 +42,7 @@
         "company": "Personal",
         "technology": "HTML5 D3.js CSS3",
         "url": "https://observablehq.com/@ig2gi/illusion",
-        "image": "/images/illusion.png"
+        "image": "images/illusion.png"
     },
     {
         "title": "Global Surface Temperature Change",
@@ -51,7 +51,7 @@
         "technology": "HTML5 D3.js CSS3 / NODEBOX3",
         "company": "Personal",
         "url": "https://observablehq.com/@ig2gi/global-surface-temperature-change",
-        "image": "/images/gtc.png"
+        "image": "images/gtc.png"
     },
     {
         "title": "Transcript Viewer",
@@ -60,7 +60,7 @@
         "company": "Personal",
         "technology": "HTML5 D3.js CSS3 - server Spring Boot",
         "url": "",
-        "image": "/images/refseq.png"
+        "image": "images/refseq.png"
     },
     {
         "title": "Medical Study",
@@ -68,8 +68,8 @@
         "description": "Tumor Suppressor Genes vs Oncogenes",
         "company": "Personal",
         "technology": "NODEBOX3",
-        "url": "/images/cancer.png",
-        "image": "/images/cancer-small.png"
+        "url": "images/cancer.png",
+        "image": "images/cancer-small.png"
     },
     {
         "title": "Circos View",
@@ -77,8 +77,8 @@
         "description": "Designed & implemented a dynamic Circular Genomic Viewer (circos plot), first implemented in D3.js & HTML5, then integrated into a JavaFX application.",
         "company": "Sophia Genetics",
         "technology": "HTML5 D3.js CSS3",
-        "url": "/images/circos.jpeg",
-        "image": "/images/circos.jpeg"
+        "url": "images/circos.jpeg",
+        "image": "images/circos.jpeg"
     },
   
     {
@@ -87,8 +87,8 @@
         "description": "CIPHER Interactive Map of Cohorts: the interactive map is a quick way of viewing where the different cohorts are located around the world.",
         "technology": "HTML5 D3.js CSS3",
         "company": "International AIDS Society",
-        "url": "/ias/index.html",
-        "image": "/images/ias.png"
+        "url": "ias/index.html",
+        "image": "images/ias.png"
     },
     {
         "title": "Graphic Resume",
@@ -96,8 +96,8 @@
         "description": "My Graphic Resume",
         "technology": "NODEBOX3",
         "company": "Personal",
-        "url": "/images/cv_1.png",
-        "image": "/images/cv_1.png"
+        "url": "images/cv_1.png",
+        "image": "images/cv_1.png"
     },
     {
         "title": "Climate Change",
@@ -105,8 +105,8 @@
         "description": "Data Journalism MOOC: Infographics & Data Visualization. World Development Indicators and Climate Change Knowledge Portal on climate systems.",
         "technology": "HTML5 D3.js CSS3",
         "company": "Personal",
-        "url": "/knightcenter/w5/",
-        "image": "/images/w5.png"
+        "url": "knightcenter/w5/",
+        "image": "images/w5.png"
     },
     {
         "title": "US Jobless Rate Mapped",
@@ -114,17 +114,17 @@
         "description": "Data Journalism MOOC: Infographics & Data Visualization. Guardian’s DataBlog post about US state unemployment.",
         "technology": "HTML5 D3.js CSS3",
         "company": "Personal",
-        "url": "/knightcenter/w4/",
-        "image": "/images/w4.png"
+        "url": "knightcenter/w4/",
+        "image": "images/w4.png"
     },
     {
         "title": "Aid Transparency Index",
         "date": "Oct 2012",
         "description": "Data Journalism MOOC: Infographics & Data Visualization.",
         "technology": "NODEBOX3",
-        "url": "/knightcenter/w3/",
+        "url": "knightcenter/w3/",
         "company": "Personal",
-        "image": "/images/w3.png"
+        "image": "images/w3.png"
     },
     {
         "title": "U.S. Election",
@@ -132,8 +132,8 @@
         "description": "Data Journalism MOOC: Infographics & Data Visualization. At the national conventions, the words they used!",
         "technology": "NODEBOX3",
         "company": "Personal",
-        "url": "/knightcenter/w2/w2_v2.png",
-        "image": "/images/w2.png"
+        "url": "knightcenter/w2/w2_v2.png",
+        "image": "images/w2.png"
     },
     {
         "title": "Philosophy",
@@ -142,7 +142,7 @@
         "technology": "NODEBOX3",
         "company": "Personal",
         "url": "https://github.com/ig2gi/philo_graph/wiki",
-        "image": "/images/philo.png"
+        "image": "images/philo.png"
     }
 
 ]

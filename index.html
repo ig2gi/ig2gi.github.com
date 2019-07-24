@@ -10,8 +10,10 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/gp.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -20,88 +22,114 @@
 
 <body>
 	<!-- HEADER -->
-	<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-		<h5 class="my-0 mr-md-auto display-4 text-dark">Gilbert Perrin</h5>
-		<nav class="my-2 my-md-0 mr-md-3">
-			<a class="p-2" href="/index.html"><mark>Home</mark></a>
-			<a class="p-2 text-dark" href="/portfolio.html"> Portfolio</a>
-			<span class="p-2 text-muted">Resume</span>
-			<span class="p-2 text-muted">Timeline</span>
-			<a class="p-2 text-dark" href="/contact.html">Contact</a>
-		</nav>
-		<img src="/images/eye.jpg" width="50" style="border: 1px solid white" class="float-right" alt="Me!">
+
+	<nav class="navbar fixed-top navbar-light  mb-5 bg-light">
+
+		<a class="navbar-brand" href="#">/ gilbert perrin /</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+			aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			<img src="/images/eye.jpg" width="30" class="float-right" alt="Me!">
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/index.html">home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/projects">projects</a>
+				</li>
+
+			</ul>
+
+		</div>
+	</nav>
+
+	<!-- CONTENT -->
+
+	<div class="container mt-5 pt-5">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<h4 class="text-secondary text-left">Hello, my name is Gilbert.<br> I am a data visualisation / front
+					end <br>developer living in Lausanne, CH.</h4>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+		<div class="row">
+
+			<div class="col-sm-12">
+				<figure class="figure">
+					<img src="/images/cover2.png" style="border: 1px solid white" class="float-center img-fluid">
+					<figcaption class="figure-caption text-right">@gilbertperrin</figcaption>
+				</figure>
+			</div>
+
+		</div>
+		<div class="row mt-1">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<h5 class="text-left text-warning ">About</h5>
+				<p class="text-left text-secondary">After 6 years of passionate and intense work at <a
+						href="https://www.sophiagenetics.com" target="_blank">Sophia Genetics</a> and having been
+					considered as one of the pillars of this company, I decided to work as a freelance.
+					I'm passionate by visual and data and I'll be happy to help you with your projects where .... See my
+					previous work history on <a href="https://www.linkedin.com/in/gilbertperrin/" target="_blank">
+						LinkedIn</a>. Outside of work I love <a href="https://500px.com/ig2gi">Photography</a> and I am
+					also working on a few side dataviz projects.
+				</p>
+
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<h5 class="text-left text-warning ">Services</h5>
+				<h6 class="text-left text-secondary ">Data Visualisation</h6>
+				<p class="text-left text-secondary">
+					...
+				</p>
+				<h6 class="text-left text-secondary ">UI / UX Design</h6>
+				<p class="text-left text-secondary">
+					...
+				</p>
+				<h6 class="text-left text-secondary ">Front-End Development</h6>
+				<p class="text-left text-secondary">
+					...
+				</p>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8 text-center">
+				<hr>
+				<p class="lead  text-dark">Interested in doing a project together? <button type="button"
+						class="btn btn-sm btn-outline-info"
+						onclick="location.href='mailto:gilbert.perrin@gmail.com';">email me</button></p>
+
+
+				<a href="https://www.linkedin.com/in/gilbertperrin/" target="_blank"><i
+						class='fab fa-linkedin text-secondary' style='font-size:20px'></i></a>
+				<a href="https://twitter.com/ig2gi" target="_blank"><i class='fab fa-twitter-square text-secondary'
+						style='font-size:20px'></i></a>
+				<a href="https://500px.com/ig2gi" target="_blank" data-toggle="tooltip" title="Photography 500px"><i
+						class='fab fa-500px text-secondary' style='font-size:20px'></i>
+				</a>
+
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
 
 
 	</div>
 
-	<!-- CONTENT -->
-
-	<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-		<h3 class="text-secondary">Freelance Services</h3>
-		<div class="d-inline-flex p-3">
-			<div class="p-2"><a href="https://www.linkedin.com/in/gilbertperrin/" target="_blank"><i
-						class='fab fa-linkedin text-secondary' style='font-size:24px'></i></a></div>
-			<div class="p-2"><a href="https://twitter.com/ig2gi" target="_blank"><i
-						class='fab fa-twitter-square text-secondary' style='font-size:24px'></i><a></div>
-			<div class="p-2"><a href="https://500px.com/ig2gi" target="_blank" data-toggle="tooltip"
-					title="Photography 500px"><i class='fab fa-500px text-secondary' style='font-size:24px'></i>
-					<a></div>
-		</div>
 
 
 
-		<div class="container">
-			<div class="card-deck mb-3 text-center">
-				<div class="card mb-4 shadow-sm">
-					<div class="card-header text-dark">
-						<h4 class="my-0 font-weight-normal">Visual </h4>
-					</div>
-					<div class="card-body">
-
-						<ul class="list-unstyled text-muted mt-3 mb-4">
-							<li>Data Visualisation</li>
-							<li>UX Design</li>
-							<li>Infographics</li>
-							<li>User Interfaces</li>
-							<li>Prototypes</li>
-						</ul>
-
-					</div>
-				</div>
-				<div class="card mb-4 shadow-sm text-dark">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Development</h4>
-					</div>
-					<div class="card-body">
-
-						<ul class="list-unstyled text-muted mt-3 mb-4">
-							<li>Javascript / Node.js®</li>
-							<li>Java - JavaFX</li>
-							<li>Web Developement</li>
-							<li>Databases</li>
-						</ul>
-
-					</div>
-				</div>
-				<div class="card mb-4 shadow-sm">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Analysis</h4>
-					</div>
-					<div class="card-body">
-
-						<ul class="list-unstyled text-muted mt-3 mb-4">
-							<li>Business Analysis</li>
-							<li>Requirements</li>
-							<li>Design Specifications</li>
-							<li>Product Owner in Agile process</li>
-						</ul>
-
-					</div>
-				</div>
-			</div>
-
-
-		</div>
 </body>
 
 </html>

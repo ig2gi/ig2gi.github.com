@@ -45,8 +45,8 @@
 
     };
 
-    // load portfolio items
-    d3.json("/data/portfolio.json")
+    // load portfolioprojects items
+    d3.json("projects.json")
         .then(data => loadPortfolio(data));
 
 
