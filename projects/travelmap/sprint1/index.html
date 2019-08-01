@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Travel Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='css/tm.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+
+</head>
+
+<body>
+    
+    <div style="padding: 10px;">
+            <div style="padding: 4px;background: lightgrey;font-size: small;">
+                    <span style="font-weight:bold;font-size: smaller">sprint 1</span>
+                    <span style="font-size: smaller">please use Chrome for now / what's new: (first version)</span>
+                </div>
+        <div  id="header">
+              
+           
+                <select id="style" >
+                    <option value="mapbox/light-v9">light</option>
+                    <option value="ig2gi/cjxfuz6u01xkq1crnutt5nw4j">colored</option>
+                </select>
+
+           
+                <h2 id="totalkm">22000km</h2>
+          
+                <div id="legend">
+
+              
+            </div>
+
+        </div>
+        <div id='map'>
+
+        </div>
+    </div>
+
+
+    <script src="js/d3.min.js"></script>
+    <script src="js/polyline.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script type="module" src="js/tm-map.js"></script>
+</body>
+
+</html>

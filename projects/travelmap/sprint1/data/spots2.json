@@ -1,0 +1,192 @@
+[
+    {
+        "id": 2316996,
+        "id_transport": 1,
+        "city": "Bogot\u00e1",
+        "id_country": "CO",
+        "lon": -74.0761,
+        "lat": 4.5980799999999995,
+        "date": "2019-06-26 00:00:00"
+    },
+    {
+        "id": 2316997,
+        "id_transport": 9,
+        "city": "Medell\u00edn",
+        "id_country": "CO",
+        "lon": -75.5736,
+        "lat": 6.24434,
+        "trace": "gba[z`ccMwvA}f@evI|{FooDmnCs~TpmWuwHnbNcnFzmCmaDugCocCj}BgIyzB{lC~gC{bA{XrNhyAujBgCxr@rKq{@rqAonIbuFy}C|iLddEhd@h}CrvBjZxjAwiAr[k\\rwBxiAjaAk{@f{@xzD~y@cvMnzCf`BjuB}zBvjDufCmnBaeIvLckTiiDg}FtZecHm}@knB`b@aRjeDglAxhAw{SiK{qCj}Eipa@qdDoeMfkC}{BemDawJucEimCpnEuwErtAgLba\\eaBxe@iCrbDijBdlBlkEnhFs`Id^s}CnlEjb@lcBshGddHrcD_y@xlApzAyo@~eEmlCbwDfxBd`BgfBd{@rcAvT}nA`qGkiBrxBjaAjaEa_DniEdAjiHy`B|EeQszBmvAf`BidDkGweDpsAkiAjbJkfEljD}`CtlJqsEx{@{mEboG_aLraEal@j{AplB|~C_sBbcBvqBdiFp~JjpC`^en@"
+    },
+    {
+        "id": 2317014,
+        "id_transport": 9,
+        "city": "Chigorod\u00f3",
+        "id_country": "CO",
+        "lon": -76.6767,
+        "lat": 7.66615,
+        "trace": "ivbe@nmglMqnDndCqZdoHwnIhuHyj@ySk}@xtB{cB_UsA`nAwwCoK{`Bn}AyzFDy}Kj}O_cG`RuoGviEkzAwk@l\\zlCmfEnO_h@vjAywChg@wtCn{Edr@jj@ak@dcDix@PhKjhB{`D~}@nHhhAygB`eBg`@ob@fe@hbAoeEtbCejAndDaiUntSknBf`IfxDlgC{yDgsAtCxjBszCx}@r@ft@}hJiz@wzErcQjeAlsB_lD~gIawAn{@}rJalEarDrtA}_EaWg]mz@cxDvmEi|MdpCau@bvDulI|\\onFjmF{cQpiDe{EhjGed[ziN"
+    },
+    {
+        "id": 2317015,
+        "id_transport": 9,
+        "city": "Cartagena",
+        "id_country": "CO",
+        "lon": -75.5271,
+        "lat": 10.419599999999999,
+        "trace": "khxm@f|~rMoac@s|Ew`Gz`AgdCeoD{}DuBsfb@piJuqAn{E{{IxpDsoItvAmiSoyB}mKtlBsrAndDanQcnQsyJyDaoHlhDioB}kKqlIutC{vF}dPyoN}pJgtBu~J{kHuf@fwJuvgAkuUcq[sP_jKsu[oeA{}IrpBqwDkgCceQxn@u`MksEs`J_eMcuBazM}hR{nKveKcbZqbZexEosF|qIciVfxJisKogHcGwbFu~N}mJcz@ybFihLmsLa_]oaDgmDbaJgjSvjIspShwRvtDl~FycN|iE"
+    },
+    {
+        "id": 2317024,
+        "id_transport": 9,
+        "city": "Riohacha",
+        "id_country": "CO",
+        "lon": -72.907,
+        "lat": 11.544599999999999,
+        "trace": "qer~@lk~kMilCg@itEcrFggH_pCikN{|Bg{Alm@ccFqgJob@svH}_GebKigJ}oFkzCasIkmMcxKieFimOksCwoBurBlGko@gjBwdC{z@aLwuGevDy_AooAqgEcMicLxmNsq@rbA}wBcRi|CkpCq{AwXicDwqDcgCkzCmpGqn@kcIxiGunc@pH_|LopA__L_sCk`H~MmgGc`Fc|Aq{ExaAy|KcCgaIk~BmxMetR}aBwgOjn@ojPcvAykDptGutIoUoyNpbA{tLanCehQhlBovBt_AuhNvuDc_EeAmqIidAgbBtTi~OqqAmcFjsAmbCuhHi|O{~@qpFeyQ}oFuaP{}H}hFcrEagIslQ"
+    },
+    {
+        "id": 2317026,
+        "id_transport": 9,
+        "city": "Cabo de la Vela",
+        "id_country": "CO",
+        "lon": -72.1459,
+        "lat": 12.1978,
+        "trace": "sxmeAxs~{LcDa^xwEekF{~@_nCvvBgySbqEshPrvEu{\\bFijFboB{qHuogA}}^izl@ozUcxKwtFqCjoDosApaAi{Ep{AccK`e@"
+    },
+    {
+        "id": 2317058,
+        "id_transport": 9,
+        "id_country": "CO",
+        "lon": -71.669003,
+        "lat": 12.457781
+    },
+    {
+        "id": 2317060,
+        "id_transport": 9,
+        "city": "Riohacha",
+        "id_country": "CO",
+        "lon": -72.907,
+        "lat": 11.544599999999999,
+        "trace": "wyxiAn`fvLdjBlTvh@vwCpuG~wHb|Jj_C`xShwK`in@vpV|`fAtg^coBzqHcFhjFsvEt{\\cqErhPwvBfySz~@~mCywEdkFbD`^"
+    },
+    {
+        "id": 2317093,
+        "id_transport": 9,
+        "city": "Bucaramanga",
+        "id_country": "CO",
+        "lon": -73.1173,
+        "lat": 7.11146,
+        "trace": "sxmeAxs~{L|fy@kSxoLylw@djRj~Ynr`@~~Ijx@pcNt`WfjUtlT{jLtqRvwOlo@~eJds_Ajub@vfa@syBvktAdgJls_@~k`@vzk@reIrlNhcX`|a@s_Df}a@z`KvvxA_lRjtVvgD|eqAexh@xtQb_VtrUjzIhbtAq|@bdGa}a@_bQcgSx~TwzSilGayI"
+    },
+    {
+        "id": 2317097,
+        "id_transport": 9,
+        "city": "Bogot\u00e1",
+        "id_country": "CO",
+        "lon": -74.0761,
+        "lat": 4.5980799999999995,
+        "trace": "_~kj@hvg}Lpeo@kxW``Mj}Cmi@giCjrTprCd|CvwEztSddJbrJj|ZbhIzzAfyNafB|bs@t}VxvGd{KkuAjpDt{HplLlDdbH~pNjeE`zNvnM|pa@`bN|}L|aMzmIwxAllG`sA`{IyoCc`CilFlpF_Jzm@q~B||_Az|^ftRr{OlplAzeM"
+    },
+    {
+        "id": 2317162,
+        "id_transport": 9,
+        "city": "Santiago de Cali",
+        "id_country": "CO",
+        "lon": -76.5113,
+        "lat": 3.43193,
+        "km": 417.6,
+        "trace": "gba[z`ccM`HzySn_CfzFdvExtCaCtgCbjAdx@kvBvuB`bCrcCtY`pFltJlxD~eCom@rzDr_Bfo@sfAr{Bjo@bkEq{Ap~Ap|FxoAjG~`Id`M|iAzdHff@csAcmBpeGbc@bvCx`BhqDr}Ct_@x`CnsDonAnn@`c@diC{mF`sG``@niByoAz~Gv`@xsNfrFx}Oms@ltBk}Ht}CiyCf`H{lDn~ChIvbB_lRlcS[vtG~lChmIooBtmCxcAt_CaShhDukEjqHp_A`uH}y@h|Dls@`}A{dHtjKokCpH_pD|_EfyAru@}cA|QqHlmCvxChnC|jCl}Fkm@na@xaBhj@xaAbfCyo@vgE~rChwGl_@hvExp@veBtuBxUj|@jeH`wEzyF~iCnaR|}]|eVdyJh|AhqFieAznC`s@bzAzqCpkMbxFxmNbvLryHs}AnsO`wDplKes@xrEieDvkEpHltIttE`mIv|@h_Fr`]lqDf|DzfDoIvRix@"
+    },
+    {
+        "id": 2319845,
+        "id_transport": 9,
+        "city": "Popay\u00e1n",
+        "id_country": "CO",
+        "lon": -76.6061,
+        "lat": 2.44185
+    },
+    {
+        "id": 2317164,
+        "id_transport": 9,
+        "city": "Quito",
+        "id_country": "EC",
+        "lon": -78.5123,
+        "lat": -0.22016400000000003,
+        "is_future": true
+    },
+    {
+        "id": 2317165,
+        "id_transport": 9,
+        "city": "Talara",
+        "id_country": "PE",
+        "lon": -81.2718,
+        "lat": -4.57969,
+        "is_future": true
+    },
+    {
+        "id": 2317181,
+        "id_transport": 9,
+        "city": "Lima",
+        "id_country": "PE",
+        "lon": -77.0365,
+        "lat": -12.062100000000001,
+        "is_future": true,
+        "trace": "`n}Zvk`oNhtqT{pzNvvaWws~H"
+    },
+    {
+        "id": 2317170,
+        "id_transport": 9,
+        "city": "Cochabamba",
+        "id_country": "BO",
+        "lon": -66.157,
+        "lat": -17.3936,
+        "is_future": true,
+        "trace": "b{rhAbeeuMx{~Gklw]`lpVonsb@"
+    },
+    {
+        "id": 2317172,
+        "id_transport": 9,
+        "city": "Santiago",
+        "id_country": "CL",
+        "lon": -70.6504,
+        "lat": -33.4378,
+        "is_future": true
+    },
+    {
+        "id": 2317176,
+        "id_transport": 9,
+        "city": "El Chalt\u00e9n",
+        "id_country": "AR",
+        "lon": -72.8883,
+        "lat": -49.3286,
+        "is_future": true
+    },
+    {
+        "id": 2317173,
+        "id_transport": 9,
+        "city": "Ushuaia",
+        "id_country": "AR",
+        "lon": -68.3073,
+        "lat": -54.8069,
+        "is_future": true
+    },
+    {
+        "id": 2317177,
+        "id_transport": 9,
+        "city": "Autonomous City of Buenos Aires",
+        "id_country": "AR",
+        "lon": -58.445068,
+        "lat": -34.647804,
+        "is_future": true,
+        "trace": "bnomIrg|_Lu_yZrtwHqvm^}ddMw{va@{dkPkt_\\wole@"
+    },
+    {
+        "id": 2317198,
+        "id_transport": 7,
+        "city": "Cape Town",
+        "id_country": "ZA",
+        "lon": 18.4174,
+        "lat": -33.929,
+        "is_future": true
+    }
+]
