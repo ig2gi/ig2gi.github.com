@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/gp.css">
     <link rel="stylesheet" href="/css/fontawesome_v5.9.0_all.css">
+    <link rel="stylesheet" href="timeline.css">
 
 </head>
 
@@ -31,12 +32,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/index.html">home </a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/projects/index.html">projects <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/projects/index.html">projects</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/timeline/index.html" tabindex="-1" aria-disabled="true">timeline</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/timeline/index.html" tabindex="-1" aria-disabled="true">timeline <span
+                            class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -46,25 +48,17 @@
 
 
     <!-- CONTENT -->
+    <div class="container mt-5 pt-5"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="timeline-container" id="timeline">
 
-    <div class="container mt-5 pt-5">
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-                <p class="text-secondary display-4 text-center">Samples of some of my work from the past years.</p>
             </div>
-            <div class="col-sm-2"></div>
-        </div>
-        <div class="row">
-
-            <div class="col-sm-12">
-                <div class="card-columns mt-3  mb-3 text-center" id="portfolio-items">
-                    <!-- Placeholder for portfolio card items -->
-                </div>
-            </div>
-
         </div>
     </div>
+
+    </div>
+
 
     <!-- FOOTER -->
     <div class="container-fluid text-right fixed-bottom mt-5 dt-5">
@@ -90,7 +84,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/js/d3.min.js"></script>
-    <script src="/js/projects.js"></script>
+    <script src="/js/timeline.js"></script>
 </body>
 
 </html>

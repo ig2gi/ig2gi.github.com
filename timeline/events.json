@@ -1,0 +1,50 @@
+[
+    {
+        "title": "VP Functional & UX Design",
+        "dates": ["2018-05-01T00:00:00Z", "2019-07-01T00:00:00Z"],
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Sophia genetics",
+            "department": "",
+            "logo": "sophia.svg"
+        },
+        "link": {
+            "name":"Sophia Genetics",
+            "url": "http://www.sophiagenetics.com"
+        },
+        "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas",
+        "fullDescription": ""
+    },
+    {
+        "title": "Head of Front-End Development",
+        "dates": ["2015-05-01T00:00:00Z", "2018-04-01T00:00:00Z"],
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Sophia genetics",
+            "department": "",
+            "logo": "sophia.svg"
+        },
+        "link": {
+            "name":"Sophia Genetics",
+            "url": "http://www.sophiagenetics.com"
+        },
+        "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform.",
+        "fullDescription": ""
+    },
+    {
+        "title": "Wrote my first blog post ever on Medium",
+        "dates": ["2014-03-01T00:00:00Z"],
+        "type": "experience",
+        "category": "freelance",
+        "company": {
+            "name": "Sophia genetics",
+            "department": "",
+            "logo": ""
+        },
+        "link": null,
+        "description": "",
+        "fullDescription": ""
+    }
+]
