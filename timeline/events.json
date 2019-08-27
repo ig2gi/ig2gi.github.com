@@ -34,17 +34,37 @@
         "fullDescription": ""
     },
     {
-        "title": "Wrote my first blog post ever on Medium",
-        "dates": ["2014-03-01T00:00:00Z"],
+        "title": "Data Visualisation Engineer",
+        "dates": ["2013-05-01T00:00:00Z", "2015-04-01T00:00:00Z"],
         "type": "experience",
-        "category": "freelance",
+        "category": "employee",
         "company": {
             "name": "Sophia genetics",
             "department": "",
-            "logo": ""
+            "logo": "sophia.svg"
         },
-        "link": null,
-        "description": "",
+        "link": {
+            "name":"Sophia Genetics",
+            "url": "http://www.sophiagenetics.com"
+        },
+        "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens. <br> Developed core JavaFX components (authentication, visual components, application components …) <br> Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5",
+        "fullDescription": ""
+    },
+    {
+        "title": "Data Visualization, Web Developer",
+        "dates": ["2013-01-01T00:00:00Z", "2013-04-01T00:00:00Z"],
+        "type": "experience",
+        "category": "freelance",
+        "company": {
+            "name": "International AIDS Society",
+            "department": "",
+            "logo": "ias.png"
+        },
+        "link": {
+            "name":"International AIDS Society",
+            "url": "https://www.iasociety.org"
+        },
+        "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society). <br>(javascript, D3.js, SVG, CSS)",
         "fullDescription": ""
     }
 ]

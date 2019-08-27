@@ -21,11 +21,11 @@ class TimelineEvent {
 
         content.append("span").classed(`tag ${e.category}`, true).text(e.category);
 
-        const period = e.dates.map(d => d3.timeFormat("%b %Y")(d)).join("-");
+        const period = e.dates.map(d => d3.timeFormat("%b %Y")(d)).join(" - ");
         content.append("time").text(period);
 
         content.append("p").classed("title", true).text(e.title);
-        content.append("p").classed("description", true).text(e.description);
+        content.append("p").classed("description", true).html(e.description);
 
         if (e.link && e.link.url) {
             content.append("a")
@@ -65,8 +65,7 @@ class TimelineEvent {
         const parentId = "timeline";
         data.forEach(d => {
             d.dates = d.dates.map(d => new Date(d));
-            d.years = d.dates.map(d => d.getFullYear());
-    
+            d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
             new TimelineEvent(d).render(parentId);
         });
 
