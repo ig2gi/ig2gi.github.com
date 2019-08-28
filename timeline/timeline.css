@@ -3,6 +3,7 @@
     --timeline-card-border-color: #AAB7B8;
     --timeline-tag-employee-color: #FAD7A0;
     --timeline-tag-freelance-color: #D0ECE7;
+    --timeline-tag-consultant-color: #D0ECE7;
     --timeline-info-color: #CCD1D1;
 }
 
@@ -46,7 +47,7 @@
     flex: 1;
 }
 
-.timeline-item {
+.timeline-event {
     display: flex;
     position: relative;
     margin: 40px 0;
@@ -54,19 +55,19 @@
 }
 
 
-.timeline-item.left {
+.timeline-event.left {
     justify-content: flex-end;
     padding-right: 30px;
 }
 
-.timeline-item.right {
+.timeline-event.right {
     align-self: flex-end;
     justify-content: flex-start;
     padding-left: 30px;
     padding-right: 0;
 }
 
-.timeline-item-content {
+.timeline-event-content {
     border: 1px solid var(--timeline-card-border-color);
     border-radius: 0px;
     background-color: #fff;
@@ -78,18 +79,18 @@
     max-width: 70%;
 }
 
-.timeline-item-content.right {
+.timeline-event-content.right {
     text-align: left;
     align-items: flex-start;
 }
 
-.timeline-item-content.left {
+.timeline-event-content.left {
     text-align: right;
     align-items: flex-end;
 }
 
 
-.timeline-item-content::after {
+.timeline-event-content::after {
     content: ' ';
     background-color: #fff;
     top: 20px;
@@ -99,14 +100,14 @@
     position: absolute;
 }
 
-.timeline-item-content.left::after {
+.timeline-event-content.left::after {
     border-top: 1px solid var(--timeline-card-border-color);
     border-right: 1px solid var(--timeline-card-border-color);
     right: -9.5px;
 }
 
 
-.timeline-item-content.right::after {
+.timeline-event-content.right::after {
     border-top: 0px;
     border-right: 0px;
     border-bottom: 1px solid var(--timeline-card-border-color);
@@ -115,7 +116,7 @@
     left: -9.5px;
 }
 
-.timeline-item-content .tag {
+.timeline-event-content .tag {
     color: #fff;
     font-size: 7px;
     font-weight: bold;
@@ -127,20 +128,24 @@
     text-transform: uppercase;
 }
 
-.timeline-item-content .tag.employee {
+.timeline-event-content .tag.employee {
     background: var(--timeline-tag-employee-color);
 }
 
-.timeline-item-content .tag.freelance {
+.timeline-event-content .tag.freelance {
     background: var(--timeline-tag-freelance-color);
 }
 
-.timeline-item.right .timeline-item-content .tag {
+.timeline-event-content .tag.consultant {
+    background: var(--timeline-tag-consultant-color);
+}
+
+.timeline-event.right .timeline-event-content .tag {
     left: auto;
     right: 3px;
 }
 
-.timeline-item-content time {
+.timeline-event-content time {
     color: #5D6D7E;
     font-size: 12px;
     font-weight: bold;
@@ -148,7 +153,7 @@
     position: absolute;
 }
 
-.timeline-item-content p.title {
+.timeline-event-content p.title {
     font-size: 14px;
     margin-top: 15px;
     margin-bottom: 0px;
@@ -157,7 +162,7 @@
     font-weight: bold;
 }
 
-.timeline-item-content p.description {
+.timeline-event-content p.description {
     --lh: 16px;
     line-height: var(--lh);
     font-size: 11px;
@@ -169,17 +174,17 @@
     overflow: hidden;
 }
 
-.timeline-item-content a {
+.timeline-event-content a {
     font-size: 14px;
     font-weight: bold;
 }
 
-.timeline-item-content a::after {
+.timeline-event-content a::after {
     content: ' ►';
     font-size: 12px;
 }
 
-.timeline-item-content .circle {
+.timeline-event-content .circle {
     background-color: #fff;
     border: 3px solid var(--timeline-color);
     border-radius: 50%;
@@ -191,20 +196,24 @@
     z-index: 100;
 }
 
-.timeline-item-content .circle.employee {
+.timeline-event-content .circle.employee {
     background-color: var(--timeline-tag-employee-color);
 }
 
-.timeline-item-content .circle.freelance {
+.timeline-event-content .circle.freelance {
     background-color: var(--timeline-tag-freelance-color);
 }
 
-.timeline-item.right .timeline-item-content .circle {
+.timeline-event-content .circle.consultant {
+    background-color: var(--timeline-tag-consultant-color);
+}
+
+.timeline-event.right .timeline-event-content .circle {
     right: auto;
     left: -43.5px;
 }
 
-.timeline-item-content img.logo {
+.timeline-event-content img.logo {
     bottom: 3px;
     right: auto;
     left: 3px;
@@ -213,12 +222,12 @@
     height: 40px;
 }
 
-.timeline-item.right .timeline-item-content img.logo {
+.timeline-event.right .timeline-event-content img.logo {
     left: auto;
     right: 3px;
 }
 
-.timeline-item-content .info {
+.timeline-event-content .info {
     background-color: transparent;
     position: absolute;
     top:  -1.5em;
@@ -229,13 +238,13 @@
 
 
 
-.timeline-item-content.left .info {
+.timeline-event-content.left .info {
     right: 5%;
     left: auto;
     text-align: right;
 }
 
-.timeline-item-content.right .info {
+.timeline-event-content.right .info {
     left: 5%;
     right: auto;
     text-align: left;
@@ -243,34 +252,34 @@
 
 
 @media only screen and (max-width: 1023px) {
-    .timeline-item-content {
+    .timeline-event-content {
         max-width: 100%;
     }
 }
 
 @media only screen and (max-width: 767px) {
 
-    .timeline-item-content,
-    .timeline-item:nth-child(odd) .timeline-item-content {
+    .timeline-event-content,
+    .timeline-item:nth-child(odd) .timeline-event-content {
         padding: 15px 10px;
         text-align: center;
         align-items: center;
     }
 
-    .timeline-item-content .tag {
+    .timeline-event-content .tag {
         width: calc(100% - 10px);
         text-align: center;
     }
 
-    .timeline-item-content time {
+    .timeline-event-content time {
         margin-top: 20px;
     }
 
-    .timeline-item-content a {
+    .timeline-event-content a {
         text-decoration: underline;
     }
 
-    .timeline-item-content a::after {
+    .timeline-event-content a::after {
         display: none;
     }
 }

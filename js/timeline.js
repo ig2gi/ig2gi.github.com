@@ -68,9 +68,9 @@ class TimelineEvent {
         const e = this.event;
         const content = this.parent.select(`.timeline-column-${side}`)
             .append("div")
-            .classed(`timeline-item ${side}`, true)
+            .classed(`timeline-event ${side}`, true)
             .append("div")
-            .classed(`timeline-item-content ${side}`, true);
+            .classed(`timeline-event-content ${side}`, true);
 
         content.append("span")
             .classed(`tag ${e.category}`, true)

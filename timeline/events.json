@@ -66,5 +66,22 @@
         },
         "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
         "fullDescription": ""
+    },
+    {
+        "title": "Senior Software Engineer",
+        "dates": ["2009-08-01T00:00:00Z", "2012-10-01T00:00:00Z"],
+        "type": "experience",
+        "category": "consultant",
+        "company": {
+            "name": "Pictet Asset Management",
+            "department": "",
+            "logo": "pictet.png"
+        },
+        "link": {
+            "name":"Pictet Asset Management",
+            "url": "https://www.am.pictet/en/uk/intermediary"
+        },
+        "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
+        "fullDescription": ""
     }
 ]
