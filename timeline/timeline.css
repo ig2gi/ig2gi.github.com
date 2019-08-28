@@ -3,12 +3,16 @@
     --timeline-card-border-color: #AAB7B8;
     --timeline-tag-employee-color: #FAD7A0;
     --timeline-tag-freelance-color: #D0ECE7;
+    --timeline-info-color: #CCD1D1;
 }
 
 
 .timeline-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
     position: relative;
     margin: 40px 0;
 }
@@ -22,16 +26,40 @@
     height: 100%;
 }
 
-.timeline-item {
+.timeline-column-left {
     display: flex;
-    justify-content: flex-end;
-    padding-right: 30px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
     position: relative;
-    margin: 10px 0;
-    width: 50%;
+    margin: 80px 0;
+    flex: 1;
 }
 
-.timeline-item:nth-child(odd) {
+.timeline-column-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    margin: 10px 0;
+    flex: 1;
+}
+
+.timeline-item {
+    display: flex;
+    position: relative;
+    margin: 40px 0;
+    width: 100%;
+}
+
+
+.timeline-item.left {
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+.timeline-item.right {
     align-self: flex-end;
     justify-content: flex-start;
     padding-left: 30px;
@@ -44,33 +72,41 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     padding: 15px;
     position: relative;
     width: 400px;
     max-width: 70%;
-    text-align: right;
 }
 
-.timeline-item-content::after {
-    content: ' ';
-    border-top: 1px solid var(--timeline-card-border-color);
-    border-right: 1px solid var(--timeline-card-border-color);
-    background-color: #fff;
-    position: absolute;
-    right: -9.5px;
-    top: calc(50% - 8px);
-    transform: rotate(45deg);
-    width: 18px;
-    height: 18px;
-}
-
-.timeline-item:nth-child(odd) .timeline-item-content {
+.timeline-item-content.right {
     text-align: left;
     align-items: flex-start;
 }
 
-.timeline-item:nth-child(odd) .timeline-item-content::after {
+.timeline-item-content.left {
+    text-align: right;
+    align-items: flex-end;
+}
+
+
+.timeline-item-content::after {
+    content: ' ';
+    background-color: #fff;
+    top: 20px;
+    transform: rotate(45deg);
+    width: 18px;
+    height: 18px;
+    position: absolute;
+}
+
+.timeline-item-content.left::after {
+    border-top: 1px solid var(--timeline-card-border-color);
+    border-right: 1px solid var(--timeline-card-border-color);
+    right: -9.5px;
+}
+
+
+.timeline-item-content.right::after {
     border-top: 0px;
     border-right: 0px;
     border-bottom: 1px solid var(--timeline-card-border-color);
@@ -99,7 +135,7 @@
     background: var(--timeline-tag-freelance-color);
 }
 
-.timeline-item:nth-child(odd) .timeline-item-content .tag {
+.timeline-item.right .timeline-item-content .tag {
     left: auto;
     right: 3px;
 }
@@ -122,11 +158,15 @@
 }
 
 .timeline-item-content p.description {
+    --lh: 16px;
+    line-height: var(--lh);
     font-size: 11px;
-    line-height: 16px;
     margin-top: 2px;
     max-width: 90%;
     color: #5D6D7E;
+    --max-lines: 3;
+    max-height: calc(var(--lh) * var(--max-lines));
+    overflow: hidden;
 }
 
 .timeline-item-content a {
@@ -144,7 +184,7 @@
     border: 3px solid var(--timeline-color);
     border-radius: 50%;
     position: absolute;
-    top: calc(50% - 10px);
+    top: 18px;
     right: -43.5px;
     width: 25px;
     height: 25px;
@@ -159,7 +199,7 @@
     background-color: var(--timeline-tag-freelance-color);
 }
 
-.timeline-item:nth-child(odd) .timeline-item-content .circle {
+.timeline-item.right .timeline-item-content .circle {
     right: auto;
     left: -43.5px;
 }
@@ -173,27 +213,34 @@
     height: 40px;
 }
 
-.timeline-item:nth-child(odd) .timeline-item-content img.logo {
+.timeline-item.right .timeline-item-content img.logo {
     left: auto;
     right: 3px;
 }
 
 .timeline-item-content .info {
-    background-color: #fff;
+    background-color: transparent;
     position: absolute;
-    top: calc(50% - 0.8em);
-    right: -100%;
+    top:  -1.5em;
     z-index: 100;
-    text-align: right;
-    font-size: 3em;
-    color: #F2F4F4;
+    font-size: 2em;
+    color: var(--timeline-info-color);
 }
 
-.timeline-item:nth-child(odd) .timeline-item-content .info {
+
+
+.timeline-item-content.left .info {
+    right: 5%;
+    left: auto;
+    text-align: right;
+}
+
+.timeline-item-content.right .info {
+    left: 5%;
     right: auto;
-    left: -100%;
     text-align: left;
 }
+
 
 @media only screen and (max-width: 1023px) {
     .timeline-item-content {

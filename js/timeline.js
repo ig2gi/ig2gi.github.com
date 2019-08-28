@@ -12,12 +12,12 @@ class TimelineEvent {
         this.event = event;
     }
 
-    render(parentId) {
+    render(parentId, side) {
         const e = this.event;
-        const content = d3.select(`#${parentId}`).append("div")
-            .classed("timeline-item", true)
+        const content = d3.select(`#${parentId}`).select(`.timeline-column-${side}`).append("div")
+            .classed(`timeline-item ${side}`, true)
             .append("div")
-            .classed("timeline-item-content", true);
+            .classed(`timeline-item-content ${side}`, true);
 
         content.append("span").classed(`tag ${e.category}`, true).text(e.category);
 
@@ -25,7 +25,7 @@ class TimelineEvent {
         content.append("time").text(period);
 
         content.append("p").classed("title", true).text(e.title);
-        content.append("p").classed("description", true).html(e.description);
+        content.append("p").classed("description", true).text(e.description);
 
         if (e.link && e.link.url) {
             content.append("a")
@@ -38,15 +38,16 @@ class TimelineEvent {
         content.append("span")
             .classed(`circle ${e.category}`, true);
 
-        content.append("span")
-            .classed("info", true)
-            .text(e.years.join("-"));
 
         if (e.company.logo) {
             content.append("img")
                 .classed("logo", true)
                 .attr("src", `./images/${e.company.logo}`);
         }
+
+        content.append("span")
+            .classed("info", true)
+            .text(e.years.join("-"));
 
 
 
@@ -63,10 +64,12 @@ class TimelineEvent {
     const loadEvents = (data) => {
 
         const parentId = "timeline";
+        let side = "right";
         data.forEach(d => {
             d.dates = d.dates.map(d => new Date(d));
             d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
-            new TimelineEvent(d).render(parentId);
+            new TimelineEvent(d).render(parentId, side);
+            side = side === "right" ? "left" : "right";
         });
 
     };

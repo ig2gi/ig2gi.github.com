@@ -47,7 +47,7 @@
             "name":"Sophia Genetics",
             "url": "http://www.sophiagenetics.com"
         },
-        "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens. <br> Developed core JavaFX components (authentication, visual components, application components …) <br> Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5",
+        "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …)  Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5",
         "fullDescription": ""
     },
     {
@@ -64,7 +64,7 @@
             "name":"International AIDS Society",
             "url": "https://www.iasociety.org"
         },
-        "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society). <br>(javascript, D3.js, SVG, CSS)",
+        "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
         "fullDescription": ""
     }
 ]
