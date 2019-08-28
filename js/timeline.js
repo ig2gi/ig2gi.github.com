@@ -70,7 +70,7 @@ class TimelineEvent {
             .append("div")
             .classed(`timeline-event ${side}`, true)
             .append("div")
-            .classed(`timeline-event-content ${side}`, true);
+            .classed(`timeline-event-content ${side} ${e.type}`, true);
 
         content.append("span")
             .classed(`tag ${e.category}`, true)
@@ -78,14 +78,20 @@ class TimelineEvent {
 
         const period = e.dates.map(d => d3.timeFormat("%b %Y")(d)).join(" - ");
         content.append("time")
-            .text(period);
+            .text(e.type === "certificate" ? period + " - " + e.title.toUpperCase(): period );
 
-        content.append("p")
+        if (e.type !== "certificate")
+        {
+            content.append("p")
             .classed("title", true)
             .text(e.title);
+
+        }
         content.append("p")
             .classed("description", true)
             .text(e.description);
+
+      
 
         if (e.link && e.link.url) {
             content.append("a")
@@ -94,9 +100,10 @@ class TimelineEvent {
                 .attr("rel", "noopener noreferrer")
                 .text(e.link.name);
         }
+  
 
         content.append("span")
-            .classed(`circle ${e.category}`, true);
+            .classed(`pin ${e.category}`, true);
 
 
         if (e.company.logo) {
@@ -104,6 +111,7 @@ class TimelineEvent {
                 .classed("logo", true)
                 .attr("src", `./images/${e.company.logo}`);
         }
+  
 
         const duration = diff(e.dates);
         // TODO: show duration

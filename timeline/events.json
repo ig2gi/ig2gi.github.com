@@ -1,4 +1,20 @@
-[
+[{
+    "title": "Machine Learning",
+    "dates": ["2019-07-31T00:00:00Z"],
+    "type": "certificate",
+    "category": "formation",
+    "company": {
+        "name": "Coursera",
+        "department": "",
+        "logo": ""
+    },
+    "link": {
+        "name":"Certificate",
+        "url": "https://www.coursera.org/account/accomplishments/records/XM4F5LNKZGF3"
+    },
+    "description": "Coursera, by Stanford University",
+    "fullDescription": ""
+},
     {
         "title": "VP Functional & UX Design",
         "dates": ["2018-05-01T00:00:00Z", "2019-07-01T00:00:00Z"],

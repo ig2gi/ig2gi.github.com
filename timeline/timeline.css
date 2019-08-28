@@ -4,6 +4,7 @@
     --timeline-tag-employee-color: #FAD7A0;
     --timeline-tag-freelance-color: #D0ECE7;
     --timeline-tag-consultant-color: #D0ECE7;
+    --timeline-tag-formation-color: #BB8FCE;
     --timeline-info-color: #CCD1D1;
 }
 
@@ -79,6 +80,11 @@
     max-width: 70%;
 }
 
+.timeline-event-content.certificate {
+    padding-bottom: 5px;
+}
+
+
 .timeline-event-content.right {
     text-align: left;
     align-items: flex-start;
@@ -140,6 +146,10 @@
     background: var(--timeline-tag-consultant-color);
 }
 
+.timeline-event-content .tag.formation {
+    background: var(--timeline-tag-formation-color);
+}
+
 .timeline-event.right .timeline-event-content .tag {
     left: auto;
     right: 3px;
@@ -162,6 +172,8 @@
     font-weight: bold;
 }
 
+
+
 .timeline-event-content p.description {
     --lh: 16px;
     line-height: var(--lh);
@@ -174,20 +186,30 @@
     overflow: hidden;
 }
 
+.timeline-event-content p.description {
+    margin-bottom: 0px;
+    margin-top: 4px;
+}
+
 .timeline-event-content a {
     font-size: 14px;
     font-weight: bold;
 }
+
+.timeline-event-content.certificate a {
+    margin-top: 0px;
+}
+
 
 .timeline-event-content a::after {
     content: ' ►';
     font-size: 12px;
 }
 
-.timeline-event-content .circle {
+.timeline-event-content .pin {
     background-color: #fff;
     border: 3px solid var(--timeline-color);
-    border-radius: 50%;
+    border-radius: 0%;
     position: absolute;
     top: 18px;
     right: -43.5px;
@@ -196,19 +218,27 @@
     z-index: 100;
 }
 
-.timeline-event-content .circle.employee {
+.timeline-event-content.certificate .pin { 
+    border-radius: 50%;
+}
+
+.timeline-event-content .pin.employee {
     background-color: var(--timeline-tag-employee-color);
 }
 
-.timeline-event-content .circle.freelance {
+.timeline-event-content .pin.freelance {
     background-color: var(--timeline-tag-freelance-color);
 }
 
-.timeline-event-content .circle.consultant {
+.timeline-event-content .pin.consultant {
     background-color: var(--timeline-tag-consultant-color);
 }
 
-.timeline-event.right .timeline-event-content .circle {
+.timeline-event-content .pin.formation {
+    background-color: var(--timeline-tag-formation-color);
+}
+
+.timeline-event.right .timeline-event-content .pin {
     right: auto;
     left: -43.5px;
 }
