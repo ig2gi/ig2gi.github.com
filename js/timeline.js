@@ -1,5 +1,50 @@
-/* globals d3 */
+/* globals d3 moment*/
 "use strict";
+
+/**
+ *
+ *
+ * @class Timeline
+ */
+class Timeline {
+
+    constructor(parentId, events) {
+        this.events = events;
+        this.parentId = parentId;
+    }
+
+    /**
+     *
+     *
+     * @memberof Timeline
+     */
+    render() {
+
+        // draw timeline
+        const timeline = d3.select("#" + this.parentId)
+            .append("div")
+            .classed("timeline-container", true);
+
+        timeline.append("div")
+            .classed("timeline-column-left", true);
+
+        timeline.append("div")
+            .classed("timeline-column-right", true);
+
+        // draw children events
+        let side = "right";
+        this.events.forEach(d => {
+            d.dates = d.dates.map(d => new Date(d));
+            d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
+            new TimelineEvent(timeline, d)
+                .render(side);
+            side = side === "right" ? "left" : "right";
+        });
+
+    }
+
+
+}
 
 /**
  *
@@ -8,24 +53,39 @@
  */
 class TimelineEvent {
 
-    constructor(event) {
+    constructor(parent, event) {
         this.event = event;
+        this.parent = parent;
     }
 
-    render(parentId, side) {
+    /**
+     *
+     *
+     * @param {string} side
+     * @memberof TimelineEvent
+     */
+    render(side) {
         const e = this.event;
-        const content = d3.select(`#${parentId}`).select(`.timeline-column-${side}`).append("div")
+        const content = this.parent.select(`.timeline-column-${side}`)
+            .append("div")
             .classed(`timeline-item ${side}`, true)
             .append("div")
             .classed(`timeline-item-content ${side}`, true);
 
-        content.append("span").classed(`tag ${e.category}`, true).text(e.category);
+        content.append("span")
+            .classed(`tag ${e.category}`, true)
+            .text(e.category);
 
         const period = e.dates.map(d => d3.timeFormat("%b %Y")(d)).join(" - ");
-        content.append("time").text(period);
+        content.append("time")
+            .text(period);
 
-        content.append("p").classed("title", true).text(e.title);
-        content.append("p").classed("description", true).text(e.description);
+        content.append("p")
+            .classed("title", true)
+            .text(e.title);
+        content.append("p")
+            .classed("description", true)
+            .text(e.description);
 
         if (e.link && e.link.url) {
             content.append("a")
@@ -45,15 +105,29 @@ class TimelineEvent {
                 .attr("src", `./images/${e.company.logo}`);
         }
 
+        const duration = diff(e.dates);
+        // TODO: show duration
         content.append("span")
             .classed("info", true)
             .text(e.years.join("-"));
 
-
-
     }
 
 }
+
+/**
+ *
+ *
+ * @param {*} dates
+ * @returns
+ */
+function diff(dates) {
+    const starts = moment(dates[0]);
+    const ends = moment(dates[1]);
+    const duration = moment.duration(ends.diff(starts));
+    return duration;
+}
+
 
 (function () {
 
@@ -63,14 +137,8 @@ class TimelineEvent {
     //
     const loadEvents = (data) => {
 
-        const parentId = "timeline";
-        let side = "right";
-        data.forEach(d => {
-            d.dates = d.dates.map(d => new Date(d));
-            d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
-            new TimelineEvent(d).render(parentId, side);
-            side = side === "right" ? "left" : "right";
-        });
+        new Timeline("timeline", data)
+            .render();
 
     };
 
