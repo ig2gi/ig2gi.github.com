@@ -21,10 +21,12 @@
 
         body.append("h5")
             .classed("card-title", true)
-            .html(d => `${d.title} <span class="text-info small">${d.date}</span>`);
+            .style("color", "#5D6D7E")
+            .html(d => `${d.title} <span class="small" style="color:#7FB3D5;">${d.date}</span>`);
 
         body.append("p")
-            .classed("card-text small", true)
+            .classed("card-text small text-justify text-muted", true)
+            
             .html(d => {
                 if (!d.company)
                     return d.description;
