@@ -8,9 +8,22 @@
  */
 class Timeline {
 
+    /**
+     * Creates an instance of Timeline.
+     * 
+     * @param {*} parentId
+     * @param {*} events
+     * @memberof Timeline
+     */
     constructor(parentId, events) {
         this.events = events;
         this.parentId = parentId;
+        this.dates = [];
+        this.events.forEach(d => {
+            d.dates = d.dates.map(d => new Date(d));
+            this.dates.push(...d.dates);
+            d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
+        });
     }
 
     /**
@@ -20,69 +33,37 @@ class Timeline {
      */
     render() {
 
-        // draw timeline
+        const testMediaWidth = window.matchMedia("(max-width: 700px)");
+        testMediaWidth.addListener(() => {
+            d3.select("#" + this.parentId).select("div.timeline-container").remove();
+            testMediaWidth.matches ? this.layout(2) : this.layout(1);
+        });
 
+        testMediaWidth.matches ? this.layout(2) : this.layout(1);
+
+    }
+
+    layout(type) {
+
+        // draw timeline
         const timeline = d3.select("#" + this.parentId)
             .append("div")
-            .classed("timeline-container", true);
-
-        timeline.append("div")
+            .classed(`timeline-container layout${type}`, true);
+        timeline.append("div").classed(`line`, true);
+        if (type === 1)
+            timeline.append("div")
             .classed("timeline-column-left", true);
-
         timeline.append("div")
             .classed("timeline-column-right", true);
 
+
         // draw children events
-        let side = "right";
-        const dates = [];
+        let side = type === 1 ? "left" : "right";
         this.events.forEach(d => {
-            d.dates = d.dates.map(d => new Date(d));
-            dates.push(...d.dates);
-            d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
-            new TimelineEvent(timeline, d)
-                .render(side);
-            side = side === "right" ? "left" : "right";
+            new TimelineEvent(timeline, d).render(side);
+            if (type === 1)
+                side = side === "right" ? "left" : "right";
         });
-
-        // draw timeline bar
-        const width = document.getElementById("timeline-bar").clientWidth;
-        const svg = d3
-            .select("#timeline-bar")
-            .append("div")
-            .classed("svg-container", true)
-            .append("svg")
-            .classed("svg-content", true)
-            .attr("preserveAspectRatio", "xMinYMax meet")
-            .attr("viewBox", `0 0 ${width} ${80}`)
-            .style("z-index", 2);
-
-        //svg.
-
-        const period = d3.extent(dates);
-
-        const x = d3.scaleTime().range([10, width - 10]).domain(period);
-        const xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%b %Y")); //.tickValues(lineData.map(d=>d.date));
-
-        // x axis (dates)
-        svg.append("g")
-            .attr("class", "x axis")
-            .call(xAxis);
-
-        const gbar = svg.append("g")
-            .classed("bars", true)
-            .selectAll("g.bar")
-            .data(this.events)
-            .enter()
-            .append("g")
-            .classed("bar", true)
-            .attr("transform", d => `translate(${x(d.dates[0]) },${40})`);
-
-        gbar.filter(d => d.dates.length === 2)
-            .append("rect")
-            .attr("class", d => d.category)
-            .attr("width", d => x(d.dates[1]) - x(d.dates[0]))
-            .attr("height", 10);
-
     }
 
 
@@ -98,6 +79,7 @@ class TimelineEvent {
     constructor(parent, event) {
         this.event = event;
         this.parent = parent;
+        this.root = undefined;
     }
 
     /**
@@ -108,11 +90,12 @@ class TimelineEvent {
      */
     render(side) {
         const e = this.event;
-        const content = this.parent.select(`.timeline-column-${side}`)
+        this.side = side;
+        this.root = this.parent.select(`.timeline-column-${side}`)
             .append("div")
-            .classed(`timeline-event ${side}`, true)
-            .append("div")
-            .classed(`timeline-event-content ${side} ${e.type}`, true);
+            .classed(`timeline-event ${side}`, true);
+        const content = this.root.append("div")
+            .classed(`timeline-event-content ${e.type}`, true);
 
         content.append("span")
             .classed(`tag ${e.category}`, true)
@@ -120,36 +103,40 @@ class TimelineEvent {
 
         const period = e.dates.map(d => d3.timeFormat("%b %Y")(d)).join(" - ");
         content.append("time")
-            .text(e.type === "certificate" ? period + " - " + e.title.toUpperCase() : period);
+            .text(e.dates.length === 1 ? period + " - now" : period);
 
-        if (e.type !== "certificate") {
-            content.append("p")
-                .classed("title", true)
-                .text(e.title);
 
-        }
+        content.append("p")
+            .classed("title", true)
+            .text(e.title);
+
+
         content.append("p")
             .classed("description", true)
             .text(e.description);
 
 
 
-        if (e.link && e.link.url) {
+        if (e.links && e.links.length === 1 && e.links[0].url) {
             content.append("a")
-                .attr("href", e.link.url)
+                .attr("href", e.links[0].url)
                 .attr("target", "_blank")
                 .attr("rel", "noopener noreferrer")
-                .text(e.link.name);
+                .text(e.links[0].name);
+        } else if (e.links && e.links.length > 1) {
+            const links = content.append("div").classed("links", true);
+            e.links.forEach(l => {
+                links.append("a")
+                    .attr("href", l.url)
+                    .attr("target", "_blank")
+                    .attr("rel", "noopener noreferrer")
+                    .text(l.name);
+            });
         }
 
 
         content.append("span")
             .classed(`pin ${e.category}`, true);
-
-        if (e.type === "certificate") {
-            content.append("i").classed("fa fa-certificate", true);
-        }
-
 
         if (e.company.logo) {
             content.append("img")
@@ -159,12 +146,19 @@ class TimelineEvent {
 
 
         const duration = diff(e.dates);
-        // TODO: show duration
+        content.append("span")
+            .classed("duration", true)
+            .html(duration.join(" "));
+
+
         content.append("span")
             .classed("info", true)
             .text(e.years.join("-"));
 
+
+
     }
+
 
 }
 
@@ -176,9 +170,18 @@ class TimelineEvent {
  */
 function diff(dates) {
     const starts = moment(dates[0]);
-    const ends = moment(dates[1]);
+    const ends = moment(dates.length === 1 ? new Date() : dates[1]);
     const duration = moment.duration(ends.diff(starts));
-    return duration;
+    let y = duration.years();
+    let m = duration.months();
+    let d = duration.days();
+    if (d > 15)
+        m++;
+    if (m >= 10) {
+        m = 0;
+        y++;
+    }
+    return [y === 0 ? "" : `${y} year${y > 1 ? "s": ""}`, m === 0 ? "" : `${m} month${m > 1 ? "s": ""}`]; // returns only years and months
 }
 
 
