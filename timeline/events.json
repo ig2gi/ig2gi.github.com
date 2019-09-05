@@ -4,7 +4,7 @@
         "dates": [
             "2019-07-01T00:00:00Z"
         ],
-        "industry": "",
+        "industry": "AI, Machine Learning",
         "type": "formation",
         "category": "formation",
         "company": {
@@ -339,7 +339,7 @@
             "1993-09-01T00:00:00Z",
             "1994-06-30T00:00:00Z"
         ],
-        "industry": "Data Science",
+        "industry": "Physics, Data Science",
         "type": "formation",
         "category": "formation",
         "company": {
@@ -361,7 +361,7 @@
             "1990-09-01T00:00:00Z",
             "1993-06-30T00:00:00Z"
         ],
-        "industry": "Data Science",
+        "industry": "Physics, Data Science",
         "type": "formation",
         "category": "formation",
         "company": {

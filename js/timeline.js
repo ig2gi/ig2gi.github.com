@@ -69,6 +69,8 @@ class Timeline {
 
 }
 
+const TF = d3.timeFormat("%b %Y");
+
 /**
  *
  *
@@ -101,9 +103,16 @@ class TimelineEvent {
             .classed(`tag ${e.category}`, true)
             .text(e.category);
 
-        const period = e.dates.map(d => d3.timeFormat("%b %Y")(d)).join(" - ");
+        const period = `${TF(e.dates[0])} <i class="fas fa-caret-right"></i> ${e.dates.length > 1 ? TF(e.dates[1]) : "now"} `;
         content.append("time")
-            .text(e.dates.length === 1 ? period + " - now" : period);
+            .html(period);
+
+        if (e.industry) {
+            const ind = `${e.industry.toUpperCase()}`;
+            content.append("span").classed("industry info", true)
+                .html(ind);
+        }
+
 
 
         content.append("p")
@@ -133,6 +142,7 @@ class TimelineEvent {
                     .text(l.name);
             });
         }
+
 
 
         content.append("span")

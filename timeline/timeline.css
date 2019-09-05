@@ -21,7 +21,7 @@
     margin: 40px 0;
 }
 
-.timeline-container .line{
+.timeline-container .line {
     background-color: var(--timeline-color);
     border-width: 0px;
     content: '';
@@ -30,11 +30,11 @@
     height: 100%;
 }
 
-.timeline-container.layout1 .line{
+.timeline-container.layout1 .line {
     left: calc(50% - 2px);
 }
 
-.timeline-container.layout2 .line{
+.timeline-container.layout2 .line {
     left: 0px;
 }
 
@@ -67,10 +67,10 @@
 
 .timeline-legend {
     font-size: 0.5em;
-    position:absolute;
+    position: absolute;
     top: 10px;
-    right:10px;
-    height:10px;
+    right: 10px;
+    height: 10px;
     color: grey;
     width: 80%;
 }
@@ -185,6 +185,8 @@
     position: absolute;*/
 }
 
+
+
 .timeline-event-content p.title {
     font-size: 14px;
     margin-top: 0.1em;
@@ -212,7 +214,7 @@
 
 
 .timeline-event-content a {
-    font-size: 10px;
+    font-size: 0.7em;
     font-weight: bold;
     position: absolute;
     bottom: 2px;
@@ -227,20 +229,34 @@
     align-items: flex-start;
 }
 
+
 .timeline-event-content .links a {
     position: relative;
     margin-right: 4px;
 }
 
 
+
+
+
 .timeline-event-content .duration {
-    font-size: 0.5em;
+    font-size: 0.6em;
     font-weight: bold;
     position: absolute;
     bottom: 2px;
     margin-top: 4px;
     color: #5D6D7E;
 }
+
+.timeline-event-content .duration::before {
+    font-family: "Font Awesome 5 Free";
+    /* updated font-family */
+    font-weight: 400;
+    /* regular style/weight */
+    content: "\f017";
+    margin-right: 2px;
+}
+
 
 .timeline-event.left .timeline-event-content .duration {
     left: 5px;
@@ -288,6 +304,7 @@
     right: auto;
     left: -43px;
 }
+
 .timeline-event.left .timeline-event-content .pin {
     left: auto;
     right: -42px;
@@ -313,7 +330,7 @@
 .timeline-event-content .info {
     background-color: transparent;
     position: absolute;
-    top: -1.5em;
+    top: -1.7em;
     z-index: 100;
     font-size: 2em;
     color: var(--timeline-info-color);
@@ -331,6 +348,11 @@
     text-align: left;
 }
 
+.timeline-event-content .info.industry {
+    font-size: 0.7em;
+    top: -1.5em;
+}
+
 
 
 @media only screen and (max-width: 1023px) {
@@ -341,7 +363,7 @@
 
 @media only screen and (max-width: 767px) {
 
- 
+
 
     .timeline-event-content .tag {
         width: calc(100% - 10px);
@@ -366,7 +388,7 @@
 #timeline-bar {
     position: fixed;
     top: 60px;
-    width:80%;
+    width: 80%;
     z-index: 100;
 }
 
