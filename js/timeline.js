@@ -96,8 +96,28 @@ class TimelineEvent {
         this.root = this.parent.select(`.timeline-column-${side}`)
             .append("div")
             .classed(`timeline-event ${side}`, true);
+
+        const hasSkills = false; // e.softSkills || e.hardSkills;
+
+        let sidebar;
+        if (side === "left" && hasSkills)
+            sidebar = this.root.append("div")
+            .classed(`timeline-event-sidebar`, true);
+
         const content = this.root.append("div")
             .classed(`timeline-event-content ${e.type}`, true);
+
+        if (side === "right" && hasSkills)
+            sidebar = this.root.append("div")
+            .classed(`timeline-event-sidebar`, true);
+
+        if (hasSkills) {
+            //sidebar.append("span").html(`<i class="fas fa-level-down-alt"></i>`);
+            e.softSkills.split(",").concat(e.hardSkills.split(",")).forEach(s => {
+                sidebar.append("span").text(s);
+            });
+        
+        }
 
         content.append("span")
             .classed(`tag ${e.category}`, true)
@@ -142,7 +162,6 @@ class TimelineEvent {
                     .text(l.name);
             });
         }
-
 
 
         content.append("span")

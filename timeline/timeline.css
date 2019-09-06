@@ -2,6 +2,7 @@
     --timeline-color: #ABB2B9;
     --timeline-card-border-color: #AAB7B8;
     --timeline-card-bkg-color: #EAECEE;
+    --timeline-card-txt-color: #5D6D7E;
     --timeline-tag-employee-color: #F8C471;
     --timeline-tag-freelance-color: #7DCEA0;
     --timeline-tag-consultant-color: #7DCEA0;
@@ -93,6 +94,37 @@
     justify-content: flex-start;
     padding-left: 30px;
     padding-right: 0;
+}
+
+.timeline-event-sidebar {
+    margin-left: 2px;
+    border-left: 1px dashed var(--timeline-card-bkg-color);
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 50px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.timeline-event.left .timeline-event-sidebar {
+    margin-right: 2px;
+    border-left: 0px;
+    border-right: 1px dashed var(--timeline-card-bkg-color);
+    align-items: flex-end;
+}
+
+.timeline-event-sidebar span {
+    font-size: 0.6em;
+    font-weight: normal;
+    font-style: italic;
+    color: var(--timeline-card-txt-color);
+    padding: 0px;
+    margin:0px;
+    line-height: 1.1em;
+    opacity:0.6;
+    text-transform: capitalize;
 }
 
 .timeline-event-content {
@@ -337,13 +369,13 @@
 }
 
 .timeline-event.left .timeline-event-content .info {
-    right: 5%;
+    right: 2%;
     left: auto;
     text-align: right;
 }
 
 .timeline-event.right .timeline-event-content .info {
-    left: 5%;
+    left: 2%;
     right: auto;
     text-align: left;
 }

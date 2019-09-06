@@ -32,7 +32,7 @@
             "2018-05-01T00:00:00Z",
             "2019-07-01T00:00:00Z"
         ],
-        "industry": "Biotechnology",
+        "industry": "Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -47,7 +47,9 @@
             }
         ],
         "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "creative,analytic,agile,prototyping,UX_Design",
+        "hardSkills": "D3.js,balsamiq"
     },
     {
         "title": "Head of Front-End Development",
@@ -55,7 +57,7 @@
             "2015-05-01T00:00:00Z",
             "2018-04-01T00:00:00Z"
         ],
-        "industry": "Biotechnology",
+        "industry": "Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -70,7 +72,9 @@
             }
         ],
         "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform.",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "creative,analytic",
+        "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
     },
     {
         "title": "Data Visualisation Engineer",
@@ -78,7 +82,7 @@
             "2013-05-01T00:00:00Z",
             "2015-04-01T00:00:00Z"
         ],
-        "industry": "Biotechnology",
+        "industry": "Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
