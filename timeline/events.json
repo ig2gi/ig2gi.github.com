@@ -46,7 +46,7 @@
                 "url": "http://www.sophiagenetics.com"
             }
         ],
-        "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas.",
+        "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
         "fullDescription": "",
         "softSkills": "creative,analytic,agile,prototyping,UX_Design",
         "hardSkills": "D3.js,balsamiq"
@@ -71,7 +71,7 @@
                 "url": "http://www.sophiagenetics.com"
             }
         ],
-        "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform.",
+        "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
         "fullDescription": "",
         "softSkills": "creative,analytic",
         "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
