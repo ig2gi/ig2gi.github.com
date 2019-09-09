@@ -70,6 +70,7 @@ class Timeline {
 }
 
 const TF = d3.timeFormat("%b %Y");
+const MAX_DESCRIPTION_LENGTH = 150;
 
 /**
  *
@@ -138,18 +139,19 @@ class TimelineEvent {
         content.append("p")
             .classed("title", true)
             .text(e.title);
-
-
-        content.append("p")
-            .classed("description", true)
-            .text(e.description);
+        let isTruncated = e.description.length > MAX_DESCRIPTION_LENGTH;
+        const desc = content.append("p")
+            .classed(`description ${isTruncated ? "withtooltip": ""}`, true)
+            .text(truncate(e.description));
+        if (isTruncated) {
+            desc.append("span")
+                .classed("tooltiptext", true)
+                .html(tooltipText(e.description));
+        }
 
         if (e.links && e.links.length > 0) {
             const links = content.append("div")
                 .classed("links", true);
-            /*  links.append("span")
-                  .classed("moreinfo", true)
-                  .html(`<i class="fas fa-info-circle"></i>`);*/
             e.links.forEach(l => {
                 links.append("a")
                     .attr("href", l.url)
@@ -210,6 +212,28 @@ function diff(dates) {
         y++;
     }
     return [y === 0 ? "" : `${y} year${y > 1 ? "s": ""}`, m === 0 ? "" : `${m} month${m > 1 ? "s": ""}`]; // returns only years and months
+}
+
+
+/**
+ *
+ *
+ * @param {*} txt
+ * @returns
+ */
+function truncate(txt) {
+    return txt.length > MAX_DESCRIPTION_LENGTH ? txt.substring(0, MAX_DESCRIPTION_LENGTH - 1) + " ..." : txt;
+}
+
+const BULLET = `<i class="fas fa-caret-right" style="margin-top:5px;opacity:0.5;"></i>`;
+/**
+ *
+ *
+ * @param {*} txt
+ * @returns
+ */
+function tooltipText(txt) {
+    return BULLET + " " + txt.replace(/\. /g, ` <br>${BULLET} `);
 }
 
 

@@ -1,28 +1,28 @@
 
 @font-face {
     font-family: "DIN Next Pro";
-    src: url(/webfonts/DINNextLTPro-Bold.woff) format("woff"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Bold.otf) format("opentype"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Bold.ttf) format("truetype");
+    src: url(/webfonts/DINNextLTPro-Bold.woff) format("woff");
     font-style: normal;
     font-weight: 700;
 }
 
 @font-face {
     font-family: "DIN Next Pro";
-    src: url(/webfonts/DINNextLTPro-Medium.woff) format("woff"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Medium.otf) format("opentype"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Medium.ttf) format("truetype");
+    src: url(/webfonts/DINNextLTPro-Medium.woff) format("woff");
     font-style: normal;
     font-weight: 600;
 }
 
 @font-face {
     font-family: "DIN Next Pro";
-    src: url(/webfonts/DINNextLTPro-Regular.woff) format("woff"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Regular.otf) format("opentype"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Regular.ttf) format("truetype");
+    src: url(/webfonts/DINNextLTPro-Regular.woff) format("woff");
     font-style: normal;
     font-weight: 500;
 }
 
 @font-face {
     font-family: "DIN Next Pro";
-    src: url(/ewebfonts/DINNextLTPro-Light.woff) format("woff"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Light.otf) format("opentype"), url(/emea/themes/custom/softbank/fonts/DINNextLTPro-Light.ttf) format("truetype");
+    src: url(/webfonts/DINNextLTPro-Light.woff) format("woff");
     font-style: normal;
     font-weight: 300;
 }

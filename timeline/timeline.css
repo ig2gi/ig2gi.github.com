@@ -121,9 +121,9 @@
     font-style: italic;
     color: var(--timeline-card-txt-color);
     padding: 0px;
-    margin:0px;
+    margin: 0px;
     line-height: 1.1em;
-    opacity:0.6;
+    opacity: 0.6;
     text-transform: capitalize;
 }
 
@@ -241,7 +241,40 @@
     overflow: hidden;
     margin-bottom: 1.5em;
     margin-top: 2px;
-    /*text-align: justify;*/
+    cursor: default;
+}
+
+.timeline-event-content p.description.withtooltip {
+    cursor: help;
+}
+
+
+.timeline-event-content p.description .tooltiptext {
+    visibility: hidden;
+    width: 320px;
+    background-color: white;
+    border: 1px dashed var(--timeline-color);
+    color: var(--timeline-card-txt-color);
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 150;
+    top: 30%;
+    left: 60%;
+}
+
+.timeline-event.left .timeline-event-content p.description .tooltiptext {
+    right:  60%;
+left:auto;
+}
+
+
+
+.timeline-event-content p.description:hover .tooltiptext {
+    visibility: visible;
 }
 
 
@@ -386,6 +419,9 @@
     font-size: 0.7em;
     top: -1.5em;
 }
+
+
+
 
 
 
