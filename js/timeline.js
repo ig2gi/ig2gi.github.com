@@ -116,7 +116,7 @@ class TimelineEvent {
             e.softSkills.split(",").concat(e.hardSkills.split(",")).forEach(s => {
                 sidebar.append("span").text(s);
             });
-        
+
         }
 
         content.append("span")
@@ -144,16 +144,12 @@ class TimelineEvent {
             .classed("description", true)
             .text(e.description);
 
-
-
-        if (e.links && e.links.length === 1 && e.links[0].url) {
-            content.append("a")
-                .attr("href", e.links[0].url)
-                .attr("target", "_blank")
-                .attr("rel", "noopener noreferrer")
-                .text(e.links[0].name);
-        } else if (e.links && e.links.length > 1) {
-            const links = content.append("div").classed("links", true);
+        if (e.links && e.links.length > 0) {
+            const links = content.append("div")
+                .classed("links", true);
+            /*  links.append("span")
+                  .classed("moreinfo", true)
+                  .html(`<i class="fas fa-info-circle"></i>`);*/
             e.links.forEach(l => {
                 links.append("a")
                     .attr("href", l.url)
@@ -172,6 +168,9 @@ class TimelineEvent {
                 .classed("logo", true)
                 .attr("src", `./images/${e.company.logo}`);
         }
+
+
+
 
 
         const duration = diff(e.dates);

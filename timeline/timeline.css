@@ -211,7 +211,7 @@
 
 .timeline-event-content time {
     color: #5D6D7E;
-    font-size: 12px;
+    font-size: 0.6em;
     font-weight: normal;
     /*top: 3px;
     position: absolute;*/
@@ -220,8 +220,8 @@
 
 
 .timeline-event-content p.title {
-    font-size: 14px;
-    margin-top: 0.1em;
+    font-size: 0.75em;
+    margin-top: 0em;
     margin-bottom: 0px;
     max-width: 90%;
     color: #5D6D7E;
@@ -233,7 +233,7 @@
 .timeline-event-content p.description {
     --lh: 13px;
     line-height: var(--lh);
-    font-size: 11px;
+    font-size: 0.65em;
     max-width: 90%;
     color: #5D6D7E;
     --max-lines: 3;
@@ -241,32 +241,32 @@
     overflow: hidden;
     margin-bottom: 1.5em;
     margin-top: 2px;
+    /*text-align: justify;*/
 }
 
 
+.timeline-event-content div.links {
+    position: absolute;
+    bottom: 2px;
+    border: 0px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
 
-.timeline-event-content a {
+
+.timeline-event-content div.links a {
+    margin-left: 4px;
     font-size: 0.7em;
     font-weight: bold;
-    position: absolute;
-    bottom: 2px;
-    margin-top: 4px;
 }
 
-.timeline-event-content .links {
-    position: absolute;
-    bottom: 2px;
-    margin-top: 4px;
-    flex-direction: row;
-    align-items: flex-start;
+.timeline-event-content .moreinfo {
+    font-size: 0.7em;
+    color: var(--timeline-card-txt-color);
+    opacity: 0.9;
 }
-
-
-.timeline-event-content .links a {
-    position: relative;
-    margin-right: 4px;
-}
-
 
 
 
@@ -352,6 +352,8 @@
     opacity: 0.9;
 }
 
+
+
 .timeline-event.right .timeline-event-content img.logo {
     left: auto;
     right: 3px;
@@ -362,7 +364,7 @@
 .timeline-event-content .info {
     background-color: transparent;
     position: absolute;
-    top: -1.7em;
+    top: -1.6em;
     z-index: 100;
     font-size: 2em;
     color: var(--timeline-info-color);
