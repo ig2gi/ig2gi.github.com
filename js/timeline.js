@@ -98,13 +98,17 @@ class TimelineEvent {
             .append("div")
             .classed(`timeline-event ${side}`, true);
 
-        const hasSkills = false; // e.softSkills || e.hardSkills;
+        //
+        // SOFT SKILLS & ROOT CONTENT
+        //
+        const hasSkills = e.softSkills && e.softSkills !== "";
 
         let sidebar;
         if (side === "left" && hasSkills)
             sidebar = this.root.append("div")
             .classed(`timeline-event-sidebar`, true);
 
+        // add content root
         const content = this.root.append("div")
             .classed(`timeline-event-content ${e.type}`, true);
 
@@ -114,19 +118,32 @@ class TimelineEvent {
 
         if (hasSkills) {
             //sidebar.append("span").html(`<i class="fas fa-level-down-alt"></i>`);
-            e.softSkills.split(",").concat(e.hardSkills.split(",")).forEach(s => {
+            e.softSkills.split(",").forEach(s => {
                 sidebar.append("span").text(s);
             });
 
         }
 
+
+        //
+        // CATEGORY
+        //
+
         content.append("span")
             .classed(`tag ${e.category}`, true)
             .text(e.category);
 
+        //
+        // PERIOD
+        //
+
         const period = `${TF(e.dates[0])} <i class="fas fa-caret-right"></i> ${e.dates.length > 1 ? TF(e.dates[1]) : "now"} `;
         content.append("time")
             .html(period);
+
+        //
+        // INDUSTRY
+        //
 
         if (e.industry) {
             const ind = `${e.industry.toUpperCase()}`;
@@ -134,7 +151,9 @@ class TimelineEvent {
                 .html(ind);
         }
 
-
+        //
+        // TITLE
+        //
 
         content.append("p")
             .classed("title", true)
@@ -149,6 +168,10 @@ class TimelineEvent {
                 .html(tooltipText(e.description));
         }
 
+        //
+        // LINKS
+        //
+
         if (e.links && e.links.length > 0) {
             const links = content.append("div")
                 .classed("links", true);
@@ -161,10 +184,17 @@ class TimelineEvent {
             });
         }
 
+        //
+        // PIN
+        //
 
         content.append("span")
             .classed(`pin ${e.category}`, true);
 
+
+        //
+        // LOGO
+        //
         if (e.company.logo) {
             content.append("img")
                 .classed("logo", true)
@@ -172,14 +202,18 @@ class TimelineEvent {
         }
 
 
-
-
+        //
+        // DURATION
+        //
 
         const duration = diff(e.dates);
         content.append("span")
             .classed("duration", true)
             .html(duration.join(" "));
 
+        //
+        // INFO YEARS
+        //
 
         content.append("span")
             .classed("info", true)
