@@ -5,6 +5,7 @@
             "2019-07-01T00:00:00Z"
         ],
         "industry": "AI, Machine Learning",
+        "diploma": "certificate",
         "type": "formation",
         "category": "formation",
         "company": {
@@ -32,7 +33,8 @@
             "2018-05-01T00:00:00Z",
             "2019-07-01T00:00:00Z"
         ],
-        "industry": "Data-Driven Medicine",
+        "industry": "Health",
+        "subIndustry":"Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -48,7 +50,7 @@
         ],
         "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
         "fullDescription": "",
-        "softSkills": "creative,analytic,agile,prototyping,UX_Design",
+        "softSkills": "decision-making,analysis,initiative,design,responsability,goal setting,agility,critical observation",
         "hardSkills": "D3.js,balsamiq"
     },
     {
@@ -57,7 +59,8 @@
             "2015-05-01T00:00:00Z",
             "2018-04-01T00:00:00Z"
         ],
-        "industry": "Data-Driven Medicine",
+        "industry": "Health",
+        "subIndustry":"Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -73,7 +76,7 @@
         ],
         "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
         "fullDescription": "",
-        "softSkills": "creative,analytic",
+        "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility",
         "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
     },
     {
@@ -82,7 +85,8 @@
             "2013-05-01T00:00:00Z",
             "2015-04-01T00:00:00Z"
         ],
-        "industry": "Data-Driven Medicine",
+        "industry": "Health",
+        "subIndustry":"Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -97,7 +101,8 @@
             }
         ],
         "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design"
     },
     {
         "title": "Data Visualization, Web Developer",
@@ -105,7 +110,8 @@
             "2013-01-01T00:00:00Z",
             "2013-04-30T00:00:00Z"
         ],
-        "industry": "Nonprofit Organization",
+        "industry": "Health",
+        "subIndustry": "Nonprofit Organization",
         "type": "experience",
         "category": "freelance",
         "company": {
@@ -120,7 +126,8 @@
             }
         ],
         "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "decision-making,analysis,design,goal setting,organization"
     },
     {
         "title": "Senior Software Engineer",
@@ -143,7 +150,8 @@
             }
         ],
         "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "clarity,analysis,logical reasoning,divergent thinking,commitment,agility"
     },
     {
         "title": "One sabbatical year stuying Photography",
@@ -166,7 +174,8 @@
             }
         ],
         "description": "Courses, self-training, travel (Canada), photoreports. 4 months photo-reporter internship at Police Cantonale Vaudoise. Photographer at 'La nuit des musées, Lausanne' several years (2009, 2010, 2011, 2012).",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "curiosity,self-confidence,imagination,design,experimenting,questioning"
     },
     {
         "title": "Senior Software Engineer",
@@ -197,7 +206,8 @@
             "2006-04-01T00:00:00Z",
             "2007-07-30T00:00:00Z"
         ],
-        "industry": "Energy, Industry",
+        "industry": "Industry",
+        "subIndustry": "Energy",
         "type": "experience",
         "category": "freelance",
         "company": {
@@ -282,7 +292,8 @@
             "1998-07-01T00:00:00Z",
             "2000-06-30T00:00:00Z"
         ],
-        "industry": "Management Consulting",
+        "industry": "Industry",
+        "subIndustry": "Telecommunication",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -305,6 +316,7 @@
             "1998-06-30T00:00:00Z"
         ],
         "industry": "Computer Science",
+        "diploma": "master",
         "type": "formation",
         "category": "formation",
         "company": {
@@ -321,7 +333,8 @@
             "1995-04-01T00:00:00Z",
             "1997-06-30T00:00:00Z"
         ],
-        "industry": "Energy",
+        "industry": "Industry",
+        "subIndustry": "Energy",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -344,6 +357,7 @@
             "1994-06-30T00:00:00Z"
         ],
         "industry": "Physics, Data Science",
+        "diploma": "master",
         "type": "formation",
         "category": "formation",
         "company": {
@@ -360,12 +374,13 @@
         "description": "Thermodynamics in open systems, fluid mechanics, energy, statistical thermodynamics, mathematics, ..."
     },
     {
-        "title": "Three Years Engineering School",
+        "title": "Three Years Engineering School - Energy, Thermics & Fluid Mechanics",
         "dates": [
             "1990-09-01T00:00:00Z",
-            "1993-06-30T00:00:00Z"
+            "1993-07-30T00:00:00Z"
         ],
         "industry": "Physics, Data Science",
+        "diploma": "engineer",
         "type": "formation",
         "category": "formation",
         "company": {
@@ -388,6 +403,7 @@
             "1990-06-30T00:00:00Z"
         ],
         "industry": "Mathematics",
+        "diploma": "mathematics sup-spe",
         "type": "formation",
         "category": "formation",
         "company": {

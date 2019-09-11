@@ -267,8 +267,8 @@
 }
 
 .timeline-event.left .timeline-event-content p.description .tooltiptext {
-    right:  60%;
-left:auto;
+    right: 60%;
+    left: auto;
 }
 
 
@@ -453,42 +453,33 @@ left:auto;
 
 /**
 *
+* OVERVIEW
+*
+* 
 */
 
-#timeline-bar {
-    position: fixed;
-    top: 60px;
-    width: 80%;
-    z-index: 100;
+div.category, div.industry {
+    margin-bottom: 0.5em;
 }
 
-.svg-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    vertical-align: top;
-    overflow: hidden;
+div.category > p , div.industry > p{
+    text-align: left;
+    margin-bottom: 0px;
 }
 
-.svg-content {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-bottom: 1px dashed dimgray;
-    background: rgba(255, 255, 255, 0.8);
-    cursor: pointer;
+div.progress-bar.employee {
+    background: var(--timeline-tag-employee-color);
 }
 
-svg .freelance {
-    fill: var(--timeline-tag-freelance-color);
+div.progress-bar.freelance,
+div.progress-bar.consultant {
+    background: var(--timeline-tag-freelance-color);
 }
 
-svg .consultant {
-    fill: var(--timeline-tag-consultant-color);
+div.progress-bar.other {
+    background: var(--timeline-tag-other-color);
 }
 
-svg .employee {
-    fill: var(--timeline-tag-employee-color);
+div.industry div.progress-bar {
+    background: var(--timeline-tag-other-color);
 }
