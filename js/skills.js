@@ -1,15 +1,18 @@
-{
-    "communication": [
-        "Clarity",
-        "Confidence",
-        "Respect",
-        "Empathy",
-        "Listening",
-        "Verbal communication",
-        "Non-verbal communication",
-        "Written communication",
-        "Constructive feedback",
-        "Friendliness"
+
+
+const softSkills =  {
+    
+    "problem solving": [
+        "Analysis",
+        "Lateral thinking",
+        "Logical reasoning",
+        "Initiative",
+        "Persistence",
+        "Observation",
+        "Persuasion",
+        "Negotiation",
+        "Brainstorming",
+        "Decision making"
     ],
     "team work": [
         "Conflict management",
@@ -35,17 +38,17 @@
         "Organization",
         "Self-motivation"
     ],
-    "problem solving": [
-        "Analysis",
-        "Lateral thinking",
-        "Logical reasoning",
-        "Initiative",
-        "Persistence",
-        "Observation",
-        "Persuasion",
-        "Negotiation",
-        "Brainstorming",
-        "Decision making"
+    "communication": [
+        "Clarity",
+        "Confidence",
+        "Respect",
+        "Empathy",
+        "Listening",
+        "Verbal communication",
+        "Non-verbal communication",
+        "Written communication",
+        "Constructive feedback",
+        "Friendliness"
     ],
     "creativity": [
         "Divergent thinking",
@@ -120,4 +123,37 @@
         "Recall",
         "Questioning"
     ]
-}
+};
+
+const clean = (s) => s.trim().replace(" ", "").replace("-", "").toLowerCase();
+
+export default {
+
+    getTraits: function (){
+        return Object.keys(softSkills);
+    },
+
+    getFeatures: function(trait){
+        return softSkills[trait];
+    },
+
+    hasFeature: function(trait, feature){
+        let featuresTrait = this.getFeatures(trait);
+        let s1 = clean(feature);
+        return featuresTrait.find(s => clean(s) === s1) !== undefined;
+    },
+
+    getFeatureTraits(feature){
+        const found = [];
+        this.getTraits().forEach( t => {
+            if (this.hasFeature(t, feature))
+            found.push(t);
+        });
+        return found;
+    }
+
+   
+
+
+
+};

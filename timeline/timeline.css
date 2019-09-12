@@ -458,11 +458,13 @@
 * 
 */
 
-div.category, div.industry {
+div.category,
+div.industry {
     margin-bottom: 0.5em;
 }
 
-div.category > p , div.industry > p{
+div.category>p,
+div.industry>p {
     text-align: left;
     margin-bottom: 0px;
 }
@@ -482,4 +484,54 @@ div.progress-bar.other {
 
 div.industry div.progress-bar {
     background: var(--timeline-tag-other-color);
+}
+
+#spider {
+    width: 100%;
+    height: auto;
+    border: 0px dashed var(--timeline-color);
+}
+
+#spider g.grid circle {
+    fill: none;
+    stroke: var(--timeline-color);
+    opacity: 0.5;
+    stroke-width: 0.5px;
+}
+
+#spider g.grid line{
+    fill: none;
+    stroke: var(--timeline-color);
+    stroke-width: 0.5px;
+    opacity: 0.5;
+}
+
+#spider g.grid text {
+    font-size: 0.4em;
+}
+
+#spider g.grid g.important text {
+    font-weight: bold;
+}
+
+
+#spider g.grid g.axis.left text {
+    text-anchor: end;
+}
+
+#spider g.grid g.axis.right text {
+    text-anchor: start;
+}
+
+#spider g.data circle {
+    fill: #A9CCE3;
+    stroke: white;
+    stroke-width: 1px; 
+}
+
+#spider g.data path.curve {
+    fill: #A9CCE3;
+    fill-opacity: 0.5;
+    stroke: #A9CCE3;
+    stroke-width: 2px;
 }

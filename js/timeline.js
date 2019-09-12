@@ -1,6 +1,8 @@
 /* globals d3 moment*/
 "use strict";
 
+import S from "./skills.js";
+
 /**
  *
  *
@@ -41,7 +43,28 @@ class Timeline {
         this.statistics = {};
         this.statistics.experience = getStats(this.events, e => e.type !== "formation", ["industry", "category"]);
         this.statistics.education = getStats(this.events, e => e.type === "formation", ["diploma"]);
-
+        const axes = S.getTraits();
+        const temp = {};
+        axes.forEach(a => {
+            let d = {
+                "axis": a,
+                "count": 0,
+                "values": []
+            };
+            temp[a] = d;
+        });
+        this.events.forEach(e => {
+            let words = e.softSkills ? e.softSkills.split(",") : [];
+            words.forEach(w => {
+                axes.forEach(a => {
+                    if (S.hasFeature(a, w)) {
+                        temp[a].count++;
+                        temp[a].values.push(w);
+                    }
+                });
+            });
+        });
+        this.statistics.softskills = Object.values(temp);
     }
 
     /**
@@ -111,12 +134,92 @@ class Timeline {
         rootOverview.append("h5").classed("text-left", true).html(` 1 Engineer's degree`);
         const div2 = rootOverview.append("div").classed("d-flex flex-column", true);
         div2.append("p").classed("text-left", true).html(`<i class="fas fa-certificate small" style="color:#BB8FCE"></i>  ${engineer.title}`); // FIXME:
-      
+
 
 
         // soft skills
+        const data3 = this.statistics.softskills.sort((a, b) => a.count > b.count);
+        data3.forEach((t, i) => {
+            t.angle = i * Math.PI * 2 / data3.length;
+        });
         rootOverview.append("br");
         rootOverview.append("h3").html(`Soft Skills`);
+        rootOverview.append("p")
+            .classed("small", true)
+            .html(`Based on <a href="https://resumegenius.com/blog/resume-help/soft-skills" target="_blank">Top 10 soft skills</a>`);
+
+        let size = 300;
+        const svg = rootOverview
+            .append("div")
+            .append("svg")
+            .attr("id", "spider")
+            .attr("viewBox", "0 0 300 300");
+
+        const rdomain = d3.extent(data3, d => d.count);
+        let radialScale = d3.scaleLinear()
+            .domain(rdomain)
+            .range([15, size / 3]);
+        let ticks = [2, 5, 10, 15, rdomain[1]];
+
+        const gGrid = svg.append("g").classed("grid", true);
+        gGrid.selectAll("circle")
+            .data(ticks)
+            .enter()
+            .append("circle")
+            .attr("cx", size / 2)
+            .attr("cy", size / 2)
+            .attr("r", t => radialScale(t));
+
+        const axis = gGrid.selectAll("g.axis")
+            .data(data3)
+            .enter()
+            .append("g")
+            .attr("class", d => `axis ${(d.angle <= Math.PI / 2 || d.angle > 3 * Math.PI / 2  ) ? "right" : "left"}`);
+
+        axis.append("line")
+            .classed("grid", true)
+            .attr("x1", size / 2)
+            .attr("y1", size / 2)
+            .attr("x2", d => size / 2 + radialScale(rdomain[1]) * Math.cos(d.angle))
+            .attr("y2", d => size / 2 + radialScale(rdomain[1]) * Math.sin(d.angle));
+
+
+        const axisTitle = axis.append("g")
+            .attr("transform", d => `translate(${size / 2 + radialScale(rdomain[1] + 2) * Math.cos(d.angle)},${size / 2 + radialScale(rdomain[1] + 2) * Math.sin(d.angle)})`)
+            .classed("important", d => d.count >= 0.8 * rdomain[1]);
+
+        axisTitle.selectAll("text")
+            .data(d => d.axis.split(" "))
+            .enter()
+            .append("text")
+            .attr("dy", (d, i) => i + "em")
+            .text(d => d);
+
+        // plot data (line and points)
+        const gData = svg.append("g")
+            .classed("data", true)
+            .attr("transform", `translate(${size/2}, ${size /2})`);
+
+        const radarLine = d3.lineRadial()
+            .curve(d3.curveCatmullRomClosed.alpha(0.75))
+            .radius(d => radialScale(d.count))
+            .angle(d => d.angle + Math.PI / 2);
+
+        gData.append('path')
+            .classed("curve", true)
+            .attr("d", radarLine(data3));
+
+        gData.selectAll("circle")
+            .data(data3)
+            .enter()
+            .append("circle")
+            .attr("cx", d => radialScale(d.count) * Math.cos(d.angle))
+            .attr("cy", d => radialScale(d.count) * Math.sin(d.angle))
+            .attr("r", "5px");
+
+
+
+
 
     }
 

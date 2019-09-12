@@ -50,7 +50,7 @@
         ],
         "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
         "fullDescription": "",
-        "softSkills": "decision-making,analysis,initiative,design,responsability,goal setting,agility,critical observation",
+        "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring",
         "hardSkills": "D3.js,balsamiq"
     },
     {
@@ -76,7 +76,7 @@
         ],
         "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
         "fullDescription": "",
-        "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility",
+        "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring",
         "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
     },
     {
@@ -102,7 +102,7 @@
         ],
         "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
         "fullDescription": "",
-        "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design"
+        "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management"
     },
     {
         "title": "Data Visualization, Web Developer",
@@ -127,7 +127,7 @@
         ],
         "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
         "fullDescription": "",
-        "softSkills": "decision-making,analysis,design,goal setting,organization"
+        "softSkills": "decision-making,analysis,design,goal setting,organization,Networking"
     },
     {
         "title": "Senior Software Engineer",
@@ -198,7 +198,8 @@
             }
         ],
         "description": "Architecture, design and implementation of a Workflow-based collaborative application for the completely tapeless, digital production of television programs - architected around REST principles for data integration. Wrote use-case catalog, architecture, component and framework selection, implementation planning, design and implementation.",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall"
     },
     {
         "title": "Senior Software Engineer",
@@ -222,7 +223,8 @@
             }
         ],
         "description": "Re-engineering of the in-house electricity-management logistics platform to open it to third parties and to extend the range of managed goods to gas, digital media, etc. Reverse-engineered use-cases, sequence and class diagrams of the pre-existing system. Wrote new use-cases and specifications by interviewing all platform stakeholders. Architected, designed, implemented the augmented system.",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis"
     },
     {
         "title": "Senior Software Engineer",
@@ -245,7 +247,8 @@
             }
         ],
         "description": "Analysis and design of an infrastructure for notification of changes between applications. Specific implementation for cache invalidation of the pms application.  Architecture and design of a batch framework which provides an asynchronous, server-based batch processing environment that can wrap, execute and monitor business tasks.",
-        "fullDescription": ""
+        "fullDescription": "",
+        "softSkills": "Logical reasoning,Persistence,Conflict management,Analysis,Written communication,Discipline,Commitment,Tolerance,Diplomacy,Goal setting,Stress management,Cultural intelligence,Trust"
     },
     {
         "title": "Senior Software Engineer",
@@ -262,7 +265,8 @@
             "logo": ""
         },
         "links": [],
-        "description": "Developed a knowledge-based interface (API java 2d) - developed a prototype. Analysis of a natural language query system - produced analysis and design specifications."
+        "description": "Developed a knowledge-based interface (API java 2d) - developed a prototype. Analysis of a natural language query system - produced analysis and design specifications.",
+        "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect"
     },
     {
         "title": "Java J2EE Senior Developer",
@@ -284,7 +288,8 @@
                 "url": "https://www.temenos.com"
             }
         ],
-        "description": "Design and implementation of a business tag-library to communicate with EJB service layer. Design of web components - technical person in charge of the EJB layer - responsible for the programming, packaging and deployment environments."
+        "description": "Design and implementation of a business tag-library to communicate with EJB service layer. Design of web components - technical person in charge of the EJB layer - responsible for the programming, packaging and deployment environments.",
+        "softSkills": "Analysis,Project management,Prioritizing"
     },
     {
         "title": "Java Developer",
