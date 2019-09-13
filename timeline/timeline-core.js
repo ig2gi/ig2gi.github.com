@@ -148,7 +148,7 @@ class Timeline {
         div2.append("p")
             .classed("text-left", true)
             .style("line-height", "1em")
-            .html(`<i class="fa fa-caret-right small" aria-hidden="true"></i>${engineer.title}`); // FIXME:
+            .html(`<i class="fa fa-caret-right small" aria-hidden="true"></i> ${engineer.title}`); // FIXME:
 
 
 
