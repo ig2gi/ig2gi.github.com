@@ -33,7 +33,7 @@
             "2018-05-01T00:00:00Z",
             "2019-07-01T00:00:00Z"
         ],
-        "industry": "Health",
+        "industry": "Healthcare",
         "subIndustry":"Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
@@ -59,7 +59,7 @@
             "2015-05-01T00:00:00Z",
             "2018-04-01T00:00:00Z"
         ],
-        "industry": "Health",
+        "industry": "Healthcare",
         "subIndustry":"Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
@@ -85,7 +85,7 @@
             "2013-05-01T00:00:00Z",
             "2015-04-01T00:00:00Z"
         ],
-        "industry": "Health",
+        "industry": "Healthcare",
         "subIndustry":"Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
@@ -110,7 +110,7 @@
             "2013-01-01T00:00:00Z",
             "2013-04-30T00:00:00Z"
         ],
-        "industry": "Health",
+        "industry": "Healthcare",
         "subIndustry": "Nonprofit Organization",
         "type": "experience",
         "category": "freelance",
@@ -135,7 +135,8 @@
             "2009-08-01T00:00:00Z",
             "2012-10-01T00:00:00Z"
         ],
-        "industry": "Private Banking",
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
         "type": "experience",
         "category": "consultant",
         "company": {
@@ -232,7 +233,8 @@
             "2004-09-01T00:00:00Z",
             "2005-12-31T00:00:00Z"
         ],
-        "industry": "Private Banking",
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
         "type": "experience",
         "category": "consultant",
         "company": {
@@ -256,7 +258,8 @@
             "2004-02-01T00:00:00Z",
             "2005-08-31T00:00:00Z"
         ],
-        "industry": "Knowledge Systems",
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -274,7 +277,8 @@
             "2000-07-01T00:00:00Z",
             "2004-01-31T00:00:00Z"
         ],
-        "industry": "Private Banking",
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
         "type": "experience",
         "category": "employee",
         "company": {
