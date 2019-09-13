@@ -1,7 +1,7 @@
 /* globals d3 moment*/
 "use strict";
 
-import S from "./skills.js";
+import S from "./timeline-skills.js";
 
 /**
  *
@@ -146,7 +146,7 @@ class Timeline {
         rootOverview.append("h3").html(`Soft Skills`);
         rootOverview.append("p")
             .classed("small", true)
-            .html(`Based on <a href="https://resumegenius.com/blog/resume-help/soft-skills" target="_blank">Top 10 soft skills</a>`);
+            .html(`Based on <a href="https://resumegenius.com/blog/resume-help/soft-skills" target="_blank">Top 10 soft skills</a> (Resume Genius)`);
 
         let size = 300;
         const svg = rootOverview
@@ -159,7 +159,7 @@ class Timeline {
         let radialScale = d3.scaleLinear()
             .domain(rdomain)
             .range([15, size / 3]);
-        let ticks = [2, 5, 10, 15, rdomain[1]];
+        let ticks = [5, 10, 15, rdomain[1]];
 
         const gGrid = svg.append("g").classed("grid", true);
         gGrid.selectAll("circle")

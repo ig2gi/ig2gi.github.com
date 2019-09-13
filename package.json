@@ -1,0 +1,24 @@
+{
+  "name": "ig2gi.github.com",
+  "version": "1.0.0",
+  "description": "ig2gi website",
+  "main": "minify.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@node-minify/core": "^4.1.2",
+    "@node-minify/google-closure-compiler": "^4.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ig2gi/ig2gi.github.com.git"
+  },
+  "author": "gilbert perrin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ig2gi/ig2gi.github.com/issues"
+  },
+  "homepage": "https://github.com/ig2gi/ig2gi.github.com#readme"
+}
