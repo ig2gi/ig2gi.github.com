@@ -125,15 +125,30 @@ class Timeline {
         rootOverview.append("h3").html(`Education`);
         rootOverview.append("h6").html(`~${Math.round(this.statistics.education.totaly)} years (after bachelor's degree)`);
         const masters = this.events.filter(e => e.type = "formation" && e.diploma === "master");
-        rootOverview.append("h5").classed("text-left", true).html(` 2 Master's degrees`);
-        const div = rootOverview.append("div").classed("d-flex flex-column", true);
+        rootOverview.append("h5")
+            .classed("text-left", true)
+            .style("color", "#BB8FCE")
+            .html(` 2 Master's degrees`);
+        const div = rootOverview.append("div")
+            .classed("d-flex flex-column", true);
         masters.forEach(m => {
-            div.append("p").classed("text-left", true).html(`<i class="fas fa-certificate small" style="color:#BB8FCE"></i>  ${m.title}`); // FIXME:
+            div.append("p")
+                .classed("text-left", true)
+                .style("line-height", "1em")
+                .html(`<i class="fa fa-caret-right small" aria-hidden="true"></i> ${m.title}`); // FIXME:
         });
+
         const engineer = this.events.find(e => e.type = "formation" && e.diploma === "engineer");
-        rootOverview.append("h5").classed("text-left", true).html(` 1 Engineer's degree`);
-        const div2 = rootOverview.append("div").classed("d-flex flex-column", true);
-        div2.append("p").classed("text-left", true).html(`<i class="fas fa-certificate small" style="color:#BB8FCE"></i>  ${engineer.title}`); // FIXME:
+        rootOverview.append("h5")
+            .classed("text-left", true)
+            .style("color", "#BB8FCE")
+            .html(` 1 Engineer's degree`);
+        const div2 = rootOverview.append("div")
+            .classed("d-flex flex-column", true);
+        div2.append("p")
+            .classed("text-left", true)
+            .style("line-height", "1em")
+            .html(`<i class="fa fa-caret-right small" aria-hidden="true"></i>${engineer.title}`); // FIXME:
 
 
 
