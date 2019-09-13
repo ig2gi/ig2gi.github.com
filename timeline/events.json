@@ -21,6 +21,10 @@
             {
                 "name": "c2",
                 "url": "https://www.coursera.org/account/accomplishments/certificate/TYVQ2MX7M8M9"
+            },
+            {
+                "name": "c3",
+                "url": "https://www.coursera.org/account/accomplishments/certificate/7R3UUZGMJU6D"
             }
         ],
         "description": "Deep Learning, Tensorflow, Convolutional Neural Network, Artificial Neural Network. Coursera Specialization by Stanford University.",
@@ -34,7 +38,7 @@
             "2019-07-01T00:00:00Z"
         ],
         "industry": "Healthcare",
-        "subIndustry":"Data-Driven Medicine",
+        "subIndustry": "Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -60,7 +64,7 @@
             "2018-04-01T00:00:00Z"
         ],
         "industry": "Healthcare",
-        "subIndustry":"Data-Driven Medicine",
+        "subIndustry": "Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
@@ -86,7 +90,7 @@
             "2015-04-01T00:00:00Z"
         ],
         "industry": "Healthcare",
-        "subIndustry":"Data-Driven Medicine",
+        "subIndustry": "Data-Driven Medicine",
         "type": "experience",
         "category": "employee",
         "company": {
