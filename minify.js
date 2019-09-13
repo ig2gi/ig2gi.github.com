@@ -1,15 +1,23 @@
 const minify = require('@node-minify/core');
 const gcc = require('@node-minify/google-closure-compiler');
+const csso = require('@node-minify/csso');
 const fs = require('fs');
 
-const path = 'timeline/timeline.min.js';
-try {
-    if (fs.existsSync(path)) {
-        fs.unlinkSync(path);
-    }
-} catch (err) {
-    console.error(err);
-}
+
+const clean = function (paths) {
+    paths.forEach(p => {
+        try {
+            if (fs.existsSync(p)) {
+                fs.unlinkSync(p);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+
+};
+
+clean(['timeline/timeline.min.js', 'timeline/timeline.min.css']);
 
 
 minify({
@@ -21,5 +29,12 @@ minify({
         compilationLevel: 'ADVANCED',
         languageIn: 'ECMASCRIPT6'
     },
+    callback: function (err, min) {}
+});
+
+minify({
+    compressor: csso,
+    input: 'timeline/timeline.css',
+    output: 'timeline/timeline.min.css',
     callback: function (err, min) {}
 });
