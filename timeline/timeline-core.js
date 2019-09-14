@@ -296,7 +296,7 @@ class TimelineEvent {
         //
         // SOFT SKILLS & ROOT CONTENT
         //
-        const hasSkills = e.softSkills && e.softSkills !== "";
+        const hasSkills = false; // e.softSkills && e.softSkills !== "";
 
         let sidebar;
         if (side === "left" && hasSkills)
