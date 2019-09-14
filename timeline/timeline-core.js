@@ -153,10 +153,12 @@ class Timeline {
 
 
         // soft skills
-        const data3 = this.statistics.softskills.sort((a, b) => a.count > b.count);
+        let data3 = this.statistics.softskills
+            .sort((a, b) => a.count - b.count);
         data3.forEach((t, i) => {
             t.angle = i * Math.PI * 2 / data3.length;
         });
+
         rootOverview.append("br");
         rootOverview.append("h3").html(`Soft Skills`);
         rootOverview.append("p")
@@ -174,7 +176,7 @@ class Timeline {
         let radialScale = d3.scaleLinear()
             .domain(rdomain)
             .range([15, size / 3]);
-        let ticks = [5, 10, 15, rdomain[1]];
+        let ticks = [rdomain[0], 10, 15, rdomain[1]];
 
         const gGrid = svg.append("g").classed("grid", true);
         gGrid.selectAll("circle")
