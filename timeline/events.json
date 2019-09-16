@@ -54,7 +54,7 @@
         ],
         "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
         "fullDescription": "",
-        "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring",
+        "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration",
         "hardSkills": "D3.js,balsamiq"
     },
     {
@@ -80,7 +80,7 @@
         ],
         "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
         "fullDescription": "",
-        "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring",
+        "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring,Collaboration",
         "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
     },
     {
@@ -131,7 +131,7 @@
         ],
         "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
         "fullDescription": "",
-        "softSkills": "decision-making,analysis,design,goal setting,organization,Networking"
+        "softSkills": "decision-making,analysis,design,goal setting,organization,Networking,Collaboration"
     },
     {
         "title": "Senior Software Engineer",
@@ -156,7 +156,7 @@
         ],
         "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
         "fullDescription": "",
-        "softSkills": "clarity,analysis,logical reasoning,divergent thinking,commitment,agility"
+        "softSkills": "clarity,analysis,logical reasoning,divergent thinking,commitment,agility,Collaboration"
     },
     {
         "title": "One sabbatical year stuying Photography",
@@ -204,7 +204,7 @@
         ],
         "description": "Architecture, design and implementation of a Workflow-based collaborative application for the completely tapeless, digital production of television programs - architected around REST principles for data integration. Wrote use-case catalog, architecture, component and framework selection, implementation planning, design and implementation.",
         "fullDescription": "",
-        "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall"
+        "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall,Collaboration"
     },
     {
         "title": "Senior Software Engineer",
@@ -229,7 +229,7 @@
         ],
         "description": "Re-engineering of the in-house electricity-management logistics platform to open it to third parties and to extend the range of managed goods to gas, digital media, etc. Reverse-engineered use-cases, sequence and class diagrams of the pre-existing system. Wrote new use-cases and specifications by interviewing all platform stakeholders. Architected, designed, implemented the augmented system.",
         "fullDescription": "",
-        "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis"
+        "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis,Collaboration"
     },
     {
         "title": "Senior Software Engineer",
@@ -321,7 +321,7 @@
             }
         ],
         "description": "The principal activity was the migration and the development of an existing data warehouse under (4D) towards new technologies Java and Web within a team of 4 people",
-        "softSkills": "Planning,Responsibility,Teamwork,Design,Written communication,Self-management,Collaboration,Logical reasoning"
+        "softSkills": "Planning,Responsibility,Teamwork,Design,Written communication,Self-management,Collaboration,Logical reasoning,Written communication"
     },
     {
         "title": "Master's degree in Computer Science with honours",
@@ -362,7 +362,8 @@
                 "url": "https://www.spiebatignolles.fr"
             }
         ],
-        "description": "Head of a Computation Group working on Operational Projects. Analysis and calculations of the air-conditioning of an enclosure of storage of nuclear waste in Novossibirsk (Siberia). Design and sizing of smoke-evacuation in tunnels using the SES (Subway Environmental Simulation) software. New module implementation (FORTRAN) taking account a new physical model."
+        "description": "Head of a Computation Group working on Operational Projects. Analysis and calculations of the air-conditioning of an enclosure of storage of nuclear waste in Novossibirsk (Siberia). Design and sizing of smoke-evacuation in tunnels using the SES (Subway Environmental Simulation) software. New module implementation (FORTRAN) taking account a new physical model.",
+        "softSkills": "Logical reasoning,Written communication,Commitment"
     },
     {
         "title": "Master's degree in Thermodynamics and Fluid Mechanics with Honors",

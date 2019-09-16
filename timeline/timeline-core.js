@@ -153,10 +153,12 @@ class Timeline {
 
 
         // soft skills
-        let data3 = this.statistics.softskills
-            .sort((a, b) => a.count - b.count);
+        const data3 = this.statistics.softskills
+            .sort((a, b) => a.axis.localeCompare(b.axis));
+        const total = data3.map(d => d.count).reduce((acc, cur) => acc += cur);
         data3.forEach((t, i) => {
-            t.angle = i * Math.PI * 2 / data3.length;
+            t.angle = i * Math.PI * 2 / data3.length ;
+            t.score = t.count / total;
         });
 
         rootOverview.append("br");
@@ -165,26 +167,28 @@ class Timeline {
             .classed("small", true)
             .html(`Based on <a href="https://resumegenius.com/blog/resume-help/soft-skills" target="_blank">Top 10 soft skills</a> (Resume Genius)`);
 
-        let size = 300;
+        const size = 300;
+        const XC = size / 2;
+        const YC = size / 2 - size / 10;
         const svg = rootOverview
             .append("div")
             .append("svg")
             .attr("id", "spider")
-            .attr("viewBox", "0 0 300 300");
+            .attr("viewBox", "0 0 300 250");
 
         const rdomain = d3.extent(data3, d => d.count);
-        let radialScale = d3.scaleLinear()
+        const radialScale = d3.scaleLinear()
             .domain(rdomain)
-            .range([15, size / 3]);
-        let ticks = [rdomain[0], 10, 15, rdomain[1]];
+            .range([25, size / 3]);
+        const ticks = [rdomain[0],  15, rdomain[1]];
 
         const gGrid = svg.append("g").classed("grid", true);
         gGrid.selectAll("circle")
             .data(ticks)
             .enter()
             .append("circle")
-            .attr("cx", size / 2)
-            .attr("cy", size / 2)
+            .attr("cx", XC)
+            .attr("cy", YC)
             .attr("r", t => radialScale(t));
 
         const axis = gGrid.selectAll("g.axis")
@@ -195,14 +199,14 @@ class Timeline {
 
         axis.append("line")
             .classed("grid", true)
-            .attr("x1", size / 2)
-            .attr("y1", size / 2)
-            .attr("x2", d => size / 2 + radialScale(rdomain[1]) * Math.cos(d.angle))
-            .attr("y2", d => size / 2 + radialScale(rdomain[1]) * Math.sin(d.angle));
+            .attr("x1", XC)
+            .attr("y1", YC)
+            .attr("x2", d => XC + radialScale(rdomain[1]) * Math.cos(d.angle))
+            .attr("y2", d => YC + radialScale(rdomain[1]) * Math.sin(d.angle));
 
 
         const axisTitle = axis.append("g")
-            .attr("transform", d => `translate(${size / 2 + radialScale(rdomain[1] + 2) * Math.cos(d.angle)},${size / 2 + radialScale(rdomain[1] + 2) * Math.sin(d.angle)})`)
+            .attr("transform", d => `translate(${XC + radialScale(rdomain[1] + 1) * Math.cos(d.angle)},${YC + radialScale(rdomain[1] + 1) * Math.sin(d.angle)})`)
             .classed("important", d => d.count >= 0.8 * rdomain[1]);
 
         axisTitle.selectAll("text")
@@ -215,7 +219,7 @@ class Timeline {
         // plot data (line and points)
         const gData = svg.append("g")
             .classed("data", true)
-            .attr("transform", `translate(${size/2}, ${size /2})`);
+            .attr("transform", `translate(${XC}, ${YC})`);
 
         const radarLine = d3.lineRadial()
             .curve(d3.curveCatmullRomClosed.alpha(0.75))
@@ -226,13 +230,28 @@ class Timeline {
             .classed("curve", true)
             .attr("d", radarLine(data3));
 
-        gData.selectAll("circle")
+        const gDataPoint = gData.selectAll("g.point")
             .data(data3)
             .enter()
+            .append("g")
+            .classed("point", true)
+            .attr("transform", d => `translate(${radialScale(d.count) * Math.cos(d.angle)},${radialScale(d.count) * Math.sin(d.angle)})`);
+
+        gDataPoint
             .append("circle")
-            .attr("cx", d => radialScale(d.count) * Math.cos(d.angle))
-            .attr("cy", d => radialScale(d.count) * Math.sin(d.angle))
+            .attr("cx", 0)
+            .attr("cy", 0)
             .attr("r", "5px");
+
+        rootOverview.append("p")
+            .classed("small text-secondary", true)
+            .html(`<i class="fas fa-exclamation-triangle"></i> The goal of this chart is to highlight some key soft skills  and deliver a  profile of my strengths: but it doesn't mean that the skills with a lower score  are weaknesses!`);
+/*
+        gDataPoint
+            .append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .text(d => d.count);*/
 
 
 

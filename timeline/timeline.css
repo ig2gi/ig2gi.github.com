@@ -73,7 +73,8 @@
     right: 10px;
     height: 10px;
     color: grey;
-    width: 80%;
+    width: 20%;
+    max-width: 20%
 }
 
 .timeline-event {
@@ -489,7 +490,7 @@ div.industry div.progress-bar {
 #spider {
     width: 100%;
     height: auto;
-    border: 0px dashed var(--timeline-color);
+    border: 1px dotted var(--timeline-info-color);
 }
 
 #spider g.grid circle {
