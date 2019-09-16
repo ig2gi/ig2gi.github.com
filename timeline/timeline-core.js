@@ -245,7 +245,7 @@ class Timeline {
 
         rootOverview.append("p")
             .classed("small text-secondary", true)
-            .html(`<i class="fas fa-exclamation-triangle"></i> The goal of this chart is to highlight some key soft skills  and deliver a  profile of my strengths: but it doesn't mean that the skills with a lower score  are weaknesses!`);
+            .html(`<i class="fas fa-exclamation-triangle small"></i> The goal of this chart is to highlight some key soft skills  and deliver a  profile of my strengths: but it doesn't mean that the skills with a lower score  are weaknesses!`);
 /*
         gDataPoint
             .append("text")
