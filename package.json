@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "ig2gi website",
   "main": "minify.js",
-  "dependencies": {},
+  "dependencies": {
+    "pdfkit": "^0.10.0"
+  },
   "devDependencies": {
     "@node-minify/core": "^4.1.2",
     "@node-minify/csso": "^4.1.2",
