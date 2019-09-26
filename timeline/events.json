@@ -16,7 +16,7 @@
         "links": [
             {
                 "name": "c1",
-                "url": "https://www.coursera.org/account/accomplishments/records/XM4F5LNKZGF3"
+                "url": "https://www.coursera.org/account/accomplishments/certificate/XM4F5LNKZGF3"
             },
             {
                 "name": "c2",
@@ -25,6 +25,10 @@
             {
                 "name": "c3",
                 "url": "https://www.coursera.org/account/accomplishments/certificate/7R3UUZGMJU6D"
+            },
+            {
+                "name": "c4",
+                "url": "https://www.coursera.org/account/accomplishments/certificate/UST89R7CHWZV"
             }
         ],
         "description": "Deep Learning, Tensorflow, Convolutional Neural Network, Artificial Neural Network. Coursera Specialization by Stanford University.",
