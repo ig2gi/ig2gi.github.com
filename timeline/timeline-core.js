@@ -10,6 +10,7 @@ import S from "./timeline-skills.js";
  */
 class Timeline {
 
+    
 
     /**
      *Creates an instance of Timeline.
@@ -617,7 +618,7 @@ function tooltipText(txt) {
     //
     const loadEvents = (data) => {
 
-        new Timeline(data)
+        new Timeline(data.events)
             .render();
 
     };

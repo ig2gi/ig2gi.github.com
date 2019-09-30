@@ -26,7 +26,7 @@ minify({
     output: 'timeline/timeline-core.min.js',
     options: {
         createSourceMap: false,
-        compilationLevel: 'ADVANCED',
+        compilationLevel: 'SIMPLE',
         languageIn: 'ECMASCRIPT6'
     },
     callback: function (err, min) {}
