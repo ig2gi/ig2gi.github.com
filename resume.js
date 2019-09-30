@@ -13,9 +13,17 @@ const shortFormatter = (y, m) => {
 };
 
 
-const marginH = 100;
+const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
+const categoryColors = {
+    "employee": "#F8C471",
+    "formation": "#BB8FCE",
+    "freelance": "#7DCEA0",
+    "consultant": "#7DCEA0",
+    "other": "#7FB3D5",
+    "freelance - consultant": "#7DCEA0",
+};
 
 const resumeData = loadResume();
 const doc = initializeDocument();
@@ -105,19 +113,20 @@ function buildEvents(data, title) {
 
 
             // YEAR
+           
             light(20, color1)
-                .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
+                .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y  );
 
             const x1 = doc.x + doc.widthOfString("2") / 2;
-            const y1 = doc.y - 5;
+            const y1 = doc.y - 2;
 
             // DURATION
             let s = diff(event.duration, shortFormatter);
-            light(9, color1).text(s, doc.x + 8, doc.y);
+            regular(9, color1).text(s, x1 + 12, y1);
 
             // TITLE
             medium(12)
-                .text(event.title, marginH, doc.y - 2.3 * doc.heightOfString("1000"))
+                .text(event.title, marginH, doc.y - 2 * doc.heightOfString("1000"))
                 .moveDown(0);
 
             // INDUSTRY
@@ -127,7 +136,7 @@ function buildEvents(data, title) {
             doc.moveUp();
             regular(8, "#1F618D")
                 .highlight(doc.x + 440 - doc.widthOfString(` ${ind} `), doc.y , doc.widthOfString(` ${ind}  `), height, {
-                    color: "#A2D9CE"
+                    color: "#D5DBDB"
                 })
                 .text(ind.toLowerCase(), doc.x, doc.y , {
                     align: "right",
@@ -138,11 +147,14 @@ function buildEvents(data, title) {
             getWriter(event.type)(event);
 
 
-            // END EVENT
-            doc.moveTo(x1, y1)
+            // END EVENT (YEAR LINE)
+            doc.moveTo(x1, y1 - 3)
                 .lineTo(x1, doc.y)
                 .stroke(color1)
                 .strokeOpacity(0.6);
+            
+            doc.polygon([x1 + 2, y1], [x1 + 10, y1 + 5], [x1 + 2, y1 + 10]);
+            doc.fill(categoryColors[event.category]);
 
             doc.text("", marginH, doc.y).moveDown(3);
 
@@ -297,6 +309,18 @@ function endDocument() {
                 },
                 link: "http://ig2gi.github.io",
                 underline: true
+            });
+            const categories = ["Employee", "Freelance - Consultant", "Formation", "Other"];
+            let x = 180;
+            categories.forEach((c, i) => {
+                x += i === 0 ? 0 : doc.widthOfString(categories[i-1]) + 10;
+                doc.rect(x - 4, 820, 3, 6).fill(categoryColors[c.toLowerCase()]);
+                light(7).text(c, x, 820, {
+                    align: "left",
+                    margins: {
+                        bottom: 0
+                    }
+                });
             });
         }
 
