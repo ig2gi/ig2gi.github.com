@@ -113,9 +113,9 @@ function buildEvents(data, title) {
 
 
             // YEAR
-           
+
             light(20, color1)
-                .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y  );
+                .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
 
             const x1 = doc.x + doc.widthOfString("2") / 2;
             const y1 = doc.y - 2;
@@ -135,10 +135,10 @@ function buildEvents(data, title) {
             let height = doc.currentLineHeight();
             doc.moveUp();
             regular(8, "#1F618D")
-                .highlight(doc.x + 440 - doc.widthOfString(` ${ind} `), doc.y , doc.widthOfString(` ${ind}  `), height, {
+                .highlight(doc.x + 440 - doc.widthOfString(` ${ind} `), doc.y, doc.widthOfString(` ${ind}  `), height, {
                     color: "#D5DBDB"
                 })
-                .text(ind.toLowerCase(), doc.x, doc.y , {
+                .text(ind.toLowerCase(), doc.x, doc.y, {
                     align: "right",
                     width: 440
                 });
@@ -152,7 +152,7 @@ function buildEvents(data, title) {
                 .lineTo(x1, doc.y)
                 .stroke(color1)
                 .strokeOpacity(0.6);
-            
+
             doc.polygon([x1 + 2, y1], [x1 + 10, y1 + 5], [x1 + 2, y1 + 10]);
             doc.fill(categoryColors[event.category]);
 
@@ -241,12 +241,12 @@ function certificateWriter(exp) {
             align: "justify",
             width: 420
         });
-    
+
     if (exp.links && exp.links.length > 0) {
         doc.moveDown();
         let t = "Certificate(s): ".toUpperCase();
         regular(8, "#B2BABB").text(t);
-        let x = doc.x + doc.widthOfString(t) +  5;
+        let x = doc.x + doc.widthOfString(t) + 5;
         doc.moveUp();
         let l = exp.links[0];
         let w = doc.widthOfString(l.name) + 5;
@@ -285,6 +285,7 @@ function endDocument() {
         const range = doc.bufferedPageRange(); // => { start: 0, count: 2 }}
         for (let i = 0; i < range.start + range.count; i++) {
             doc.switchToPage(i);
+
             // top
             regular(9).text(`Gilbert Perrin Resume`, 0, 10, {
                 align: "right",
@@ -295,8 +296,33 @@ function endDocument() {
             light(6).text(`Page ${i + 1} of ${range.count}`, 0, 20, {
                 align: "right"
             });
+
+            // Profile Header
+            const r = 15;
+            const xc = 2 * r;
+            const yc = 2 * r;
+
+            doc.circle(xc, yc, 25).lineWidth(0).fillOpacity(0.5).fill("#EAEDED");
+            doc.fillOpacity(1);
+            
+            let angle = -Math.PI / 4;
+            resumeData.social.forEach(s => {
+                let x = xc  + (r + 10) * Math.cos(angle);
+                let y = yc  + (r + 10) * Math.sin(angle);
+                doc.image(`${s.logo}`, x - 5, y - 5, {
+                    height: 10
+                });
+                angle += Math.PI / 6;
+            });
+            doc.save();
+            doc.circle(xc, yc, r).clip();
+            doc.image(`images/me.jpg`, xc - r, yc - r, {
+                height: 2 * r
+            });
+            doc.restore();
+
             // bottom
-            light(7).text(`automatically generated with Node.js & pdfkit`, 0, 820, {
+            light(7, baseColor).text(`automatically generated with Node.js & pdfkit`, 0, 820, {
                 align: "right",
                 margins: {
                     bottom: 0
@@ -313,7 +339,7 @@ function endDocument() {
             const categories = ["Employee", "Freelance - Consultant", "Formation", "Other"];
             let x = 180;
             categories.forEach((c, i) => {
-                x += i === 0 ? 0 : doc.widthOfString(categories[i-1]) + 10;
+                x += i === 0 ? 0 : doc.widthOfString(categories[i - 1]) + 10;
                 doc.rect(x - 4, 820, 3, 6).fill(categoryColors[c.toLowerCase()]);
                 light(7).text(c, x, 820, {
                     align: "left",

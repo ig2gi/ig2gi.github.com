@@ -9,22 +9,22 @@
     "social": [
         {
             "name": "Linkedin",
-            "logo": "",
+            "logo": "images/linkedin.png",
             "link": ""
         },
         {
             "name": "Twitter",
-            "logo": "",
+            "logo": "images/twitter.png",
             "link": ""
         },
         {
             "name": "500px",
-            "logo": "",
+            "logo": "images/500px-logo.png",
             "link": ""
         },
         {
             "name": "ObservableHQ",
-            "logo": "",
+            "logo": "images/observablehq.png",
             "link": ""
         }
     ],
