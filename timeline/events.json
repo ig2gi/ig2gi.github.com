@@ -45,7 +45,14 @@
             "link": "mailto:gilbert.perrin@gmail.com"
         }
     ],
-    "profile": "",
+    "profile1": {
+        "title": "Data Analysis and Visualisation",
+        "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. Either on small datasets or large datasets, it may also include all or some of the different data analysis steps  data requirements, collection, data wrangling, processing, cleaning, exploratory analysis, modeling, product, communication. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
+    },
+    "profile2": {
+        "title": "Frontend Engineering",
+        "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly paying attention to details!"
+    },
     "headerInfo": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
     "headerTitle": "Data Analysis & Visualization. Frontend Engineering",
     "events": [{

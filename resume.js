@@ -66,13 +66,16 @@ const font = (style, size = 9, color = baseColor) => {
     doc.font(`webfonts/DINNextLTPro-${style}.ttf`);
     return doc.fontSize(size).fillColor(color);
 };
-const multilines = (lines, styleMethod, size, align="left", color = baseColor) => {
+const multilines = (lines, styleMethod, size, align = "left", color = baseColor) => {
     lines.forEach(l => {
         styleMethod(size, color).text(l, {
-            "align": align 
+            "align": align
         });
     });
 };
+const _title = (txt) => strong(16, baseColor).text(txt).moveDown(0.8);
+const _subtitle = (txt) => medium(12, baseColor).text(txt).moveDown(0);
+const _reset = () => doc.text("", marginH, doc.y);
 
 
 
@@ -90,7 +93,7 @@ function initializeDocument() {
     const doc = new PDFDocument({
         autoFirstPage: false,
         margins: {
-            top: 50,
+            top: 80,
             bottom: 10,
             left: marginH,
             right: 10
@@ -107,12 +110,10 @@ function initializeDocument() {
 
 
 
-function buildEvents(data, title) {
+function writeEvents(data, title, newPageAtEnd = false) {
     return new Promise((resolve, reject) => {
         //
-        strong(16)
-            .text(title)
-            .moveDown(1);
+        _title(title);
         //
         data.forEach(event => {
 
@@ -169,10 +170,13 @@ function buildEvents(data, title) {
             doc.polygon([x1 + 2, y1], [x1 + 10, y1 + 5], [x1 + 2, y1 + 10]);
             doc.fill(categoryColors[event.category]);
 
-            doc.text("", marginH, doc.y).moveDown(3);
+            doc.text("", marginH, doc.y).moveDown(2);
 
 
         });
+
+        if (newPageAtEnd)
+            doc.addPage();
 
         resolve(doc);
 
@@ -272,6 +276,41 @@ function certificateWriter(exp) {
 
 }
 
+function writeProfile() {
+
+    return new Promise((resolve, reject) => {
+
+        _title("Profile");
+
+        _subtitle(resumeData.profile1.title);
+        doc.moveDown(0.3);
+        regular(9).text(resumeData.profile1.description, marginH + 10, doc.y, {
+            align: "justify",
+            width: 420
+        });
+        _reset();
+        doc.moveDown(1);
+
+        _subtitle(resumeData.profile2.title);
+        doc.moveDown(0.3);
+        regular(9).text(resumeData.profile2.description, marginH + 10, doc.y, {
+            align: "justify",
+            width: 420
+        });
+
+        _reset();
+        doc.moveDown(1);
+        
+        _subtitle("Soft Skills");
+
+        doc.moveDown(3);
+        _reset();
+
+        resolve(doc);
+
+    });
+}
+
 function startDocument() {
     return new Promise((resolve, reject) => {
 
@@ -309,7 +348,7 @@ function startDocument() {
         lines = resumeData.headerTitle.split(/[\\._]/g);
         multilines(lines, regular, 9, "right", baseColor);
 
-        doc.text("", marginH, 200);
+        doc.text("", marginH, 140);
 
         resolve(doc);
 
@@ -345,6 +384,7 @@ function endDocument() {
 
             // TOP
             if (i !== 0) { // skip frontpage
+
                 regular(9).text(`Gilbert Perrin Resume`, 0, 10, {
                     align: "right",
                     margins: {
@@ -354,26 +394,33 @@ function endDocument() {
                 light(6).text(`Page ${i + 1} of ${range.count}`, 0, 20, {
                     align: "right"
                 });
+
+                let x = 10;
+                let y = 10;
+                resumeData.contact.forEach(s => {
+                    doc.image(`${s.logo}`, x, y, {
+                        height: 8
+                    });
+                    regular(7, "#2980B9").text(s.name, x + 10, y, {
+                        align: "left",
+                        link: s.link,
+                        underline: s.link !== ""
+                    });
+                    x += doc.widthOfString(s.name) + 20;
+                });
+
             }
 
 
             // BOTTOM
-            light(7, baseColor).text(`automatically generated with Node.js & pdfkit`, 0, 820, {
-                align: "right",
-                margins: {
-                    bottom: 0
-                }
-            });
-            light(7, "#2980B9").text(`http://ig2gi.github.io`, 20, 820, {
+            light(7).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - © gilbert perrin 2019`, 20, 820, {
                 align: "left",
                 margins: {
                     bottom: 0
                 },
-                link: "http://ig2gi.github.io",
-                underline: true
             });
             const categories = ["Employee", "Freelance - Consultant", "Formation", "Other"];
-            let x = 180;
+            let x = 400;
             categories.forEach((c, i) => {
                 x += i === 0 ? 0 : doc.widthOfString(categories[i - 1]) + 10;
                 doc.rect(x - 4, 820, 3, 6).fill(categoryColors[c.toLowerCase()]);
@@ -466,7 +513,8 @@ function duration(dates) {
 //
 
 startDocument()
-    .then(buildEvents(certificates, "Certificates"))
-    .then(buildEvents(experiences, "Work Experience"))
-    .then(buildEvents(educations, "Education"))
+    .then(writeProfile())
+    .then(writeEvents(certificates, "Certificates", true))
+    .then(writeEvents(experiences, "Work Experience"))
+    .then(writeEvents(educations, "Education"))
     .then(endDocument());
