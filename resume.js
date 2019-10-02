@@ -2,7 +2,15 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const mt = require('moment');
 
-
+//
+//
+// ================================================
+//
+// Useful Constants
+//
+// ================================================
+//
+//
 const defaultDiffFormatter = (y, m) => [y === 0 ? "" : `${y} year${y > 1 ? "s": ""}`, m === 0 ? "" : `${m} month${m > 1 ? "s": ""}`]; // returns only years and months
 const shortFormatter = (y, m) => {
     if (y === 0)
@@ -11,7 +19,6 @@ const shortFormatter = (y, m) => {
         return `${y}y`;
     return `${y}y ${m}m`;
 };
-
 
 const marginH = 90;
 const baseColor = "#5D6D7E";
@@ -25,7 +32,31 @@ const categoryColors = {
     "freelance - consultant": "#7DCEA0",
 };
 
+//
+//
+// ================================================
+//
+// Load Data
+//
+// ================================================
+//
+//
 const resumeData = loadResume();
+const certificates = resumeData.events.filter(d => d.type === "formation" && d.diploma === "certificate");
+const experiences = resumeData.events.filter(d => d.type === "experience");
+const educations = resumeData.events.filter(d => d.type === "formation" && d.diploma !== "certificate");
+
+
+//
+//
+// ================================================
+//
+// Initialize PDF Document and provides 
+// useful styling methods.
+//
+// ================================================
+//
+//
 const doc = initializeDocument();
 const strong = (size, color) => font("Bold", size, color);
 const medium = (size, color) => font("Medium", size, color);
@@ -35,32 +66,26 @@ const font = (style, size = 9, color = baseColor) => {
     doc.font(`webfonts/DINNextLTPro-${style}.ttf`);
     return doc.fontSize(size).fillColor(color);
 };
+const multilines = (lines, styleMethod, size, align="left", color = baseColor) => {
+    lines.forEach(l => {
+        styleMethod(size, color).text(l, {
+            "align": align 
+        });
+    });
+};
 
-const certificates = buildEvents(resumeData.events.filter(d => d.type === "formation" && d.diploma === "certificate"), "Certificates");
-const experience = buildEvents(resumeData.events.filter(d => d.type === "experience"), "Work Experience");
-const education = buildEvents(resumeData.events.filter(d => d.type === "formation" && d.diploma !== "certificate"), "Education");
-const end = endDocument();
 
-certificates
-    .then(experience)
-    .then(education)
-    .then(end);
 
 //
 //
 // ================================================
 //
-// Functions
+// PDF Functions for generating content
 //
 // ================================================
 //
 //
 
-
-/**
- *
- *
- */
 function initializeDocument() {
     const doc = new PDFDocument({
         autoFirstPage: false,
@@ -77,23 +102,11 @@ function initializeDocument() {
     });
 
     doc.pipe(fs.createWriteStream('./timeline/gperrin-resume.pdf')); // write to PDF
-
-    doc.addPage();
-
-    doc.fillColor(baseColor);
     return doc;
 }
 
 
 
-
-/**
- *
- *
- * @param {*} data
- * @param {*} title
- * @returns
- */
 function buildEvents(data, title) {
     return new Promise((resolve, reject) => {
         //
@@ -168,12 +181,6 @@ function buildEvents(data, title) {
 
 }
 
-/**
- *
- *
- * @param {*} type
- * @returns
- */
 function getWriter(type) {
     switch (type) {
         case "experience":
@@ -187,11 +194,7 @@ function getWriter(type) {
     }
 }
 
-/**
- *
- *
- * @param {*} exp
- */
+
 function experienceWriter(exp) {
 
     const items = exp.description.split(". ");
@@ -220,11 +223,7 @@ function experienceWriter(exp) {
 
 }
 
-/**
- *
- *
- * @param {*} exp
- */
+
 function certificateWriter(exp) {
 
     const desc = exp.description;
@@ -271,57 +270,94 @@ function certificateWriter(exp) {
     }
 
 
-
-
 }
 
-/**
- *
- *
- * @returns
- */
+function startDocument() {
+    return new Promise((resolve, reject) => {
+
+        doc.addPage();
+        doc.fillColor(baseColor);
+
+        // Profile Header
+        const r = 30;
+        const xc = 45 + 2 * r;
+        const yc = 5 + 2 * r;
+
+        doc.circle(xc, yc, r + 2).lineWidth(0).fillOpacity(0.8).fill("#EAEDED");
+        doc.fillOpacity(1);
+
+        // SOCIAL
+
+        drawItemsOnCircle(resumeData.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 8, "left");
+        drawItemsOnCircle(resumeData.contact, xc, yc, r, -Math.PI / 8, Math.PI / 9, "right");
+
+        // CONTACT
+
+        doc.save();
+        doc.circle(xc, yc, r).clip();
+        doc.image(`images/me.jpg`, xc - r, yc - r, {
+            height: 2 * r
+        });
+        doc.restore();
+
+        // HEADER 
+        light(20).text(resumeData.name, doc.x, 15, {
+            align: "right"
+        });
+        let lines = resumeData.headerInfo.split(/[\\._]/g);
+        multilines(lines, regular, 9, "right", color1);
+        lines = resumeData.headerTitle.split(/[\\._]/g);
+        multilines(lines, regular, 9, "right", baseColor);
+
+        doc.text("", marginH, 200);
+
+        resolve(doc);
+
+    });
+}
+
+function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align) {
+    let angle = startAngle;
+    items.forEach(s => {
+        let x = xc + (r + 12) * Math.cos(angle);
+        let y = yc + (r + 12) * Math.sin(angle);
+        doc.image(`${s.logo}`, x - 5, y - 5, {
+            height: 10
+        });
+        regular(7, "#2980B9").text(s.name, align === "left" ? x - doc.widthOfString(s.name) - 10 : x + 10, y - 3, {
+            align: "left",
+            link: s.link,
+            underline: s.link !== ""
+        });
+        angle += stepAngle;
+    });
+}
+
+
+
 function endDocument() {
     return new Promise((resolve, reject) => {
         const range = doc.bufferedPageRange(); // => { start: 0, count: 2 }}
         for (let i = 0; i < range.start + range.count; i++) {
+
+
             doc.switchToPage(i);
 
-            // top
-            regular(9).text(`Gilbert Perrin Resume`, 0, 10, {
-                align: "right",
-                margins: {
-                    bottom: 0
-                }
-            });
-            light(6).text(`Page ${i + 1} of ${range.count}`, 0, 20, {
-                align: "right"
-            });
-
-            // Profile Header
-            const r = 15;
-            const xc = 2 * r;
-            const yc = 2 * r;
-
-            doc.circle(xc, yc, 25).lineWidth(0).fillOpacity(0.5).fill("#EAEDED");
-            doc.fillOpacity(1);
-            
-            let angle = -Math.PI / 4;
-            resumeData.social.forEach(s => {
-                let x = xc  + (r + 10) * Math.cos(angle);
-                let y = yc  + (r + 10) * Math.sin(angle);
-                doc.image(`${s.logo}`, x - 5, y - 5, {
-                    height: 10
+            // TOP
+            if (i !== 0) { // skip frontpage
+                regular(9).text(`Gilbert Perrin Resume`, 0, 10, {
+                    align: "right",
+                    margins: {
+                        bottom: 0
+                    }
                 });
-                angle += Math.PI / 6;
-            });
-            doc.save();
-            doc.circle(xc, yc, r).clip();
-            doc.image(`images/me.jpg`, xc - r, yc - r, {
-                height: 2 * r
-            });
-            doc.restore();
+                light(6).text(`Page ${i + 1} of ${range.count}`, 0, 20, {
+                    align: "right"
+                });
+            }
 
-            // bottom
+
+            // BOTTOM
             light(7, baseColor).text(`automatically generated with Node.js & pdfkit`, 0, 820, {
                 align: "right",
                 margins: {
@@ -359,13 +395,15 @@ function endDocument() {
 }
 
 
-
-
-/**
- *
- *
- * @returns
- */
+//
+//
+// ================================================
+//
+// Utility Functions
+//
+// ================================================
+//
+//
 function loadResume() {
     const resume = JSON.parse(fs.readFileSync('./timeline/events.json'));
 
@@ -379,13 +417,6 @@ function loadResume() {
 }
 
 
-
-/**
- *
- *
- * @param {*} dates
- * @returns
- */
 function diff(time, formatter = defaultDiffFormatter, approx = true) {
     let y = time[0];
     let m = time[1];
@@ -414,12 +445,6 @@ function diff(time, formatter = defaultDiffFormatter, approx = true) {
 }
 
 
-/**
- *
- *
- * @param {*} dates
- * @returns
- */
 function duration(dates) {
     const starts = mt(dates[0]);
     const ends = mt(dates.length === 1 ? new Date() : dates[1]);
@@ -429,3 +454,19 @@ function duration(dates) {
     let d = duration.days();
     return [y, m, d];
 }
+
+//
+//
+// ================================================
+//
+// Launch PDF Generation
+//
+// ================================================
+//
+//
+
+startDocument()
+    .then(buildEvents(certificates, "Certificates"))
+    .then(buildEvents(experiences, "Work Experience"))
+    .then(buildEvents(educations, "Education"))
+    .then(endDocument());

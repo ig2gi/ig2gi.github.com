@@ -10,468 +10,511 @@
         {
             "name": "Linkedin",
             "logo": "images/linkedin.png",
-            "link": ""
+            "link": "https://www.linkedin.com/in/gilbertperrin/"
         },
         {
             "name": "Twitter",
             "logo": "images/twitter.png",
-            "link": ""
+            "link": "https://twitter.com/ig2gi"
         },
         {
             "name": "500px",
             "logo": "images/500px-logo.png",
-            "link": ""
+            "link": "https://500px.com/ig2gi"
         },
         {
             "name": "ObservableHQ",
             "logo": "images/observablehq.png",
+            "link": "https://observablehq.com/@ig2gi"
+        }
+    ],
+    "contact": [
+        {
+            "name": "ig2gi.github.io",
+            "logo": "images/contact-internet.png",
+            "link": "http://ig2gi.github.io/index.html"
+        },
+        {
+            "name": "+41 (0) 76 203 21 69",
+            "logo": "images/contact-smartphone.png",
             "link": ""
+        },
+        {
+            "name": "gilbert.perrin@gmail.com",
+            "logo": "images/contact-at.png",
+            "link": "mailto:gilbert.perrin@gmail.com"
         }
     ],
     "profile": "",
-    "softskills": "",
-    "hardskills": "",
-    "events": [
-        {
-            "title": "Deep Learning Specialization",
-            "dates": [
-                "2019-07-01T00:00:00Z"
-            ],
-            "industry": "Machine Learning",
-            "diploma": "certificate",
-            "type": "formation",
-            "category": "formation",
-            "company": {
-                "name": "Coursera Specialization by Stanford University.",
-                "department": "",
-                "logo": "",
-                "link": "https://www.coursera.org/specializations/deep-learning"
-            },
-            "links": [
-                {
-                    "name": "c1",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/XM4F5LNKZGF3"
-                },
-                {
-                    "name": "c2",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/TYVQ2MX7M8M9"
-                },
-                {
-                    "name": "c3",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/7R3UUZGMJU6D"
-                },
-                {
-                    "name": "c4",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/UST89R7CHWZV"
-                }
-            ],
-            "description": "Foundations of Deep Learning, understanding how to build neural networks, and learn how to lead successful machine learning projects. Convolutional networks, RNNs, LSTM, Adam, Dropout, BatchNorm, Xavier/He initialization, and more. Implementation in Python, numpy and TensorFlow.",
-            "fullDescription": "",
-            "hardSkills": "Deep Learning,Tensorflow,Convolutional Neural Network,Artificial Neural Network"
+    "headerInfo": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
+    "headerTitle": "Data Analysis & Visualization. Frontend Engineering",
+    "events": [{
+        "title": "Deep Learning Specialization",
+        "dates": [
+            "2019-07-01T00:00:00Z"
+        ],
+        "industry": "Machine Learning",
+        "diploma": "certificate",
+        "type": "formation",
+        "category": "formation",
+        "company": {
+            "name": "Coursera Specialization by Stanford University.",
+            "department": "",
+            "logo": "",
+            "link": "https://www.coursera.org/specializations/deep-learning"
         },
-        {
-            "title": "VP Functional & UX Design",
-            "dates": [
-                "2018-05-01T00:00:00Z",
-                "2019-07-01T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg",
-                "link": ""
+        "links": [
+            {
+                "name": "c1",
+                "url": "https://www.coursera.org/account/accomplishments/certificate/XM4F5LNKZGF3"
             },
-            "links": [
-                {
-                    "name": "Sophia Genetics",
-                    "url": "http://www.sophiagenetics.com"
-                }
-            ],
-            "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
-            "fullDescription": "",
-            "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration",
-            "hardSkills": "D3.js,balsamiq"
-        },
-        {
-            "title": "Head of Front-End Development",
-            "dates": [
-                "2015-05-01T00:00:00Z",
-                "2018-04-01T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg"
+            {
+                "name": "c2",
+                "url": "https://www.coursera.org/account/accomplishments/certificate/TYVQ2MX7M8M9"
             },
-            "links": [
-                {
-                    "name": "Sophia Genetics",
-                    "url": "http://www.sophiagenetics.com"
-                }
-            ],
-            "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
-            "fullDescription": "",
-            "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring,Collaboration",
-            "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
-        },
-        {
-            "title": "Data Visualisation Engineer",
-            "dates": [
-                "2013-05-01T00:00:00Z",
-                "2015-04-01T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg"
+            {
+                "name": "c3",
+                "url": "https://www.coursera.org/account/accomplishments/certificate/7R3UUZGMJU6D"
             },
-            "links": [
-                {
-                    "name": "Sophia Genetics",
-                    "url": "http://www.sophiagenetics.com"
-                }
-            ],
-            "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
-            "fullDescription": "",
-            "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management"
+            {
+                "name": "c4",
+                "url": "https://www.coursera.org/account/accomplishments/certificate/UST89R7CHWZV"
+            }
+        ],
+        "description": "Foundations of Deep Learning, understanding how to build neural networks, and learn how to lead successful machine learning projects. Convolutional networks, RNNs, LSTM, Adam, Dropout, BatchNorm, Xavier/He initialization, and more. Implementation in Python, numpy and TensorFlow.",
+        "fullDescription": "",
+        "hardSkills": "Deep Learning,Tensorflow,Convolutional Neural Network,Artificial Neural Network"
+    },
+    {
+        "title": "VP Functional & UX Design",
+        "dates": [
+            "2018-05-01T00:00:00Z",
+            "2019-07-01T00:00:00Z"
+        ],
+        "industry": "Healthcare",
+        "subIndustry": "Data-Driven Medicine",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Sophia genetics",
+            "department": "",
+            "logo": "sophia.svg",
+            "link": ""
         },
-        {
-            "title": "Data Visualization, Web Developer",
-            "dates": [
-                "2013-01-01T00:00:00Z",
-                "2013-04-30T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Nonprofit Organization",
-            "type": "experience",
-            "category": "freelance",
-            "company": {
+        "links": [
+            {
+                "name": "Sophia Genetics",
+                "url": "http://www.sophiagenetics.com"
+            }
+        ],
+        "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
+        "fullDescription": "",
+        "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration",
+        "hardSkills": "D3.js,balsamiq"
+    },
+    {
+        "title": "Introduction to the Biology of Cancer",
+        "dates": [
+            "2018-01-01T00:00:00Z",
+            "2018-02-15T00:00:00Z"
+        ],
+        "industry": "Biology",
+        "subIndustry": "Genetics",
+        "diploma": "certificate",
+        "type": "formation",
+        "category": "formation",
+        "company": {
+            "name": "Coursera Specialization by Stanford University.",
+            "department": "",
+            "logo": "",
+            "link": "https://www.coursera.org/learn/cancer"
+        },
+        "links": [
+            {
+                "name": "c1",
+                "url": "https://www.coursera.org/account/accomplishments/verify/RXJTVX2ZLU3N"
+            }
+        ],
+        "description": "Molecular biology of cancer (oncogenes and tumor suppressor genes) as well as the biologic hallmarks of cancer. The course also describes the risk factors for the major cancers worldwide, including lung cancer, breast cancer, colon cancer, prostate cancer, liver cancer, and stomach cancer.",
+        "fullDescription": "",
+        "hardSkills": ""
+    },
+    {
+        "title": "Head of Front-End Development",
+        "dates": [
+            "2015-05-01T00:00:00Z",
+            "2018-04-01T00:00:00Z"
+        ],
+        "industry": "Healthcare",
+        "subIndustry": "Data-Driven Medicine",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Sophia genetics",
+            "department": "",
+            "logo": "sophia.svg"
+        },
+        "links": [
+            {
+                "name": "Sophia Genetics",
+                "url": "http://www.sophiagenetics.com"
+            }
+        ],
+        "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
+        "fullDescription": "",
+        "softSkills": "clarity,friendliness,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring,Collaboration",
+        "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web"
+    },
+    {
+        "title": "Data Visualisation Engineer",
+        "dates": [
+            "2013-05-01T00:00:00Z",
+            "2015-04-01T00:00:00Z"
+        ],
+        "industry": "Healthcare",
+        "subIndustry": "Data-Driven Medicine",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Sophia genetics",
+            "department": "",
+            "logo": "sophia.svg"
+        },
+        "links": [
+            {
+                "name": "Sophia Genetics",
+                "url": "http://www.sophiagenetics.com"
+            }
+        ],
+        "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
+        "fullDescription": "",
+        "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management"
+    },
+    {
+        "title": "Data Visualization, Web Developer",
+        "dates": [
+            "2013-01-01T00:00:00Z",
+            "2013-04-30T00:00:00Z"
+        ],
+        "industry": "Healthcare",
+        "subIndustry": "Nonprofit Organization",
+        "type": "experience",
+        "category": "freelance",
+        "company": {
+            "name": "International AIDS Society",
+            "department": "",
+            "logo": "ias.png"
+        },
+        "links": [
+            {
                 "name": "International AIDS Society",
-                "department": "",
-                "logo": "ias.png"
-            },
-            "links": [
-                {
-                    "name": "International AIDS Society",
-                    "url": "https://www.iasociety.org"
-                }
-            ],
-            "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
-            "fullDescription": "",
-            "softSkills": "decision-making,analysis,design,goal setting,organization,Networking,Collaboration"
+                "url": "https://www.iasociety.org"
+            }
+        ],
+        "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
+        "fullDescription": "",
+        "softSkills": "decision-making,analysis,design,goal setting,organization,Networking,Collaboration"
+    },
+    {
+        "title": "Senior Software Engineer",
+        "dates": [
+            "2009-08-01T00:00:00Z",
+            "2012-10-01T00:00:00Z"
+        ],
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
+        "type": "experience",
+        "category": "consultant",
+        "company": {
+            "name": "Pictet Asset Management",
+            "department": "",
+            "logo": "pictet.png"
         },
-        {
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2009-08-01T00:00:00Z",
-                "2012-10-01T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "consultant",
-            "company": {
+        "links": [
+            {
                 "name": "Pictet Asset Management",
-                "department": "",
-                "logo": "pictet.png"
-            },
-            "links": [
-                {
-                    "name": "Pictet Asset Management",
-                    "url": "https://www.am.pictet/en/uk/intermediary"
-                }
-            ],
-            "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
-            "fullDescription": "",
-            "softSkills": "clarity,analysis,logical reasoning,divergent thinking,commitment,agility,Collaboration"
+                "url": "https://www.am.pictet/en/uk/intermediary"
+            }
+        ],
+        "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
+        "fullDescription": "",
+        "softSkills": "clarity,analysis,logical reasoning,divergent thinking,commitment,agility,Collaboration"
+    },
+    {
+        "title": "One sabbatical year stuying Photography",
+        "dates": [
+            "2008-06-30T00:00:00Z",
+            "2009-07-31T00:00:00Z"
+        ],
+        "industry": "Photography",
+        "type": "experience",
+        "category": "other",
+        "company": {
+            "name": "Photography",
+            "department": "",
+            "logo": ""
         },
-        {
-            "title": "One sabbatical year stuying Photography",
-            "dates": [
-                "2008-06-30T00:00:00Z",
-                "2009-07-31T00:00:00Z"
-            ],
-            "industry": "Photography",
-            "type": "experience",
-            "category": "other",
-            "company": {
-                "name": "Photography",
-                "department": "",
-                "logo": ""
-            },
-            "links": [
-                {
-                    "name": "Portfolio",
-                    "url": "https://500px.com/ig2gi/galleries"
-                }
-            ],
-            "description": "Courses, self-training, travel (Canada), photoreports. 4 months photo-reporter internship at Police Cantonale Vaudoise. Photographer at 'La nuit des musées, Lausanne' several years (2009, 2010, 2011, 2012).",
-            "fullDescription": "",
-            "softSkills": "curiosity,self-confidence,imagination,design,experimenting,questioning"
+        "links": [
+            {
+                "name": "Portfolio",
+                "url": "https://500px.com/ig2gi/galleries"
+            }
+        ],
+        "description": "Courses, self-training, travel (Canada), photoreports. 4 months photo-reporter internship at Police Cantonale Vaudoise. Photographer at 'La nuit des musées, Lausanne' several years (2009, 2010, 2011, 2012).",
+        "fullDescription": "",
+        "softSkills": "curiosity,self-confidence,imagination,design,experimenting,questioning"
+    },
+    {
+        "title": "Senior Software Engineer",
+        "dates": [
+            "2007-08-01T00:00:00Z",
+            "2008-06-30T00:00:00Z"
+        ],
+        "industry": "Broadcast Media",
+        "type": "experience",
+        "category": "freelance",
+        "company": {
+            "name": "RTS - Radio Télévision Suisse",
+            "department": "",
+            "logo": "rts.png"
         },
-        {
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2007-08-01T00:00:00Z",
-                "2008-06-30T00:00:00Z"
-            ],
-            "industry": "Broadcast Media",
-            "type": "experience",
-            "category": "freelance",
-            "company": {
-                "name": "RTS - Radio Télévision Suisse",
-                "department": "",
-                "logo": "rts.png"
-            },
-            "links": [
-                {
-                    "name": "RTS",
-                    "url": "https://www.rts.ch/entreprise/"
-                }
-            ],
-            "description": "Architecture, design and implementation of a Workflow-based collaborative application for the completely tapeless, digital production of television programs - architected around REST principles for data integration. Wrote use-case catalog, architecture, component and framework selection, implementation planning, design and implementation.",
-            "fullDescription": "",
-            "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall,Collaboration"
+        "links": [
+            {
+                "name": "RTS",
+                "url": "https://www.rts.ch/entreprise/"
+            }
+        ],
+        "description": "Architecture, design and implementation of a Workflow-based collaborative application for the completely tapeless, digital production of television programs - architected around REST principles for data integration. Wrote use-case catalog, architecture, component and framework selection, implementation planning, design and implementation.",
+        "fullDescription": "",
+        "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall,Collaboration"
+    },
+    {
+        "title": "Senior Software Engineer",
+        "dates": [
+            "2006-04-01T00:00:00Z",
+            "2007-07-30T00:00:00Z"
+        ],
+        "industry": "Industry",
+        "subIndustry": "Energy",
+        "type": "experience",
+        "category": "freelance",
+        "company": {
+            "name": "Neo Technologies",
+            "department": "",
+            "logo": "neo.png"
         },
-        {
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2006-04-01T00:00:00Z",
-                "2007-07-30T00:00:00Z"
-            ],
-            "industry": "Industry",
-            "subIndustry": "Energy",
-            "type": "experience",
-            "category": "freelance",
-            "company": {
+        "links": [
+            {
                 "name": "Neo Technologies",
-                "department": "",
-                "logo": "neo.png"
-            },
-            "links": [
-                {
-                    "name": "Neo Technologies",
-                    "url": "http://www.neo-technologies.ch"
-                }
-            ],
-            "description": "Re-engineering of the in-house electricity-management logistics platform to open it to third parties and to extend the range of managed goods to gas, digital media, etc. Reverse-engineered use-cases, sequence and class diagrams of the pre-existing system. Wrote new use-cases and specifications by interviewing all platform stakeholders. Architected, designed, implemented the augmented system.",
-            "fullDescription": "",
-            "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis,Collaboration"
+                "url": "http://www.neo-technologies.ch"
+            }
+        ],
+        "description": "Re-engineering of the in-house electricity-management logistics platform to open it to third parties and to extend the range of managed goods to gas, digital media, etc. Reverse-engineered use-cases, sequence and class diagrams of the pre-existing system. Wrote new use-cases and specifications by interviewing all platform stakeholders. Architected, designed, implemented the augmented system.",
+        "fullDescription": "",
+        "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis,Collaboration"
+    },
+    {
+        "title": "Senior Software Engineer",
+        "dates": [
+            "2004-09-01T00:00:00Z",
+            "2005-12-31T00:00:00Z"
+        ],
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
+        "type": "experience",
+        "category": "consultant",
+        "company": {
+            "name": "Pictet Asset Management",
+            "department": "",
+            "logo": "pictet.png"
         },
-        {
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2004-09-01T00:00:00Z",
-                "2005-12-31T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "consultant",
-            "company": {
+        "links": [
+            {
                 "name": "Pictet Asset Management",
-                "department": "",
-                "logo": "pictet.png"
-            },
-            "links": [
-                {
-                    "name": "Pictet Asset Management",
-                    "url": "https://www.am.pictet/en/uk/intermediary"
-                }
-            ],
-            "description": "Analysis and design of an infrastructure for notification of changes between applications. Specific implementation for cache invalidation of the pms application.  Architecture and design of a batch framework which provides an asynchronous, server-based batch processing environment that can wrap, execute and monitor business tasks.",
-            "fullDescription": "",
-            "softSkills": "Logical reasoning,Persistence,Conflict management,Analysis,Written communication,Discipline,Commitment,Tolerance,Diplomacy,Goal setting,Stress management,Cultural intelligence,Trust"
+                "url": "https://www.am.pictet/en/uk/intermediary"
+            }
+        ],
+        "description": "Analysis and design of an infrastructure for notification of changes between applications. Specific implementation for cache invalidation of the pms application.  Architecture and design of a batch framework which provides an asynchronous, server-based batch processing environment that can wrap, execute and monitor business tasks.",
+        "fullDescription": "",
+        "softSkills": "Logical reasoning,Persistence,Conflict management,Analysis,Written communication,Discipline,Commitment,Tolerance,Diplomacy,Goal setting,Stress management,Cultural intelligence,Trust"
+    },
+    {
+        "title": "Senior Software Engineer",
+        "dates": [
+            "2004-02-01T00:00:00Z",
+            "2005-08-31T00:00:00Z"
+        ],
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "DALIN Software SA",
+            "department": "",
+            "logo": ""
         },
-        {
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2004-02-01T00:00:00Z",
-                "2005-08-31T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "DALIN Software SA",
-                "department": "",
-                "logo": ""
-            },
-            "links": [],
-            "description": "Developed a knowledge-based interface (API java 2d) - developed a prototype. Analysis of a natural language query system - produced analysis and design specifications.",
-            "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect"
+        "links": [],
+        "description": "Developed a knowledge-based interface (API java 2d) - developed a prototype. Analysis of a natural language query system - produced analysis and design specifications.",
+        "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect"
+    },
+    {
+        "title": "Java J2EE Senior Developer",
+        "dates": [
+            "2000-07-01T00:00:00Z",
+            "2004-01-31T00:00:00Z"
+        ],
+        "industry": "Finance",
+        "subIndustry": "Private Banking",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Odyssey Asset Management",
+            "department": "",
+            "logo": "odyssey.jpg"
         },
-        {
-            "title": "Java J2EE Senior Developer",
-            "dates": [
-                "2000-07-01T00:00:00Z",
-                "2004-01-31T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Odyssey Asset Management",
-                "department": "",
-                "logo": "odyssey.jpg"
-            },
-            "links": [
-                {
-                    "name": "Temenos Group",
-                    "url": "https://www.temenos.com"
-                }
-            ],
-            "description": "Design and implementation of a business tag-library to communicate with EJB service layer. Design of web components - technical person in charge of the EJB layer - responsible for the programming, packaging and deployment environments.",
-            "softSkills": "Analysis,Project management,Prioritizing,Coordination,Clarity"
+        "links": [
+            {
+                "name": "Temenos Group",
+                "url": "https://www.temenos.com"
+            }
+        ],
+        "description": "Design and implementation of a business tag-library to communicate with EJB service layer. Design of web components - technical person in charge of the EJB layer - responsible for the programming, packaging and deployment environments.",
+        "softSkills": "Analysis,Project management,Prioritizing,Coordination,Clarity"
+    },
+    {
+        "title": "Java Developer",
+        "dates": [
+            "1998-07-01T00:00:00Z",
+            "2000-06-30T00:00:00Z"
+        ],
+        "industry": "Industry",
+        "subIndustry": "Telecommunication",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "BIPE",
+            "department": "",
+            "logo": "bipe.png"
         },
-        {
-            "title": "Java Developer",
-            "dates": [
-                "1998-07-01T00:00:00Z",
-                "2000-06-30T00:00:00Z"
-            ],
-            "industry": "Industry",
-            "subIndustry": "Telecommunication",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "BIPE",
-                "department": "",
-                "logo": "bipe.png"
-            },
-            "links": [
-                {
-                    "name": "Le BIPE, BDO Advisory",
-                    "url": "https://lebipe.com"
-                }
-            ],
-            "description": "The principal activity was the migration and the development of an existing data warehouse under (4D) towards new technologies Java and Web within a team of 4 people",
-            "softSkills": "Planning,Responsibility,Teamwork,Design,Written communication,Self-management,Collaboration,Logical reasoning,Written communication"
+        "links": [
+            {
+                "name": "Le BIPE, BDO Advisory",
+                "url": "https://lebipe.com"
+            }
+        ],
+        "description": "The principal activity was the migration and the development of an existing data warehouse under (4D) towards new technologies Java and Web within a team of 4 people",
+        "softSkills": "Planning,Responsibility,Teamwork,Design,Written communication,Self-management,Collaboration,Logical reasoning,Written communication"
+    },
+    {
+        "title": "Master's degree in Computer Science with honours",
+        "dates": [
+            "1997-09-01T00:00:00Z",
+            "1998-06-30T00:00:00Z"
+        ],
+        "industry": "Computer Science",
+        "diploma": "master",
+        "type": "formation",
+        "category": "formation",
+        "company": {
+            "name": "DESS IAO",
+            "department": "",
+            "logo": ""
         },
-        {
-            "title": "Master's degree in Computer Science with honours",
-            "dates": [
-                "1997-09-01T00:00:00Z",
-                "1998-06-30T00:00:00Z"
-            ],
-            "industry": "Computer Science",
-            "diploma": "master",
-            "type": "formation",
-            "category": "formation",
-            "company": {
-                "name": "DESS IAO",
-                "department": "",
-                "logo": ""
-            },
-            "links": [],
-            "description": "algorithms, programming languages (Java, C++), database systems, operating systems, language process, ..."
+        "links": [],
+        "description": "algorithms, programming languages (Java, C++), database systems, operating systems, language process, ..."
+    },
+    {
+        "title": "Thermal Engineer and Data Scientist",
+        "dates": [
+            "1995-04-01T00:00:00Z",
+            "1997-06-30T00:00:00Z"
+        ],
+        "industry": "Industry",
+        "subIndustry": "Energy",
+        "type": "experience",
+        "category": "employee",
+        "company": {
+            "name": "Spie Batignolles",
+            "department": "",
+            "logo": "spie.png"
         },
-        {
-            "title": "Thermal Engineer and Data Scientist",
-            "dates": [
-                "1995-04-01T00:00:00Z",
-                "1997-06-30T00:00:00Z"
-            ],
-            "industry": "Industry",
-            "subIndustry": "Energy",
-            "type": "experience",
-            "category": "employee",
-            "company": {
+        "links": [
+            {
                 "name": "Spie Batignolles",
-                "department": "",
-                "logo": "spie.png"
-            },
-            "links": [
-                {
-                    "name": "Spie Batignolles",
-                    "url": "https://www.spiebatignolles.fr"
-                }
-            ],
-            "description": "Head of a Computation Group working on Operational Projects. Analysis and calculations of the air-conditioning of an enclosure of storage of nuclear waste in Novossibirsk (Siberia). Design and sizing of smoke-evacuation in tunnels using the SES (Subway Environmental Simulation) software. New module implementation (FORTRAN) taking account a new physical model.",
-            "softSkills": "Logical reasoning,Written communication,Commitment"
+                "url": "https://www.spiebatignolles.fr"
+            }
+        ],
+        "description": "Head of a Computation Group working on Operational Projects. Analysis and calculations of the air-conditioning of an enclosure of storage of nuclear waste in Novossibirsk (Siberia). Design and sizing of smoke-evacuation in tunnels using the SES (Subway Environmental Simulation) software. New module implementation (FORTRAN) taking account a new physical model.",
+        "softSkills": "Logical reasoning,Written communication,Commitment"
+    },
+    {
+        "title": "Master's degree in Thermodynamics and Fluid Mechanics with Honors",
+        "dates": [
+            "1993-09-01T00:00:00Z",
+            "1994-06-30T00:00:00Z"
+        ],
+        "industry": "Physics, Data Science",
+        "diploma": "master",
+        "type": "formation",
+        "category": "formation",
+        "company": {
+            "name": "IUSTI - CNRS",
+            "department": "",
+            "logo": ""
         },
-        {
-            "title": "Master's degree in Thermodynamics and Fluid Mechanics with Honors",
-            "dates": [
-                "1993-09-01T00:00:00Z",
-                "1994-06-30T00:00:00Z"
-            ],
-            "industry": "Physics, Data Science",
-            "diploma": "master",
-            "type": "formation",
-            "category": "formation",
-            "company": {
+        "links": [
+            {
                 "name": "IUSTI - CNRS",
-                "department": "",
-                "logo": ""
-            },
-            "links": [
-                {
-                    "name": "IUSTI - CNRS",
-                    "url": "http://iusti.cnrs.fr"
-                }
-            ],
-            "description": "Thermodynamics in open systems, fluid mechanics, energy, statistical thermodynamics, mathematics, ..."
+                "url": "http://iusti.cnrs.fr"
+            }
+        ],
+        "description": "Thermodynamics in open systems, fluid mechanics, energy, statistical thermodynamics, mathematics, ..."
+    },
+    {
+        "title": "Three Years Engineering School - Energy, Thermics & Fluid Mechanics",
+        "dates": [
+            "1990-09-01T00:00:00Z",
+            "1993-07-30T00:00:00Z"
+        ],
+        "industry": "Physics, Data Science",
+        "diploma": "engineer",
+        "type": "formation",
+        "category": "formation",
+        "company": {
+            "name": "IUSTI - CNRS",
+            "department": "",
+            "logo": ""
         },
-        {
-            "title": "Three Years Engineering School - Energy, Thermics & Fluid Mechanics",
-            "dates": [
-                "1990-09-01T00:00:00Z",
-                "1993-07-30T00:00:00Z"
-            ],
-            "industry": "Physics, Data Science",
-            "diploma": "engineer",
-            "type": "formation",
-            "category": "formation",
-            "company": {
+        "links": [
+            {
                 "name": "IUSTI - CNRS",
-                "department": "",
-                "logo": ""
-            },
-            "links": [
-                {
-                    "name": "IUSTI - CNRS",
-                    "url": "http://iusti.cnrs.fr"
-                }
-            ],
-            "description": "Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, ..."
+                "url": "http://iusti.cnrs.fr"
+            }
+        ],
+        "description": "Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, ..."
+    },
+    {
+        "title": "Classe Préparatoire - Math SUP/SPE",
+        "dates": [
+            "1988-09-01T00:00:00Z",
+            "1990-06-30T00:00:00Z"
+        ],
+        "industry": "Mathematics",
+        "diploma": "mathematics sup-spe",
+        "type": "formation",
+        "category": "formation",
+        "company": {
+            "name": "Lycée Militaire Aix-en-Provence",
+            "department": "",
+            "logo": ""
         },
-        {
-            "title": "Classe Préparatoire - Math SUP/SPE",
-            "dates": [
-                "1988-09-01T00:00:00Z",
-                "1990-06-30T00:00:00Z"
-            ],
-            "industry": "Mathematics",
-            "diploma": "mathematics sup-spe",
-            "type": "formation",
-            "category": "formation",
-            "company": {
+        "links": [
+            {
                 "name": "Lycée Militaire Aix-en-Provence",
-                "department": "",
-                "logo": ""
-            },
-            "links": [
-                {
-                    "name": "Lycée Militaire Aix-en-Provence",
-                    "url": "http://www.lycee-militaire-aix.fr/site/decouverte"
-                }
-            ],
-            "description": "Mathematics and Philosophy"
-        }
-    ]
+                "url": "http://www.lycee-militaire-aix.fr/site/decouverte"
+            }
+        ],
+        "description": "Mathematics and Philosophy"
+    }
+]
 }
