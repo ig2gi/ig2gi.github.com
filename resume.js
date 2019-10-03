@@ -299,13 +299,33 @@ function writeProfile() {
         });
 
         _reset();
-        doc.moveDown(1);
+        doc.moveDown(2);
         
+        const yimg = doc.y;
         _subtitle("Soft Skills");
+       
+        medium(9).text("Top 4", marginH + 10, doc.y).moveDown(0.1);
+        
+        resumeData.softSkills.forEach(s => {
+            light(9).text(s.toUpperCase(), marginH + 20, doc.y);
+        });
+        const ximg = doc.x + 120;
+        doc.image(`images/softskills.png`, ximg, yimg, {
+            height: 80
+        }).link(ximg, yimg , 80, 80, "http://ig2gi.github.com/timeline/index.html");
+        regular(6).text("See ig2gi.github.com for more details." , ximg, yimg + 80);
+
+        doc.moveDown(2);
+        _reset();
+        
+        _subtitle("Hard Skills");
+
+
 
         doc.moveDown(3);
-        _reset();
+      
 
+        doc.addPage();
         resolve(doc);
 
     });
@@ -317,18 +337,24 @@ function startDocument() {
         doc.addPage();
         doc.fillColor(baseColor);
 
-        // Profile Header
-        const r = 30;
-        const xc = 45 + 2 * r;
-        const yc = 5 + 2 * r;
 
-        doc.circle(xc, yc, r + 2).lineWidth(0).fillOpacity(0.8).fill("#EAEDED");
+        doc.rect(0, 0, 620 , 160)
+        .fill('#EBEDEF');
+
+
+        // Profile Header
+        const r = 50;
+        const xc = 45 + 2 * r;
+        const yc =  2 * r - 20;
+
+        doc.circle(xc, yc, r + 16).lineWidth(0).fillOpacity(0).lineWidth(1).stroke("white");
         doc.fillOpacity(1);
 
         // SOCIAL
 
-        drawItemsOnCircle(resumeData.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 8, "left");
-        drawItemsOnCircle(resumeData.contact, xc, yc, r, -Math.PI / 8, Math.PI / 9, "right");
+        drawItemsOnCircle(resumeData.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 10, "left", "#2980B9", 8);
+        drawItemsOnCircle(resumeData.contact, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right","#566573", 9, 11, false);
+        drawItemsOnCircle(resumeData.aptitudes, xc, yc, r, Math.PI / 20, Math.PI / 10, "right", "#1F618D",9);
 
         // CONTACT
 
@@ -339,34 +365,43 @@ function startDocument() {
         });
         doc.restore();
 
+
+
         // HEADER 
-        light(20).text(resumeData.name, doc.x, 15, {
+        light(25).text(resumeData.name, 5, 16, {
             align: "right"
         });
-        let lines = resumeData.headerInfo.split(/[\\._]/g);
-        multilines(lines, regular, 9, "right", color1);
-        lines = resumeData.headerTitle.split(/[\\._]/g);
-        multilines(lines, regular, 9, "right", baseColor);
+        let lines = resumeData.headerTitle.split(/[\\._]/g);
+        multilines(lines, regular, 10, "right", "#1F618D");
+        doc.moveDown(1);
+        doc.moveTo(480, doc.y - 8).lineTo(585, doc.y - 8).lineWidth(1).stroke("white");
+        lines = resumeData.headerInfo.split(/[\\._]/g);
+        multilines(lines, regular, 10, "right", "#566573");
+        doc.moveDown(1);
+        doc.moveTo(480, doc.y - 8).lineTo(585, doc.y - 8).lineWidth(1).stroke("white");
+        lines = resumeData.languages.map(d => `${d.level} - ${d.name.toUpperCase()}`);
+        multilines(lines, regular, 8, "right", "#566573");
 
-        doc.text("", marginH, 140);
+        doc.text("", marginH, 180);
 
         resolve(doc);
 
     });
 }
 
-function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align) {
+function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align, color, fontSize, iconSize = 12, underline = true) {
     let angle = startAngle;
     items.forEach(s => {
-        let x = xc + (r + 12) * Math.cos(angle);
-        let y = yc + (r + 12) * Math.sin(angle);
-        doc.image(`${s.logo}`, x - 5, y - 5, {
-            height: 10
+        let x = xc + (r + 16) * Math.cos(angle);
+        let y = yc + (r + 16) * Math.sin(angle);
+        doc.image(`${s.logo}`, x - iconSize / 2, y - iconSize / 2, {
+            height: iconSize
         });
-        regular(7, "#2980B9").text(s.name, align === "left" ? x - doc.widthOfString(s.name) - 10 : x + 10, y - 3, {
+        const offsetX = 10;
+        regular(fontSize, color).text(s.name, align === "left" ? x - doc.widthOfString(s.name) - offsetX : x + offsetX, y + - iconSize / 2 + doc.heightOfString(s.name) / 6, {
             align: "left",
             link: s.link,
-            underline: s.link !== ""
+            underline: underline && s.link !== ""
         });
         angle += stepAngle;
     });
@@ -514,7 +549,7 @@ function duration(dates) {
 
 startDocument()
     .then(writeProfile())
-    .then(writeEvents(certificates, "Certificates", true))
+    .then(writeEvents(certificates, "Certificates"))
     .then(writeEvents(experiences, "Work Experience"))
     .then(writeEvents(educations, "Education"))
     .then(endDocument());
