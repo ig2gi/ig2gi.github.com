@@ -31,6 +31,7 @@ const categoryColors = {
     "other": "#7FB3D5",
     "freelance - consultant": "#7DCEA0",
 };
+const VERSION = "v1.0";
 
 //
 //
@@ -136,7 +137,7 @@ function writeEvents(data, title, newPageAtEnd = false) {
 
             // DURATION
             let s = diff(event.duration, shortFormatter);
-            regular(9, color1).text(s, x1 + 12, y1);
+            regular(9, color1).text(s, x1 + 10, y1 + 3);
 
             // TITLE
             medium(12)
@@ -167,8 +168,9 @@ function writeEvents(data, title, newPageAtEnd = false) {
                 .stroke(color1)
                 .strokeOpacity(0.6);
 
-            doc.polygon([x1 + 2, y1], [x1 + 10, y1 + 5], [x1 + 2, y1 + 10]);
-            doc.fill(categoryColors[event.category]);
+            doc.circle(x1, y1 + 6, 6).fill("white");
+            doc.circle(x1, y1 + 6, 4).fill(categoryColors[event.category]);
+
 
             doc.text("", marginH, doc.y).moveDown(2);
 
@@ -300,30 +302,36 @@ function writeProfile() {
 
         _reset();
         doc.moveDown(2);
-        
+
         const yimg = doc.y;
         _subtitle("Soft Skills");
-       
-        medium(9).text("Top 4", marginH + 10, doc.y).moveDown(0.1);
-        
-        resumeData.softSkills.forEach(s => {
+
+        medium(9).text(`Top ${resumeData.softSkills.length}`, marginH + 10, doc.y).moveDown(0.1);
+
+        resumeData.softSkills.sort((a, b) => a.localeCompare(b)).forEach(s => {
             light(9).text(s.toUpperCase(), marginH + 20, doc.y);
         });
         const ximg = doc.x + 120;
         doc.image(`images/softskills.png`, ximg, yimg, {
             height: 80
-        }).link(ximg, yimg , 80, 80, "http://ig2gi.github.com/timeline/index.html");
-        regular(6).text("See ig2gi.github.com for more details." , ximg, yimg + 80);
+        }).link(ximg, yimg, 80, 80, "http://ig2gi.github.com/timeline/index.html");
+        regular(6).text("See ig2gi.github.com for more details.", ximg, yimg + 80);
 
         doc.moveDown(2);
         _reset();
-        
+
         _subtitle("Hard Skills");
+        regular(8).text("Non exhaustive list of skills, sorted alphabetically.", marginH + 10, doc.y);
+        doc.moveDown(1);
+        const hskills = resumeData.hardSkills.sort((a, b) => a[0].localeCompare(b[0]));
+        columns(hskills, 100, 80);
 
-
+        _reset();
+        doc.moveDown(1);
+        regular(8).text(`Note: the purpose of this list is to give an overview of skills but not to list all the libraries, frameworks or tools commonly used in development (eg: git, svn, maven, hibernate, ejb, mysql , pynum, jquery, ...).`, marginH + 10, doc.y + 80);
 
         doc.moveDown(3);
-      
+
 
         doc.addPage();
         resolve(doc);
@@ -338,14 +346,14 @@ function startDocument() {
         doc.fillColor(baseColor);
 
 
-        doc.rect(0, 0, 620 , 160)
-        .fill('#EBEDEF');
+        doc.rect(0, 0, 620, 160)
+            .fill('#EBEDEF');
 
 
         // Profile Header
         const r = 50;
         const xc = 45 + 2 * r;
-        const yc =  2 * r - 20;
+        const yc = 2 * r - 20;
 
         doc.circle(xc, yc, r + 16).lineWidth(0).fillOpacity(0).lineWidth(1).stroke("white");
         doc.fillOpacity(1);
@@ -353,8 +361,8 @@ function startDocument() {
         // SOCIAL
 
         drawItemsOnCircle(resumeData.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 10, "left", "#2980B9", 8);
-        drawItemsOnCircle(resumeData.contact, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right","#566573", 9, 11, false);
-        drawItemsOnCircle(resumeData.aptitudes, xc, yc, r, Math.PI / 20, Math.PI / 10, "right", "#1F618D",9);
+        drawItemsOnCircle(resumeData.contact, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right", "#566573", 9, 11, false);
+        drawItemsOnCircle(resumeData.aptitudes, xc, yc, r, Math.PI / 20, Math.PI / 10, "right", "#1F618D", 9);
 
         // CONTACT
 
@@ -398,7 +406,7 @@ function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align, color
             height: iconSize
         });
         const offsetX = 10;
-        regular(fontSize, color).text(s.name, align === "left" ? x - doc.widthOfString(s.name) - offsetX : x + offsetX, y + - iconSize / 2 + doc.heightOfString(s.name) / 6, {
+        regular(fontSize, color).text(s.name, align === "left" ? x - doc.widthOfString(s.name) - offsetX : x + offsetX, y + -iconSize / 2 + doc.heightOfString(s.name) / 6, {
             align: "left",
             link: s.link,
             underline: underline && s.link !== ""
@@ -407,7 +415,24 @@ function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align, color
     });
 }
 
+function columns(words, columnwidth, height) {
+    let x = marginH + 20;
+    let y0 = doc.y;
+    let gap = 20;
+    words.forEach(w => {
+        if (doc.y > (y0 + height)) {
+            x += columnwidth + gap;
+        }
+        if (w[1] >= 4)
+            regular(9);
+        else
+            light(9);
+        doc.text(w[2] ? w[0].toUpperCase() : w[0], x, doc.y > (y0 + height) ? y0 : doc.y, {
+            align: 'justify'
+        });
 
+    });
+}
 
 function endDocument() {
     return new Promise((resolve, reject) => {
@@ -448,7 +473,7 @@ function endDocument() {
 
 
             // BOTTOM
-            light(7).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - © gilbert perrin 2019`, 20, 820, {
+            light(7).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - ${VERSION} - © gilbert perrin 2019`, 20, 820, {
                 align: "left",
                 margins: {
                     bottom: 0
@@ -550,6 +575,6 @@ function duration(dates) {
 startDocument()
     .then(writeProfile())
     .then(writeEvents(certificates, "Certificates"))
-    .then(writeEvents(experiences, "Work Experience"))
+    .then(writeEvents(experiences, "Work Experience", true))
     .then(writeEvents(educations, "Education"))
     .then(endDocument());
