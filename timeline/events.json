@@ -370,7 +370,7 @@
             ],
             "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
             "fullDescription": "",
-            "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management"
+            "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management,Collaboration"
         },
         {
             "title": "Data Visualization, Web Developer",
@@ -537,7 +537,7 @@
             },
             "links": [],
             "description": "Developed a knowledge-based interface (API java 2d) - developed a prototype. Analysis of a natural language query system - produced analysis and design specifications.",
-            "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect"
+            "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect,Collaboration"
         },
         {
             "title": "Java J2EE Senior Developer",
@@ -591,12 +591,12 @@
             "title": "Master's degree in Computer Science",
             "dates": [
                 "1997-09-01T00:00:00Z",
-                "1998-06-30T00:00:00Z"
+                "1998-08-30T00:00:00Z"
             ],
             "industry": "Computer Science",
             "diploma": "master",
             "type": "formation",
-            "category": "formation",
+            "category": "education",
             "company": {
                 "name": "DESS IAO",
                 "department": "",
@@ -633,12 +633,12 @@
             "title": "Master's degree in Thermodynamics and Fluid Mechanics",
             "dates": [
                 "1993-09-01T00:00:00Z",
-                "1994-06-30T00:00:00Z"
+                "1994-08-30T00:00:00Z"
             ],
             "industry": "Physics, Data Science",
             "diploma": "master",
             "type": "formation",
-            "category": "formation",
+            "category": "education",
             "company": {
                 "name": "IUSTI - CNRS",
                 "department": "",
@@ -656,12 +656,12 @@
             "title": "Three Years Engineering School - Energy, Thermics & Fluid Mechanics",
             "dates": [
                 "1990-09-01T00:00:00Z",
-                "1993-07-30T00:00:00Z"
+                "1993-08-30T00:00:00Z"
             ],
             "industry": "Physics, Data Science",
             "diploma": "engineer",
             "type": "formation",
-            "category": "formation",
+            "category": "education",
             "company": {
                 "name": "IUSTI - CNRS",
                 "department": "",
@@ -679,12 +679,12 @@
             "title": "Classe Préparatoire - Math SUP/SPE",
             "dates": [
                 "1988-09-01T00:00:00Z",
-                "1990-06-30T00:00:00Z"
+                "1990-09-30T00:00:00Z"
             ],
             "industry": "Mathematics",
             "diploma": "mathematics sup-spe",
             "type": "formation",
-            "category": "formation",
+            "category": "education",
             "company": {
                 "name": "Lycée Militaire Aix-en-Provence",
                 "department": "",

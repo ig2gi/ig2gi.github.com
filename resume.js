@@ -27,6 +27,7 @@ const categoryColors = {
     "employee": "#F8C471",
     "formation": "#BB8FCE",
     "freelance": "#7DCEA0",
+    "education": "#A5C4D4",
     "consultant": "#7DCEA0",
     "other": "#7FB3D5",
     "freelance - consultant": "#7DCEA0",
@@ -479,8 +480,8 @@ function endDocument() {
                     bottom: 0
                 },
             });
-            const categories = ["Employee", "Freelance - Consultant", "Formation", "Other"];
-            let x = 400;
+            const categories = ["Employee", "Freelance - Consultant", "Formation", "Education", "Other"];
+            let x = 360;
             categories.forEach((c, i) => {
                 x += i === 0 ? 0 : doc.widthOfString(categories[i - 1]) + 10;
                 doc.rect(x - 4, 820, 3, 6).fill(categoryColors[c.toLowerCase()]);

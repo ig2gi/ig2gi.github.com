@@ -7,6 +7,7 @@
     --timeline-tag-freelance-color: #7DCEA0;
     --timeline-tag-consultant-color: #7DCEA0;
     --timeline-tag-formation-color: #BB8FCE;
+    --timeline-tag-education-color:#A5C4D4;
     --timeline-tag-other-color: #7FB3D5;
     --timeline-info-color: #CCD1D1;
 }
@@ -201,6 +202,10 @@
     background: var(--timeline-tag-formation-color);
 }
 
+.timeline-event-content .tag.education {
+    background: var(--timeline-tag-education-color);
+}
+
 .timeline-event-content .tag.other {
     background: var(--timeline-tag-other-color);
 }
@@ -360,6 +365,10 @@
 
 .timeline-event-content .pin.formation {
     background-color: var(--timeline-tag-formation-color);
+}
+
+.timeline-event-content .pin.education {
+    background-color: var(--timeline-tag-education-color);
 }
 
 .timeline-event-content .pin.other {

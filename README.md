@@ -16,5 +16,6 @@ Pages Repository  ==> goto (http://ig2gi.github.com/)
 * add personal info in pdf metadata
 * add personal interests
 * ~~add language~~
+* add education certificates
 
 
