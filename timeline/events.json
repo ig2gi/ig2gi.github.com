@@ -398,6 +398,32 @@
             "softSkills": "decision-making,analysis,design,goal setting,organization,Networking,Collaboration"
         },
         {
+            "title": "Infographics and Data Visualization",
+            "dates": [
+                "2012-09-01T00:00:00Z",
+                "2012-12-01T00:00:00Z"
+            ],
+            "industry": "Data Visualization",
+            "diploma": "certificate",
+            "type": "formation",
+            "category": "formation",
+            "company": {
+                "name": "Knight Center for Journalism in the Americas",
+                "department": "",
+                "logo": "",
+                "link": "https://knightcenter.utexas.edu"
+            },
+            "links": [
+                {
+                    "name": "c1",
+                    "url": "http://ig2gi.github.io/certificates/images/datajournalism.png"
+                }
+            ],
+            "description": "Knight Center for Journalism in the Americas: Data Journalism and Visualization with Free Tools.",
+            "fullDescription": "",
+            "hardSkills": ""
+        },
+        {
             "title": "Senior Software Engineer",
             "dates": [
                 "2009-08-01T00:00:00Z",
@@ -673,7 +699,7 @@
                     "url": "http://iusti.cnrs.fr"
                 }
             ],
-            "description": "Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, ..."
+            "description": "Bachelor + 5. Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, ..."
         },
         {
             "title": "Classe Préparatoire - Math SUP/SPE",

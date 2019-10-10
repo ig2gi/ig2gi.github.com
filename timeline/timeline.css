@@ -8,9 +8,31 @@
     --timeline-tag-consultant-color: #7DCEA0;
     --timeline-tag-formation-color: #BB8FCE;
     --timeline-tag-education-color:#A5C4D4;
-    --timeline-tag-other-color: #7FB3D5;
+    --timeline-tag-other-color: #E5E8E8;
     --timeline-info-color: #CCD1D1;
 }
+
+div.legend {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    margin: 0;
+    
+}
+
+div.legend span i {
+    margin-right: 2px;
+}
+
+div.legend span {
+    font-size: 0.5em;
+    padding-left:10px;
+}
+
+
 
 
 .timeline-container {

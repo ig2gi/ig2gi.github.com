@@ -29,7 +29,7 @@ const categoryColors = {
     "freelance": "#7DCEA0",
     "education": "#A5C4D4",
     "consultant": "#7DCEA0",
-    "other": "#7FB3D5",
+    "other": "#E5E8E8",
     "freelance - consultant": "#7DCEA0",
 };
 const VERSION = "v1.0";

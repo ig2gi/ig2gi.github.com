@@ -17,5 +17,6 @@ Pages Repository  ==> goto (http://ig2gi.github.com/)
 * add personal interests
 * ~~add language~~
 * add education certificates
+* ~~add datajournalism formation~~
 
 
