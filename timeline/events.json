@@ -77,16 +77,25 @@
             "level": "B2"
         }
     ],
-    "profile1": {
-        "title": "Data Analysis and Visualisation",
-        "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. Either on small datasets or large datasets, it may also include all or some of the different data analysis steps  data requirements, collection, data wrangling, processing, cleaning, exploratory analysis, modeling, product, communication. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
-    },
-    "profile2": {
-        "title": "Frontend Engineering",
-        "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly paying attention to details!"
+    "profile": {
+        "description": "I have 3 axis of competencies, which all have in common my curiosity and passion to understand the underlying business domain I'm working on.",
+        "axes": [
+            {
+                "title": "Data Analysis and Visualisation",
+                "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. Either on small datasets or large datasets, it may also include all or some of the different data analysis steps  data requirements, collection, data wrangling, processing, cleaning, exploratory analysis, modeling, product, communication. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
+            },
+            {
+                "title": "Frontend Engineering",
+                "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly paying attention to details!"
+            },
+            {
+                "title": "Business Analysis",
+                "description": "I can gather requirements, write functional specifications and model business process, either as part of a full 'Business Analyst' role or either as part of a 'Product Owner' role in 'scrum' organizations for example.  "
+            }
+        ]
     },
     "headerInfo": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
-    "headerTitle": "Data Analysis & Visualization. Frontend Engineering",
+    "headerTitle": "Data Analysis & Visualization. Frontend Engineering. Business Analysis",
     "softSkills": [
         "time management",
         "creativity",
@@ -154,14 +163,12 @@
             "Data Viz.",
             5,
             true
-        ]
-        ,
+        ],
         [
             "UX Design",
             3,
             true
-        ]
-        ,
+        ],
         [
             "Requirements",
             3,
@@ -187,20 +194,16 @@
             4,
             true
         ],
-        
         [
             "Architecture",
             3,
             true
-        ]
-        ,
-        
+        ],
         [
             "UI Design",
             4,
             true
-        ] ,
-        
+        ],
         [
             "Scrum",
             3,
@@ -210,8 +213,7 @@
             "Prototyping",
             4,
             true
-        ]
-        ,
+        ],
         [
             "Web Dev",
             3,
@@ -222,10 +224,19 @@
             3,
             true
         ],
-
         [
             "ES6",
             4,
+            true
+        ],
+        [
+            "JIRA",
+            3,
+            true
+        ],
+        [
+            "Confluence",
+            3,
             true
         ]
     ],

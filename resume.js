@@ -32,7 +32,7 @@ const categoryColors = {
     "other": "#E5E8E8",
     "freelance - consultant": "#7DCEA0",
 };
-const VERSION = "v1.0";
+const VERSION = "v2.0";
 
 //
 //
@@ -279,56 +279,50 @@ function certificateWriter(exp) {
 
 }
 
-function writeProfile() {
+function writeFirstPage() {
 
     return new Promise((resolve, reject) => {
 
+        // profiles
         _title("Profile");
-
-        _subtitle(resumeData.profile1.title);
-        doc.moveDown(0.3);
-        regular(9).text(resumeData.profile1.description, marginH + 10, doc.y, {
+      
+        regular(9).text(resumeData.profile.description, marginH + 10, doc.y, {
             align: "justify",
             width: 420
         });
         _reset();
         doc.moveDown(1);
+        resumeData.profile.axes.forEach(p => writeProfile(p));
+        doc.moveDown(1);
 
-        _subtitle(resumeData.profile2.title);
-        doc.moveDown(0.3);
-        regular(9).text(resumeData.profile2.description, marginH + 10, doc.y, {
-            align: "justify",
-            width: 420
-        });
+        _title("Skills");
 
-        _reset();
-        doc.moveDown(2);
-
+        // soft skills
         const yimg = doc.y;
-        _subtitle("Soft Skills");
-
-        medium(9).text(`Top ${resumeData.softSkills.length}`, marginH + 10, doc.y).moveDown(0.1);
+        _subtitle("Top 5 Soft Skills");
 
         resumeData.softSkills.sort((a, b) => a.localeCompare(b)).forEach(s => {
             light(9).text(s.toUpperCase(), marginH + 20, doc.y);
         });
         const ximg = doc.x + 120;
         doc.image(`images/softskills.png`, ximg, yimg, {
-            height: 80
+            height: 70
         }).link(ximg, yimg, 80, 80, "http://ig2gi.github.com/timeline/index.html");
         regular(6).text("See ig2gi.github.com for more details.", ximg, yimg + 80);
 
         doc.moveDown(2);
         _reset();
 
+        // hard skills
+
         _subtitle("Hard Skills");
+      
         regular(8).text("Non exhaustive list of skills, sorted alphabetically.", marginH + 10, doc.y);
         doc.moveDown(1);
         const hskills = resumeData.hardSkills.sort((a, b) => a[0].localeCompare(b[0]));
         columns(hskills, 100, 80);
 
-        _reset();
-        doc.moveDown(1);
+        doc.moveUp(2);
         regular(8).text(`Note: the purpose of this list is to give an overview of skills but not to list all the libraries, frameworks or tools commonly used in development (eg: git, svn, maven, hibernate, ejb, mysql , pynum, jquery, ...).`, marginH + 10, doc.y + 80);
 
         doc.moveDown(3);
@@ -340,6 +334,17 @@ function writeProfile() {
     });
 }
 
+function writeProfile(profile) {
+    _subtitle(profile.title);
+    doc.moveDown(0.3);
+    regular(9).text(profile.description, marginH + 10, doc.y, {
+        align: "justify",
+        width: 420
+    });
+    _reset();
+    doc.moveDown(1);
+}
+
 function startDocument() {
     return new Promise((resolve, reject) => {
 
@@ -347,7 +352,7 @@ function startDocument() {
         doc.fillColor(baseColor);
 
 
-        doc.rect(0, 0, 620, 160)
+        doc.rect(0, 0, 620, 170)
             .fill('#EBEDEF');
 
 
@@ -574,7 +579,7 @@ function duration(dates) {
 //
 
 startDocument()
-    .then(writeProfile())
+    .then(writeFirstPage())
     .then(writeEvents(certificates, "Certificates"))
     .then(writeEvents(experiences, "Work Experience", true))
     .then(writeEvents(educations, "Education"))
