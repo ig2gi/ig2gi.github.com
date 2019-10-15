@@ -78,11 +78,11 @@
         }
     ],
     "profile": {
-        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on.",
+        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on.   ",
         "axes": [
             {
                 "title": "Data Analysis and Visualisation",
-                "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. Either on small datasets or large datasets, it may also include all or some of the different data analysis steps  data requirements, collection, data wrangling, processing, cleaning, exploratory analysis, modeling, product, communication. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
+                "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. Either on small datasets or large datasets, it may also include all or some of the different data analysis steps:  data requirements, collection, data wrangling, processing, cleaning, exploratory analysis, modeling, product, communication. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
             },
             {
                 "title": "Frontend Engineering",
