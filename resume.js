@@ -299,7 +299,7 @@ function writeFirstPage() {
 
         // soft skills
         const yimg = doc.y;
-        _subtitle("Top 5 Soft Skills");
+        _subtitle(`Top ${resumeData.softSkills.length} Soft Skills`);
 
         resumeData.softSkills.sort((a, b) => a.localeCompare(b)).forEach(s => {
             light(9).text(s.toUpperCase(), marginH + 20, doc.y);
