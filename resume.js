@@ -19,6 +19,7 @@ const shortFormatter = (y, m) => {
         return `${y}y`;
     return `${y}y ${m}m`;
 };
+const PERIOD_FORMAT = "MMM YYYY";
 
 const marginH = 90;
 const baseColor = "#5D6D7E";
@@ -32,7 +33,7 @@ const categoryColors = {
     "other": "#E5E8E8",
     "freelance - consultant": "#7DCEA0",
 };
-const VERSION = "v2.0";
+const VERSION = "v3.0";
 
 //
 //
@@ -129,27 +130,28 @@ function writeEvents(data, title, newPageAtEnd = false) {
 
 
             // YEAR
-
             light(20, color1)
                 .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
 
+            const yYear = doc.y  - doc.heightOfString("1000");
             const x1 = doc.x + doc.widthOfString("2") / 2;
             const y1 = doc.y - 2;
 
             // DURATION
             let s = diff(event.duration, shortFormatter);
-            regular(9, color1).text(s, x1 + 10, y1 + 3);
+            regular(9).text(s, x1 + 10, y1 + 3);
+
 
             // TITLE
             medium(12)
-                .text(event.title, marginH, doc.y - 2 * doc.heightOfString("1000"))
+                .text(event.title, marginH, yYear + 2)
                 .moveDown(0);
 
             // INDUSTRY
             strong(8);
             let ind = event.industry + (!event.subIndustry || event.subIndustry === "" ? "" : " - " + event.subIndustry);
             let height = doc.currentLineHeight();
-            doc.moveUp();
+            doc.moveUp(1.5);
             regular(8, "#1F618D")
                 .highlight(doc.x + 440 - doc.widthOfString(` ${ind} `), doc.y, doc.widthOfString(` ${ind}  `), height, {
                     color: "#D5DBDB"
@@ -159,13 +161,23 @@ function writeEvents(data, title, newPageAtEnd = false) {
                     width: 440
                 });
 
+            // PERIOD
+            let p = getPeriod(event);
+            console.log(p);
+            regular(8, baseColor).text(p, doc.x, doc.y, {
+                align: "right",
+                width: 440
+            });
+
             // CONTENT
-            getWriter(event.type)(event);
+            doc.moveUp(0.5);
+            getWriter(event.type, event.category)(event);
 
 
             // END EVENT (YEAR LINE)
             doc.moveTo(x1, y1 - 3)
                 .lineTo(x1, doc.y)
+                .lineWidth(0.5)
                 .stroke(color1)
                 .strokeOpacity(0.6);
 
@@ -188,13 +200,13 @@ function writeEvents(data, title, newPageAtEnd = false) {
 
 }
 
-function getWriter(type) {
+function getWriter(type, category) {
     switch (type) {
         case "experience":
             return experienceWriter;
 
         case "formation":
-            return certificateWriter;
+            return category === "formation" ? certificateWriter : experienceWriter;
 
         default:
             return experienceWriter;
@@ -349,10 +361,9 @@ function startDocument() {
     return new Promise((resolve, reject) => {
 
         doc.addPage();
-        doc.fillColor(baseColor);
 
-
-        doc.rect(0, 0, 620, 170)
+        // Header rectangle background
+        doc.rect(0, 0, 630, 170)
             .fill('#EBEDEF');
 
 
@@ -479,18 +490,18 @@ function endDocument() {
 
 
             // BOTTOM
-            light(7).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - ${VERSION} - © gilbert perrin 2019`, 20, 820, {
+            light(8).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - ${VERSION} - © gilbert perrin 2019`, 20, 820, {
                 align: "left",
                 margins: {
                     bottom: 0
                 },
             });
             const categories = ["Employee", "Freelance - Consultant", "Formation", "Education", "Other"];
-            let x = 360;
+            let x = 330;
             categories.forEach((c, i) => {
                 x += i === 0 ? 0 : doc.widthOfString(categories[i - 1]) + 10;
                 doc.rect(x - 4, 820, 3, 6).fill(categoryColors[c.toLowerCase()]);
-                light(7).text(c, x, 820, {
+                light(8).text(c, x, 820, {
                     align: "left",
                     margins: {
                         bottom: 0
@@ -523,12 +534,27 @@ function loadResume() {
     resume.events.forEach(d => {
         d.dates = d.dates.map(d => new Date(d));
         d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
+        d.period = d.dates.length === 2;
         d.duration = duration(d.dates);
     });
     return resume;
 
 }
 
+function getPeriod(event){
+    const dates = event.dates;
+    const d1 = mt(dates[0]);
+    // one date event
+    if (event.period === false)
+        return `${d1.format("MMM YYYY")}`;
+    const sameYear = event.years.length === 1;
+    const d2 = mt(dates[1]);
+    // event on several years
+    if (sameYear === false)
+        return `${d1.format("MMM YYYY")} - ${d2.format("MMM YYYY")}`;
+    // event within one year
+    return `${d1.format("MMM")} - ${d2.format("MMM YYYY")}`;
+}
 
 function diff(time, formatter = defaultDiffFormatter, approx = true) {
     let y = time[0];
@@ -580,7 +606,7 @@ function duration(dates) {
 
 startDocument()
     .then(writeFirstPage())
-    .then(writeEvents(certificates, "Certificates"))
     .then(writeEvents(experiences, "Work Experience", true))
-    .then(writeEvents(educations, "Education"))
+    .then(writeEvents(educations, "Education", false))
+    .then(writeEvents(certificates, "Certificates"))
     .then(endDocument());

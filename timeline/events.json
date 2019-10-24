@@ -167,7 +167,7 @@
         ],
         [
             "UX Design",
-            3,
+            4,
             true
         ],
         [
@@ -202,7 +202,7 @@
         ],
         [
             "UI Design",
-            4,
+            3,
             true
         ],
         [
@@ -280,7 +280,13 @@
                 {
                     "name": "c4",
                     "url": "https://www.coursera.org/account/accomplishments/certificate/UST89R7CHWZV"
+                },
+                {
+                    "name": "c5",
+                    "url": "https://www.coursera.org/account/accomplishments/certificate/RAPJZ3AHP6R2?utm_medium=certificate&utm_source=link&utm_campaign=copybutton_certificate"
                 }
+
+                
             ],
             "description": "Foundations of Deep Learning, understanding how to build neural networks, and learn how to lead successful machine learning projects. Convolutional networks, RNNs, LSTM, Adam, Dropout, BatchNorm, Xavier/He initialization, and more. Implementation in Python, numpy and TensorFlow.",
             "fullDescription": "",
@@ -494,7 +500,7 @@
         {
             "title": "Senior Software Engineer",
             "dates": [
-                "2007-08-01T00:00:00Z",
+                "2008-01-01T00:00:00Z",
                 "2008-06-30T00:00:00Z"
             ],
             "industry": "Broadcast Media",
@@ -518,13 +524,13 @@
         {
             "title": "Senior Software Engineer",
             "dates": [
-                "2006-04-01T00:00:00Z",
-                "2007-07-30T00:00:00Z"
+                "2006-01-01T00:00:00Z",
+                "2007-12-30T00:00:00Z"
             ],
             "industry": "Industry",
             "subIndustry": "Energy",
             "type": "experience",
-            "category": "freelance",
+            "category": "consultant",
             "company": {
                 "name": "Neo Technologies",
                 "department": "",
@@ -568,8 +574,8 @@
         {
             "title": "Senior Software Engineer",
             "dates": [
-                "2004-02-01T00:00:00Z",
-                "2005-08-31T00:00:00Z"
+                "2004-01-01T00:00:00Z",
+                "2004-08-31T00:00:00Z"
             ],
             "industry": "Finance",
             "subIndustry": "Private Banking",
