@@ -78,7 +78,7 @@
         }
     ],
     "profile": {
-        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on.   ",
+        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on: Data Visualisation, Frontend Engineering and Business Analysis. In addition to this expertise, I'm currently finishing a specialisation in Machine Learning.",
         "axes": [
             {
                 "title": "Data Analysis and Visualisation",
@@ -91,7 +91,12 @@
             {
                 "title": "Business Analysis",
                 "description": "I can gather requirements, write functional specifications and model business process, either as part of a full 'Business Analyst' role or either as part of a 'Product Owner' role in 'scrum' organizations for example.  "
+            },
+            {
+                "title": "Machine Learning",
+                "description": "Foundations of Deep Learning, how to build neural networks and how to lead successful machine learning projects."
             }
+
         ]
     },
     "headerInfo": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
@@ -157,7 +162,7 @@
         ],
         [
             "Deep  Learning",
-            2,
+            4,
             true
         ],
         [
@@ -244,6 +249,11 @@
             "Balsamiq",
             3,
             true
+        ],
+        [
+            "Machine Learning",
+            3,
+            true
         ]
 
         
@@ -252,7 +262,7 @@
         {
             "title": "Deep Learning Specialization",
             "dates": [
-                "2019-07-01T00:00:00Z"
+                "2019-07-01T00:00:00Z", "2019-11-15T00:00:00Z"
             ],
             "industry": "Machine Learning",
             "diploma": "certificate",
