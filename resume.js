@@ -32,7 +32,7 @@ const categoryColors = {
     "other": "#E5E8E8",
     "freelance - consultant": "#7DCEA0",
 };
-const VERSION = "v3.1";
+const VERSION = "v3.2";
 
 //
 //
@@ -512,6 +512,51 @@ function endDocument() {
     });
 }
 
+function writeHobbies() {
+
+    return new Promise((resolve, reject) => {
+
+        // profiles
+        _title("Additional Activities & Interests");
+
+        doc.moveUp(0.5);
+      
+        resumeData.hobbies.forEach(h => {
+            // title
+            let y0 = doc.y;
+            medium(12).text(h.title, marginH, doc.y);
+            // description
+            let listIndex = h.description.indexOf("-");
+            let s = listIndex === -1 ? h.description : h.description.slice(0, listIndex);
+            regular(9).text(s, marginH, doc.y, {
+                align: "justify",
+                width: 420
+            });
+            // list of things, if needed
+            if (listIndex >= 0){
+                doc.moveDown(0.5);
+                let things = h.description.slice(listIndex + 1, h.description.length).split("-");
+                things.forEach(item => {
+                    regular(9).text("- " + item, marginH + 10, doc.y, {
+                        align: "justify",
+                        width: 420
+                    });
+                });
+            }
+            // image
+            doc.image(`images/${h.image}`, marginH - 40, y0, {
+                height: 20
+            });
+
+            doc.moveDown(1);
+        });
+       
+
+        resolve(doc);
+
+    });
+}
+
 
 //
 //
@@ -602,5 +647,6 @@ startDocument()
     .then(writeFirstPage())
     .then(writeEvents(experiences, "Work Experience", true))
     .then(writeEvents(educations, "Education", false))
-    .then(writeEvents(certificates, "Certificates"))
+    .then(writeEvents(certificates, "Certificates", true))
+    .then(writeHobbies())
     .then(endDocument());

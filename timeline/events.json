@@ -96,7 +96,6 @@
                 "title": "Machine Learning",
                 "description": "Foundations of Deep Learning, how to build neural networks and how to lead successful machine learning projects."
             }
-
         ]
     },
     "headerInfo": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
@@ -255,14 +254,13 @@
             3,
             true
         ]
-
-        
     ],
     "events": [
         {
             "title": "Deep Learning Specialization",
             "dates": [
-                "2019-07-01T00:00:00Z", "2019-11-15T00:00:00Z"
+                "2019-07-01T00:00:00Z",
+                "2019-11-15T00:00:00Z"
             ],
             "industry": "Machine Learning",
             "diploma": "certificate",
@@ -299,8 +297,6 @@
                     "name": "personal notes",
                     "url": "https://observablehq.com/collection/@ig2gi/deep-learning"
                 }
-
-                
             ],
             "description": "Foundations of Deep Learning, understanding how to build neural networks, and learn how to lead successful machine learning projects. Convolutional networks, RNNs, LSTM, Adam, Dropout, BatchNorm, Xavier/He initialization, and more. Implementation in Python, numpy and TensorFlow.",
             "fullDescription": "",
@@ -763,5 +759,23 @@
             ],
             "description": "Mathematics and Philosophy"
         }
+    ],
+    "hobbies": [
+        {
+            "title": "Running",
+            "description": "I try to run at least 20 km per week, you can catch me on Strava and during the differents 10K courses at Lausanne.",
+            "image": "running.png"
+        },
+        {
+            "title": "Photography",
+            "description": "I practice Photography as mentioned in the Experience section, this is a domain where I can express my creativity, please have a look at https://500px.com/search?q=ig2gi&type=photos",
+            "image": "photo.png"
+        },
+        {
+            "title": "Readings",
+            "description": "I try to read at least 2 books per month. My preferred genres: Philosophical, Informational, Sciences and Science Fiction. My last 3 books: - 'Factfulness' by Hans Rosling (2019) - 'Enlightenment Now: The Case for Reason, Science, Humanism, and Progress' by Steven Pinker (2018) - 'The Art of Statistics: Learning from Data' by David Spiegelhalter (2019)",
+            "image": "reading.png"
+        }
+        
     ]
 }
