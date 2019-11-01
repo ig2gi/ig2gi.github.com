@@ -1,6 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const mt = require('moment');
+const rd = require('./resume-data');
 
 //
 //
@@ -11,15 +12,8 @@ const mt = require('moment');
 // ================================================
 //
 //
-const defaultDiffFormatter = (y, m) => [y === 0 ? "" : `${y} year${y > 1 ? "s": ""}`, m === 0 ? "" : `${m} month${m > 1 ? "s": ""}`]; // returns only years and months
-const shortFormatter = (y, m) => {
-    if (y === 0)
-        return `${m}m`;
-    if (m === 0)
-        return `${y}y`;
-    return `${y}y ${m}m`;
-};
 
+const VERSION = "V4.0";
 const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
@@ -32,7 +26,7 @@ const categoryColors = {
     "other": "#E5E8E8",
     "freelance - consultant": "#7DCEA0",
 };
-const VERSION = "v3.2";
+
 
 //
 //
@@ -43,10 +37,10 @@ const VERSION = "v3.2";
 // ================================================
 //
 //
-const resumeData = loadResume();
-const certificates = resumeData.events.filter(d => d.type === "formation" && d.diploma === "certificate");
-const experiences = resumeData.events.filter(d => d.type === "experience");
-const educations = resumeData.events.filter(d => d.type === "formation" && d.diploma !== "certificate");
+const resume = rd('./timeline/events.json');
+const certificates = resume.getCertificates();
+const experiences = resume.getExperiences();
+const educations = resume.getEducations();
 
 
 //
@@ -132,26 +126,32 @@ function writeEvents(data, title, newPageAtEnd = false) {
             light(20, color1)
                 .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
 
-            const yYear = doc.y  - doc.heightOfString("1000");
+            const yYear = doc.y - doc.heightOfString("1000");
             const x1 = doc.x + doc.widthOfString("2") / 2;
             const y1 = doc.y - 2;
 
             // DURATION
-            let s = diff(event.duration, shortFormatter);
-            regular(9).text(s, x1 + 10, y1 + 3);
+            regular(9).text(event.durationAsString, x1 + 10, y1 + 3);
 
 
             // TITLE
-            medium(12)
+            if (event.type === "experience")
+                medium(12, "#2980B9")
+                .text(event.company.name, marginH, yYear + 2, {
+                    link: event.company.url,
+                    underline: false
+                }).moveDown(0.5);
+            else
+                medium(12)
                 .text(event.title, marginH, yYear + 2)
-                .moveDown(0);
+                .moveDown(0.5);
 
             // INDUSTRY
             strong(8);
             let ind = event.industry + (!event.subIndustry || event.subIndustry === "" ? "" : " - " + event.subIndustry);
             let height = doc.currentLineHeight();
-            doc.moveUp(1.5);
-            regular(8, "#1F618D")
+            doc.moveUp(2);
+            regular(9, "#1F618D")
                 .highlight(doc.x + 440 - doc.widthOfString(` ${ind} `), doc.y, doc.widthOfString(` ${ind}  `), height, {
                     color: "#D5DBDB"
                 })
@@ -160,16 +160,10 @@ function writeEvents(data, title, newPageAtEnd = false) {
                     width: 440
                 });
 
-            // PERIOD
-            let p = getPeriod(event);
-            console.log(p);
-            regular(8, baseColor).text(p, doc.x, doc.y, {
-                align: "right",
-                width: 440
-            });
+
 
             // CONTENT
-            doc.moveUp(0.5);
+            doc.moveDown(0.5);
             getWriter(event.type, event.category)(event);
 
 
@@ -205,7 +199,7 @@ function getWriter(type, category) {
             return experienceWriter;
 
         case "formation":
-            return category === "formation" ? certificateWriter : experienceWriter;
+            return certificateWriter;
 
         default:
             return experienceWriter;
@@ -215,39 +209,51 @@ function getWriter(type, category) {
 
 function experienceWriter(exp) {
 
-    const items = exp.description.split(". ");
-    regular(10, "#2980B9")
-        .text(exp.company.name, marginH + 10, doc.y, {
-            link: exp.links.length > 0 ? exp.links[0].url : "",
-            underline: false
-        })
-        .moveDown(0.1);
-    /*
-            if (exp.company.logo && exp.company.logo.indexOf(".svg") === -1) {
-                doc.image(`timeline/images/${exp.company.logo}`, doc.x - 10, doc.y - doc.heightOfString(exp.company.name) - 5, {
-                    height: 10
-                });
-            }
-            */
+    if (exp.isSingle)
+        writeSingleExperience(exp);
+    else
+        exp.events.forEach(e => {
+            writeSingleExperience(e);
+            doc.moveDown(0.5);
+        });
 
+}
+
+function writeSingleExperience(event) {
+    // sub title
+    let y0 = doc.y;
+    medium(10)
+        .text(event.title, marginH, doc.y);
+    doc.moveDown(0.2);
+
+    // PERIOD
+    let p = event.periodAsString;
+    regular(8, baseColor).text(p, doc.x, y0, {
+        align: "right",
+        width: 440
+    });
+
+    doc.moveDown(0.3);
+
+    // description
+    const items = event.description.split(". ");
     items.forEach(i => {
-        doc.rect(doc.x - 5, doc.y + 3, 1, 1).fill("#5D6D7E");
+        doc.rect(marginH + 5, doc.y + 3, 1, 1).fill("#5D6D7E");
         regular(9)
             .text(i, marginH + 10, doc.y, {
                 align: "justify",
                 width: 420
             });
     });
-
 }
 
 
 function certificateWriter(exp) {
 
     const desc = exp.description;
-    regular(10, "#2980B9")
+    medium(10, "#2980B9")
         .text(exp.company.name, marginH + 10, doc.y, {
-            link: exp.links.length > 0 ? exp.company.link : "",
+            link: exp.company.url,
             underline: false
         })
         .moveDown(0.1);
@@ -298,20 +304,20 @@ function writeFirstPage() {
         _title("Profile");
 
         doc.moveUp(0.5);
-      
-        regular(9).text(resumeData.profile.description, marginH + 10, doc.y, {
+
+        regular(9).text(resume.profile.description, marginH + 10, doc.y, {
             align: "justify",
             width: 420
         });
         _reset();
         doc.moveDown(1);
-        resumeData.profile.axes.forEach(p => writeProfile(p));
+        resume.profile.axes.forEach(p => writeProfile(p));
         doc.moveDown(1);
 
         // soft skills
         _title("Top 6 Soft Skills");
         doc.moveUp(0.5);
-        let skills = resumeData.softSkills.sort((a, b) => a.localeCompare(b)).join("  ");
+        let skills = resume.softSkills.sort((a, b) => a.localeCompare(b)).join("  ");
         light(9).text(skills.toUpperCase(), marginH + 10, doc.y);
 
         doc.moveDown(2);
@@ -321,16 +327,16 @@ function writeFirstPage() {
 
         _title("Hard Skills");
         doc.moveUp(0.5);
-      
+
         regular(8).text("Non exhaustive list, sorted alphabetically (libraries, frameworks or tools commonly used in development, like  git, maven, hibernate, mysql , pynum, jquery, ..., are not listed)", marginH + 10, doc.y, {
             align: "justify",
             width: 420
         });
         doc.moveDown(1);
-        const hskills = resumeData.hardSkills.sort((a, b) => a[0].localeCompare(b[0]));
+        const hskills = resume.hardSkills.sort((a, b) => a[0].localeCompare(b[0]));
         columns(hskills, 100, 80);
 
-        
+
         doc.moveDown(3);
 
 
@@ -371,9 +377,9 @@ function startDocument() {
 
         // SOCIAL
 
-        drawItemsOnCircle(resumeData.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 10, "left", "#2980B9", 8);
-        drawItemsOnCircle(resumeData.contact, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right", "#566573", 9, 11, false);
-        drawItemsOnCircle(resumeData.aptitudes, xc, yc, r, Math.PI / 20, Math.PI / 10, "right", "#1F618D", 9);
+        drawItemsOnCircle(resume.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 10, "left", "#2980B9", 8);
+        drawItemsOnCircle(resume.contact, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right", "#566573", 9, 11, false);
+        drawItemsOnCircle(resume.aptitudes, xc, yc, r, Math.PI / 20, Math.PI / 10, "right", "#1F618D", 9);
 
         // CONTACT
 
@@ -387,18 +393,18 @@ function startDocument() {
 
 
         // HEADER 
-        light(25).text(resumeData.name, 5, 16, {
+        light(25).text(resume.name, 5, 16, {
             align: "right"
         });
-        let lines = resumeData.headerTitle.split(/[\\._]/g);
+        let lines = resume.headerTitle.split(/[\\._]/g);
         multilines(lines, regular, 10, "right", "#1F618D");
         doc.moveDown(1);
         doc.moveTo(480, doc.y - 8).lineTo(585, doc.y - 8).lineWidth(1).stroke("white");
-        lines = resumeData.headerInfo.split(/[\\._]/g);
+        lines = resume.headerInfo.split(/[\\._]/g);
         multilines(lines, regular, 10, "right", "#566573");
         doc.moveDown(1);
         doc.moveTo(480, doc.y - 8).lineTo(585, doc.y - 8).lineWidth(1).stroke("white");
-        lines = resumeData.languages.map(d => `${d.level} - ${d.name.toUpperCase()}`);
+        lines = resume.languages.map(d => `${d.level} - ${d.name.toUpperCase()}`);
         multilines(lines, regular, 8, "right", "#566573");
 
         doc.text("", marginH, 180);
@@ -468,7 +474,7 @@ function endDocument() {
 
                 let x = 10;
                 let y = 10;
-                resumeData.contact.forEach(s => {
+                resume.contact.forEach(s => {
                     doc.image(`${s.logo}`, x, y, {
                         height: 8
                     });
@@ -519,21 +525,21 @@ function writeHobbies() {
         // profiles
         _title("Additional Activities & Interests");
 
-        doc.moveUp(0.5);
-      
-        resumeData.hobbies.forEach(h => {
+       // doc.moveUp(0.5);
+
+        resume.hobbies.forEach(h => {
             // title
             let y0 = doc.y;
             medium(12).text(h.title, marginH, doc.y);
             // description
             let listIndex = h.description.indexOf("-");
             let s = listIndex === -1 ? h.description : h.description.slice(0, listIndex);
-            regular(9).text(s, marginH, doc.y, {
+            regular(9).text(s, marginH + 10, doc.y, {
                 align: "justify",
                 width: 420
             });
             // list of things, if needed
-            if (listIndex >= 0){
+            if (listIndex >= 0) {
                 doc.moveDown(0.5);
                 let things = h.description.slice(listIndex + 1, h.description.length).split("-");
                 things.forEach(item => {
@@ -550,7 +556,7 @@ function writeHobbies() {
 
             doc.moveDown(1);
         });
-       
+
 
         resolve(doc);
 
@@ -558,80 +564,6 @@ function writeHobbies() {
 }
 
 
-//
-//
-// ================================================
-//
-// Utility Functions
-//
-// ================================================
-//
-//
-function loadResume() {
-    const resume = JSON.parse(fs.readFileSync('./timeline/events.json'));
-
-    resume.events.forEach(d => {
-        d.dates = d.dates.map(d => new Date(d));
-        d.years = [...new Set(d.dates.map(d => d.getFullYear()))];
-        d.period = d.dates.length === 2;
-        d.duration = duration(d.dates);
-    });
-    return resume;
-
-}
-
-function getPeriod(event){
-    const dates = event.dates;
-    const d1 = mt(dates[0]);
-    // one date event
-    if (event.period === false)
-        return `${d1.format("MMM YYYY")}`;
-    const sameYear = event.years.length === 1;
-    const d2 = mt(dates[1]);
-    // event on several years
-    if (sameYear === false)
-        return `${d1.format("MMM YYYY")} - ${d2.format("MMM YYYY")}`;
-    // event within one year
-    return `${d1.format("MMM")} - ${d2.format("MMM YYYY")}`;
-}
-
-function diff(time, formatter = defaultDiffFormatter, approx = true) {
-    let y = time[0];
-    let m = time[1];
-    let d = time[2];
-    // day
-    let dm = Math.floor(d / 30);
-    if (dm > 0) {
-        d = d - dm * 30;
-        m += dm;
-    }
-    if (approx && d > 20) {
-        d = 0;
-        m++;
-    }
-    // month
-    let my = Math.floor(m / 12);
-    if (my > 0) {
-        m = m - my * 12;
-        y += my;
-    }
-    if (approx && m > 10) {
-        m = 0;
-        y++;
-    }
-    return formatter(y, m, d);
-}
-
-
-function duration(dates) {
-    const starts = mt(dates[0]);
-    const ends = mt(dates.length === 1 ? new Date() : dates[1]);
-    const duration = mt.duration(ends.diff(starts));
-    let y = duration.years();
-    let m = duration.months();
-    let d = duration.days();
-    return [y, m, d];
-}
 
 //
 //
@@ -645,8 +577,8 @@ function duration(dates) {
 
 startDocument()
     .then(writeFirstPage())
-    .then(writeEvents(experiences, "Work Experience", true))
-    .then(writeEvents(educations, "Education", false))
-    .then(writeEvents(certificates, "Certificates", true))
+    .then(writeEvents(experiences, "Work Experience", false))
+    .then(writeEvents(educations, "Education", true))
+    .then(writeEvents(certificates, "Certificates", false))
     .then(writeHobbies())
     .then(endDocument());

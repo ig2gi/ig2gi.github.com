@@ -257,6 +257,7 @@
     ],
     "events": [
         {
+            "id": 1,
             "title": "Deep Learning Specialization",
             "dates": [
                 "2019-07-01T00:00:00Z",
@@ -270,7 +271,7 @@
                 "name": "Coursera Specialization by Stanford University.",
                 "department": "",
                 "logo": "",
-                "link": "https://www.coursera.org/specializations/deep-learning"
+                "url": "https://www.coursera.org/specializations/deep-learning"
             },
             "links": [
                 {
@@ -303,6 +304,7 @@
             "hardSkills": "Deep Learning,Tensorflow,Convolutional Neural Network,Artificial Neural Network"
         },
         {
+            "id": 2,
             "title": "VP Functional & UX Design",
             "dates": [
                 "2018-05-01T00:00:00Z",
@@ -316,20 +318,16 @@
                 "name": "Sophia genetics",
                 "department": "",
                 "logo": "sophia.svg",
-                "link": ""
+                "url": "http://www.sophiagenetics.com"
             },
-            "links": [
-                {
-                    "name": "Sophia Genetics",
-                    "url": "http://www.sophiagenetics.com"
-                }
-            ],
+            "links": [],
             "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
             "fullDescription": "",
             "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration,Agility,Coordination",
             "hardSkills": "D3.js,balsamiq"
         },
         {
+            "id": 3,
             "title": "Introduction to the Biology of Cancer",
             "dates": [
                 "2018-01-01T00:00:00Z",
@@ -344,7 +342,7 @@
                 "name": "Coursera Specialization by Stanford University.",
                 "department": "",
                 "logo": "",
-                "link": "https://www.coursera.org/learn/cancer"
+                "url": "https://www.coursera.org/learn/cancer"
             },
             "links": [
                 {
@@ -357,6 +355,7 @@
             "hardSkills": ""
         },
         {
+            "id": 4,
             "title": "Head of Front-End Development",
             "dates": [
                 "2015-05-01T00:00:00Z",
@@ -369,20 +368,17 @@
             "company": {
                 "name": "Sophia genetics",
                 "department": "",
-                "logo": "sophia.svg"
+                "logo": "sophia.svg",
+                "url": "http://www.sophiagenetics.com"
             },
-            "links": [
-                {
-                    "name": "Sophia Genetics",
-                    "url": "http://www.sophiagenetics.com"
-                }
-            ],
+            "links": [],
             "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
             "fullDescription": "",
             "softSkills": "clarity,friendliness,Coordination,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring,Collaboration,Empathy,Tolerance",
             "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web,Agility"
         },
         {
+            "id": 5,
             "title": "Data Visualisation Engineer",
             "dates": [
                 "2013-05-01T00:00:00Z",
@@ -395,19 +391,16 @@
             "company": {
                 "name": "Sophia genetics",
                 "department": "",
-                "logo": "sophia.svg"
+                "logo": "sophia.svg",
+                "url": "http://www.sophiagenetics.com"
             },
-            "links": [
-                {
-                    "name": "Sophia Genetics",
-                    "url": "http://www.sophiagenetics.com"
-                }
-            ],
+            "links": [],
             "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
             "fullDescription": "",
             "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management,Collaboration,Mentoring"
         },
         {
+            "id": 6,
             "title": "Data Visualization, Web Developer",
             "dates": [
                 "2013-01-01T00:00:00Z",
@@ -420,19 +413,16 @@
             "company": {
                 "name": "International AIDS Society",
                 "department": "",
-                "logo": "ias.png"
+                "logo": "ias.png",
+                "url": "https://www.iasociety.org"
             },
-            "links": [
-                {
-                    "name": "International AIDS Society",
-                    "url": "https://www.iasociety.org"
-                }
-            ],
+            "links": [],
             "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
             "fullDescription": "",
             "softSkills": "decision-making,analysis,design,goal setting,organization,Networking,Collaboration"
         },
         {
+            "id": 7,
             "title": "Infographics and Data Visualization",
             "dates": [
                 "2012-09-01T00:00:00Z",
@@ -446,7 +436,7 @@
                 "name": "Knight Center for Journalism in the Americas",
                 "department": "",
                 "logo": "",
-                "link": "https://knightcenter.utexas.edu"
+                "url": "https://knightcenter.utexas.edu"
             },
             "links": [
                 {
@@ -459,6 +449,7 @@
             "hardSkills": ""
         },
         {
+            "id": 8,
             "title": "Senior Software Engineer",
             "dates": [
                 "2009-08-01T00:00:00Z",
@@ -471,19 +462,16 @@
             "company": {
                 "name": "Pictet Asset Management",
                 "department": "",
-                "logo": "pictet.png"
+                "logo": "pictet.png",
+                "url": "https://www.am.pictet/en/uk/intermediary"
             },
-            "links": [
-                {
-                    "name": "Pictet Asset Management",
-                    "url": "https://www.am.pictet/en/uk/intermediary"
-                }
-            ],
+            "links": [],
             "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
             "fullDescription": "",
             "softSkills": "clarity,analysis,Coordination,logical reasoning,divergent thinking,commitment,agility,Collaboration,Mentoring,Humor"
         },
         {
+            "id": 9,
             "title": "One sabbatical year stuying Photography",
             "dates": [
                 "2008-06-30T00:00:00Z",
@@ -495,19 +483,16 @@
             "company": {
                 "name": "Photography",
                 "department": "",
-                "logo": ""
+                "logo": "",
+                "url": "https://500px.com/ig2gi/galleries"
             },
-            "links": [
-                {
-                    "name": "Portfolio",
-                    "url": "https://500px.com/ig2gi/galleries"
-                }
-            ],
+            "links": [],
             "description": "Courses, self-training, travel (Canada), photoreports. 4 months photo-reporter internship at Police Cantonale Vaudoise. Photographer at 'La nuit des musées, Lausanne' several years (2009, 2010, 2011, 2012).",
             "fullDescription": "",
             "softSkills": "curiosity,self-confidence,imagination,design,experimenting,questioning"
         },
         {
+            "id": 10,
             "title": "Senior Software Engineer",
             "dates": [
                 "2008-01-01T00:00:00Z",
@@ -519,19 +504,16 @@
             "company": {
                 "name": "RTS - Radio Télévision Suisse",
                 "department": "",
-                "logo": "rts.png"
+                "logo": "rts.png",
+                "url": "https://www.rts.ch/entreprise/"
             },
-            "links": [
-                {
-                    "name": "RTS",
-                    "url": "https://www.rts.ch/entreprise/"
-                }
-            ],
+            "links": [],
             "description": "Architecture, design and implementation of a Workflow-based collaborative application for the completely tapeless, digital production of television programs - architected around REST principles for data integration. Wrote use-case catalog, architecture, component and framework selection, implementation planning, design and implementation.",
             "fullDescription": "",
             "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall,Collaboration,Networking"
         },
         {
+            "id": 11,
             "title": "Senior Software Engineer",
             "dates": [
                 "2006-01-01T00:00:00Z",
@@ -544,19 +526,16 @@
             "company": {
                 "name": "Neo Technologies",
                 "department": "",
-                "logo": "neo.png"
+                "logo": "neo.png",
+                "url": "http://www.neo-technologies.ch"
             },
-            "links": [
-                {
-                    "name": "Neo Technologies",
-                    "url": "http://www.neo-technologies.ch"
-                }
-            ],
+            "links": [],
             "description": "Re-engineering of the in-house electricity-management logistics platform to open it to third parties and to extend the range of managed goods to gas, digital media, etc. Reverse-engineered use-cases, sequence and class diagrams of the pre-existing system. Wrote new use-cases and specifications by interviewing all platform stakeholders. Architected, designed, implemented the augmented system.",
             "fullDescription": "",
             "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis,Collaboration,Diplomacy,Empathy"
         },
         {
+            "id": 12,
             "title": "Senior Software Engineer",
             "dates": [
                 "2004-09-01T00:00:00Z",
@@ -569,19 +548,16 @@
             "company": {
                 "name": "Pictet Asset Management",
                 "department": "",
-                "logo": "pictet.png"
+                "logo": "pictet.png",
+                "url": "https://www.am.pictet/en/uk/intermediary"
             },
-            "links": [
-                {
-                    "name": "Pictet Asset Management",
-                    "url": "https://www.am.pictet/en/uk/intermediary"
-                }
-            ],
+            "links": [],
             "description": "Analysis and design of an infrastructure for notification of changes between applications. Specific implementation for cache invalidation of the pms application.  Architecture and design of a batch framework which provides an asynchronous, server-based batch processing environment that can wrap, execute and monitor business tasks.",
             "fullDescription": "",
             "softSkills": "Logical reasoning,Persistence,Conflict management,Analysis,Written communication,Discipline,Commitment,Tolerance,Diplomacy,Goal setting,Stress management,Cultural intelligence,Trust,Written communication,Empathy"
         },
         {
+            "id": 13,
             "title": "Senior Software Engineer",
             "dates": [
                 "2004-01-01T00:00:00Z",
@@ -601,6 +577,7 @@
             "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect,Collaboration,Written communication"
         },
         {
+            "id": 14,
             "title": "Java J2EE Senior Developer",
             "dates": [
                 "2000-07-01T00:00:00Z",
@@ -611,20 +588,17 @@
             "type": "experience",
             "category": "employee",
             "company": {
-                "name": "Odyssey Asset Management",
+                "name": "Odyssey Asset Management, Temenos",
                 "department": "",
-                "logo": "odyssey.jpg"
+                "logo": "odyssey.jpg",
+                "url": "https://www.temenos.com"
             },
-            "links": [
-                {
-                    "name": "Temenos Group",
-                    "url": "https://www.temenos.com"
-                }
-            ],
+            "links": [],
             "description": "Design and implementation of a business tag-library to communicate with EJB service layer. Design of web components - technical person in charge of the EJB layer - responsible for the programming, packaging and deployment environments.",
             "softSkills": "Analysis,Project management,Prioritizing,Coordination,Clarity,Empathy,Written communication"
         },
         {
+            "id": 15,
             "title": "Java Developer",
             "dates": [
                 "1998-07-01T00:00:00Z",
@@ -635,20 +609,17 @@
             "type": "experience",
             "category": "employee",
             "company": {
-                "name": "BIPE",
+                "name": "Le BIPE, BDO Advisory",
                 "department": "",
-                "logo": "bipe.png"
+                "logo": "bipe.png",
+                "url": "https://lebipe.com"
             },
-            "links": [
-                {
-                    "name": "Le BIPE, BDO Advisory",
-                    "url": "https://lebipe.com"
-                }
-            ],
+            "links": [],
             "description": "The principal activity was the migration and the development of an existing data warehouse under (4D) towards new technologies Java and Web within a team of 4 people",
             "softSkills": "Planning,Responsibility,Teamwork,Design,Written communication,Self-management,Collaboration,Logical reasoning,Written communication"
         },
         {
+            "id": 16,
             "title": "Master's degree in Computer Science",
             "dates": [
                 "1997-09-01T00:00:00Z",
@@ -661,12 +632,14 @@
             "company": {
                 "name": "DESS IAO",
                 "department": "",
-                "logo": ""
+                "logo": "",
+                "url": ""
             },
             "links": [],
             "description": "One year post graduate degree with honours:  algorithms, programming languages (Java, C++), database systems, operating systems, language processing, software engineering, multimedia, networks."
         },
         {
+            "id": 17,
             "title": "Thermal Engineer and Data Scientist",
             "dates": [
                 "1995-04-01T00:00:00Z",
@@ -679,18 +652,15 @@
             "company": {
                 "name": "Spie Batignolles",
                 "department": "",
-                "logo": "spie.png"
+                "logo": "spie.png",
+                "url": "https://www.spiebatignolles.fr"
             },
-            "links": [
-                {
-                    "name": "Spie Batignolles",
-                    "url": "https://www.spiebatignolles.fr"
-                }
-            ],
+            "links": [],
             "description": "Head of a Computation Group working on Operational Projects. Analysis and calculations of the air-conditioning of an enclosure of storage of nuclear waste in Novossibirsk (Siberia). Design and sizing of smoke-evacuation in tunnels using the SES (Subway Environmental Simulation) software. New module implementation (FORTRAN) taking account a new physical model.",
             "softSkills": "Logical reasoning,Written communication,Commitment"
         },
         {
+            "id": 18,
             "title": "Master's degree in Thermodynamics and Fluid Mechanics",
             "dates": [
                 "1993-09-01T00:00:00Z",
@@ -703,18 +673,15 @@
             "company": {
                 "name": "IUSTI - CNRS",
                 "department": "",
-                "logo": ""
+                "logo": "",
+                "url": "http://iusti.cnrs.fr"
             },
-            "links": [
-                {
-                    "name": "IUSTI - CNRS",
-                    "url": "http://iusti.cnrs.fr"
-                }
-            ],
+            "links": [],
             "description": "One year post graduate degree with honours: Thermodynamics in open systems, fluid mechanics, energy, statistical thermodynamics, mathematics, physical transfer in complex fluids, ..."
         },
         {
-            "title": "Three Years Engineering School - Energy, Thermics & Fluid Mechanics",
+            "id": 19,
+            "title": "Three Years Engineering School ",
             "dates": [
                 "1990-09-01T00:00:00Z",
                 "1993-08-30T00:00:00Z"
@@ -726,17 +693,14 @@
             "company": {
                 "name": "IUSTI - CNRS",
                 "department": "",
-                "logo": ""
+                "logo": "",
+                "url": "http://iusti.cnrs.fr"
             },
-            "links": [
-                {
-                    "name": "IUSTI - CNRS",
-                    "url": "http://iusti.cnrs.fr"
-                }
-            ],
-            "description": "Bachelor + 5. Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, ..."
+            "links": [],
+            "description": "Bachelor + 5. Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, fluid mechanics, ..."
         },
         {
+            "id": 20,
             "title": "Classe Préparatoire - Math SUP/SPE",
             "dates": [
                 "1988-09-01T00:00:00Z",
@@ -749,15 +713,18 @@
             "company": {
                 "name": "Lycée Militaire Aix-en-Provence",
                 "department": "",
-                "logo": ""
+                "logo": "",
+                "url": "http://www.lycee-militaire-aix.fr/site/decouverte"
+
             },
-            "links": [
-                {
-                    "name": "Lycée Militaire Aix-en-Provence",
-                    "url": "http://www.lycee-militaire-aix.fr/site/decouverte"
-                }
-            ],
+            "links": [],
             "description": "Mathematics and Philosophy"
+        }
+    ],
+    "eventGroups": [
+        {
+            "id": 1,
+            "events": [5, 4,2]
         }
     ],
     "hobbies": [
@@ -776,6 +743,5 @@
             "description": "I try to read at least 2 books per month. My preferred genres: Philosophical, Informational, Sciences and Science Fiction. My last 3 books: - 'Factfulness' by Hans Rosling (2019) - 'Enlightenment Now: The Case for Reason, Science, Humanism, and Progress' by Steven Pinker (2018) - 'The Art of Statistics: Learning from Data' by David Spiegelhalter (2019)",
             "image": "reading.png"
         }
-        
     ]
 }

@@ -10,7 +10,7 @@ import S from "./timeline-skills.js";
  */
 class Timeline {
 
-    
+
 
     /**
      *Creates an instance of Timeline.
@@ -158,7 +158,7 @@ class Timeline {
             .sort((a, b) => a.axis.localeCompare(b.axis));
         const total = data3.map(d => d.count).reduce((acc, cur) => acc += cur);
         data3.forEach((t, i) => {
-            t.angle = i * Math.PI * 2 / data3.length ;
+            t.angle = i * Math.PI * 2 / data3.length;
             t.score = t.count / total;
         });
 
@@ -181,7 +181,7 @@ class Timeline {
         const radialScale = d3.scaleLinear()
             .domain(rdomain)
             .range([25, size / 3]);
-        const ticks = [rdomain[0],  15, rdomain[1]];
+        const ticks = [rdomain[0], 15, rdomain[1]];
 
         const gGrid = svg.append("g").classed("grid", true);
         gGrid.selectAll("circle")
@@ -247,12 +247,12 @@ class Timeline {
         rootOverview.append("p")
             .classed("small text-secondary", true)
             .html(`<i class="fas fa-exclamation-triangle small"></i> The goal of this chart is to highlight some key soft skills  and deliver a  profile of my strengths: but it doesn't mean that the skills with a lower score  are weaknesses!`);
-/*
-        gDataPoint
-            .append("text")
-            .attr("x", 0)
-            .attr("y", 0)
-            .text(d => d.count);*/
+        /*
+                gDataPoint
+                    .append("text")
+                    .attr("x", 0)
+                    .attr("y", 0)
+                    .text(d => d.count);*/
 
 
 
@@ -393,8 +393,15 @@ class TimelineEvent {
         //
         // LINKS
         //
-
-        if (e.links && e.links.length > 0) {
+        if (e.type === "experience" || (e.type === "formation" && e.category === "education")) {
+            const links = content.append("div")
+                .classed("links", true);
+            links.append("a")
+                .attr("href", e.company.url)
+                .attr("target", "_blank")
+                .attr("rel", "noopener noreferrer")
+                .text(e.company.name);
+        } else if (e.links && e.links.length > 0) {
             const links = content.append("div")
                 .classed("links", true);
             e.links.forEach(l => {
