@@ -127,11 +127,24 @@ function writeEvents(data, title, newPageAtEnd = false) {
                 .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
 
             const yYear = doc.y - doc.heightOfString("1000");
-            const x1 = doc.x + doc.widthOfString("2") / 2;
+            const x1 = doc.x + doc.widthOfString("2") / 2 - 2;
             const y1 = doc.y - 2;
 
             // DURATION
-            regular(9).text(event.durationAsString, x1 + 10, y1 + 3);
+            let y2 = y1;
+            const h = 10;
+            regular(8, color1).text(event.periodAsStringShort[1], x1 + 4, y2);
+            y2 += doc.heightOfString("O") + 2;
+            /*
+            doc.image(`images/arrow3.png`, x1+4, y2, {
+                height: h
+            });
+            y2 += h/3;*/
+            regular(6, color1).text(`(${event.durationAsString})`, x1 + 4, y2, {
+                oblique: true
+            });
+            y2 += 2 * h / 3 + 4;
+
 
 
             // TITLE
@@ -166,6 +179,10 @@ function writeEvents(data, title, newPageAtEnd = false) {
             doc.moveDown(0.5);
             getWriter(event.type, event.category)(event);
 
+            if (doc.y < y2) {
+                regular(9).text(" ", 0, y2);
+            }
+            regular(8, color1).text(event.periodAsStringShort[0], x1 + 4, doc.y);
 
             // END EVENT (YEAR LINE)
             doc.moveTo(x1, y1 - 3)
@@ -174,8 +191,8 @@ function writeEvents(data, title, newPageAtEnd = false) {
                 .stroke(color1)
                 .strokeOpacity(0.6);
 
-            doc.circle(x1, y1 + 6, 6).fill("white");
-            doc.circle(x1, y1 + 6, 4).fill(categoryColors[event.category]);
+
+            //doc.circle(x1, y1 + 6, 4).fill(categoryColors[event.category]);
 
 
             doc.text("", marginH, doc.y).moveDown(2);
@@ -210,16 +227,16 @@ function getWriter(type, category) {
 function experienceWriter(exp) {
 
     if (exp.isSingle)
-        writeSingleExperience(exp);
+        writeSingleExperience(exp, false);
     else
         exp.events.forEach(e => {
-            writeSingleExperience(e);
+            writeSingleExperience(e, true);
             doc.moveDown(0.5);
         });
 
 }
 
-function writeSingleExperience(event) {
+function writeSingleExperience(event, showPeriod) {
     // sub title
     let y0 = doc.y;
     medium(10)
@@ -227,13 +244,15 @@ function writeSingleExperience(event) {
     doc.moveDown(0.2);
 
     // PERIOD
-    let p = event.periodAsString;
-    regular(8, baseColor).text(p, doc.x, y0, {
-        align: "right",
-        width: 440
-    });
+    if (showPeriod) {
+        let p = event.periodAsString;
+        regular(8, color1).text(p.join(" - "), doc.x, y0, {
+            align: "right",
+            width: 440
+        });
 
-    doc.moveDown(0.3);
+        doc.moveDown(0.3);
+    }
 
     // description
     const items = event.description.split(". ");
@@ -525,7 +544,7 @@ function writeHobbies() {
         // profiles
         _title("Additional Activities & Interests");
 
-       // doc.moveUp(0.5);
+        // doc.moveUp(0.5);
 
         resume.hobbies.forEach(h => {
             // title

@@ -10,7 +10,14 @@ const mt = require('moment');
 // ================================================
 //
 //
-const defaultDiffFormatter = (y, m) => [y === 0 ? "" : `${y} year${y > 1 ? "s": ""}`, m === 0 ? "" : `${m} month${m > 1 ? "s": ""}`]; // returns only years and months
+const defaultDiffFormatter = (y, m) => {
+    if (y === 0)
+        return `${m} month${m >1 ? "s" : ""}`;
+    if (m === 0)
+        return `${y} year${y >1 ? "s" : ""}`;
+    return `${y} year${y >1 ? "s" : ""}, ${m} month${m >1 ? "s" : ""}`;
+};
+
 const shortFormatter = (y, m) => {
     if (y === 0)
         return `${m}m`;
@@ -79,23 +86,25 @@ function fillDateInfos(event) {
     event.period = event.dates.length === 2;
     event.duration = duration(event.dates);
     event.periodAsString = getPeriod(event);
-    event.durationAsString = diff(event.duration, shortFormatter);
+    event.periodAsStringShort = getPeriod(event, false);
+    event.durationAsString = diff(event.duration);
 }
 
-function getPeriod(event) {
+function getPeriod(event, full = true) {
     const dates = event.dates;
     const d1 = mt(dates[0]);
     // one date event
     if (event.period === false)
-        return `${d1.format("MMM YYYY")}`;
+        return [d1.format("MMM YYYY")];
     const sameYear = event.years.length === 1;
     const d2 = mt(dates[1]);
     // event on several years
     if (sameYear === false)
-        return `${d1.format("MMM YYYY")} - ${d2.format("MMM YYYY")}`;
+        return [d1.format("MMM YYYY"), d2.format(full ? "MMM YYYY" : "MMM")];
     // event within one year
-    return `${d1.format("MMM")} - ${d2.format("MMM YYYY")}`;
+    return [d1.format("MMM"), d2.format(full ? "MMM YYYY" : "MMM")];
 }
+
 
 function diff(time, formatter = defaultDiffFormatter, approx = true) {
     let y = time[0];
@@ -141,4 +150,4 @@ if (require.main === module) {
     let resume = loadResume('./timeline/events.json');
     const exps = getExperiences(resume, true);
     console.log(exps[0]);
-} 
+}
