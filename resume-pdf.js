@@ -13,7 +13,7 @@ const rd = require('./resume-data');
 //
 //
 
-const VERSION = "V4.0";
+const VERSION = "V4.1";
 const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
@@ -120,8 +120,6 @@ function writeEvents(data, title, newPageAtEnd = false) {
                     .moveDown(1);
             }
 
-
-
             // YEAR
             light(20, color1)
                 .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
@@ -130,31 +128,25 @@ function writeEvents(data, title, newPageAtEnd = false) {
             const x1 = doc.x + doc.widthOfString("2") / 2 - 2;
             const y1 = doc.y - 2;
 
-            // DURATION
+            // DURATION & END DATE
             let y2 = y1;
             const h = 10;
             regular(8, color1).text(event.periodAsStringShort[1], x1 + 4, y2);
             y2 += doc.heightOfString("O") + 2;
-            /*
-            doc.image(`images/arrow3.png`, x1+4, y2, {
-                height: h
-            });
-            y2 += h/3;*/
             regular(6, color1).text(`(${event.durationAsString})`, x1 + 4, y2, {
                 oblique: true
             });
             y2 += 2 * h / 3 + 4;
 
 
-
             // TITLE
-            if (event.type === "experience")
+            if (event.type === "experience") {
                 medium(12, "#2980B9")
-                .text(event.company.name, marginH, yYear + 2, {
-                    link: event.company.url,
-                    underline: false
-                }).moveDown(0.5);
-            else
+                    .text(event.company.name, marginH, yYear + 2, {
+                        link: event.company.url,
+                        underline: false
+                    }).moveDown(0.5);
+            } else
                 medium(12)
                 .text(event.title, marginH, yYear + 2)
                 .moveDown(0.5);
@@ -173,12 +165,22 @@ function writeEvents(data, title, newPageAtEnd = false) {
                     width: 440
                 });
 
+            // CATEGORY
+            if (event.type === "experience") {
+                const col = categoryColors[event.category];
+                strong(6, col)
+                    .text(event.category.toUpperCase(), doc.x , doc.y, {
+                        align: "right",
+                        width: 440
+                    });
 
+            }
 
             // CONTENT
             doc.moveDown(0.5);
             getWriter(event.type, event.category)(event);
 
+            // START DATE
             if (doc.y < y2) {
                 regular(9).text(" ", 0, y2);
             }
@@ -190,9 +192,6 @@ function writeEvents(data, title, newPageAtEnd = false) {
                 .lineWidth(0.5)
                 .stroke(color1)
                 .strokeOpacity(0.6);
-
-
-            //doc.circle(x1, y1 + 6, 4).fill(categoryColors[event.category]);
 
 
             doc.text("", marginH, doc.y).moveDown(2);
@@ -510,22 +509,10 @@ function endDocument() {
 
             // BOTTOM
             light(8).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - ${VERSION} - © gilbert perrin 2019`, 20, 820, {
-                align: "left",
+                align: "center",
                 margins: {
                     bottom: 0
                 },
-            });
-            const categories = ["Employee", "Freelance - Consultant", "Formation", "Education", "Other"];
-            let x = 330;
-            categories.forEach((c, i) => {
-                x += i === 0 ? 0 : doc.widthOfString(categories[i - 1]) + 10;
-                doc.rect(x - 4, 820, 3, 6).fill(categoryColors[c.toLowerCase()]);
-                light(8).text(c, x, 820, {
-                    align: "left",
-                    margins: {
-                        bottom: 0
-                    }
-                });
             });
         }
 
