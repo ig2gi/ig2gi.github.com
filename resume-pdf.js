@@ -1,7 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const mt = require('moment');
-const rd = require('./resume-data');
+const Resume = require('./resume-data');
 
 //
 //
@@ -13,7 +13,7 @@ const rd = require('./resume-data');
 //
 //
 
-const VERSION = "V4.1";
+const VERSION = "V4.2";
 const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
@@ -27,7 +27,6 @@ const categoryColors = {
     "freelance - consultant": "#7DCEA0",
 };
 
-
 //
 //
 // ================================================
@@ -37,103 +36,153 @@ const categoryColors = {
 // ================================================
 //
 //
-const resume = rd('./timeline/events.json');
-const certificates = resume.getCertificates();
-const experiences = resume.getExperiences();
-const educations = resume.getEducations();
+const resume = Resume.load('./timeline/events.json');
 
 
 //
 //
 // ================================================
 //
-// Initialize PDF Document and provides 
-// useful styling methods.
+// Provides  useful styling methods on top 
+// of PDFKIT library.
 //
 // ================================================
 //
-//
-const doc = initializeDocument();
-const strong = (size, color) => font("Bold", size, color);
-const medium = (size, color) => font("Medium", size, color);
-const regular = (size, color) => font("Regular", size, color);
-const light = (size, color) => font("Light", size, color);
-const font = (style, size = 9, color = baseColor) => {
-    doc.font(`webfonts/DINNextLTPro-${style}.ttf`);
-    return doc.fontSize(size).fillColor(color);
+
+// main instance of the pdf document
+let pdf;
+
+// helper methods
+const _strong = (size, color) => _font("Bold", size, color);
+const _medium = (size, color) => _font("Medium", size, color);
+const _regular = (size, color) => _font("Regular", size, color);
+const _light = (size, color) => _font("Light", size, color);
+const _font = (style, size = 9, color = baseColor) => {
+    pdf.font(`webfonts/DINNextLTPro-${style}.ttf`);
+    return pdf.fontSize(size).fillColor(color);
 };
-const multilines = (lines, styleMethod, size, align = "left", color = baseColor) => {
+const _multilines = (lines, styleMethod, size, align = "left", color = baseColor) => {
     lines.forEach(l => {
         styleMethod(size, color).text(l, {
             "align": align
         });
     });
 };
-const _title = (txt) => strong(16, baseColor).text(txt).moveDown(0.8);
-const _subtitle = (txt) => medium(12, baseColor).text(txt).moveDown(0);
-const _reset = () => doc.text("", marginH, doc.y);
-
-
-
-//
-//
-// ================================================
-//
-// PDF Functions for generating content
-//
-// ================================================
-//
-//
-
-function initializeDocument() {
-    const doc = new PDFDocument({
-        autoFirstPage: false,
-        margins: {
-            top: 80,
-            bottom: 10,
-            left: marginH,
-            right: 10
-        },
-        layout: "portrait",
-        size: "A4",
-        bufferPages: true
+const _title = (txt) => _strong(16, baseColor).text(txt).moveDown(0.8);
+const _subtitle = (txt) => _medium(12, baseColor).text(txt).moveDown(0);
+const _reset = () => pdf.text("", marginH, pdf.y);
+const _columns = (words, columnwidth, height) => {
+    let x = marginH + 10;
+    let y0 = pdf.y;
+    let gap = 20;
+    words.forEach(w => {
+        if (pdf.y > (y0 + height)) {
+            x += columnwidth + gap;
+        }
+        if (w[1] >= 4)
+            _regular(9);
+        else
+            _light(9);
+        pdf.text(w[2] ? w[0].toUpperCase() : w[0], x, pdf.y > (y0 + height) ? y0 : pdf.y, {
+            align: 'justify'
+        });
 
     });
+};
 
-    doc.pipe(fs.createWriteStream('./timeline/gperrin-resume.pdf')); // write to PDF
-    return doc;
+//
+//
+// ================================================
+//
+// Launch PDF Generation
+//
+// ================================================
+//
+//
+
+startDocument()
+    .then(doHeader())
+    .then(doProfile())
+    .then(doSkills())
+    .then(doEvents(resume.getExperience(), "Work Experience", false))
+    .then(doEvents(resume.getEducation(), "Education", true))
+    .then(doEvents(resume.getCertificates(), "Certificates", false))
+    .then(doHobbies())
+    .then(endDocument());
+
+
+//
+//
+// ================================================
+//
+// PDF Functions for generating content 
+// (resume sections)
+//
+// ================================================
+//
+//
+
+/**
+ * Initialises pdf document
+ *
+ * @returns Promise
+ */
+function startDocument() {
+    return new Promise((resolve, reject) => {
+
+        pdf = new PDFDocument({
+            autoFirstPage: false,
+            margins: {
+                top: 80,
+                bottom: 10,
+                left: marginH,
+                right: 10
+            },
+            layout: "portrait",
+            size: "A4",
+            bufferPages: true
+
+        });
+
+        pdf.pipe(fs.createWriteStream('./timeline/gperrin-resume.pdf')); // write to PDF
+
+        pdf.addPage();
+
+        resolve(pdf);
+
+    });
 }
 
 
 
-function writeEvents(data, title, newPageAtEnd = false) {
+function doEvents(data, title, newPageAtEnd = false) {
     return new Promise((resolve, reject) => {
         //
         _title(title);
         //
         data.forEach(event => {
 
-            if (doc.y > 650) {
-                doc.addPage();
-                strong(16)
+            if (pdf.y > 650) {
+                pdf.addPage();
+                _strong(16)
                     .text(`${title} cont.`)
                     .moveDown(1);
             }
 
             // YEAR
-            light(20, color1)
-                .text(event.years.length == 1 ? event.years[0] : event.years[1], doc.x - 1.5 * doc.widthOfString("1000"), doc.y);
+            _light(20, color1)
+                .text(event.years.length == 1 ? event.years[0] : event.years[1], pdf.x - 1.5 * pdf.widthOfString("1000"), pdf.y);
 
-            const yYear = doc.y - doc.heightOfString("1000");
-            const x1 = doc.x + doc.widthOfString("2") / 2 - 2;
-            const y1 = doc.y - 2;
+            const yYear = pdf.y - pdf.heightOfString("1000");
+            const x1 = pdf.x + pdf.widthOfString("2") / 2 - 2;
+            const y1 = pdf.y - 2;
 
             // DURATION & END DATE
             let y2 = y1;
             const h = 10;
-            regular(8, color1).text(event.periodAsStringShort[1], x1 + 4, y2);
-            y2 += doc.heightOfString("O") + 2;
-            regular(6, color1).text(`(${event.durationAsString})`, x1 + 4, y2, {
+            _regular(8, color1).text(event.periodAsStringShort[1], x1 + 4, y2);
+            y2 += pdf.heightOfString("O") + 2;
+            _regular(6, color1).text(`(${event.durationAsString})`, x1 + 4, y2, {
                 oblique: true
             });
             y2 += 2 * h / 3 + 4;
@@ -141,26 +190,26 @@ function writeEvents(data, title, newPageAtEnd = false) {
 
             // TITLE
             if (event.type === "experience") {
-                medium(12, "#2980B9")
+                _medium(12, "#2980B9")
                     .text(event.company.name, marginH, yYear + 2, {
                         link: event.company.url,
                         underline: false
                     }).moveDown(0.5);
             } else
-                medium(12)
+                _medium(12)
                 .text(event.title, marginH, yYear + 2)
                 .moveDown(0.5);
 
             // INDUSTRY
-            strong(8);
+            _strong(8);
             let ind = event.industry + (!event.subIndustry || event.subIndustry === "" ? "" : " - " + event.subIndustry);
-            let height = doc.currentLineHeight();
-            doc.moveUp(2);
-            regular(9, "#1F618D")
-                .highlight(doc.x + 440 - doc.widthOfString(` ${ind} `), doc.y, doc.widthOfString(` ${ind}  `), height, {
+            let height = pdf.currentLineHeight();
+            pdf.moveUp(2);
+            _regular(9, "#1F618D")
+                .highlight(pdf.x + 440 - pdf.widthOfString(` ${ind} `), pdf.y, pdf.widthOfString(` ${ind}  `), height, {
                     color: "#D5DBDB"
                 })
-                .text(ind.toLowerCase(), doc.x, doc.y, {
+                .text(ind.toLowerCase(), pdf.x, pdf.y, {
                     align: "right",
                     width: 440
                 });
@@ -168,8 +217,8 @@ function writeEvents(data, title, newPageAtEnd = false) {
             // CATEGORY
             if (event.type === "experience") {
                 const col = categoryColors[event.category];
-                strong(6, col)
-                    .text(event.category.toUpperCase(), doc.x , doc.y, {
+                _strong(6, col)
+                    .text(event.category.toUpperCase(), pdf.x, pdf.y, {
                         align: "right",
                         width: 440
                     });
@@ -177,35 +226,34 @@ function writeEvents(data, title, newPageAtEnd = false) {
             }
 
             // CONTENT
-            doc.moveDown(0.5);
+            pdf.moveDown(0.5);
             getWriter(event.type, event.category)(event);
 
             // START DATE
-            if (doc.y < y2) {
-                regular(9).text(" ", 0, y2);
+            if (pdf.y < y2) {
+                _regular(9).text(" ", 0, y2);
             }
-            regular(8, color1).text(event.periodAsStringShort[0], x1 + 4, doc.y);
+            _regular(8, color1).text(event.periodAsStringShort[0], x1 + 4, pdf.y);
 
             // END EVENT (YEAR LINE)
-            doc.moveTo(x1, y1 - 3)
-                .lineTo(x1, doc.y)
+            pdf.moveTo(x1, y1 - 3)
+                .lineTo(x1, pdf.y)
                 .lineWidth(0.5)
                 .stroke(color1)
                 .strokeOpacity(0.6);
 
 
-            doc.text("", marginH, doc.y).moveDown(2);
+            pdf.text("", marginH, pdf.y).moveDown(2);
 
 
         });
 
         if (newPageAtEnd)
-            doc.addPage();
+            pdf.addPage();
 
-        resolve(doc);
+        resolve(pdf);
 
     });
-
 
 }
 
@@ -230,35 +278,35 @@ function experienceWriter(exp) {
     else
         exp.events.forEach(e => {
             writeSingleExperience(e, true);
-            doc.moveDown(0.5);
+            pdf.moveDown(0.5);
         });
 
 }
 
 function writeSingleExperience(event, showPeriod) {
     // sub title
-    let y0 = doc.y;
-    medium(10)
-        .text(event.title, marginH, doc.y);
-    doc.moveDown(0.2);
+    let y0 = pdf.y;
+    _medium(10)
+        .text(event.title, marginH, pdf.y);
+    pdf.moveDown(0.2);
 
     // PERIOD
     if (showPeriod) {
         let p = event.periodAsString;
-        regular(8, color1).text(p.join(" - "), doc.x, y0, {
+        _regular(8, color1).text(p.join(" - "), pdf.x, y0, {
             align: "right",
             width: 440
         });
 
-        doc.moveDown(0.3);
+        pdf.moveDown(0.3);
     }
 
     // description
     const items = event.description.split(". ");
     items.forEach(i => {
-        doc.rect(marginH + 5, doc.y + 3, 1, 1).fill("#5D6D7E");
-        regular(9)
-            .text(i, marginH + 10, doc.y, {
+        pdf.rect(marginH + 5, pdf.y + 3, 1, 1).fill("#5D6D7E");
+        _regular(9)
+            .text(i, marginH + 10, pdf.y, {
                 align: "justify",
                 width: 420
             });
@@ -269,30 +317,30 @@ function writeSingleExperience(event, showPeriod) {
 function certificateWriter(exp) {
 
     const desc = exp.description;
-    medium(10, "#2980B9")
-        .text(exp.company.name, marginH + 10, doc.y, {
+    _medium(10, "#2980B9")
+        .text(exp.company.name, marginH + 10, pdf.y, {
             link: exp.company.url,
             underline: false
         })
         .moveDown(0.1);
 
 
-    regular(9)
-        .text(desc, marginH + 10, doc.y, {
+    _regular(9)
+        .text(desc, marginH + 10, pdf.y, {
             align: "justify",
             width: 420
         });
 
     if (exp.links && exp.links.length > 0) {
-        doc.moveDown();
+        pdf.moveDown();
         let t = "Certificate(s): ".toUpperCase();
-        regular(8, "#B2BABB").text(t);
-        let x = doc.x + doc.widthOfString(t) + 5;
-        doc.moveUp();
+        _regular(8, "#B2BABB").text(t);
+        let x = pdf.x + pdf.widthOfString(t) + 5;
+        pdf.moveUp();
         let l = exp.links[0];
-        let w = doc.widthOfString(l.name) + 5;
-        regular(8, "#2980B9")
-            .text(l.name.toUpperCase(), x, doc.y, {
+        let w = pdf.widthOfString(l.name) + 5;
+        _regular(8, "#2980B9")
+            .text(l.name.toUpperCase(), x, pdf.y, {
                 align: "left",
                 link: `${l.url}`,
                 underline: false
@@ -300,10 +348,10 @@ function certificateWriter(exp) {
 
         if (exp.links.length > 1)
             exp.links.slice(1).forEach(l => {
-                doc.moveUp();
+                pdf.moveUp();
                 x += w;
-                regular(8, "#2980B9")
-                    .text(l.name.toUpperCase(), x, doc.y, {
+                _regular(8, "#2980B9")
+                    .text(l.name.toUpperCase(), x, pdf.y, {
                         align: "left",
                         link: `${l.url}`,
                         underline: false
@@ -314,74 +362,88 @@ function certificateWriter(exp) {
 
 }
 
-function writeFirstPage() {
+function doSkills() {
+
+    return new Promise((resolve, reject) => {
+
+        const skillInfo = resume.skills;
+
+        // soft skills
+        _title("Top 6 Soft Skills");
+        pdf.moveUp(0.5);
+        let skills = skillInfo.soft.sort((a, b) => a.localeCompare(b)).join("  ");
+        _light(9).text(skills.toUpperCase(), marginH + 10, pdf.y);
+
+        pdf.moveDown(2);
+        _reset();
+
+        // hard skills
+
+        _title("Hard Skills");
+        pdf.moveUp(0.5);
+
+        _regular(8).text("Non exhaustive list, sorted alphabetically (libraries, frameworks or tools commonly used in development, like  git, maven, hibernate, mysql , pynum, jquery, ..., are not listed)", marginH + 10, pdf.y, {
+            align: "justify",
+            width: 420
+        });
+        pdf.moveDown(1);
+        skills = skillInfo.hard.sort((a, b) => a[0].localeCompare(b[0]));
+        _columns(skills, 100, 80);
+
+
+        pdf.moveDown(3);
+
+
+        pdf.addPage();
+        resolve(pdf);
+
+    });
+}
+
+function doProfile() {
+
+    const writeProfile = (profile) => {
+        _subtitle(profile.title);
+        pdf.moveDown(0.3);
+        _regular(9).text(profile.description, marginH + 10, pdf.y, {
+            align: "justify",
+            width: 420
+        });
+        _reset();
+        pdf.moveDown(1);
+    };
 
     return new Promise((resolve, reject) => {
 
         // profiles
         _title("Profile");
 
-        doc.moveUp(0.5);
+        pdf.moveUp(0.5);
 
-        regular(9).text(resume.profile.description, marginH + 10, doc.y, {
+        const profileInfo = resume.profile;
+
+        _regular(9).text(profileInfo.description, marginH + 10, pdf.y, {
             align: "justify",
             width: 420
         });
         _reset();
-        doc.moveDown(1);
-        resume.profile.axes.forEach(p => writeProfile(p));
-        doc.moveDown(1);
+        pdf.moveDown(1);
+        profileInfo.axes.forEach(p => writeProfile(p));
+        pdf.moveDown(1);
 
-        // soft skills
-        _title("Top 6 Soft Skills");
-        doc.moveUp(0.5);
-        let skills = resume.softSkills.sort((a, b) => a.localeCompare(b)).join("  ");
-        light(9).text(skills.toUpperCase(), marginH + 10, doc.y);
-
-        doc.moveDown(2);
-        _reset();
-
-        // hard skills
-
-        _title("Hard Skills");
-        doc.moveUp(0.5);
-
-        regular(8).text("Non exhaustive list, sorted alphabetically (libraries, frameworks or tools commonly used in development, like  git, maven, hibernate, mysql , pynum, jquery, ..., are not listed)", marginH + 10, doc.y, {
-            align: "justify",
-            width: 420
-        });
-        doc.moveDown(1);
-        const hskills = resume.hardSkills.sort((a, b) => a[0].localeCompare(b[0]));
-        columns(hskills, 100, 80);
-
-
-        doc.moveDown(3);
-
-
-        doc.addPage();
-        resolve(doc);
+        resolve(pdf);
 
     });
 }
 
-function writeProfile(profile) {
-    _subtitle(profile.title);
-    doc.moveDown(0.3);
-    regular(9).text(profile.description, marginH + 10, doc.y, {
-        align: "justify",
-        width: 420
-    });
-    _reset();
-    doc.moveDown(1);
-}
 
-function startDocument() {
+
+
+function doHeader() {
     return new Promise((resolve, reject) => {
 
-        doc.addPage();
-
         // Header rectangle background
-        doc.rect(0, 0, 630, 170)
+        pdf.rect(0, 0, 630, 170)
             .fill('#EBEDEF');
 
 
@@ -390,44 +452,46 @@ function startDocument() {
         const xc = 45 + 2 * r;
         const yc = 2 * r - 20;
 
-        doc.circle(xc, yc, r + 16).lineWidth(0).fillOpacity(0).lineWidth(1).stroke("white");
-        doc.fillOpacity(1);
+        pdf.circle(xc, yc, r + 16).lineWidth(0).fillOpacity(0).lineWidth(1).stroke("white");
+        pdf.fillOpacity(1);
 
         // SOCIAL
 
-        drawItemsOnCircle(resume.social, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 10, "left", "#2980B9", 8);
-        drawItemsOnCircle(resume.contact, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right", "#566573", 9, 11, false);
+        drawItemsOnCircle(resume.socialNetworks, xc, yc, r, -3 * Math.PI / 4, -Math.PI / 10, "left", "#2980B9", 8);
+        drawItemsOnCircle(resume.contactInfo, xc, yc, r, -Math.PI / 3, Math.PI / 10, "right", "#566573", 9, 11, false);
         drawItemsOnCircle(resume.aptitudes, xc, yc, r, Math.PI / 20, Math.PI / 10, "right", "#1F618D", 9);
 
         // CONTACT
+        const personalInfo = resume.personalInfo;
 
-        doc.save();
-        doc.circle(xc, yc, r).clip();
-        doc.image(`images/me.jpg`, xc - r, yc - r, {
+        pdf.save();
+        pdf.circle(xc, yc, r).clip();
+        pdf.image(personalInfo.picture, xc - r, yc - r, {
             height: 2 * r
         });
-        doc.restore();
-
-
+        pdf.restore();
 
         // HEADER 
-        light(25).text(resume.name, 5, 16, {
+        _light(25).text(personalInfo.name, 5, 16, {
             align: "right"
         });
-        let lines = resume.headerTitle.split(/[\\._]/g);
-        multilines(lines, regular, 10, "right", "#1F618D");
-        doc.moveDown(1);
-        doc.moveTo(480, doc.y - 8).lineTo(585, doc.y - 8).lineWidth(1).stroke("white");
-        lines = resume.headerInfo.split(/[\\._]/g);
-        multilines(lines, regular, 10, "right", "#566573");
-        doc.moveDown(1);
-        doc.moveTo(480, doc.y - 8).lineTo(585, doc.y - 8).lineWidth(1).stroke("white");
+
+        const headerInfo = resume.header;
+
+        let lines = headerInfo.title.split(/[\\._]/g);
+        _multilines(lines, _regular, 10, "right", "#1F618D");
+        pdf.moveDown(1);
+        pdf.moveTo(480, pdf.y - 8).lineTo(585, pdf.y - 8).lineWidth(1).stroke("white");
+        lines = headerInfo.description.split(/[\\._]/g);
+        _multilines(lines, _regular, 10, "right", "#566573");
+        pdf.moveDown(1);
+        pdf.moveTo(480, pdf.y - 8).lineTo(585, pdf.y - 8).lineWidth(1).stroke("white");
         lines = resume.languages.map(d => `${d.level} - ${d.name.toUpperCase()}`);
-        multilines(lines, regular, 8, "right", "#566573");
+        _multilines(lines, _regular, 8, "right", "#566573");
 
-        doc.text("", marginH, 180);
+        pdf.text("", marginH, 180);
 
-        resolve(doc);
+        resolve(pdf);
 
     });
 }
@@ -437,11 +501,11 @@ function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align, color
     items.forEach(s => {
         let x = xc + (r + 16) * Math.cos(angle);
         let y = yc + (r + 16) * Math.sin(angle);
-        doc.image(`${s.logo}`, x - iconSize / 2, y - iconSize / 2, {
+        pdf.image(`${s.logo}`, x - iconSize / 2, y - iconSize / 2, {
             height: iconSize
         });
         const offsetX = 10;
-        regular(fontSize, color).text(s.name, align === "left" ? x - doc.widthOfString(s.name) - offsetX : x + offsetX, y + -iconSize / 2 + doc.heightOfString(s.name) / 6, {
+        _regular(fontSize, color).text(s.name, align === "left" ? x - pdf.widthOfString(s.name) - offsetX : x + offsetX, y + -iconSize / 2 + pdf.heightOfString(s.name) / 6, {
             align: "left",
             link: s.link,
             underline: underline && s.link !== ""
@@ -450,65 +514,47 @@ function drawItemsOnCircle(items, xc, yc, r, startAngle, stepAngle, align, color
     });
 }
 
-function columns(words, columnwidth, height) {
-    let x = marginH + 10;
-    let y0 = doc.y;
-    let gap = 20;
-    words.forEach(w => {
-        if (doc.y > (y0 + height)) {
-            x += columnwidth + gap;
-        }
-        if (w[1] >= 4)
-            regular(9);
-        else
-            light(9);
-        doc.text(w[2] ? w[0].toUpperCase() : w[0], x, doc.y > (y0 + height) ? y0 : doc.y, {
-            align: 'justify'
-        });
-
-    });
-}
 
 function endDocument() {
     return new Promise((resolve, reject) => {
-        const range = doc.bufferedPageRange(); // => { start: 0, count: 2 }}
+        const range = pdf.bufferedPageRange(); // => { start: 0, count: 2 }}
         for (let i = 0; i < range.start + range.count; i++) {
 
 
-            doc.switchToPage(i);
+            pdf.switchToPage(i);
 
             // TOP
             if (i !== 0) { // skip frontpage
 
-                regular(9).text(`Gilbert Perrin Resume`, 0, 10, {
+                _regular(9).text(`Gilbert Perrin Resume`, 0, 10, {
                     align: "right",
                     margins: {
                         bottom: 0
                     }
                 });
-                light(6).text(`Page ${i + 1} of ${range.count}`, 0, 20, {
+                _light(6).text(`Page ${i + 1} of ${range.count}`, 0, 20, {
                     align: "right"
                 });
 
                 let x = 10;
                 let y = 10;
-                resume.contact.forEach(s => {
-                    doc.image(`${s.logo}`, x, y, {
+                resume.contactInfo.forEach(s => {
+                    pdf.image(`${s.logo}`, x, y, {
                         height: 8
                     });
-                    regular(7, "#2980B9").text(s.name, x + 10, y, {
+                    _regular(7, "#2980B9").text(s.name, x + 10, y, {
                         align: "left",
                         link: s.link,
                         underline: s.link !== ""
                     });
-                    x += doc.widthOfString(s.name) + 20;
+                    x += pdf.widthOfString(s.name) + 20;
                 });
 
             }
 
 
             // BOTTOM
-            light(8).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - ${VERSION} - © gilbert perrin 2019`, 20, 820, {
+            _light(8).text(`generated ${mt().format('MMM D YYYY, h:mm')} (Node.js® and PDFKit) - ${VERSION} - © gilbert perrin 2019`, 20, 820, {
                 align: "center",
                 margins: {
                     bottom: 0
@@ -517,14 +563,14 @@ function endDocument() {
         }
 
         // finalize the PDF and end the stream
-        doc.end();
+        pdf.end();
 
-        resolve(doc);
+        resolve(pdf);
 
     });
 }
 
-function writeHobbies() {
+function doHobbies() {
 
     return new Promise((resolve, reject) => {
 
@@ -535,56 +581,36 @@ function writeHobbies() {
 
         resume.hobbies.forEach(h => {
             // title
-            let y0 = doc.y;
-            medium(12).text(h.title, marginH, doc.y);
+            let y0 = pdf.y;
+            _medium(12).text(h.title, marginH, pdf.y);
             // description
             let listIndex = h.description.indexOf("-");
             let s = listIndex === -1 ? h.description : h.description.slice(0, listIndex);
-            regular(9).text(s, marginH + 10, doc.y, {
+            _regular(9).text(s, marginH + 10, pdf.y, {
                 align: "justify",
                 width: 420
             });
             // list of things, if needed
             if (listIndex >= 0) {
-                doc.moveDown(0.5);
+                pdf.moveDown(0.5);
                 let things = h.description.slice(listIndex + 1, h.description.length).split("-");
                 things.forEach(item => {
-                    regular(9).text("- " + item, marginH + 10, doc.y, {
+                    _regular(9).text("- " + item, marginH + 10, pdf.y, {
                         align: "justify",
                         width: 420
                     });
                 });
             }
             // image
-            doc.image(`images/${h.image}`, marginH - 40, y0, {
+            pdf.image(`images/${h.image}`, marginH - 40, y0, {
                 height: 20
             });
 
-            doc.moveDown(1);
+            pdf.moveDown(1);
         });
 
 
-        resolve(doc);
+        resolve(pdf);
 
     });
 }
-
-
-
-//
-//
-// ================================================
-//
-// Launch PDF Generation
-//
-// ================================================
-//
-//
-
-startDocument()
-    .then(writeFirstPage())
-    .then(writeEvents(experiences, "Work Experience", false))
-    .then(writeEvents(educations, "Education", true))
-    .then(writeEvents(certificates, "Certificates", false))
-    .then(writeHobbies())
-    .then(endDocument());

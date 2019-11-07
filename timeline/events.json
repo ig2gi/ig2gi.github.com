@@ -1,12 +1,14 @@
 {
-    "name": "Gilbert Perrin",
-    "age": 50,
-    "phone": "+41 76 203 21 69",
-    "picture": "",
-    "location": "",
-    "website": "http://ig2gi.github.io",
-    "email": "gilbert.perrin@gmail.com",
-    "social": [
+    "personalInfo": {
+        "name": "Gilbert Perrin",
+        "age": 50,
+        "phone": "+41 76 203 21 69",
+        "picture": "images/me.jpg",
+        "location": "",
+        "website": "http://ig2gi.github.io",
+        "email": "gilbert.perrin@gmail.com"
+    },
+    "socialNetworks": [
         {
             "name": "Linkedin",
             "logo": "images/linkedin.png",
@@ -28,7 +30,7 @@
             "link": "https://observablehq.com/@ig2gi"
         }
     ],
-    "contact": [
+    "contactInfo": [
         {
             "name": "http://ig2gi.github.io",
             "logo": "images/home.png",
@@ -98,163 +100,167 @@
             }
         ]
     },
-    "headerInfo": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
-    "headerTitle": "Data Analysis & Visualization. Frontend Engineering. Business Analysis",
-    "softSkills": [
-        "time management",
-        "creativity",
-        "problem solving",
-        "adaptability",
-        "TEAM WORK",
-        "interpersonal skills"
-    ],
-    "hardSkills": [
-        [
-            "python",
-            4,
-            true
+    "header": {
+        "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
+        "title": "Data Analysis & Visualization. Frontend Engineering. Business Analysis"
+    },
+    "skills": {
+        "soft": [
+            "time management",
+            "creativity",
+            "problem solving",
+            "adaptability",
+            "TEAM WORK",
+            "interpersonal skills"
         ],
-        [
-            "java",
-            5,
-            true
-        ],
-        [
-            "D3.js",
-            5,
-            false
-        ],
-        [
-            "javascript",
-            4,
-            true
-        ],
-        [
-            "HTML",
-            3,
-            true
-        ],
-        [
-            "CSS",
-            3,
-            true
-        ],
-        [
-            "Node.js®",
-            4,
-            false
-        ],
-        [
-            "JAVA FX",
-            3,
-            true
-        ],
-        [
-            "J2EE",
-            3,
-            true
-        ],
-        [
-            "AGile",
-            2,
-            true
-        ],
-        [
-            "Deep  Learning",
-            4,
-            true
-        ],
-        [
-            "Data Viz.",
-            5,
-            true
-        ],
-        [
-            "UX Design",
-            4,
-            true
-        ],
-        [
-            "Requirements",
-            3,
-            true
-        ],
-        [
-            "Specifications",
-            3,
-            true
-        ],
-        [
-            "Product Owner",
-            3,
-            true
-        ],
-        [
-            "Databases",
-            3,
-            true
-        ],
-        [
-            "Data Analysis",
-            4,
-            true
-        ],
-        [
-            "Architecture",
-            3,
-            true
-        ],
-        [
-            "UI Design",
-            3,
-            true
-        ],
-        [
-            "Scrum",
-            3,
-            true
-        ],
-        [
-            "Prototyping",
-            4,
-            true
-        ],
-        [
-            "Web Dev",
-            3,
-            true
-        ],
-        [
-            "Wireframes",
-            3,
-            true
-        ],
-        [
-            "ES6",
-            4,
-            true
-        ],
-        [
-            "JIRA",
-            3,
-            true
-        ],
-        [
-            "Confluence",
-            3,
-            true
-        ],
-        [
-            "Balsamiq",
-            3,
-            true
-        ],
-        [
-            "Machine Learning",
-            3,
-            true
+        "hard": [
+            [
+                "python",
+                4,
+                true
+            ],
+            [
+                "java",
+                5,
+                true
+            ],
+            [
+                "D3.js",
+                5,
+                false
+            ],
+            [
+                "javascript",
+                4,
+                true
+            ],
+            [
+                "HTML",
+                3,
+                true
+            ],
+            [
+                "CSS",
+                3,
+                true
+            ],
+            [
+                "Node.js®",
+                4,
+                false
+            ],
+            [
+                "JAVA FX",
+                3,
+                true
+            ],
+            [
+                "J2EE",
+                3,
+                true
+            ],
+            [
+                "AGile",
+                2,
+                true
+            ],
+            [
+                "Deep  Learning",
+                4,
+                true
+            ],
+            [
+                "Data Viz.",
+                5,
+                true
+            ],
+            [
+                "UX Design",
+                4,
+                true
+            ],
+            [
+                "Requirements",
+                3,
+                true
+            ],
+            [
+                "Specifications",
+                3,
+                true
+            ],
+            [
+                "Product Owner",
+                3,
+                true
+            ],
+            [
+                "Databases",
+                3,
+                true
+            ],
+            [
+                "Data Analysis",
+                4,
+                true
+            ],
+            [
+                "Architecture",
+                3,
+                true
+            ],
+            [
+                "UI Design",
+                3,
+                true
+            ],
+            [
+                "Scrum",
+                3,
+                true
+            ],
+            [
+                "Prototyping",
+                4,
+                true
+            ],
+            [
+                "Web Dev",
+                3,
+                true
+            ],
+            [
+                "Wireframes",
+                3,
+                true
+            ],
+            [
+                "ES6",
+                4,
+                true
+            ],
+            [
+                "JIRA",
+                3,
+                true
+            ],
+            [
+                "Confluence",
+                3,
+                true
+            ],
+            [
+                "Balsamiq",
+                3,
+                true
+            ],
+            [
+                "Machine Learning",
+                3,
+                true
+            ]
         ]
-    ],
+    },
     "events": [
         {
             "id": 1,
@@ -715,7 +721,6 @@
                 "department": "",
                 "logo": "",
                 "url": "http://www.lycee-militaire-aix.fr/site/decouverte"
-
             },
             "links": [],
             "description": "Mathematics and Philosophy"
@@ -724,7 +729,11 @@
     "eventGroups": [
         {
             "id": 1,
-            "events": [5, 4,2]
+            "events": [
+                5,
+                4,
+                2
+            ]
         }
     ],
     "hobbies": [

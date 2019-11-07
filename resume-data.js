@@ -1,11 +1,206 @@
 const fs = require('fs');
 const mt = require('moment');
 
+
+/**
+ *
+ *
+ * @class Resume
+ */
+class Resume {
+
+    constructor(data) {
+        this.data = data;
+    }
+
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get languages() {
+        return this.data.languages;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get header() {
+        return this.data.header;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get skills() {
+        return this.data.skills;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get profile() {
+        return this.data.profile;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get personalInfo() {
+        return this.data.personalInfo;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get aptitudes() {
+        return this.data.aptitudes;
+    }
+
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get hobbies() {
+        return this.data.hobbies;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get contactInfo() {
+        return this.data.contactInfo;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get socialNetworks() {
+        return this.data.socialNetworks;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    getEvents(filter = undefined) {
+        if (filter === undefined)
+            return this.data.events;
+        return this.data.events.filter(d => filter(d));
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    getCertificates() {
+        return this.getEvents(d => d.type === "formation" && d.diploma === "certificate");
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    getEducation() {
+        return this.getEvents(d => d.type === "formation" && d.diploma !== "certificate");
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    getExperience(grouped = true) {
+        let exps = this.getEvents(d => d.type === "experience");
+        if (grouped === false)
+            return exps;
+
+        // remove experiences in groups
+        exps = exps.filter(e => e.isSingle);
+
+        //
+        this.data.eventGroups.forEach(g => {
+            let events = this.data.events.filter(e => g.events.indexOf(e.id) >= 0).sort((a, b) => b.to - a.to);
+            let e = {
+                "dates": [events.slice(-1)[0].from, events[0].to],
+                "isGrouped": true,
+                "isSingle": false,
+                "company": events[0].company,
+                "type": events[0].type,
+                "category": events[0].category,
+                "industry": events[0].industry,
+                "subIndustry": events[0].subIndustry,
+                "events": events,
+                "links": events[0].links
+            };
+            fillDateInfos(e);
+            exps.push(e);
+        });
+        exps.sort((a, b) => b.to - a.to);
+        return exps;
+    }
+
+
+    /**
+     * Factory for Resume instances.
+     *
+     * @static
+     * @param {*} file
+     * @returns
+     * @memberof Resume
+     */
+    static load(file) {
+        // get data
+        const data = JSON.parse(fs.readFileSync(file));
+        // data augmentation
+        augment(data);
+        // return resume object
+        return new Resume(data);
+    }
+
+}
+
+module.exports = Resume;
+
 //
 //
 // ================================================
 //
-// Useful Constants
+// Useful Constants & Utility Functions
+// Mainly used during Data Augmentation
 //
 // ================================================
 //
@@ -26,17 +221,7 @@ const shortFormatter = (y, m) => {
     return `${y}y ${m}m`;
 };
 
-//
-//
-// ================================================
-//
-// Utility Functions
-//
-// ================================================
-//
-//
-const loadResume = (file) => {
-    const resume = JSON.parse(fs.readFileSync(file));
+function augment(resume) {
     resume.events.forEach(d => {
         d.dates = d.dates.map(d => new Date(d));
         fillDateInfos(d);
@@ -45,39 +230,8 @@ const loadResume = (file) => {
         d.isGrouped = d.groupId !== undefined;
         d.isSingle = !d.isGrouped;
     });
-    resume.getCertificates = () => resume.events.filter(d => d.type === "formation" && d.diploma === "certificate");
-    resume.getExperiences = () => getExperiences(resume, true);
-    resume.getEducations = () => resume.events.filter(d => d.type === "formation" && d.diploma !== "certificate");
-    return resume;
-};
-
-function getExperiences(resume, useGroups) {
-    let experiences = resume.events.filter(d => d.type === "experience");
-    if (!useGroups)
-        return experiences;
-    // remove experiences in groups
-    experiences = experiences.filter(e => e.isSingle);
-    //
-    resume.eventGroups.forEach(g => {
-        let events = resume.events.filter(e => g.events.indexOf(e.id) >= 0).sort((a, b) => b.to - a.to);
-        let e = {
-            "dates": [events.slice(-1)[0].from, events[0].to],
-            "isGrouped": true,
-            "isSingle": false,
-            "company": events[0].company,
-            "type": events[0].type,
-            "category": events[0].category,
-            "industry": events[0].industry,
-            "subIndustry": events[0].subIndustry,
-            "events": events,
-            "links": events[0].links
-        };
-        fillDateInfos(e);
-        experiences.push(e);
-    });
-    experiences.sort((a, b) => b.to - a.to);
-    return experiences;
 }
+
 
 function fillDateInfos(event) {
     event.from = event.dates[0];
@@ -144,10 +298,18 @@ function duration(dates) {
     return [y, m, d];
 }
 
-module.exports = loadResume;
+//
+//
+// ================================================
+//
+// Main Standalone
+//
+// ================================================
+//
+//
 
 if (require.main === module) {
-    let resume = loadResume('./timeline/events.json');
-    const exps = getExperiences(resume, true);
+    let resume = Resume.load('./timeline/events.json');
+    const exps = resume.getExperience();
     console.log(exps[0]);
 }
