@@ -338,7 +338,6 @@ function certificateWriter(exp) {
         let x = pdf.x + pdf.widthOfString(t) + 5;
         pdf.moveUp();
         let l = exp.links[0];
-        let w = pdf.widthOfString(l.name) + 5;
         _regular(8, "#2980B9")
             .text(l.name.toUpperCase(), x, pdf.y, {
                 align: "left",
@@ -347,9 +346,9 @@ function certificateWriter(exp) {
             });
 
         if (exp.links.length > 1)
-            exp.links.slice(1).forEach(l => {
+            exp.links.slice(1).forEach((l, i) => {
                 pdf.moveUp();
-                x += w;
+                x += pdf.widthOfString(exp.links[i].name) + 10;
                 _regular(8, "#2980B9")
                     .text(l.name.toUpperCase(), x, pdf.y, {
                         align: "left",
