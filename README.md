@@ -13,7 +13,7 @@ Pages Repository  ==> goto (http://ig2gi.github.com/)
   * ~~profile~~
   * ~~main soft skills~~
 * ~~add color type in pdf resume~~
-* add personal info in pdf metadata
+* ~~add personal info in pdf metadata~~
 * ~~add personal interests~~
 * ~~add language~~
 * add education certificates

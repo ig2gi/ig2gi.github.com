@@ -1,5 +1,14 @@
 [
     {
+        "title": "Travel Map",
+        "date": "2019",
+        "description": "Travel Interactive Visualisation World Map.",
+        "company": "Freelance Project",
+        "technology": "HTML5 D3.js CSS3 MapBox/ Node.js®",
+        "url": "travelmap/sprint1/",
+        "image": "images/travelmap.png"
+    },
+    {
         "title": "Dashboard & Metrics",
         "date": "2019",
         "description": "A serie of graphs and visualisations of key indicators, generated automatically server side (Node.js) and constantly updated for a 'dashboard' usage.",
@@ -80,7 +89,6 @@
         "url": "images/circos.jpeg",
         "image": "images/circos.jpeg"
     },
-  
     {
         "title": "Freelance project",
         "date": "Jan - Mar 2013",
@@ -144,5 +152,4 @@
         "url": "https://github.com/ig2gi/philo_graph/wiki",
         "image": "images/philo.png"
     }
-
 ]

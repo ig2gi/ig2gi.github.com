@@ -197,8 +197,8 @@ function doEvents(data, title, newPageAtEnd = false) {
                     }).moveDown(0.5);
             } else
                 _medium(12)
-                .text(event.title, marginH, yYear + 2)
-                .moveDown(0.5);
+                    .text(event.title, marginH, yYear + 2)
+                    .moveDown(0.5);
 
             // INDUSTRY
             _strong(8);
