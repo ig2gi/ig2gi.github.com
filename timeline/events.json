@@ -80,7 +80,7 @@
         }
     ],
     "profile": {
-        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on: Data Visualisation, Frontend Engineering and Business Analysis. In addition to this expertise, I'm currently finishing a specialisation in Machine Learning.",
+        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on: Data Visualisation, Frontend Engineering and Business Analysis.",
         "axes": [
             {
                 "title": "Data Analysis and Visualisation",
@@ -93,16 +93,12 @@
             {
                 "title": "Business Analysis",
                 "description": "I can gather requirements, write functional specifications and model business process, either as part of a full 'Business Analyst' role or either as part of a 'Product Owner' role in 'scrum' organizations for example.  "
-            },
-            {
-                "title": "Machine Learning",
-                "description": "Foundations of Deep Learning, how to build neural networks and how to lead successful machine learning projects."
             }
         ]
     },
     "header": {
         "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
-        "title": "Product Owner / Business Analysis. Data Visualisation. Frontend Engineer."
+        "title": "Product Owner / Business Analyst. Data Visualisation. Frontend Engineer."
     },
     "skills": {
         "soft": [
