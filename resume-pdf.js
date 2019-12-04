@@ -13,7 +13,7 @@ const Resume = require('./resume-data');
 //
 //
 
-const VERSION = "V4.2";
+const VERSION = "V4.3";
 const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
