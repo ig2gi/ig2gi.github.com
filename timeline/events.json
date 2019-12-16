@@ -76,29 +76,28 @@
         },
         {
             "name": "english",
-            "level": "B2"
+            "level": "B2/C1"
         }
     ],
     "profile": {
-        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on: Data Visualisation, Frontend Engineering and Business Analysis.",
+        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on: Product Management, Data Visualisation, Frontend Engineering.",
         "axes": [
             {
-                "title": "Data Analysis and Visualisation",
-                "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. Either on small datasets or large datasets, it may also include all or some of the different data analysis steps:  data requirements, collection, data wrangling, processing, cleaning, exploratory analysis, modeling, product, communication. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
+                "title": "Product Owner / Business Analysis, UX Design",
+                "description": "I can act as a full Product Owner as described in the scrum guide (accountable for expressing, ordering Product Backlog Items, ...) but I can also gather requirements, write functional specifications and model business process as a  'Business Analyst'. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly paying attention to details!"},
+            {
+                "title": "Data Visualisation",
+                "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. My goal: combining both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
             },
             {
                 "title": "Frontend Engineering",
-                "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly paying attention to details!"
-            },
-            {
-                "title": "Business Analysis",
-                "description": "I can gather requirements, write functional specifications and model business process, either as part of a full 'Business Analyst' role or either as part of a 'Product Owner' role in 'scrum' organizations for example.  "
-            }
+                "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application (JavaFX or Web applications)."
+            }   
         ]
     },
     "header": {
         "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
-        "title": "Product Owner / Business Analyst. Data Visualisation. Frontend Engineer."
+        "title": "Product Owner. Data Visualisation. Frontend Engineer."
     },
     "skills": {
         "soft": [
@@ -157,12 +156,12 @@
             ],
             [
                 "AGile",
-                2,
+                4,
                 true
             ],
             [
                 "Deep  Learning",
-                4,
+                3,
                 true
             ],
             [
@@ -182,11 +181,6 @@
             ],
             [
                 "Specifications",
-                3,
-                true
-            ],
-            [
-                "Product Owner",
                 3,
                 true
             ],
@@ -237,7 +231,7 @@
             ],
             [
                 "JIRA",
-                3,
+                4,
                 true
             ],
             [
@@ -529,8 +523,8 @@
                 "2006-01-01T00:00:00Z",
                 "2007-12-30T00:00:00Z"
             ],
-            "industry": "Industry",
-            "subIndustry": "Energy",
+            "industry": "Energy",
+            "subIndustry": "Electricity",
             "type": "experience",
             "category": "consultant",
             "company": {
@@ -614,7 +608,7 @@
                 "1998-07-01T00:00:00Z",
                 "2000-06-30T00:00:00Z"
             ],
-            "industry": "Industry",
+            "industry": "Telecommunication",
             "subIndustry": "Telecommunication",
             "type": "experience",
             "category": "employee",
@@ -655,8 +649,8 @@
                 "1995-04-01T00:00:00Z",
                 "1997-06-30T00:00:00Z"
             ],
-            "industry": "Industry",
-            "subIndustry": "Energy",
+            "industry": "Energy",
+            "subIndustry": "Construction",
             "type": "experience",
             "category": "employee",
             "company": {
@@ -740,21 +734,35 @@
             ]
         }
     ],
+    "leadership": [
+        {
+            "title": "Leader-Coach",
+            "definition": "Links the individual’s aspirations to the company’s objectives."
+        },
+        {
+            "title": "Visionary",
+            "definition": "Unites people around shared projects."
+        },
+        {
+            "title": "Partner",
+            "definition": "Creates harmony by connecting people."
+        }
+    ],
     "hobbies": [
         {
             "title": "Running",
             "description": "I try to run at least 20 km per week, you can catch me on Strava and during the differents 10K courses at Lausanne.",
-            "image": "running.png"
+            "image": "images/running.png"
         },
         {
             "title": "Photography",
             "description": "I practice Photography as mentioned in the Experience section, this is a domain where I can express my creativity, please have a look at https://500px.com/search?q=ig2gi&type=photos",
-            "image": "photo.png"
+            "image": "images/photo.png"
         },
         {
             "title": "Readings",
             "description": "I try to read at least 2 books per month. My preferred genres: Philosophical, Informational, Sciences and Science Fiction. My last 3 books: - 'Factfulness' by Hans Rosling (2019) - 'Enlightenment Now: The Case for Reason, Science, Humanism, and Progress' by Steven Pinker (2018) - 'The Art of Statistics: Learning from Data' by David Spiegelhalter (2019)",
-            "image": "reading.png"
+            "image": "images/reading.png"
         }
     ]
 }

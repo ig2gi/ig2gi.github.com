@@ -1,5 +1,6 @@
 const fs = require('fs');
 const mt = require('moment');
+const dl = require('datalib');
 
 
 /**
@@ -85,6 +86,16 @@ class Resume {
         return this.data.hobbies;
     }
 
+      /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get leadership() {
+        return this.data.leadership;
+    }
+
     /**
      *
      *
@@ -103,6 +114,16 @@ class Resume {
      */
     get socialNetworks() {
         return this.data.socialNetworks;
+    }
+
+    /**
+     *
+     *
+     * @readonly
+     * @memberof Resume
+     */
+    get statistics() {
+        return this.data.statistics;
     }
 
     /**
@@ -187,6 +208,8 @@ class Resume {
         const data = JSON.parse(fs.readFileSync(file));
         // data augmentation
         augment(data);
+        // gather statistics
+        statistics(data);
         // return resume object
         return new Resume(data);
     }
@@ -207,10 +230,10 @@ module.exports = Resume;
 //
 const defaultDiffFormatter = (y, m) => {
     if (y === 0)
-        return `${m} month${m >1 ? "s" : ""}`;
+        return `${m} month${m > 1 ? "s" : ""}`;
     if (m === 0)
-        return `${y} year${y >1 ? "s" : ""}`;
-    return `${y} year${y >1 ? "s" : ""}, ${m} month${m >1 ? "s" : ""}`;
+        return `${y} year${y > 1 ? "s" : ""}`;
+    return `${y} year${y > 1 ? "s" : ""}, ${m} month${m > 1 ? "s" : ""}`;
 };
 
 const shortFormatter = (y, m) => {
@@ -232,6 +255,23 @@ function augment(resume) {
     });
 }
 
+function statistics(resume) {
+
+    // 
+    const exps = resume.events.filter(d => d.type === 'experience');
+    const groupBy = cat => dl.groupby(cat)
+        .summarize([{ name: cat, ops: ['sum'], get: 'durationInYears' }])
+        .execute(exps);
+    resume.statistics = {
+        experience: {
+            industry: groupBy("industry"),
+            category: groupBy("category"),
+        }
+    };
+
+}
+
+
 
 function fillDateInfos(event) {
     event.from = event.dates[0];
@@ -239,6 +279,7 @@ function fillDateInfos(event) {
     event.years = [...new Set(event.dates.map(d => d.getFullYear()))];
     event.period = event.dates.length === 2;
     event.duration = duration(event.dates);
+    event.durationInYears = event.duration[0] + event.duration[1] / 12;
     event.periodAsString = getPeriod(event);
     event.periodAsStringShort = getPeriod(event, false);
     event.durationAsString = diff(event.duration);
@@ -311,5 +352,5 @@ function duration(dates) {
 if (require.main === module) {
     let resume = Resume.load('./timeline/events.json');
     const exps = resume.getExperience();
-    console.log(exps[0]);
+    console.log(resume.statistics.experience);
 }

@@ -4,6 +4,7 @@
   "description": "ig2gi website",
   "main": "minify.js",
   "dependencies": {
+    "datalib": "^1.9.2",
     "pdfkit": "^0.10.0"
   },
   "devDependencies": {
