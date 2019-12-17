@@ -13,7 +13,7 @@ const Resume = require('./resume-data');
 //
 //
 
-const VERSION = "V5.0";
+const VERSION = "V5.1";
 const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
@@ -656,7 +656,7 @@ function doFirstPage() {
 
         y = y3 + 10;
         resume.leadership.forEach(s => {
-            _medium(8, color2);
+            _light(9, color2);
             pdf.text(s.title.toUpperCase(), ml + 82 - _width(s.title.toUpperCase()) / 2, y);
             y = pdf.y;
             _regular(7, color1);
