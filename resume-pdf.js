@@ -613,17 +613,18 @@ function doFirstPage() {
        
         let y3 = pdf.y;
 
-        _hSeparator(ml + 350, pdf.y + 30, 300, color1);
+        _hSeparator(ml + 350, pdf.y + 45, 300, color1);
 
         x = ml + 320;
+        y = pdf.y + 55;
         _light(16, color2)
-            .highlight(x, pdf.y + 40, pdf.widthOfString(`  Interests  `), pdf.currentLineHeight(), {
+            .highlight(x, y, pdf.widthOfString(`  Interests  `), pdf.currentLineHeight(), {
                 color: color3
             })
-            .text("  Interests", x, pdf.y + 40);
+            .text("  Interests", x, y);
         y = pdf.y + 10;
         x = ml + 260;
-        h = 22;
+        h = 21;
         resume.hobbies.forEach(s => {
             pdf.image(s.image, x, y, {
                 height: h

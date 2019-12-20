@@ -180,18 +180,18 @@
                 true
             ],
             [
-                "Specifications",
-                3,
+                "Confluence",
+                4,
                 true
             ],
             [
                 "Databases",
-                3,
+                4,
                 true
             ],
             [
                 "Data Analysis",
-                4,
+                3,
                 true
             ],
             [
@@ -206,7 +206,7 @@
             ],
             [
                 "Scrum",
-                3,
+                4,
                 true
             ],
             [
@@ -232,11 +232,6 @@
             [
                 "JIRA",
                 4,
-                true
-            ],
-            [
-                "Confluence",
-                3,
                 true
             ],
             [
