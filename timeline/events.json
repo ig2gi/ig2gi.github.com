@@ -80,14 +80,14 @@
         }
     ],
     "profile": {
-        "description": "I have three areas of expertise that all have in common my curiosity and my passion to understand the underlying business area I'm working on: Product Management, Data Visualisation, Frontend Engineering.",
+        "description": "I have three areas of expertise that have in common my curiosity and my passion to understand the underlying business area. My specialties are: Product Management, Data Visualisation, Frontend Engineering.",
         "axes": [
             {
                 "title": "Product Owner / Business Analysis, UX Design",
-                "description": "I can act as a full Product Owner as described in the scrum guide (accountable for expressing, ordering Product Backlog Items, ...) but I can also gather requirements, write functional specifications and model business process as a  'Business Analyst'. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly paying attention to details!"},
+                "description": "I act as a full Product Owner as described in the scrum guide (accountable for expressing, ordering Product Backlog Items, ...). I also gather requirements, write functional specifications and model business process as a  'Business Analyst'. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly pay attention to details!"},
             {
                 "title": "Data Visualisation",
-                "description": "I design and create different kind of visual representations: complex interactive visualisations (for exploratory analysis) but also static posters or infographics or 'dashboard' views. My goal: combining both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audience."
+                "description": "I design and create various visual representations: complex interactive visualisations (for exploratory analysis) as well as static posters, infographics and 'dashboard' views. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audiences."
             },
             {
                 "title": "Frontend Engineering",
@@ -96,7 +96,7 @@
         ]
     },
     "header": {
-        "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer and 2 Master's degrees.",
+        "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer with 2 Master's degrees.",
         "title": "Product Owner. Data Visualisation. Frontend Engineer."
     },
     "skills": {
