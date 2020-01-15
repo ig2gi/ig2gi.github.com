@@ -515,7 +515,7 @@ div.progress-bar.other {
 }
 
 div.industry div.progress-bar {
-    background: var(--timeline-tag-other-color);
+    background: var(--timeline-card-txt-color) ;
 }
 
 #spider {

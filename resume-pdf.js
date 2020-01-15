@@ -13,7 +13,7 @@ const Resume = require('./resume-data');
 //
 //
 
-const VERSION = "V5.2";
+const VERSION = "V5.3";
 const marginH = 90;
 const baseColor = "#5D6D7E";
 const color1 = "#AAB7B8";
@@ -146,7 +146,7 @@ const _hSeparator = (x, y, w, col) => {
     pdf.lineWidth(1);
 };
 const _titleSeparator = (x, y, w, col, title) => {
-    _hSeparator(x, y, w, col);
+    _hSeparator(x, y, w, color1);
     _light(11, col);
     let wt = _width("  " + title);
     let xt = x - wt / 2;
@@ -510,7 +510,7 @@ function doFirstPage() {
 
         // Block 1: Industry Breakdown
         x = ml + 80;
-        _titleSeparator(x, pdf.y + 15, 130, color1, "Industry");
+        _titleSeparator(x, pdf.y + 15, 130, baseColor, "Industry");
 
         y0 = pdf.y;
         const x0 = ml + 160;
@@ -532,7 +532,7 @@ function doFirstPage() {
 
         // Block 2: Category Breakdown
         x = ml + 80;
-        _titleSeparator(x, pdf.y + 20, 130, color1, "Contract Type");
+        _titleSeparator(x, pdf.y + 20, 130, baseColor, "Contract Type");
 
 
         y = pdf.y + 20;
@@ -552,7 +552,7 @@ function doFirstPage() {
 
 
         // Block 3: Company Size
-        _titleSeparator(ml + 80, pdf.y + 20, 130, color1, "Company Size");
+        _titleSeparator(ml + 80, pdf.y + 20, 130, baseColor, "Company Size");
         y = pdf.y + 10;
         x = ml + 35;
         const yt = y;
@@ -587,7 +587,7 @@ function doFirstPage() {
             })
             .text("  Hard Skills", x, y);
 
-        _titleSeparator(ml + 80, pdf.y + 15, 130, color1, "General");
+        _titleSeparator(ml + 80, pdf.y + 15, 130, baseColor, "General");
 
         let skills = resume.skills.soft.sort((a, b) => a.localeCompare(b));
         x = ml + 82;
@@ -599,14 +599,14 @@ function doFirstPage() {
 
         pdf.moveUp(1);
         x = ml + 220;
-        _regular(8, color1).text("Non exhaustive list, sorted alphabetically (libraries, frameworks or tools commonly used in development, like  git, maven, hibernate, mysql , pynum, jquery, ..., are not listed)", x, y0 - 10, {
+        _regular(8, baseColor).text("Non exhaustive list, sorted alphabetically (libraries, frameworks or tools commonly used in development, like  git, maven, hibernate, mysql , pynum, jquery, ..., are not listed)", x, y0 - 10, {
             align: "justify",
             width: 280
         });
         skills = resume.skills.hard.sort((a, b) => a[0].localeCompare(b[0]));
         _columns(skills, 80, 100, x, y0 + 30);
 
-        _titleSeparator(ml + 80, pdf.y - 10, 130, color1, "Leadership");
+        _titleSeparator(ml + 80, pdf.y - 10, 130, baseColor, "Leadership");
 
 
 
@@ -637,7 +637,7 @@ function doFirstPage() {
         //
         // Profile
         //
-        _regular(9, color1).text(resume.profile.description, ml + 215, y1 + 4, {
+        _regular(9, baseColor).text(resume.profile.description, ml + 215, y1 + 4, {
             align: "justify",
             width: 300
         });
@@ -645,14 +645,15 @@ function doFirstPage() {
         y = pdf.y;
         resume.profile.axes.forEach(p => {
             _medium(9, color2).text(p.title, ml + 215, pdf.y);
-            _regular(9, color1).text(p.description, ml + 215, pdf.y, {
+            _regular(9, baseColor).text(p.description, ml + 215, pdf.y, {
                 align: "justify",
                 width: 300
             });
             pdf.moveDown(1);
         });
-        pdf.image("images/right-arrow.png", ml + 190, y - pdf.currentLineHeight() / 2, {
-            height: 16
+      
+        pdf.image("images/pspoi.png", ml + 175, y - pdf.currentLineHeight() / 4, {
+            height: 36
         });
 
         y = y3 + 10;

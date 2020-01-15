@@ -248,6 +248,34 @@
     },
     "events": [
         {
+            "id": 21,
+            "title": "The Professional Scrum Product Owner I ",
+            "dates": [
+                "2020-01-01T00:00:00Z",
+                "2020-01-25T00:00:00Z"
+            ],
+            "industry": "Methodology",
+            "subIndustry": "",
+            "diploma": "certificate",
+            "type": "formation",
+            "category": "formation",
+            "company": {
+                "name": "Scrum.org",
+                "department": "",
+                "logo": "",
+                "url": "https://www.scrum.org"
+            },
+            "links": [
+                {
+                    "name": "c1",
+                    "url": "https://www.scrum.org/certificates/493727"
+                }
+            ],
+            "description": "Fundamental understanding of the Scrum framework, and how to apply it to maximize the value delivered with a product.",
+            "fullDescription": "",
+            "hardSkills": ""
+        },
+        {
             "id": 1,
             "title": "Deep Learning Specialization",
             "dates": [
