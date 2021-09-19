@@ -22,7 +22,7 @@
         {
             "name": "500px",
             "logo": "images/500px-logo.png",
-            "link": "https://500px.com/ig2gi"
+            "link": "https://ig2gi.500px.photography"
         },
         {
             "name": "ObservableHQ",
@@ -84,7 +84,8 @@
         "axes": [
             {
                 "title": "Product Owner / Business Analysis, UX Design",
-                "description": "I act as a full Product Owner as described in the scrum guide (accountable for expressing, ordering Product Backlog Items, ...). I also gather requirements, write functional specifications and model business process as a  'Business Analyst'. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly pay attention to details!"},
+                "description": "I act as a full Product Owner as described in the scrum guide (accountable for expressing, ordering Product Backlog Items, ...). I also gather requirements, write functional specifications and model business process as a  'Business Analyst'. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly pay attention to details!"
+            },
             {
                 "title": "Data Visualisation",
                 "description": "I design and create various visual representations: complex interactive visualisations (for exploratory analysis) as well as static posters, infographics and 'dashboard' views. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audiences."
@@ -92,7 +93,7 @@
             {
                 "title": "Frontend Engineering",
                 "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application (JavaFX or Web applications)."
-            }   
+            }
         ]
     },
     "header": {
@@ -247,6 +248,28 @@
         ]
     },
     "events": [
+        {
+            "id": 25,
+            "title": "Director, Platform Product Management",
+            "dates": [
+                "2020-05-25T00:00:00Z"
+            ],
+            "industry": "Healthcare",
+            "subIndustry": "Data-Driven Medicine",
+            "type": "experience",
+            "category": "employee",
+            "company": {
+                "name": "Sophia genetics",
+                "department": "",
+                "logo": "sophia.svg",
+                "url": "http://www.sophiagenetics.com"
+            },
+            "links": [],
+            "description": "Director of Platform.",
+            "fullDescription": "",
+            "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration,Agility,Coordination",
+            "hardSkills": "D3.js,balsamiq"
+        },
         {
             "id": 21,
             "title": "The Professional Scrum Product Owner I ",
