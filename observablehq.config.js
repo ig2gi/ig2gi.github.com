@@ -1,4 +1,29 @@
 // See https://observablehq.com/framework/config for documentation.
+
+
+const pages = [
+  { name: "Gilbert Perrin", path: "/index" },
+  { name: "Overview", path: "/overview" },
+  { name: "Timeline", path: "/timeline" },
+  { name: "Resume (CV)", path: "/resume" },
+  { name: "Photography", path: "/photography" },
+  { name: "Dataviz", path: "/portfolio" },
+]
+
+
+const header = ({ path }) => {
+
+  const _links = pages.map(p => `<span style="font-weight:${path === p.path ? "bold" : "normal"}"><a href=${p.path}>${p.name}</a></span>`).join("")
+
+  return `
+    <div style="display: flex; flex-grow: 1; align-items: center; justify-content: start; white-space: nowrap; column-gap: 2em;">
+      ${_links}
+      <div style="margin-left: auto;"><img src="/images/eye.jpg"  width=42></div>
+    </div>
+  `
+
+}
+
 export default {
   // The app’s title; used in the sidebar and webpage titles.
   title: "Gilbert Perrin",
@@ -6,21 +31,10 @@ export default {
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.
-  pages: [
-    {
-      name: "Professional",
-      pages: [
-        { name: "Overview", path: "/overview" },
-        { name: "Timeline", path: "/timeline" },
-        { name: "Resume (CV)", path: "/resume" },
-      ]
-    },
-    { name: "Photography", path: "/photography" },
-    { name: "Dataviz", path: "/portfolio" },
-  ],
+  pages: pages,
 
   // Content to add to the head of the page, e.g. for a favicon:
-  head: '<link rel="icon" href="observable.png" type="image/png" sizes="32x32">',
+  header: header,
 
   // The path to the source root.
   root: "src",
@@ -29,9 +43,9 @@ export default {
 
   // Some additional configuration options and their defaults:
   theme: "air", // try "light", "dark", "slate", etc.
-  header: "Hello", // what to show in the header (HTML)
+  //header: "Hello", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
-  sidebar: true, // whether to show the sidebar
+  sidebar: false, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
   pager: false, // whether to show previous & next links in the footer
   // output: "dist", // path to the output root for build
