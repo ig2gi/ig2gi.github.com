@@ -1,5 +1,7 @@
 ---
-title: Example report
+title: Photography
+
+
 ---
 
 # A brief history of space exploration

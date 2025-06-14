@@ -1,6 +1,6 @@
 ---
-theme: dashboard
-title: Example dashboard
+
+title: Timeline
 toc: false
 ---
 
