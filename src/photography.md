@@ -12,14 +12,11 @@ This report is a brief overview of the history and current state of rocket launc
 
 The history of rocket launches dates back to ancient China, where gunpowder-filled tubes were used as primitive forms of propulsion.
 
-Fast-forward to the 20th century during the Cold War era, the United States and the Soviet Union embarked on a space race, a competition to innovate and explore beyond Earth.
-
-This led to the launch of the first artificial satellite, Sputnik 1, and the crewed moon landing by Apollo 11. As technology advanced, rocket launches became synonymous with space exploration and satellite deployment.
 
 ## The Space Shuttle era
 
 ```js
-import {timeline} from "./components/timeline.js";
+import {timeline} from "./components/portfolio.js";
 ```
 
 ```js

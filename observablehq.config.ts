@@ -2,12 +2,12 @@
 
 
 const pages = [
-  { name: "Gilbert Perrin", path: "/index" },
+  { name: "G/P", path: "/index" },
   { name: "Overview", path: "/overview" },
   { name: "Timeline", path: "/timeline" },
   { name: "Resume (CV)", path: "/resume" },
+  { name: "Portfolio", path: "/portfolio" },
   { name: "Photography", path: "/photography" },
-  { name: "Dataviz", path: "/portfolio" },
 ]
 
 
