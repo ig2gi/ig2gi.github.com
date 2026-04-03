@@ -4,3 +4,5 @@ coverage/
 .vscode
 node_modules
 dist
+.claude
+CLAUDE.md

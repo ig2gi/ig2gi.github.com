@@ -1,34 +1,47 @@
 // See https://observablehq.com/framework/config for documentation.
 
-
 const pages = [
-  { name: "G/P", path: "/index" },
-  { name: "Overview", path: "/overview" },
+  { name: "Gilbert Perrin", path: "/index" },
   { name: "Timeline", path: "/timeline" },
-  { name: "Resume (CV)", path: "/resume" },
-  { name: "Portfolio", path: "/portfolio" },
+  { name: "Resume", path: "/resume" },
+  { name: "DataViz", path: "/dataviz" },
   { name: "Photography", path: "/photography" },
 ]
 
-
 const header = ({ path }) => {
+  if (path === "/index") return `
+    <div class="home-header">
+      <span class="hh-name">GILBERT PERRIN</span>
+      <span class="hh-keywords">PRODUCT &middot; DESIGN &middot; ENGINEERING</span>
+      <span class="hh-clock">
+        <span id="hp-time">—</span>
+        &nbsp;
+        <span id="hp-date">—</span>
+      </span>
+    </div>
+  `;
 
-  const _links = pages.map(p => `<span style="font-weight:${path === p.path ? "bold" : "normal"}"><a href=${p.path}>${p.name}</a></span>`).join("")
+  const page = pages.find(p => p.path === path);
+  const pageName = page ? page.name.toUpperCase() : path.replace("/", "").toUpperCase();
 
   return `
-    <div style="display: flex; flex-grow: 1; align-items: center; justify-content: start; white-space: nowrap; column-gap: 2em;">
-      ${_links}
-      <div style="margin-left: auto;"><img src="/images/eye.jpg"  width=42></div>
+    <div class="home-header">
+      <span class="hh-breadcrumb">
+        <a href="/index">GILBERT PERRIN</a>
+        <span class="hh-sep">/</span>
+        <span class="hh-page">${pageName}</span>
+      </span>
+      <span class="hh-keywords">PRODUCT &middot; DESIGN &middot; ENGINEERING</span>
+      <div class="header-logo"><img src="/images/eye.jpg" width="42" alt="Gilbert Perrin"></div>
     </div>
   `
-
 }
 
 export default {
-  // The app’s title; used in the sidebar and webpage titles.
+  // The app's title; used in the sidebar and webpage titles.
   title: "Gilbert Perrin",
 
-  // The pages and sections in the sidebar. If you don’t specify this option,
+  // The pages and sections in the sidebar. If you don't specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.
   pages: pages,
