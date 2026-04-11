@@ -8,11 +8,8 @@ export interface PortfolioItem {
     company: string,
     technology: string[],
     url: URL,
-    image: URL
-}
-
-function pad(n: number): string {
-    return String(n).padStart(2, '0');
+    image: URL,
+    open: boolean
 }
 
 function getCard(item: PortfolioItem, images): HTMLElement {
@@ -22,9 +19,9 @@ function getCard(item: PortfolioItem, images): HTMLElement {
     return html`<div class="pf-card">
         <div class="pf-card-body">
             <div class="pf-card-meta">
-                <span class="pf-num">[${pad(item.id)}]</span>
                 <span class="pf-year">${yearStr}</span>
                 <span class="pf-company">${item.company}</span>
+                ${item.open ? html`<a class="pf-open-btn" href="${item.url}" target="_blank" rel="noopener">OPEN</a>` : null}
             </div>
             <div class="pf-title">${item.title}</div>
             <p class="pf-desc">${item.description}</p>
@@ -38,5 +35,7 @@ function getCard(item: PortfolioItem, images): HTMLElement {
 
 export function getCards(items: PortfolioItem[], images): HTMLElement[] {
     if (!items || items.length === 0) return []
-    return items.map(i => getCard(i, images))
+    return [...items]
+        .sort((a, b) => Math.max(...b.year) - Math.max(...a.year))
+        .map(i => getCard(i, images))
 }

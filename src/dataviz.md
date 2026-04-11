@@ -30,6 +30,7 @@ const images = {
     15: FileAttachment("images/portfolio/w3.png"),
     16: FileAttachment("images/portfolio/w2.png"),
     17: FileAttachment("images/portfolio/philo.png"),
+    18: FileAttachment("images/portfolio/eratosthene.png"),
 }
 ```
 
