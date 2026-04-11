@@ -1,0 +1,61 @@
+{
+  "sections": [
+    {
+      "id": "profile",
+      "label": "Profile",
+      "sublabel": "01 — WHO I AM",
+      "image": {
+        "src": "/images/cover.png",
+        "alt": "recursion",
+        "caption": "recursion ©gilbertperrin 2008",
+        "position": "top"
+      },
+      "paragraphs": [
+        "I'm a <b>product, design, and engineering leader</b> with a data‑ and facts‑driven mindset, focused on <b>turning complex business needs into clear, usable experiences.</b> My background blends Product Management, Data Visualization, Data Engineering, and Frontend Engineering — grounded in curiosity about the underlying domain and strong attention to detail.",
+        "I've been working at <a href=\"https://www.sophiagenetics.com/\" target=\"_blank\">Sophia Genetics</a> for over 11 years, building tools and platforms at the intersection of data and healthcare."
+      ],
+      "links": []
+    },
+    {
+      "id": "expertise",
+      "label": "Expertise",
+      "sublabel": "02 — WHAT I DO",
+      "paragraphs": [
+        "<b>Product Management</b> — I frame ambiguous problems into actionable roadmaps, bridging business stakeholders and engineering teams with structured reasoning and clear communication.",
+        "<b>Data Visualization</b> — I build interactive charts and dashboards that make complex datasets legible. D3.js has been my core tool for over a decade, from genomics platforms to business metrics.",
+        "<b>Frontend Engineering</b> — I write production code. From UI prototypes to full data pipelines, I step in and build when it matters — not just specify."
+      ],
+      "links": []
+    },
+    {
+      "id": "approach",
+      "label": "Approach",
+      "sublabel": "03 — HOW I WORK",
+      "image": {
+        "src": "/images/walker-dreamer.svg",
+        "alt": "Walker Dreamer",
+        "position": "bottom"
+      },
+      "paragraphs": [
+        "I am recognised for my <b>high-level communication skills and structured reasoning</b>. I help teams frame problems clearly, make faster decisions and share knowledge across departments — in major presentations as much as in day-to-day collaboration.",
+        "I'm a <b>hands-on person who steps in to move work forward.</b> I combine this with a track record of building dashboards spanning business outcomes, platform usage, and software development metrics.",
+        "I have fully embraced AI and machine learning in my routine work, while maintaining <b>critical thinking</b> as a defining trait — grounded in both reasoning skills and fundamental AI/ML knowledge gained through certifications. I bring a strong vision of what it means to deliver AI tools in highly regulated environments like healthcare."
+      ],
+      "links": []
+    },
+    {
+      "id": "background",
+      "label": "Background",
+      "sublabel": "04 — ORIGINS",
+      "paragraphs": [
+        "I hold a first master's degree in <b>Mathematics, Fluid Mechanics, and Thermodynamics</b>, followed by a second master's in <b>Computer Science</b>. That blend of rigorous science and applied engineering has shaped how I think about every problem.",
+        "I've always been passionate about data and the art of telling stories through <b>data visualizations</b> — that sweet spot where logic and design come together. Outside of work, I love reading, running, and <b>photography</b>, which keep me creative and observant."
+      ],
+      "links": [
+        { "label": "View Timeline →", "url": "/timeline", "external": false },
+        { "label": "See DataViz →", "url": "/dataviz", "external": false },
+        { "label": "LinkedIn →", "url": "https://www.linkedin.com/in/gilbertperrin/", "external": true }
+      ]
+    }
+  ]
+}

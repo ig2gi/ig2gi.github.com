@@ -6,6 +6,7 @@ const pages = [
   { name: "Resume", path: "/resume" },
   { name: "DataViz", path: "/dataviz" },
   { name: "Photography", path: "/photography" },
+  { name: "Contact", path: "/contact" },
 ]
 
 const header = ({ path }) => {

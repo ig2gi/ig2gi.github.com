@@ -806,6 +806,36 @@ body:has(.page-full) #observablehq-body {
     padding-top: 0 !important;
 }
 
+/* Content pages: same full-width layout as page-full pages but without a hero */
+body:has(.page-content-only) {
+    max-width: 100%;
+    padding: 0;
+    background: #edeae4;
+}
+
+body:has(.page-content-only) #observablehq-header {
+    display: block !important;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 0;
+}
+
+body:has(.page-content-only) #observablehq-main,
+body:has(.page-content-only) .observablehq--block {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+}
+
+body:has(.page-content-only) #observablehq-center,
+body:has(.page-content-only) #observablehq-body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
 .page-full {
     position: relative;
     width: 100%;
@@ -984,6 +1014,32 @@ body:has(.page-header) #observablehq-body {
     align-items: center;
     margin-bottom: 0.35rem;
     flex-wrap: wrap;
+}
+
+.pf-open-btn {
+    margin-left: auto;
+    font-family: 'Space Mono', var(--monospace);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.2rem 0.5rem;
+    text-decoration: none;
+    outline: none;
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.pf-card-meta .pf-open-btn:hover,
+.pf-card-meta .pf-open-btn:focus,
+.pf-card-meta .pf-open-btn:active {
+    outline: none !important;
+    border: 1px solid var(--primary) !important;
+    background: var(--primary) !important;
+    color: var(--gray-900) !important;
+}
+
+.pf-card-meta .pf-open-btn:focus-visible {
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.4);
 }
 
 .pf-num,
@@ -1220,6 +1276,30 @@ body:has(.page-full):has(.pf-grid) .page-full-watermark {
     line-height: 1.7;
     color: var(--gray-600);
     margin: 0.4rem 0 0;
+}
+
+.re-entry-achievements {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.re-entry-achievements li {
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: var(--gray-600);
+    padding-left: 1.3rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+}
+
+.re-entry-achievements li::before {
+    content: "⇢";
+    position: absolute;
+    left: 0;
+    color: var(--gray-400);
+    font-size: 0.75rem;
+    line-height: 1.65;
 }
 
 .re-entry-links {

@@ -12,6 +12,7 @@ style: style/main.css
     <a href="/resume">03 RESUME</a>
     <a href="/dataviz">04 DATAVIZ</a>
     <a href="/photography">05 PHOTOGRAPHY</a>
+    <a href="/contact">06 CONTACT</a>
   </nav>
 
   <div class="hp-watermark" aria-hidden="true">GP</div>
@@ -43,6 +44,11 @@ style: style/main.css
 </div>
 
 ```js
+import { html } from "npm:htl"
+const profileData = FileAttachment("./data/profile.json").json()
+```
+
+```js
 {
   function tick() {
     const timeEl = document.getElementById('hp-time');
@@ -62,60 +68,38 @@ style: style/main.css
 }
 ```
 
-<div class="profile-sections">
+```js
+function buildSection(section) {
+  const p = (content) => Object.assign(document.createElement('p'), { innerHTML: content });
 
-  <div class="ps">
+  const imgEl = section.image
+    ? html`<span>
+        <img src="${section.image.src}" class="ps-image" alt="${section.image.alt}">
+        ${section.image.caption ? html`<span class="ps-caption">${section.image.caption}</span>` : ""}
+      </span>`
+    : null;
+
+  const linksEl = section.links?.length
+    ? html`<div class="ps-links">${section.links.map(l =>
+        l.external
+          ? html`<a href="${l.url}" target="_blank">${l.label}</a>`
+          : html`<a href="${l.url}">${l.label}</a>`
+      )}</div>`
+    : null;
+
+  return html`<div class="ps">
     <div class="ps-label">
-      <strong>Profile</strong>
-      01 — WHO I AM
+      <strong>${section.label}</strong>
+      ${section.sublabel}
     </div>
     <div class="ps-body">
-      <img src="/images/cover.png" class="ps-image" alt="recursion">
-      <span class="ps-caption">recursion ©gilbertperrin 2008</span>
-      <p>I'm a <b>product, design, and engineering leader</b> with a data‑ and facts‑driven mindset, focused on <b>turning complex business needs into clear, usable experiences.</b> My background blends Product Management, Data Visualization, Data Engineering, and Frontend Engineering — grounded in curiosity about the underlying domain and strong attention to detail.</p>
-      <p>I've been working at <a href="https://www.sophiagenetics.com/" target="_blank">Sophia Genetics</a> for over 11 years, building tools and platforms at the intersection of data and healthcare.</p>
+      ${section.image?.position === "top" ? imgEl : ""}
+      ${section.paragraphs.map(p)}
+      ${section.image?.position === "bottom" ? imgEl : ""}
+      ${linksEl}
     </div>
-  </div>
+  </div>`;
+}
 
-  <div class="ps">
-    <div class="ps-label">
-      <strong>Expertise</strong>
-      02 — WHAT I DO
-    </div>
-    <div class="ps-body">
-      <p><b>Product Management</b> — I frame ambiguous problems into actionable roadmaps, bridging business stakeholders and engineering teams with structured reasoning and clear communication.</p>
-      <p><b>Data Visualization</b> — I build interactive charts and dashboards that make complex datasets legible. D3.js has been my core tool for over a decade, from genomics platforms to business metrics.</p>
-      <p><b>Frontend Engineering</b> — I write production code. From UI prototypes to full data pipelines, I step in and build when it matters — not just specify.</p>
-    </div>
-  </div>
-
-  <div class="ps">
-    <div class="ps-label">
-      <strong>Approach</strong>
-      03 — HOW I WORK
-    </div>
-    <div class="ps-body">
-      <p>I am recognised for my <b>high-level communication skills and structured reasoning</b>. I help teams frame problems clearly, make faster decisions and share knowledge across departments — in major presentations as much as in day-to-day collaboration.</p>
-      <p>I'm a <b>hands-on person who steps in to move work forward.</b> I combine this with a track record of building dashboards spanning business outcomes, platform usage, and software development metrics.</p>
-      <p>I have fully embraced AI and machine learning in my routine work, while maintaining <b>critical thinking</b> as a defining trait — grounded in both reasoning skills and fundamental AI/ML knowledge gained through certifications. I bring a strong vision of what it means to deliver AI tools in highly regulated environments like healthcare.</p>
-      <img src="/images/walker-dreamer.svg" class="ps-image" alt="Walker Dreamer">
-    </div>
-  </div>
-
-  <div class="ps">
-    <div class="ps-label">
-      <strong>Background</strong>
-      04 — ORIGINS
-    </div>
-    <div class="ps-body">
-      <p>I hold a first master's degree in <b>Mathematics, Fluid Mechanics, and Thermodynamics</b>, followed by a second master's in <b>Computer Science</b>. That blend of rigorous science and applied engineering has shaped how I think about every problem.</p>
-      <p>I've always been passionate about data and the art of telling stories through <b>data visualizations</b> — that sweet spot where logic and design come together. Outside of work, I love reading, running, and <b>photography</b>, which keep me creative and observant.</p>
-      <div class="ps-links">
-        <a href="/timeline">View Timeline →</a>
-        <a href="/dataviz">See DataViz →</a>
-        <a href="https://www.linkedin.com/in/gilbertperrin/" target="_blank">LinkedIn →</a>
-      </div>
-    </div>
-  </div>
-
-</div>
+display(html`<div class="profile-sections">${profileData.sections.map(buildSection)}</div>`);
+```
