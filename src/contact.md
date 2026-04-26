@@ -7,7 +7,7 @@ toc: false
 
 ```js
 import { html } from "npm:htl"
-const data = FileAttachment("./data/resume2.json").json()
+const data = FileAttachment("./data/resume.json").json()
 ```
 
 ```js

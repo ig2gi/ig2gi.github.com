@@ -13,7 +13,7 @@ import { buildResume } from "./components/resume.js"
 ```
 
 ```js
-const resumeData = FileAttachment("./data/resume2.json").json()
+const resumeData = FileAttachment("./data/resume.json").json()
 ```
 
 <div class="profile-sections">

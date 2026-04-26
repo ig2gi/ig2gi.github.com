@@ -20,6 +20,7 @@ style: style/main.css
   <div class="hp-tagline">
     <p>I turn complex data into clear,<br>usable experiences — where product,<br>design and engineering converge.</p>
     <span class="hp-scroll">[SCROLL TO EXPLORE]</span>
+    <span class="hp-arrow" aria-hidden="true"></span>
   </div>
 
   <div class="hp-thumbnails">

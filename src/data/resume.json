@@ -1,814 +1,793 @@
 {
-    "personalInfo": {
-        "name": "Gilbert Perrin",
-        "age": 50,
-        "phone": "+41 76 203 21 69",
-        "picture": "images/me.jpg",
-        "location": "",
-        "website": "http://ig2gi.github.io",
-        "email": "gilbert.perrin@gmail.com"
-    },
-    "socialNetworks": [
-        {
-            "name": "Linkedin",
-            "logo": "images/linkedin.png",
-            "link": "https://www.linkedin.com/in/gilbertperrin/"
-        },
-        {
-            "name": "Twitter",
-            "logo": "images/twitter.png",
-            "link": "https://twitter.com/ig2gi"
-        },
-        {
-            "name": "500px",
-            "logo": "images/500px-logo.png",
-            "link": "https://ig2gi.500px.photography"
-        },
-        {
-            "name": "ObservableHQ",
-            "logo": "images/observablehq.png",
-            "link": "https://observablehq.com/@ig2gi"
-        }
+  "personalInfo": {
+    "name": "Gilbert Perrin",
+    "phone": "+41 76 203 21 69",
+    "picture": "images/me.jpg",
+    "location": "Lausanne Area, Switzerland",
+    "website": "https://ig2gi.github.io",
+    "email": "gilbert.perrin@gmail.com"
+  },
+  "socialNetworks": [
+    { "name": "LinkedIn", "link": "https://www.linkedin.com/in/gilbertperrin/" },
+    { "name": "ObservableHQ", "link": "https://observablehq.com/@ig2gi" },
+    { "name": "500px", "link": "https://ig2gi.500px.photography" }
+  ],
+  "languages": [
+    { "name": "French", "level": "native" },
+    { "name": "English", "level": "B2" }
+  ],
+  "header": {
+    "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer with 2 Master's degrees.",
+    "title": "Product · Design · Engineering"
+  },
+  "skills": {
+    "soft": [
+      "team leadership",
+      "product strategy",
+      "creativity",
+      "problem solving",
+      "stakeholder alignment",
+      "mentoring",
+      "adaptability"
     ],
-    "contactInfo": [
-        {
-            "name": "http://ig2gi.github.io",
-            "logo": "images/home.png",
-            "link": "http://ig2gi.github.io/index.html"
-        },
-        {
-            "name": "+41 (0) 76 203 21 69",
-            "logo": "images/phone.png",
-            "link": ""
-        },
-        {
-            "name": "gilbert.perrin@gmail.com",
-            "logo": "images/at.png",
-            "link": "mailto:gilbert.perrin@gmail.com"
-        }
-    ],
-    "aptitudes": [
-        {
-            "name": "creative",
-            "logo": "images/start-up.png",
-            "link": ""
-        },
-        {
-            "name": "passionate",
-            "logo": "images/heart-eyes.png",
-            "link": ""
-        },
-        {
-            "name": "analytical",
-            "logo": "images/cube-graphic-of-squares.png",
-            "link": ""
-        },
-        {
-            "name": "visual",
-            "logo": "images/visual.png",
-            "link": ""
-        }
-    ],
-    "languages": [
-        {
-            "name": "french",
-            "level": "mother tongue"
-        },
-        {
-            "name": "english",
-            "level": "B2"
-        }
-    ],
-    "profile": {
-        "description": "I have three areas of expertise that have in common my curiosity and my passion to understand the underlying business area. My specialties are: Product Management, Data Visualisation, Frontend Engineering.",
-        "axes": [
-            {
-                "title": "Product Owner / Business Analysis, UX Design",
-                "description": "I act as a full Product Owner as described in the scrum guide (accountable for expressing, ordering Product Backlog Items, ...). I also gather requirements, write functional specifications and model business process as a  'Business Analyst'. I can also develop quickly UI prototypes (interactive or static) or sketches to support an iterative approach (like Design Thinking) and elaborate complex user interactions and refine my ideas based on stakeholders feedbacks. \nMy goal: constantly pay attention to details!"
-            },
-            {
-                "title": "Data Visualisation",
-                "description": "I design and create various visual representations: complex interactive visualisations (for exploratory analysis) as well as static posters, infographics and 'dashboard' views. My goal: combine both aesthetic form and functionality to communicate information clearly and efficiently to the targetted audiences."
-            },
-            {
-                "title": "Frontend Engineering",
-                "description": "I design and develop Frontend Applications, either at components level (visual components integrated into an existing application) or the complete client application (JavaFX or Web applications)."
-            }
-        ]
-    },
-    "header": {
-        "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer with 2 Master's degrees.",
-        "title": "Product Owner. Data Visualisation. Frontend Engineer."
-    },
-    "skills": {
-        "soft": [
-            "time management",
-            "creativity",
-            "problem solving",
-            "adaptability",
-            "TEAM WORK",
-            "interpersonal skills"
-        ],
-        "hard": [
-            [
-                "python",
-                4,
-                true
-            ],
-            [
-                "java",
-                5,
-                true
-            ],
-            [
-                "D3.js",
-                5,
-                false
-            ],
-            [
-                "javascript",
-                4,
-                true
-            ],
-            [
-                "HTML",
-                3,
-                true
-            ],
-            [
-                "CSS",
-                3,
-                true
-            ],
-            [
-                "Node.js®",
-                4,
-                false
-            ],
-            [
-                "JAVA FX",
-                3,
-                true
-            ],
-            [
-                "J2EE",
-                3,
-                true
-            ],
-            [
-                "AGile",
-                4,
-                true
-            ],
-            [
-                "Deep  Learning",
-                3,
-                true
-            ],
-            [
-                "Data Viz.",
-                5,
-                true
-            ],
-            [
-                "UX Design",
-                4,
-                true
-            ],
-            [
-                "Requirements",
-                3,
-                true
-            ],
-            [
-                "Confluence",
-                4,
-                true
-            ],
-            [
-                "Databases",
-                4,
-                true
-            ],
-            [
-                "Data Analysis",
-                3,
-                true
-            ],
-            [
-                "Architecture",
-                3,
-                true
-            ],
-            [
-                "UI Design",
-                3,
-                true
-            ],
-            [
-                "Scrum",
-                4,
-                true
-            ],
-            [
-                "Prototyping",
-                4,
-                true
-            ],
-            [
-                "Web Dev",
-                3,
-                true
-            ],
-            [
-                "Wireframes",
-                3,
-                true
-            ],
-            [
-                "ES6",
-                4,
-                true
-            ],
-            [
-                "JIRA",
-                4,
-                true
-            ],
-            [
-                "Balsamiq",
-                3,
-                true
-            ],
-            [
-                "Machine Learning",
-                3,
-                true
-            ]
-        ]
-    },
-    "events": [
-        {
-            "id": 25,
-            "title": "Director, Platform Product Management",
-            "dates": [
-                "2020-05-25T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg",
-                "url": "http://www.sophiagenetics.com"
-            },
-            "links": [],
-            "description": "Director of Platform.",
-            "fullDescription": "",
-            "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration,Agility,Coordination",
-            "hardSkills": "D3.js,balsamiq"
-        },
-        {
-            "id": 21,
-            "title": "The Professional Scrum Product Owner I ",
-            "dates": [
-                "2020-01-01T00:00:00Z",
-                "2020-01-25T00:00:00Z"
-            ],
-            "industry": "Methodology",
-            "subIndustry": "",
-            "diploma": "certificate",
-            "type": "formation",
-            "category": "formation",
-            "company": {
-                "name": "Scrum.org",
-                "department": "",
-                "logo": "",
-                "url": "https://www.scrum.org"
-            },
-            "links": [
-                {
-                    "name": "c1",
-                    "url": "https://www.scrum.org/certificates/493727"
-                }
-            ],
-            "description": "Fundamental understanding of the Scrum framework, and how to apply it to maximize the value delivered with a product.",
-            "fullDescription": "",
-            "hardSkills": ""
-        },
-        {
-            "id": 1,
-            "title": "Deep Learning Specialization",
-            "dates": [
-                "2019-07-01T00:00:00Z",
-                "2019-11-15T00:00:00Z"
-            ],
-            "industry": "Machine Learning",
-            "diploma": "certificate",
-            "type": "formation",
-            "category": "formation",
-            "company": {
-                "name": "Coursera Specialization by Stanford University.",
-                "department": "",
-                "logo": "",
-                "url": "https://www.coursera.org/specializations/deep-learning"
-            },
-            "links": [
-                {
-                    "name": "c1",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/XM4F5LNKZGF3"
-                },
-                {
-                    "name": "c2",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/TYVQ2MX7M8M9"
-                },
-                {
-                    "name": "c3",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/7R3UUZGMJU6D"
-                },
-                {
-                    "name": "c4",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/UST89R7CHWZV"
-                },
-                {
-                    "name": "c5",
-                    "url": "https://www.coursera.org/account/accomplishments/certificate/RAPJZ3AHP6R2?utm_medium=certificate&utm_source=link&utm_campaign=copybutton_certificate"
-                },
-                {
-                    "name": "c6",
-                    "url": "https://www.coursera.org/account/accomplishments/verify/ZASVHAB26V3M"
-                },
-                {
-                    "name": "final",
-                    "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/YDGTV6XN3LAT"
-                },
-                {
-                    "name": "personal notes",
-                    "url": "https://observablehq.com/collection/@ig2gi/deep-learning"
-                }
-            ],
-            "description": "Foundations of Deep Learning, understanding how to build neural networks, and learn how to lead successful machine learning projects. Convolutional networks, RNNs, LSTM, Adam, Dropout, BatchNorm, Xavier/He initialization, and more. Implementation in Python, numpy and TensorFlow.",
-            "fullDescription": "",
-            "hardSkills": "Deep Learning,Tensorflow,Convolutional Neural Network,Artificial Neural Network"
-        },
-        {
-            "id": 2,
-            "title": "VP Functional & UX Design",
-            "dates": [
-                "2018-05-01T00:00:00Z",
-                "2019-07-01T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg",
-                "url": "http://www.sophiagenetics.com"
-            },
-            "links": [],
-            "description": "Responsible for all functional requirements and in charge of evolving the SOPHiA Platform and ensure consistency across the business areas. Managed Feature Requests & Product Backlog. Approving (sign-off) or rejecting developed Features. Implementation of prototypes (UI)",
-            "fullDescription": "",
-            "softSkills": "decision-making,analysis,initiative,design,responsibility,goal setting,agility,critical observation,Stress management,Mentoring,Collaboration,Agility,Coordination",
-            "hardSkills": "D3.js,balsamiq"
-        },
-        {
-            "id": 3,
-            "title": "Introduction to the Biology of Cancer",
-            "dates": [
-                "2018-01-01T00:00:00Z",
-                "2018-02-15T00:00:00Z"
-            ],
-            "industry": "Biology",
-            "subIndustry": "Genetics",
-            "diploma": "certificate",
-            "type": "formation",
-            "category": "formation",
-            "company": {
-                "name": "Coursera Specialization by Stanford University.",
-                "department": "",
-                "logo": "",
-                "url": "https://www.coursera.org/learn/cancer"
-            },
-            "links": [
-                {
-                    "name": "c1",
-                    "url": "https://www.coursera.org/account/accomplishments/verify/RXJTVX2ZLU3N"
-                }
-            ],
-            "description": "Molecular biology of cancer (oncogenes and tumor suppressor genes) as well as the biologic hallmarks of cancer. The course also describes the risk factors for the major cancers worldwide, including lung cancer, breast cancer, colon cancer, prostate cancer, liver cancer, and stomach cancer.",
-            "fullDescription": "",
-            "hardSkills": ""
-        },
-        {
-            "id": 4,
-            "title": "Head of Front-End Development",
-            "dates": [
-                "2015-05-01T00:00:00Z",
-                "2018-04-01T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg",
-                "url": "http://www.sophiagenetics.com"
-            },
-            "links": [],
-            "description": "Managed & led a team (4p) in charge of development of functional features for the SOPHiA DDM Platform. In charge of functional requirements & specifications. Designed & Implemented a Web Application for the administration of the SOPHiA DDM platform, currently used by the Support Team. Actively participed in 2 CTI projects (Commission for Technology and Innovation, now Innosuisse). Developed functional & technical features on the SOPHiA  DDM platform (backend & front-end). Implemented several web applications and infographics for internal usage (realtime WorldMap for sophia sequencing usage, people faces, statistics, ...). Gene / Transcript viewer in d3.js (personal work)",
-            "fullDescription": "",
-            "softSkills": "clarity,friendliness,Coordination,decision-making,analysis,self-management,curiosity,logical reasoning,experimenting,imagination,design,initiative,teamwork,focus,agility,Stress management,Mentoring,Collaboration,Empathy,Tolerance",
-            "hardSkills": "Java,JavaFX,Spring,Javascript,Node.js,D3.js,python,Web,Agility"
-        },
-        {
-            "id": 5,
-            "title": "Data Visualisation Engineer",
-            "dates": [
-                "2013-05-01T00:00:00Z",
-                "2015-04-01T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Data-Driven Medicine",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Sophia genetics",
-                "department": "",
-                "logo": "sophia.svg",
-                "url": "http://www.sophiagenetics.com"
-            },
-            "links": [],
-            "description": " Managed the migration of the SOPHiA DDM Platform from a web application to a Java / JavaFX application: architecture, design & implementation of the core components & screens.  Developed core JavaFX components (authentication, visual components, application components …). Designed & implemented a dynamic Circular Genomic Viewer (circos plot) implemented in d3.js & HTML5.",
-            "fullDescription": "",
-            "softSkills": "curiosity,decision-making,analysis,innovation,inspiration,self-motivated,questioning,design,Stress management,Collaboration,Mentoring"
-        },
-        {
-            "id": 6,
-            "title": "Data Visualization, Web Developer",
-            "dates": [
-                "2013-01-01T00:00:00Z",
-                "2013-04-30T00:00:00Z"
-            ],
-            "industry": "Healthcare",
-            "subIndustry": "Nonprofit Organization",
-            "type": "experience",
-            "category": "freelance",
-            "company": {
-                "name": "International AIDS Society",
-                "department": "",
-                "logo": "ias.png",
-                "url": "https://www.iasociety.org"
-            },
-            "links": [],
-            "description": "Designed and implemented an interactive world map for the website of IAS ( International AIDS Society).(javascript, D3.js, SVG, CSS)",
-            "fullDescription": "",
-            "softSkills": "decision-making,analysis,design,goal setting,organization,Networking,Collaboration"
-        },
-        {
-            "id": 7,
-            "title": "Infographics and Data Visualization",
-            "dates": [
-                "2012-09-01T00:00:00Z",
-                "2012-12-01T00:00:00Z"
-            ],
-            "industry": "Data Visualization",
-            "diploma": "certificate",
-            "type": "formation",
-            "category": "formation",
-            "company": {
-                "name": "Knight Center for Journalism in the Americas",
-                "department": "",
-                "logo": "",
-                "url": "https://knightcenter.utexas.edu"
-            },
-            "links": [
-                {
-                    "name": "c1",
-                    "url": "http://ig2gi.github.io/certificates/images/datajournalism.png"
-                }
-            ],
-            "description": "Knight Center for Journalism in the Americas: Data Journalism and Visualization with Free Tools.",
-            "fullDescription": "",
-            "hardSkills": ""
-        },
-        {
-            "id": 8,
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2009-08-01T00:00:00Z",
-                "2012-10-01T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "consultant",
-            "company": {
-                "name": "Pictet Asset Management",
-                "department": "",
-                "logo": "pictet.png",
-                "url": "https://www.am.pictet/en/uk/intermediary"
-            },
-            "links": [],
-            "description": "Business and Technical analysis and development on a Web CRM. Business and technical analysis of a new cash management module for a Portfolio Management System - design & implementation of both server and client side.",
-            "fullDescription": "",
-            "softSkills": "clarity,analysis,Coordination,logical reasoning,divergent thinking,commitment,agility,Collaboration,Mentoring,Humor"
-        },
-        {
-            "id": 9,
-            "title": "One sabbatical year stuying Photography",
-            "dates": [
-                "2008-06-30T00:00:00Z",
-                "2009-07-31T00:00:00Z"
-            ],
-            "industry": "Photography",
-            "type": "experience",
-            "category": "other",
-            "company": {
-                "name": "Photography",
-                "department": "",
-                "logo": "",
-                "url": "https://500px.com/ig2gi/galleries"
-            },
-            "links": [],
-            "description": "Courses, self-training, travel (Canada), photoreports. 4 months photo-reporter internship at Police Cantonale Vaudoise. Photographer at 'La nuit des musées, Lausanne' several years (2009, 2010, 2011, 2012).",
-            "fullDescription": "",
-            "softSkills": "curiosity,self-confidence,imagination,design,experimenting,questioning"
-        },
-        {
-            "id": 10,
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2008-01-01T00:00:00Z",
-                "2008-06-30T00:00:00Z"
-            ],
-            "industry": "Broadcast Media",
-            "type": "experience",
-            "category": "freelance",
-            "company": {
-                "name": "RTS - Radio Télévision Suisse",
-                "department": "",
-                "logo": "rts.png",
-                "url": "https://www.rts.ch/entreprise/"
-            },
-            "links": [],
-            "description": "Architecture, design and implementation of a Workflow-based collaborative application for the completely tapeless, digital production of television programs - architected around REST principles for data integration. Wrote use-case catalog, architecture, component and framework selection, implementation planning, design and implementation.",
-            "fullDescription": "",
-            "softSkills": "Negotiation,Collaboration,Idea exchange,Self-management,Respect,Responsibility,Teamwork,Tolerance,Planning,Listening,Recall,Collaboration,Networking"
-        },
-        {
-            "id": 11,
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2006-01-01T00:00:00Z",
-                "2007-12-30T00:00:00Z"
-            ],
-            "industry": "Energy",
-            "subIndustry": "Electricity",
-            "type": "experience",
-            "category": "consultant",
-            "company": {
-                "name": "Neo Technologies",
-                "department": "",
-                "logo": "neo.png",
-                "url": "http://www.neo-technologies.ch"
-            },
-            "links": [],
-            "description": "Re-engineering of the in-house electricity-management logistics platform to open it to third parties and to extend the range of managed goods to gas, digital media, etc. Reverse-engineered use-cases, sequence and class diagrams of the pre-existing system. Wrote new use-cases and specifications by interviewing all platform stakeholders. Architected, designed, implemented the augmented system.",
-            "fullDescription": "",
-            "softSkills": "Prioritizing,Tolerance,Diplomacy,Commitment,Design,Divergent thinking,Collaboration,Mediation,Persuasion,Analysis,Collaboration,Diplomacy,Empathy"
-        },
-        {
-            "id": 12,
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2004-09-01T00:00:00Z",
-                "2005-12-31T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "consultant",
-            "company": {
-                "name": "Pictet Asset Management",
-                "department": "",
-                "logo": "pictet.png",
-                "url": "https://www.am.pictet/en/uk/intermediary"
-            },
-            "links": [],
-            "description": "Analysis and design of an infrastructure for notification of changes between applications. Specific implementation for cache invalidation of the pms application.  Architecture and design of a batch framework which provides an asynchronous, server-based batch processing environment that can wrap, execute and monitor business tasks.",
-            "fullDescription": "",
-            "softSkills": "Logical reasoning,Persistence,Conflict management,Analysis,Written communication,Discipline,Commitment,Tolerance,Diplomacy,Goal setting,Stress management,Cultural intelligence,Trust,Written communication,Empathy"
-        },
-        {
-            "id": 13,
-            "title": "Senior Software Engineer",
-            "dates": [
-                "2004-01-01T00:00:00Z",
-                "2004-08-31T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "DALIN Software SA",
-                "department": "",
-                "logo": ""
-            },
-            "links": [],
-            "description": "Developed a knowledge-based interface (API java 2d) - developed a prototype. Analysis of a natural language query system - produced analysis and design specifications.",
-            "softSkills": "Authenticity,Self-starter,Organization,Empathy,Initiative,Experimenting,Inspiration,Respect,Collaboration,Written communication"
-        },
-        {
-            "id": 14,
-            "title": "Java J2EE Senior Developer",
-            "dates": [
-                "2000-07-01T00:00:00Z",
-                "2004-01-31T00:00:00Z"
-            ],
-            "industry": "Finance",
-            "subIndustry": "Private Banking",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Odyssey Asset Management, Temenos",
-                "department": "",
-                "logo": "odyssey.jpg",
-                "url": "https://www.temenos.com"
-            },
-            "links": [],
-            "description": "Design and implementation of a business tag-library to communicate with EJB service layer. Design of web components - technical person in charge of the EJB layer - responsible for the programming, packaging and deployment environments.",
-            "softSkills": "Analysis,Project management,Prioritizing,Coordination,Clarity,Empathy,Written communication"
-        },
-        {
-            "id": 15,
-            "title": "Java Developer",
-            "dates": [
-                "1998-07-01T00:00:00Z",
-                "2000-06-30T00:00:00Z"
-            ],
-            "industry": "Telecommunication",
-            "subIndustry": "Telecommunication",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Le BIPE, BDO Advisory",
-                "department": "",
-                "logo": "bipe.png",
-                "url": "https://lebipe.com"
-            },
-            "links": [],
-            "description": "The principal activity was the migration and the development of an existing data warehouse under (4D) towards new technologies Java and Web within a team of 4 people",
-            "softSkills": "Planning,Responsibility,Teamwork,Design,Written communication,Self-management,Collaboration,Logical reasoning,Written communication"
-        },
-        {
-            "id": 16,
-            "title": "Master's degree in Computer Science",
-            "dates": [
-                "1997-09-01T00:00:00Z",
-                "1998-08-30T00:00:00Z"
-            ],
-            "industry": "Computer Science",
-            "diploma": "master",
-            "type": "formation",
-            "category": "education",
-            "company": {
-                "name": "DESS IAO",
-                "department": "",
-                "logo": "",
-                "url": ""
-            },
-            "links": [],
-            "description": "One year post graduate degree with honours:  algorithms, programming languages (Java, C++), database systems, operating systems, language processing, software engineering, multimedia, networks."
-        },
-        {
-            "id": 17,
-            "title": "Thermal Engineer and Data Scientist",
-            "dates": [
-                "1995-04-01T00:00:00Z",
-                "1997-06-30T00:00:00Z"
-            ],
-            "industry": "Energy",
-            "subIndustry": "Construction",
-            "type": "experience",
-            "category": "employee",
-            "company": {
-                "name": "Spie Batignolles",
-                "department": "",
-                "logo": "spie.png",
-                "url": "https://www.spiebatignolles.fr"
-            },
-            "links": [],
-            "description": "Head of a Computation Group working on Operational Projects. Analysis and calculations of the air-conditioning of an enclosure of storage of nuclear waste in Novossibirsk (Siberia). Design and sizing of smoke-evacuation in tunnels using the SES (Subway Environmental Simulation) software. New module implementation (FORTRAN) taking account a new physical model.",
-            "softSkills": "Logical reasoning,Written communication,Commitment"
-        },
-        {
-            "id": 18,
-            "title": "Master's degree in Thermodynamics and Fluid Mechanics",
-            "dates": [
-                "1993-09-01T00:00:00Z",
-                "1994-08-30T00:00:00Z"
-            ],
-            "industry": "Physics, Data Science",
-            "diploma": "master",
-            "type": "formation",
-            "category": "education",
-            "company": {
-                "name": "IUSTI - CNRS",
-                "department": "",
-                "logo": "",
-                "url": "http://iusti.cnrs.fr"
-            },
-            "links": [],
-            "description": "One year post graduate degree with honours: Thermodynamics in open systems, fluid mechanics, energy, statistical thermodynamics, mathematics, physical transfer in complex fluids, ..."
-        },
-        {
-            "id": 19,
-            "title": "Three Years Engineering School ",
-            "dates": [
-                "1990-09-01T00:00:00Z",
-                "1993-08-30T00:00:00Z"
-            ],
-            "industry": "Physics, Data Science",
-            "diploma": "engineer",
-            "type": "formation",
-            "category": "education",
-            "company": {
-                "name": "IUSTI - CNRS",
-                "department": "",
-                "logo": "",
-                "url": "http://iusti.cnrs.fr"
-            },
-            "links": [],
-            "description": "Bachelor + 5. Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, fluid mechanics, ..."
-        },
-        {
-            "id": 20,
-            "title": "Classe Préparatoire - Math SUP/SPE",
-            "dates": [
-                "1988-09-01T00:00:00Z",
-                "1990-08-30T00:00:00Z"
-            ],
-            "industry": "Mathematics",
-            "diploma": "mathematics sup-spe",
-            "type": "formation",
-            "category": "education",
-            "company": {
-                "name": "Lycée Militaire Aix-en-Provence",
-                "department": "",
-                "logo": "",
-                "url": "http://www.lycee-militaire-aix.fr/site/decouverte"
-            },
-            "links": [],
-            "description": "Mathematics and Philosophy"
-        }
-    ],
-    "eventGroups": [
-        {
-            "id": 1,
-            "events": [
-                5,
-                4,
-                2
-            ]
-        }
-    ],
-    "leadership": [
-        {
-            "title": "Leader-Coach",
-            "definition": "Links the individual’s aspirations to the company’s objectives."
-        },
-        {
-            "title": "Visionary",
-            "definition": "Unites people around shared projects."
-        },
-        {
-            "title": "Partner",
-            "definition": "Creates harmony by connecting people."
-        }
-    ],
-    "hobbies": [
-        {
-            "title": "Running",
-            "description": "I try to run at least 20 km per week, you can catch me on Strava and during the differents 10K courses at Lausanne.",
-            "image": "images/running.png"
-        },
-        {
-            "title": "Photography",
-            "description": "I practice Photography as mentioned in the Experience section, this is a domain where I can express my creativity, please have a look at https://500px.com/search?q=ig2gi&type=photos",
-            "image": "images/photo.png"
-        },
-        {
-            "title": "Readings",
-            "description": "I try to read at least 2 books per month. My preferred genres: Philosophical, Informational, Sciences and Science Fiction. My last 3 books: - 'Factfulness' by Hans Rosling (2019) - 'Enlightenment Now: The Case for Reason, Science, Humanism, and Progress' by Steven Pinker (2018) - 'The Art of Statistics: Learning from Data' by David Spiegelhalter (2019)",
-            "image": "images/reading.png"
-        }
+    "hard": [
+      ["Product Management", 5, true],
+      ["UX Design", 5, true],
+      ["D3.js", 5, true],
+      ["Data Visualisation", 5, true],
+      ["JavaScript", 4, true],
+      ["React", 4, true],
+      ["Python", 4, true],
+      ["Java", 5, true],
+      ["Node.js", 4, true],
+      ["Agile / Scrum", 5, true],
+      ["Deep Learning", 3, true],
+      ["Prototyping", 5, true],
+      ["Requirements", 4, true],
+      ["Architecture", 3, true]
     ]
+  },
+  "events": [
+    {
+      "id": 26,
+      "title": "VP, Design & Innovation",
+      "dates": { "start": "2025-09-01", "end": null },
+      "location": "Vaud, Switzerland",
+      "industry": "Healthcare",
+      "subIndustry": "Data-Driven Medicine",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "SOPHiA GENETICS",
+        "department": "",
+        "logo": "sophia.svg",
+        "url": "https://www.sophiagenetics.com"
+      },
+      "description": "Promoted to <b>VP level</b> to lead a focused <b>5-person Design & Innovation team</b> — a deliberate shift from large-scale org management back to strategic depth. Concentrating on <b>product vision and strategic features</b> for the SOPHiA DDM platform: combining design leadership, product strategy, and the data visualisation craft built over twelve years as a founding contributor to the platform.",
+      "achievements": ["VP promotion", "5-person innovation team", "strategic product vision"],
+      "links": [],
+      "hardSkills": [],
+      "softSkills": [],
+      "teamSize": 5
+    },
+    {
+      "id": 32,
+      "title": "Natural Language Processing with Classification and Vector Spaces",
+      "dates": { "start": "2025-03-01", "end": "2025-03-01" },
+      "location": "",
+      "industry": "Machine Learning",
+      "subIndustry": "NLP",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "DeepLearning.AI — Coursera",
+        "department": "",
+        "logo": "",
+        "url": "https://www.coursera.org"
+      },
+      "description": "Sentiment analysis, translation, word embeddings and vector space models for NLP tasks.",
+      "achievements": [],
+      "links": [
+        { "name": "Certificate", "url": "https://www.coursera.org/account/accomplishments/verify/4YTIO77RBX9G" }
+      ],
+      "hardSkills": ["NLP", "Python", "Classification", "Vector Spaces"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 27,
+      "title": "Head of Platform Product & Engineering",
+      "dates": { "start": "2023-06-01", "end": "2025-09-01" },
+      "location": "Vaud, Switzerland",
+      "industry": "Healthcare",
+      "subIndustry": "Data-Driven Medicine",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "SOPHiA GENETICS",
+        "department": "",
+        "logo": "sophia.svg",
+        "url": "https://www.sophiagenetics.com"
+      },
+      "description": "Expanded leadership role combining full <b>Platform Product Management</b> with engineering org leadership — managing a <b>25-person organisation</b> (developers, Product Owners, UX/UI designers) with 5 direct reports. Owned the DDM platform as Product Owner while steering the team through the completion of the <b>GEN1→GEN2 migration</b>: from JavaFX desktop to React web, including a fundamental redesign of the clinical interaction paradigm. Aligned stakeholders, defined user flows, and oversaw frontend architecture to deliver high-impact features. Built <b>metrics and dashboards</b> to track both development team performance and customer migration progress — applying the data analytics lens directly to engineering management.",
+      "achievements": ["25-person engineering org", "GEN2 migration completion", "dev performance dashboards", "platform PM + engineering lead"],
+      "links": [],
+      "hardSkills": ["React", "Design Control", "Team Management"],
+      "softSkills": [],
+      "teamSize": 25
+    },
+    {
+      "id": 33,
+      "title": "AI for Medical Diagnosis",
+      "dates": { "start": "2023-06-01", "end": "2023-06-01" },
+      "location": "",
+      "industry": "Healthcare",
+      "subIndustry": "AI in Medicine",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "DeepLearning.AI — Coursera",
+        "department": "",
+        "logo": "",
+        "url": "https://www.coursera.org"
+      },
+      "description": "Applied deep learning for medical image analysis, disease detection, and diagnostic model evaluation.",
+      "achievements": [],
+      "links": [
+        { "name": "Certificate", "url": "https://www.coursera.org/account/accomplishments/verify/Z36WDWMFVNP7" }
+      ],
+      "hardSkills": ["Deep Learning", "Medical Imaging", "AI", "Python"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 28,
+      "title": "Head of Product Owners, UX/UI",
+      "dates": { "start": "2020-06-01", "end": "2023-06-01" },
+      "location": "Vaud, Switzerland",
+      "industry": "Healthcare",
+      "subIndustry": "Data-Driven Medicine",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "SOPHiA GENETICS",
+        "department": "",
+        "logo": "sophia.svg",
+        "url": "https://www.sophiagenetics.com"
+      },
+      "description": "Returned to SOPHiA GENETICS to lead a <b>7-person Product Owners and UX/UI team</b>, heading the product and design side of the <b>GEN2 platform</b> — a full rewrite of the original GEN1 JavaFX desktop application into a <b>React web architecture</b> with microservices backend. Built end-to-end the <b>multimodal prototype for oncologists</b>: a proof of concept moving the platform beyond single-omics genomics into a unified clinical view combining <b>radiomics, digital pathology, and clinical data</b> — then led the full delivery program to scale it with the development team. Delivered the company's first React web application, pioneering the platform's transition to web. For the first time, worked within a structured product organisation with dedicated PO and UX specialists — a maturation of the product function bootstrapped during the GEN1 era.",
+      "achievements": ["GEN1→GEN2 platform rewrite", "multiomics oncology prototype", "React + microservices", "7-person PO/UX team"],
+      "links": [],
+      "hardSkills": ["React", "UX/UI Design", "Product Management"],
+      "softSkills": [],
+      "teamSize": 7
+    },
+    {
+      "id": 29,
+      "title": "Product Manager",
+      "dates": { "start": "2020-02-01", "end": "2020-05-01" },
+      "location": "Switzerland",
+      "industry": "Healthcare",
+      "subIndustry": "Genomics",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "GenomSys",
+        "department": "",
+        "logo": "",
+        "url": "https://www.genomsys.com"
+      },
+      "description": "Brief engagement as Product Manager at <b>GenomSys</b>, a Swiss startup building clinical tools around the <b>MPEG-G standard</b> (ISO/IEC 23092) — the international specification for efficient genomic data compression, access control, and unified data containers for sequencing data. Brought deep clinical genomics domain expertise from seven years at SOPHiA GENETICS to assess product strategy and positioning for this emerging standard. After three months, concluded the engagement following strategic differences on product direction — and accepted an invitation from SOPHiA GENETICS to return and continue the platform mission.",
+      "achievements": ["MPEG-G ISO standard", "genomic data infrastructure", "strategic product assessment"],
+      "links": [],
+      "hardSkills": [],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 21,
+      "title": "Professional Scrum Product Owner (PSPO I)",
+      "dates": { "start": "2020-01-01", "end": "2020-01-25" },
+      "location": "",
+      "industry": "Methodology",
+      "subIndustry": "Agile",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "Scrum.org",
+        "department": "",
+        "logo": "",
+        "url": "https://www.scrum.org"
+      },
+      "description": "Fundamental understanding of the Scrum framework and how to maximise value delivered with a product as a Product Owner.",
+      "achievements": [],
+      "links": [
+        { "name": "Certificate", "url": "https://www.scrum.org/certificates/493727" }
+      ],
+      "hardSkills": ["Scrum", "Product Ownership", "Agile"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 1,
+      "title": "Deep Learning Specialization",
+      "dates": { "start": "2019-07-01", "end": "2019-11-01" },
+      "location": "",
+      "industry": "Machine Learning",
+      "subIndustry": "Deep Learning",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "DeepLearning.AI — Coursera",
+        "department": "",
+        "logo": "",
+        "url": "https://www.coursera.org/specializations/deep-learning"
+      },
+      "description": "Five-course specialization covering the foundations of deep learning, neural network architectures, and practical ML engineering.",
+      "achievements": [
+        "Machine Learning — Andrew Ng (Aug 2019)",
+        "Neural Networks and Deep Learning (Aug 2019)",
+        "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization (Sep 2019)",
+        "Structuring Machine Learning Projects (Sep 2019)",
+        "Convolutional Neural Networks (Oct 2019)",
+        "Sequence Models (Nov 2019)"
+      ],
+      "links": [
+        { "name": "Specialization", "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/YDGTV6XN3LAT" },
+        { "name": "Machine Learning", "url": "https://www.coursera.org/account/accomplishments/certificate/XM4F5LNKZGF3" },
+        { "name": "Neural Networks and Deep Learning", "url": "https://www.coursera.org/account/accomplishments/certificate/TYVQ2MX7M8M9" },
+        { "name": "Improving Deep Neural Networks", "url": "https://www.coursera.org/account/accomplishments/certificate/7R3UUZGMJU6D" },
+        { "name": "Structuring ML Projects", "url": "https://www.coursera.org/account/accomplishments/certificate/UST89R7CHWZV" },
+        { "name": "Convolutional Neural Networks", "url": "https://www.coursera.org/account/accomplishments/certificate/RAPJZ3AHP6R2" },
+        { "name": "Sequence Models", "url": "https://www.coursera.org/account/accomplishments/verify/ZASVHAB26V3M" },
+        { "name": "Personal notes", "url": "https://observablehq.com/collection/@ig2gi/deep-learning" }
+      ],
+      "hardSkills": ["Deep Learning", "TensorFlow", "CNN", "RNN", "LSTM", "Python"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 34,
+      "title": "JavaScript Algorithms and Data Structures",
+      "dates": { "start": "2019-07-01", "end": "2019-07-01" },
+      "location": "",
+      "industry": "Software Engineering",
+      "subIndustry": "",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "freeCodeCamp",
+        "department": "",
+        "logo": "",
+        "url": "https://www.freecodecamp.org"
+      },
+      "description": "JavaScript fundamentals, ES6, regular expressions, debugging, data structures, algorithm scripting, and functional programming.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["JavaScript", "Algorithms", "Data Structures", "ES6"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 2,
+      "title": "VP Functional & UX Design",
+      "dates": { "start": "2018-05-01", "end": "2019-07-01" },
+      "location": "Lausanne, Vaud, Switzerland",
+      "industry": "Healthcare",
+      "subIndustry": "Data-Driven Medicine",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "SOPHiA GENETICS",
+        "department": "",
+        "logo": "sophia.svg",
+        "url": "https://www.sophiagenetics.com"
+      },
+      "description": "First VP-level role at SOPHiA GENETICS, leading the evolution of the <b>SOPHiA DDM Platform</b> at the intersection of AI and clinical genomics. Owned end-to-end <b>functional requirements</b> for data-driven features and workflows, managed the feature backlog with explicit prioritisation by impact, feasibility, and <b>data readiness</b>, and established a rigorous quality-focused sign-off process. Built <b>UI prototypes</b> in D3.js and Balsamiq to validate AI and data concepts before committing to development — cutting feedback cycles on high-stakes clinical features. Worked hands-on with delivery teams to reduce ambiguity and maintain momentum, combining product leadership with direct technical contribution.",
+      "achievements": ["functional requirements ownership", "AI/data UI prototyping", "data readiness prioritisation", "clinical genomics UX"],
+      "links": [],
+      "hardSkills": ["UX Design", "Prototyping", "Balsamiq", "D3.js"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 3,
+      "title": "Introduction to the Biology of Cancer",
+      "dates": { "start": "2018-01-01", "end": "2018-02-01" },
+      "location": "",
+      "industry": "Biology",
+      "subIndustry": "Genetics",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "Johns Hopkins University — Coursera",
+        "department": "",
+        "logo": "",
+        "url": "https://www.coursera.org/learn/cancer"
+      },
+      "description": "Molecular biology of cancer, oncogenes, tumor suppressor genes, and the hallmarks of cancer. Risk factors for major cancers worldwide.",
+      "achievements": [],
+      "links": [
+        { "name": "Certificate", "url": "https://www.coursera.org/account/accomplishments/verify/RXJTVX2ZLU3N" }
+      ],
+      "hardSkills": [],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 4,
+      "title": "Head of Front-End Development",
+      "dates": { "start": "2015-05-01", "end": "2018-04-01" },
+      "location": "Lausanne Metropolitan Area",
+      "industry": "Healthcare",
+      "subIndustry": "Data-Driven Medicine",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "SOPHiA GENETICS",
+        "department": "",
+        "logo": "sophia.svg",
+        "url": "https://www.sophiagenetics.com"
+      },
+      "description": "Continued leading the evolution of the <b>GEN1 platform</b> with a 4-person team — still acting as both <b>product owner and hands-on developer</b>: defining features, owning functional specifications, assigning tasks, and writing code. Built the internal <b>admin web app</b> used by the Support team, and contributed to two <b>CTI/Innosuisse</b> innovation projects. On personal initiative, built a D3.js <b>gene/transcript viewer</b> and a suite of internal data apps — including a <b>real-time global usage map</b> and stats dashboards — making platform data legible across the whole company. A five-year chapter building the platform from the ground up, as engineer, product thinker, and team lead simultaneously.",
+      "achievements": ["GEN1 platform", "PM/PO + hands-on dev", "gene/transcript viewer", "CTI/Innosuisse projects"],
+      "links": [],
+      "hardSkills": ["Java", "JavaFX", "Spring", "JavaScript", "Node.js", "D3.js", "Python"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": 4
+    },
+    {
+      "id": 31,
+      "title": "R Programming",
+      "dates": { "start": "2014-01-01", "end": "2014-06-01" },
+      "location": "",
+      "industry": "Data Science",
+      "subIndustry": "",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "Johns Hopkins University — Coursera",
+        "department": "",
+        "logo": "",
+        "url": "https://www.coursera.org/learn/r-programming"
+      },
+      "description": "R programming fundamentals for data analysis and statistical computing.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["R"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 5,
+      "title": "Data Visualisation Engineer",
+      "dates": { "start": "2013-05-01", "end": "2015-04-01" },
+      "location": "Lausanne Metropolitan Area",
+      "industry": "Healthcare",
+      "subIndustry": "Data-Driven Medicine",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "SOPHiA GENETICS",
+        "department": "",
+        "logo": "sophia.svg",
+        "url": "https://www.sophiagenetics.com"
+      },
+      "description": "Joined <b>SOPHiA GENETICS</b> as one of its <b>first ten employees</b> and became the primary driver behind what would later be known as the <b>GEN1 platform</b> — the company's foundational clinical genomics platform. Operated simultaneously as <b>Product Owner, product thinker, and hands-on developer</b>: defining what to build, assigning development tasks to the team, and writing core code. Drove the migration from web to a <b>Java/JavaFX desktop application</b>, owning architecture, UI framework, and implementation. Also designed and built a dynamic <b>circular genomic viewer</b> in D3.js and HTML5 — a Circos-style multi-layer visualisation displaying SNVs/INDELs across coverage, gene transcripts, and clinical annotation databases, bringing complex variant data directly to clinical users.",
+      "achievements": ["GEN1 platform", "PM/PO + hands-on developer", "circular genomic viewer", "founding team — first 10"],
+      "links": [],
+      "hardSkills": ["Java", "JavaFX", "D3.js", "HTML5"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 6,
+      "title": "Data Visualisation & Web Developer",
+      "dates": { "start": "2013-01-01", "end": "2013-04-01" },
+      "location": "Remote",
+      "industry": "Healthcare",
+      "subIndustry": "Nonprofit Organization",
+      "type": "experience",
+      "category": "freelance",
+      "company": {
+        "name": "International AIDS Society",
+        "department": "",
+        "logo": "ias.png",
+        "url": "https://www.iasociety.org"
+      },
+      "description": "Freelance data visualization project for the <b>International AIDS Society (IAS)</b> — designed and built an <b>interactive world map</b> visualizing global data from an online database of paediatric HIV cohorts, turning complex epidemiological datasets into a clear, accessible experience on the IAS website. Built with D3.js, SVG, and JavaScript.",
+      "achievements": ["D3.js interactive map", "paediatric HIV data", "global epidemiology", "IAS nonprofit"],
+      "links": [],
+      "hardSkills": ["JavaScript", "D3.js", "SVG", "CSS"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 7,
+      "title": "Introduction to Infographics and Data Visualization",
+      "dates": { "start": "2012-09-01", "end": "2012-12-01" },
+      "location": "",
+      "industry": "Data Visualization",
+      "subIndustry": "",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "Knight Center for Journalism in the Americas",
+        "department": "",
+        "logo": "",
+        "url": "http://open.journalismcourses.org/"
+      },
+      "description": "Data Journalism and Visualization with Free Tools.",
+      "achievements": [],
+      "links": [
+        { "name": "Certificate", "url": "http://ig2gi.github.io/certificates/images/datajournalism.png" }
+      ],
+      "hardSkills": ["Data Visualization", "Infographics"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 30,
+      "title": "IIBA Business Analysis (BABOK)",
+      "dates": { "start": "2012-01-01", "end": "2012-12-01" },
+      "location": "",
+      "industry": "Methodology",
+      "subIndustry": "Business Analysis",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "IIBA — International Institute of Business Analysis",
+        "department": "",
+        "logo": "",
+        "url": "https://www.iiba.org"
+      },
+      "description": "Business Analysis Body of Knowledge (BABOK) — core concepts, knowledge areas, tasks and techniques for professional business analysis practice.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["Business Analysis", "Requirements", "BABOK"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 8,
+      "title": "Senior Software Engineer",
+      "dates": { "start": "2009-08-01", "end": "2012-10-01" },
+      "location": "Geneva, Switzerland",
+      "industry": "Finance",
+      "subIndustry": "Private Banking",
+      "type": "experience",
+      "category": "freelance",
+      "company": {
+        "name": "Pictet Asset Management",
+        "department": "",
+        "logo": "pictet.png",
+        "url": "https://www.am.pictet"
+      },
+      "description": "Three-year freelance engagement at <b>Pictet Asset Management</b>, one of Europe's leading independent asset managers, delivering business and technical analysis alongside full-stack development. Contributed to a <b>web-based CRM</b> for the asset management division, and led the end-to-end analysis, design, and implementation of a new <b>cash-management module</b> within the Portfolio Management System — covering both server and client layers. Consistently operated at the intersection of business and engineering: translating stakeholder needs into functional specifications, then carrying them through to production-ready features.",
+      "achievements": ["asset management CRM", "cash-management module", "business & technical analysis", "full-stack delivery"],
+      "links": [],
+      "hardSkills": ["Java", "J2EE", "Web"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 9,
+      "title": "Photography — Sabbatical & Visual Studies",
+      "dates": { "start": "2008-05-01", "end": "2009-07-01" },
+      "location": "Remote",
+      "industry": "Photography",
+      "subIndustry": "",
+      "type": "experience",
+      "category": "other",
+      "company": {
+        "name": "Photography",
+        "department": "",
+        "logo": "",
+        "url": "https://ig2gi.500px.photography"
+      },
+      "description": "A deliberate year out to invest in <b>visual thinking and composition</b> — studied photography through formal courses and structured self-study grounded in foundational works by Stephen Shore, Harald Mante, and Michael Freeman. Grounded theory in practice through a <b>4-month photo-reporter internship</b> at the Police Cantonale Vaudoise, documenting events with factual precision. Went on to serve as <b>official photographer</b> for La Nuit des Musées de Lausanne for four consecutive years (2009–2012). The visual discipline, attention to composition, and practice of communicating clearly through images directly informed later work in <b>UX design and data visualization</b>.",
+      "achievements": ["visual composition & theory", "photo-reporter internship", "La Nuit des Musées (4 years)", "intentional creative development"],
+      "links": [
+        { "name": "Portfolio", "url": "https://ig2gi.500px.photography" }
+      ],
+      "hardSkills": [],
+      "softSkills": ["digital photography", "communication"],
+      "teamSize": null
+    },
+    {
+      "id": 10,
+      "title": "Senior Software Engineer",
+      "dates": { "start": "2007-08-01", "end": "2008-04-01" },
+      "location": "Remote",
+      "industry": "Broadcast Media",
+      "subIndustry": "",
+      "type": "experience",
+      "category": "freelance",
+      "company": {
+        "name": "RTS - Radio Télévision Suisse",
+        "department": "",
+        "logo": "rts.png",
+        "url": "https://www.rts.ch"
+      },
+      "description": "Freelance engagement at <b>RTS — Radio Télévision Suisse</b>, architecting and building a workflow-based collaborative application for fully digital, <b>tapeless TV production</b> — a significant industry transition at the time. Defined the use-case catalog, system architecture, component and framework selection, and delivery plan before writing a single line of code. Delivered the design and core implementation, integrating production data flows through a <b>REST-based</b> integration layer. Architecture-first delivery on a greenfield system, in a domain where reliability and workflow continuity directly affect broadcast output.",
+      "achievements": ["tapeless TV production", "REST integration", "workflow system", "architecture-first delivery"],
+      "links": [],
+      "hardSkills": ["Java", "REST", "Workflow"],
+      "softSkills": ["reasoning", "problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 11,
+      "title": "Senior Software Engineer",
+      "dates": { "start": "2006-04-01", "end": "2007-07-01" },
+      "location": "Lausanne, Vaud, Switzerland",
+      "industry": "Energy",
+      "subIndustry": "Electricity",
+      "type": "experience",
+      "category": "consultant",
+      "company": {
+        "name": "Neo Technologies",
+        "department": "",
+        "logo": "neo.png",
+        "url": "http://www.neo-technologies.ch"
+      },
+      "description": "Consultant engagement at Neo Technologies, re-engineering their proprietary <b>electricity-management logistics platform</b> to support third-party integration and extend coverage to gas and <b>cable infrastructure</b> for internet and telecom services. Began with a full reverse-engineering of the legacy system — extracting use cases, sequence diagrams, and class diagrams — before leading <b>stakeholder interviews</b> to surface new requirements and define the expanded platform's specifications. Delivered the full architecture, design, and implementation across the entire delivery cycle: system analyst, solution architect, and engineer.",
+      "achievements": ["multi-utility platform", "stakeholder discovery", "platform re-engineering", "UML reverse-engineering"],
+      "links": [],
+      "hardSkills": ["Java", "J2EE", "UML"],
+      "softSkills": ["reasoning", "problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 12,
+      "title": "Senior Software Engineer",
+      "dates": { "start": "2004-09-01", "end": "2005-12-01" },
+      "location": "Geneva, Switzerland",
+      "industry": "Finance",
+      "subIndustry": "Private Banking",
+      "type": "experience",
+      "category": "consultant",
+      "company": {
+        "name": "Pictet & Cie",
+        "department": "",
+        "logo": "pictet.png",
+        "url": "https://www.pictet.com"
+      },
+      "description": "Consultant engagement at <b>Pictet & Cie</b>, one of Europe's most prestigious independent private banks, building the batch-processing backbone of the <b>Portfolio Management System (PMS)</b>. Designed an asynchronous server-based framework using EJB message-driven beans on WebLogic to execute and monitor complex <b>financial computation tasks</b>. Defined a cross-application <b>change-notification system</b>, including a cache-invalidation strategy ensuring PMS data consistency across services. High-reliability financial infrastructure where correctness and auditability were non-negotiable.",
+      "achievements": ["portfolio management system", "async batch framework", "cache invalidation", "Pictet private banking"],
+      "links": [],
+      "hardSkills": ["Java", "J2EE", "EJB", "WebLogic", "Batch Processing"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 13,
+      "title": "Entrepreneur & Developer",
+      "dates": { "start": "2004-02-01", "end": "2004-09-01" },
+      "location": "Lausanne, Vaud, Switzerland",
+      "industry": "Software",
+      "subIndustry": "",
+      "type": "experience",
+      "category": "freelance",
+      "company": {
+        "name": "DALIN Software SA",
+        "department": "",
+        "logo": "",
+        "url": ""
+      },
+      "description": "Co-founded <b>DALIN Software SA</b> with three partners to pursue an idea well ahead of its time: an ontology-based intelligent datastore enabling <b>semi-natural-language queries</b> and real-time alert configuration over complex, multidimensional datasets. Prototyped a knowledge-based query interface in Java 2D, defined the full functional specifications for the NLP query system, and built the development environment from scratch. The venture wound down after seven months without securing funding — but the core idea proved prescient two decades before LLMs made <b>natural-language data querying</b> a mainstream expectation.",
+      "achievements": ["ontology-based datastore", "natural-language querying", "real-time data monitoring", "4-person founding team"],
+      "links": [],
+      "hardSkills": ["Java", "Maven", "Java 2D", "NLP", "Ontology"],
+      "softSkills": ["critical thinking", "reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 35,
+      "title": "Sun Certified Programmer for the Java 2 Platform",
+      "dates": { "start": "2004-01-01", "end": "2004-01-01" },
+      "location": "",
+      "industry": "Software Engineering",
+      "subIndustry": "",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "Sun Microsystems",
+        "department": "",
+        "logo": "",
+        "url": ""
+      },
+      "description": "Sun Certified Programmer for the Java 2 Platform (SCJP).",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["Java"],
+      "softSkills": [],
+      "teamSize": null
+    },
+    {
+      "id": 14,
+      "title": "Senior Java Developer",
+      "dates": { "start": "2000-07-01", "end": "2004-01-01" },
+      "location": "Lausanne, Vaud, Switzerland",
+      "industry": "Finance",
+      "subIndustry": "Private Banking",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "Odyssey Financial Technologies",
+        "department": "",
+        "logo": "odyssey.jpg",
+        "url": "https://www.temenos.com"
+      },
+      "description": "Over three and a half years at Odyssey Financial Technologies (now part of <b>Temenos</b>), contributed analysis, architecture, and core development for a large-scale <b>J2EE portfolio management platform</b> serving private banking clients. Designed an <b>XML data-exchange framework</b> handling partial updates and structured import/export — a significant data interoperability challenge at a time when XML was an emerging standard. Built a <b>business tag library</b> bridging the web layer to EJB services, and took technical ownership of the EJB tier and deployment environment. Even as a developer, the work was firmly anchored in financial domain logic: data flows and integration patterns were designed around the business, not just the stack.",
+      "achievements": ["portfolio management platform", "XML data-exchange framework", "EJB layer ownership", "private banking"],
+      "links": [],
+      "hardSkills": ["Java", "J2EE", "EJB", "XML", "WebLogic"],
+      "softSkills": ["reasoning", "problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 15,
+      "title": "Java Developer",
+      "dates": { "start": "1998-07-01", "end": "2000-06-01" },
+      "location": "Montpellier, Occitanie, France",
+      "industry": "Telecommunication",
+      "subIndustry": "",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "BIPE Sirius",
+        "department": "",
+        "logo": "bipe.png",
+        "url": "https://lebipe.com"
+      },
+      "description": "First professional role at a company whose core product was <b>telecom market intelligence</b> — serving professional analysts who produced strategic reports for the telecom industry. Within a 4-person team, migrated the analytical platform from 4D to Java/Web and co-designed a custom <b>Syntagm database engine</b>: a multidimensional index enabling flexible queries across geographic, financial, and equipment dimensions. An early, hands-on encounter with the architecture of analytical systems — years before OLAP tools became mainstream.",
+      "achievements": ["telecom market intelligence", "Syntagm multidimensional engine", "OLAP-style analytics", "Java/Web migration"],
+      "links": [],
+      "hardSkills": ["Java", "Web", "4D"],
+      "softSkills": ["reasoning"],
+      "teamSize": null
+    },
+    {
+      "id": 16,
+      "title": "DESS — Computer Science (Algorithms, Languages, Databases)",
+      "dates": { "start": "1997-09-01", "end": "1998-08-30" },
+      "location": "France",
+      "industry": "Computer Science",
+      "subIndustry": "",
+      "type": "formation",
+      "category": "education",
+      "diploma": "DESS",
+      "company": {
+        "name": "IAO — Applied Organisational IT",
+        "department": "",
+        "logo": "",
+        "url": ""
+      },
+      "description": "One-year post-graduate degree in Computer Science with honours. Mention Très Bien. Covered algorithms, programming languages (Java, C++), database systems, operating systems, language processing, software engineering.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["Java", "C++", "Algorithms", "Databases", "Operating Systems"],
+      "softSkills": ["problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 17,
+      "title": "Thermal Engineer",
+      "dates": { "start": "1995-04-01", "end": "1997-06-01" },
+      "location": "Paris, Île-de-France, France",
+      "industry": "Energy",
+      "subIndustry": "Construction",
+      "type": "experience",
+      "category": "employee",
+      "company": {
+        "name": "Spie Batignolles",
+        "department": "",
+        "logo": "spie.png",
+        "url": "https://www.spiebatignolles.fr"
+      },
+      "description": "First career role as a thermal engineer within a computation group delivering thermodynamic and fluid-mechanics analysis for large-scale construction projects. Worked on HVAC design for a <b>nuclear-waste storage enclosure in Novosibirsk</b> (Siberia), and on safety-critical <b>tunnel smoke-evacuation systems</b> modelled with <b>SES</b> — a sophisticated American FORTRAN program running 3D finite-element simulations across thermal conduction, convection, radiation, and fluid dynamics. Extended SES with new physical modules on a project-by-project basis, requiring deep fluency with its simulation internals. High-stakes engineering where analytical precision was non-negotiable — a foundation that shaped every subsequent approach to data and problem-solving.",
+      "achievements": ["nuclear-waste facility HVAC", "tunnel smoke-evacuation", "SES FORTRAN extensions", "3D finite-element simulation"],
+      "links": [],
+      "hardSkills": ["FORTRAN", "SES", "Thermodynamics", "Fluid Mechanics"],
+      "softSkills": ["reasoning", "problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 18,
+      "title": "DEA — Master's in Mechanical Energy (Thermodynamics & Fluid Mechanics)",
+      "dates": { "start": "1993-09-01", "end": "1994-08-30" },
+      "location": "France",
+      "industry": "Physics",
+      "subIndustry": "Thermodynamics",
+      "type": "formation",
+      "category": "education",
+      "diploma": "DEA",
+      "company": {
+        "name": "IUSTI — University Institute for Industrial Thermal Systems",
+        "department": "",
+        "logo": "",
+        "url": "http://iusti.cnrs.fr"
+      },
+      "description": "One-year research degree (pre-doctoral track) with honours. Mention Bien. Thermodynamics in open systems, fluid mechanics, energy, statistical thermodynamics, physical transfer in complex fluids.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["Thermodynamics", "Fluid Mechanics", "Numerical Modelling"],
+      "softSkills": ["problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 19,
+      "title": "Engineering School — Power Systems, Physics & Numerical Modelling",
+      "dates": { "start": "1990-09-01", "end": "1993-08-30" },
+      "location": "France",
+      "industry": "Physics",
+      "subIndustry": "Energy",
+      "type": "formation",
+      "category": "education",
+      "diploma": "engineer",
+      "company": {
+        "name": "IUSTI — University Institute for Industrial Thermal Systems",
+        "department": "",
+        "logo": "",
+        "url": "http://iusti.cnrs.fr"
+      },
+      "description": "Three-year engineering school (Bachelor+5 equivalent). Power systems, physics, heat and mass transfers, numerical modelling, advanced materials, fluid mechanics.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["Physics", "Thermodynamics", "Fluid Mechanics", "Numerical Modelling"],
+      "softSkills": ["problem solving"],
+      "teamSize": null
+    },
+    {
+      "id": 20,
+      "title": "Classe Préparatoire — Mathématiques Sup/Spé",
+      "dates": { "start": "1987-09-01", "end": "1990-08-30" },
+      "location": "Aix-en-Provence, France",
+      "industry": "Mathematics",
+      "subIndustry": "",
+      "type": "formation",
+      "category": "education",
+      "diploma": "mathematics sup-spe",
+      "company": {
+        "name": "Lycée Militaire d'Aix-en-Provence",
+        "department": "",
+        "logo": "",
+        "url": "http://www.lycee-militaire-aix.fr"
+      },
+      "description": "Intensive two-year preparatory programme in advanced mathematics and sciences for competitive entry to Grandes Écoles.",
+      "achievements": [],
+      "links": [],
+      "hardSkills": ["Mathematics"],
+      "softSkills": ["problem solving"],
+      "teamSize": null
+    }
+  ],
+  "eventGroups": [
+    {
+      "id": 1,
+      "company": "SOPHiA GENETICS",
+      "events": [5, 4, 2, 28, 27, 26]
+    },
+    {
+      "id": 2,
+      "company": "Pictet",
+      "events": [12, 8]
+    },
+    {
+      "id": 3,
+      "company": "IUSTI — University Institute for Industrial Thermal Systems",
+      "events": [18, 19]
+    }
+  ]
 }
