@@ -1,5 +1,20 @@
 // See https://observablehq.com/framework/config for documentation.
 
+const scrollScript = `<script>
+(function() {
+  function init() {
+    var hdr = document.getElementById('observablehq-header');
+    if (!hdr) return;
+    function update() { hdr.classList.toggle('scrolled', window.scrollY > 8); }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
+</` + `script>`;
+
 const pages = [
   { name: "Gilbert Perrin", path: "/index" },
   { name: "Timeline", path: "/timeline" },
@@ -9,34 +24,17 @@ const pages = [
   { name: "Contact", path: "/contact" },
 ]
 
-const header = ({ path }) => {
-  if (path === "/index") return `
-    <div class="home-header">
-      <span class="hh-name">GILBERT PERRIN</span>
-      <span class="hh-keywords">PRODUCT &middot; DESIGN &middot; ENGINEERING</span>
-      <span class="hh-clock">
-        <span id="hp-time">—</span>
-        &nbsp;
-        <span id="hp-date">—</span>
-      </span>
-    </div>
-  `;
-
-  const page = pages.find(p => p.path === path);
-  const pageName = page ? page.name.toUpperCase() : path.replace("/", "").toUpperCase();
-
-  return `
-    <div class="home-header">
-      <span class="hh-breadcrumb">
-        <a href="/index">GILBERT PERRIN</a>
-        <span class="hh-sep">/</span>
-        <span class="hh-page">${pageName}</span>
-      </span>
-      <span class="hh-keywords">PRODUCT &middot; DESIGN &middot; ENGINEERING</span>
-      <div class="header-logo"><img src="/images/eye.jpg" width="42" alt="Gilbert Perrin"></div>
-    </div>
-  `
-}
+const header = ({ path }) => `
+  <div class="home-header">
+    <a class="hh-name" href="/index"><span class="hh-name-accent">g</span>ilbert&nbsp;<span class="hh-name-accent">p</span>errin</a>
+    <nav class="hh-nav">
+      ${pages.slice(1).map(p =>
+        `<a href="${p.path}"${p.path === path ? ' class="active"' : ''}>${p.name.toLowerCase()}</a>`
+      ).join('')}
+    </nav>
+  </div>
+  ${scrollScript}
+`
 
 export default {
   // The app's title; used in the sidebar and webpage titles.

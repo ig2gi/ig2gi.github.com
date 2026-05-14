@@ -4,69 +4,45 @@ toc: false
 style: style/main.css
 ---
 
-<div class="hero-page">
+<div class="page-content-only">
 
-  <nav class="hp-nav">
-    <a href="/index" class="active">01 HOME</a>
-    <a href="/timeline">02 TIMELINE</a>
-    <a href="/resume">03 RESUME</a>
-    <a href="/dataviz">04 DATAVIZ</a>
-    <a href="/photography">05 PHOTOGRAPHY</a>
-    <a href="/contact">06 CONTACT</a>
-  </nav>
-
-  <div class="hp-watermark" aria-hidden="true">GP</div>
-
-  <div class="hp-tagline">
-    <p>I turn complex data into clear,<br>usable experiences — where product,<br>design and engineering converge.</p>
-    <span class="hp-scroll">[SCROLL TO EXPLORE]</span>
-    <span class="hp-arrow" aria-hidden="true"></span>
+<section class="ih-hero">
+  <h1 class="ih-hero-title">where <span class="ih-accent">product</span>, design &amp; engineering converge.</h1>
+  <p class="ih-hero-sub">I build prototypes hands-on, then lead teams to scale them — turning ambitious ideas into shipped products across genomics SaaS, data visualisation, and design systems.</p>
+  <div class="ih-hero-ctas">
+    <a class="ih-btn ih-btn-primary" href="/dataviz">View portfolio</a>
+    <a class="ih-btn" href="/contact">Get in touch</a>
   </div>
+</section>
 
-  <div class="hp-thumbnails">
-    <figure class="hp-thumb">
-      <figcaption>[01]</figcaption>
-      <img src="/images/portfolio/travelmap.png" alt="Travel Map">
-    </figure>
-    <figure class="hp-thumb">
-      <figcaption>[02]</figcaption>
-      <img src="/images/portfolio/dashboards.png" alt="Dashboards">
-    </figure>
-    <figure class="hp-thumb">
-      <figcaption>[03]</figcaption>
-      <img src="/images/portfolio/circos.jpeg" alt="Circos">
-    </figure>
-    <figure class="hp-thumb">
-      <figcaption>[04]</figcaption>
-      <img src="/images/portfolio/sgmap.png" alt="World Map">
-    </figure>
-  </div>
+<section class="ih-features">
+  <article class="ih-feature">
+    <div class="ih-feature-num">01</div>
+    <h3 class="ih-feature-title">build first</h3>
+    <p>Hands-on prototyping. I ship the PoC myself before asking anyone else to.</p>
+  </article>
+  <article class="ih-feature">
+    <div class="ih-feature-num">02</div>
+    <h3 class="ih-feature-title">scale through teams</h3>
+    <p>Then grow the team to take what works to production. Build-first leadership.</p>
+  </article>
+  <article class="ih-feature">
+    <div class="ih-feature-num">03</div>
+    <h3 class="ih-feature-title">product + design</h3>
+    <p>End-to-end thinking — from user research and strategy to design systems and shipping.</p>
+  </article>
+  <article class="ih-feature">
+    <div class="ih-feature-num">04</div>
+    <h3 class="ih-feature-title">data into stories</h3>
+    <p>Turning complex datasets into clear, navigable interfaces that people actually use.</p>
+  </article>
+</section>
 
 </div>
 
 ```js
 import { html } from "npm:htl"
 const profileData = FileAttachment("./data/profile.json").json()
-```
-
-```js
-{
-  function tick() {
-    const timeEl = document.getElementById('hp-time');
-    const dateEl = document.getElementById('hp-date');
-    if (!timeEl || !dateEl) return;
-    const now = new Date();
-    timeEl.textContent = now.toLocaleTimeString('fr-FR', {
-      timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit'
-    }) + ' [FR]';
-    dateEl.textContent = now.toLocaleDateString('en-US', {
-      timeZone: 'Europe/Paris', month: 'long', day: 'numeric', year: 'numeric'
-    }).toUpperCase();
-  }
-  tick();
-  const t = setInterval(tick, 1000);
-  invalidation.then(() => clearInterval(t));
-}
 ```
 
 ```js
@@ -104,3 +80,9 @@ function buildSection(section) {
 
 display(html`<div class="profile-sections">${profileData.sections.map(buildSection)}</div>`);
 ```
+
+<section class="ih-cta">
+  <h2>Ready to talk?</h2>
+  <p>If you're working on something where product, design and engineering have to converge — let's chat.</p>
+  <a class="ih-btn ih-btn-primary" href="/contact">Get in touch <span aria-hidden="true">→</span></a>
+</section>
