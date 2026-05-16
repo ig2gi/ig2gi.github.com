@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Resume from '../components/Resume';
+import resumeData from '../data/resume.json';
+---
+
+<Layout title="Resume" activePage="/resume">
+  <div class="page-full">
+    <div class="page-full-watermark">RESUME</div>
+  </div>
+  <Resume data={resumeData} />
+</Layout>

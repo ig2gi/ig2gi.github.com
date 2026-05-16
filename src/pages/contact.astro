@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import resumeData from '../data/resume.json';
+
+const info     = resumeData.personalInfo;
+const networks = resumeData.socialNetworks ?? [];
+
+const rows = [
+  info.email    ? { label: 'Email',    href: `mailto:${info.email}`,  text: info.email    } : null,
+  info.phone    ? { label: 'Phone',    href: null,                     text: info.phone    } : null,
+  info.location ? { label: 'Location', href: null,                     text: info.location } : null,
+  info.website  ? { label: 'Website',  href: info.website,             text: info.website  } : null,
+  ...networks.map(n => {
+    const url = (n as any).url ?? (n as any).link ?? '';
+    return { label: n.name, href: url, text: url };
+  }),
+].filter(Boolean) as Array<{ label: string; href: string | null; text: string }>;
+---
+
+<Layout title="Contact" activePage="/contact">
+  <div class="contact-wrap">
+    <ul class="re-contact-list">
+      {rows.map(r => (
+        <li>
+          <span>{r.label}</span>
+          <span>
+            {r.href
+              ? <a href={r.href} target={r.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer">{r.text}</a>
+              : r.text}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

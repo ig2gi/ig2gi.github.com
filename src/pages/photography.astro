@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhotoGallery from '../components/PhotoGallery';
+
+// Add photos here. src paths are relative to /public.
+const photos = [
+  { id: 1, src: '/images/photography/photo1.jpg', title: '', year: 2009, theme: 'Street' },
+];
+---
+
+<Layout title="Photography" activePage="/photography">
+  <div class="page-full">
+    <div class="page-full-watermark">PHOTO</div>
+  </div>
+  <PhotoGallery photos={photos} client:load />
+</Layout>

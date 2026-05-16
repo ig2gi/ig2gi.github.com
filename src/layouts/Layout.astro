@@ -1,0 +1,57 @@
+---
+import '../styles/main.css';
+
+interface Props {
+  title?: string;
+  activePage?: string;
+}
+
+const { title = 'Gilbert Perrin', activePage = '' } = Astro.props;
+
+const navPages = [
+  { name: 'Timeline',    path: '/timeline' },
+  { name: 'Resume',      path: '/resume' },
+  { name: 'DataViz',     path: '/dataviz' },
+  { name: 'Photography', path: '/photography' },
+  { name: 'Contact',     path: '/contact' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gilbert Perrin — Product, Design & Engineering leader" />
+    <title>{title === 'Gilbert Perrin' ? title : `${title} · Gilbert Perrin`}</title>
+    <link rel="icon" type="image/svg+xml" href="/images/icon-g.svg" />
+  </head>
+  <body>
+    <header id="site-header">
+      <div class="home-header">
+        <a class="hh-name" href="/"><span class="hh-name-accent">g</span>ilbert&nbsp;<span class="hh-name-accent">p</span>errin</a>
+        <nav class="hh-nav">
+          {navPages.map(p => (
+            <a href={p.path} class={activePage === p.path ? 'active' : ''}>
+              {p.name.toLowerCase()}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      (function () {
+        const hdr = document.getElementById('site-header');
+        if (!hdr) return;
+        function update() { hdr.classList.toggle('scrolled', window.scrollY > 8); }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      })();
+    </script>
+  </body>
+</html>

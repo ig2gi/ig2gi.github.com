@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DataVizGrid from '../components/DataVizGrid';
+import datavizData from '../data/dataviz.json';
+---
+
+<Layout title="DataViz" activePage="/dataviz">
+  <div class="page-full">
+    <div class="page-full-watermark">DATAVIZ</div>
+  </div>
+  <DataVizGrid items={datavizData} client:load />
+</Layout>
