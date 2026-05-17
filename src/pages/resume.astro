@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Resume from '../components/Resume';
+import ResumeScrollNav from '../components/ResumeScrollNav';
 import resumeData from '../data/resume.json';
 ---
 
@@ -9,4 +10,5 @@ import resumeData from '../data/resume.json';
     <div class="page-full-watermark">RESUME</div>
   </div>
   <Resume data={resumeData} />
+  <ResumeScrollNav client:load />
 </Layout>

@@ -36,7 +36,8 @@ const ProfileSection: FC<{ section: ProfileSectionData }> = ({ section }) => {
     <div className="ps">
       <div className="ps-label">
         <strong>{section.label}</strong>
-        {section.sublabel}
+        {' — '}
+        <span className="ps-sublabel">{section.sublabel}</span>
       </div>
       <div className="ps-body">
         {section.image?.position === 'top' && img}

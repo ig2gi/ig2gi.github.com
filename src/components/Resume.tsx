@@ -88,7 +88,8 @@ function fmtGap(months: number) {
   return m === 0 ? `${y}yr` : y === 0 ? `${months}mo` : `${y}yr ${m}mo`;
 }
 
-function getStartYear(dateStr?: string) {
+function getEndYear(dateStr?: string | null) {
+  if (dateStr === null) return String(new Date().getFullYear());
   if (!dateStr) return '';
   const d = new Date(dateStr);
   return isNaN(d.getTime()) ? '' : String(d.getFullYear());
@@ -145,10 +146,13 @@ const GapIndicator: FC<{ months: number }> = ({ months }) => (
   </div>
 );
 
-const EntryWrap: FC<{ year: string; children: ReactNode }> = ({ year, children }) => (
+const EntryWrap: FC<{ year: string; company?: string; children: ReactNode }> = ({ year, company, children }) => (
   <div className="re-entry-wrap">
-    <div className="re-entry-year" aria-hidden="true">{year}</div>
     {children}
+    <div className="re-entry-year-cell" aria-hidden="true">
+      <span className="re-entry-year">{year}</span>
+      {company && <span className="re-entry-company-tag">{company}</span>}
+    </div>
   </div>
 );
 
@@ -165,7 +169,7 @@ const Entry: FC<{ event: ResumeEvent }> = ({ event }) => {
   const hasSub  = !!(companyName || industry);
 
   return (
-    <EntryWrap year={getStartYear(event.dates?.start)}>
+    <EntryWrap year={getEndYear(event.dates?.end)} company={companyName || undefined}>
       <div className="re-entry">
         <div className="re-entry-title">{event.title}</div>
         <Dateline dates={event.dates} />
@@ -206,21 +210,26 @@ const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[] }> = ({ group, e
   const companyUrl = events[0]?.company?.url;
   const industry   = [events[0]?.industry, events[0]?.subIndustry].filter(Boolean).join(' · ');
 
+  const groupPeriod   = formatDateRange({ start: overallStart, end: overallEnd });
+  const groupDuration = sumDurations(events);
+
   const roleItems: ReactNode[] = [];
   for (let i = 0; i < events.length; i++) {
-    roleItems.push(<Role key={events[i].id ?? i} event={events[i]} />);
+    const ev = events[i];
+    roleItems.push(
+      <EntryWrap key={ev.id ?? i} year={getEndYear(ev.dates?.end)} company={group.company}>
+        <Role event={ev} />
+      </EntryWrap>
+    );
     if (i < events.length - 1) {
       const gap = gapMonths(events[i], events[i + 1]);
       if (gap >= 2) roleItems.push(<GapIndicator key={`gap-${i}`} months={gap} />);
     }
   }
 
-  const groupPeriod   = formatDateRange({ start: overallStart, end: overallEnd });
-  const groupDuration = sumDurations(events);
-
   return (
-    <EntryWrap year={getStartYear(overallStart)}>
-      <div className="re-entry re-entry-group">
+    <div className="re-group-block">
+      <div className="re-group-header">
         <div className="re-entry-company-name">
           {companyUrl
             ? <a href={companyUrl} target="_blank" rel="noopener noreferrer">{group.company}</a>
@@ -231,9 +240,9 @@ const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[] }> = ({ group, e
           {groupDuration && <span className="re-entry-duration">{groupDuration}</span>}
         </div>
         {industry && <div className="re-entry-sub">{industry}</div>}
-        <div className="re-entry-roles">{roleItems}</div>
       </div>
-    </EntryWrap>
+      <div className="re-entry-roles">{roleItems}</div>
+    </div>
   );
 };
 
@@ -286,20 +295,16 @@ const Resume: FC<{ data: ResumeData }> = ({ data }) => {
 
   return (
     <div className="profile-sections">
-      <div className="ps">
-        <div className="ps-label"><h2>Experience</h2>01 — CAREER</div>
+      <div className="ps" id="rs-experience">
         <div className="ps-body">{experiences}</div>
       </div>
-      <div className="ps">
-        <div className="ps-label"><h2>Education</h2>02 — DEGREES</div>
+      <div className="ps" id="rs-education">
         <div className="ps-body">{education}</div>
       </div>
-      <div className="ps">
-        <div className="ps-label"><h2>Certifications</h2>03 — LEARNING</div>
+      <div className="ps" id="rs-certifications">
         <div className="ps-body">{certifications}</div>
       </div>
-      <div className="ps">
-        <div className="ps-label"><h2>Skills</h2>04 — EXPERTISE</div>
+      <div className="ps" id="rs-skills">
         <div className="ps-body">
           <div className="re-skills-grid">
             <div>
