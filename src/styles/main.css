@@ -8,6 +8,7 @@
     --paper: #f8f8f6;
     --paper-2: #efefeb;          /* wells, chips, image backgrounds */
     --band: #e9e8e2;             /* header band */
+    --surface: #ffffff;          /* cards */
     --ink: #15171b;
     --ink-2: #4a4d55;            /* body copy */
     --ink-3: #6f727a;            /* labels, metadata */
@@ -189,7 +190,7 @@ main {
 
 .nav-toggle { display: none; }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
     /* the six links and the tagline no longer share one line */
     .pillars { display: none; }
 }
@@ -251,12 +252,13 @@ main {
 .colophon {
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
     justify-content: space-between;
     gap: 8px 24px;
     padding-block: 20px 32px;
     border-top: 1px solid var(--rule);
 }
-.colophon nav { display: flex; flex-wrap: wrap; gap: 0 20px; }
+.colophon nav { display: flex; flex-wrap: wrap; gap: 0 20px; text-transform: none; }
 .colophon nav a { padding-block: 6px; }
 .colophon a:hover { color: var(--accent-text); }
 
@@ -560,9 +562,9 @@ main {
 .profile .ps { display: block; padding-block: 16px; }
 .profile .ps + .ps { border-top: 0; }
 /* sub-section titles echo the section title on one line: title in ink, sub-label in grey */
-.profile .ps-aside, .resume .ps-aside, .pf-section .ps-aside { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.3em; margin-bottom: 8px; font-size: var(--step-1); line-height: 1.15; letter-spacing: -0.03em; }
-.profile .ps-aside h2, .resume .ps-aside h2, .pf-section .ps-aside h2 { order: -1; margin: 0; font-size: inherit; }
-.profile .ps-aside .label, .resume .ps-aside .label, .pf-section .ps-aside .label { font-family: var(--font-body); font-size: 1em; font-weight: 650; line-height: inherit; letter-spacing: inherit; text-transform: none; color: var(--ink-3); }
+.profile .ps-aside, .resume .ps-aside { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.3em; margin-bottom: 8px; font-size: var(--step-1); line-height: 1.15; letter-spacing: -0.03em; }
+.profile .ps-aside h2, .resume .ps-aside h2 { order: -1; margin: 0; font-size: inherit; }
+.profile .ps-aside .label, .resume .ps-aside .label { font-family: var(--font-body); font-size: 1em; font-weight: 650; line-height: inherit; letter-spacing: inherit; text-transform: none; color: var(--ink-3); }
 .profile .ps-prose { max-width: none; }
 .profile .ps-body p { margin-bottom: 0.5em; }
 /* the four expertise lines sit two by two, so lines keep a readable length */
@@ -735,19 +737,11 @@ main {
    CONTACT
    ============================================================ */
 
-.contact-list { list-style: none; margin: 0; padding: 0; max-width: 720px; }
-.contact-list li {
-    display: grid;
-    grid-template-columns: 140px minmax(0, 1fr);
-    gap: 16px;
-    align-items: baseline;
-    padding-block: 18px;
-    border-bottom: 1px solid var(--rule);
-}
-.contact-list .value { font-size: var(--step-1); letter-spacing: -0.02em; overflow-wrap: anywhere; }
-.contact-list a.value:hover { color: var(--accent-text); }
-.contact-body { padding-block: 24px 64px; }
-@media (max-width: 520px) { .contact-list li { grid-template-columns: 1fr; gap: 4px; } }
+.contact-list { list-style: none; margin: 0; padding: 20px 0 72px; }
+.contact-list li { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 16px; align-items: baseline; padding-block: 6px; }
+.contact-list a { overflow-wrap: anywhere; }
+.contact-list a:hover { color: var(--accent-text); }
+@media (max-width: 520px) { .contact-list li { grid-template-columns: 1fr; gap: 2px; padding-block: 8px; } }
 
 /* ============================================================
    DATA VISUALISATION GRID
@@ -757,18 +751,28 @@ main {
 .page-intro { margin: 0; padding-block: 24px 4px; font-size: 1.0625rem; line-height: 1.5; color: var(--ink-2); }
 .page-intro .label { margin-right: 0.6em; }
 
-/* one section per group, titles like the resume sections */
-.pf-section { padding-block: 32px; }
-.pf-section + .pf-section { border-top: 1px solid var(--rule); }
-.pf-section .ps-aside { margin-bottom: 24px; font-size: var(--step-2); }
-
 .pf-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 48px 32px;
+    gap: 24px;
+    padding-block: 28px 72px;
 }
 /* the title's link or button covers the whole card, so the card is one large target */
-.pf-card { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.pf-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 10px 10px 18px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.pf-card:hover {
+    border-color: var(--ink-3);
+    box-shadow: 0 6px 18px rgba(21, 23, 27, 0.08);
+    transform: translateY(-2px);
+}
 .pf-target {
     padding: 0;
     font: inherit;
@@ -788,12 +792,11 @@ main {
     max-width: 100%;
     overflow: hidden;
     background: var(--paper-2);
-    border: 1px solid var(--rule);
 }
 .pf-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .pf-card:hover .pf-image-wrap img { transform: scale(1.02); }
 
-.pf-card-body { padding-top: 14px; flex: 1; }
+.pf-card-body { padding: 14px 4px 0; flex: 1; }
 .pf-card-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 8px; }
 .pf-year, .pf-company, .pf-num {
     font: 500 var(--step--2)/1.2 var(--font-mono);

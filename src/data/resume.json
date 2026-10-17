@@ -10,7 +10,9 @@
   "socialNetworks": [
     { "name": "LinkedIn", "link": "https://www.linkedin.com/in/gilbertperrin/" },
     { "name": "ObservableHQ", "link": "https://observablehq.com/@ig2gi" },
-    { "name": "500px", "link": "https://ig2gi.500px.photography" }
+    { "name": "Instagram", "link": "https://www.instagram.com/gilbperr/" },
+    { "name": "500px", "link": "https://500px.com/p/ig2gi" },
+    { "name": "500px portfolio", "link": "https://ig2gi.500px.photography" }
   ],
   "languages": [
     { "name": "French", "level": "native" },

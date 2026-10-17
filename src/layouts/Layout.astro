@@ -16,15 +16,22 @@ const {
 
 // Home comes first: the wordmark alone was not an obvious way back
 const navPages = [
-  { name: 'Home',               path: '/' },
-  { name: 'Timeline',           path: '/timeline' },
-  { name: 'Resume',             path: '/resume' },
-  { name: 'Data visualisation', path: '/dataviz' },
-  { name: 'Photography',        path: '/photography' },
-  { name: 'Contact',            path: '/contact' },
+  { name: 'home',        path: '/' },
+  { name: 'timeline',    path: '/timeline' },
+  { name: 'resume',      path: '/resume' },
+  { name: 'dataviz',     path: '/dataviz' },
+  { name: 'photography', path: '/photography' },
+  { name: 'contact',     path: '/contact' },
 ];
 
-const socials = (resumeData.socialNetworks ?? []) as Array<{ name: string; link?: string; url?: string }>;
+// footer: the same profiles as the contact page, in lowercase like the header
+const networks = (resumeData.socialNetworks ?? []) as Array<{ name: string; link?: string; url?: string }>;
+const socials = [
+  ['LinkedIn', 'linkedin'], ['ObservableHQ', 'observable'], ['Instagram', 'instagram'], ['500px', '500px'],
+].map(([name, label]) => {
+  const n = networks.find(n => n.name === name);
+  return { label, href: n?.link ?? n?.url ?? '' };
+}).filter(s => s.href);
 const year = new Date().getFullYear();
 ---
 
@@ -74,9 +81,9 @@ const year = new Date().getFullYear();
         <span>© {year} Gilbert Perrin · Lausanne, Switzerland</span>
         <nav aria-label="Elsewhere">
           {socials.map(s => (
-            <a href={s.link ?? s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
+            <a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
           ))}
-          <a href="/contact">Contact</a>
+          <a href="/contact">contact</a>
         </nav>
       </div>
     </footer>

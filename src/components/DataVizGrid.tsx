@@ -16,8 +16,6 @@ export interface PortfolioItem {
   open?: boolean;
 }
 
-export interface PortfolioGroup { id: string; key: string; name: string; label: string; }
-
 // tool chips are hidden: tools say little about the work (data kept in dataviz.json)
 const SHOW_TECHS = false;
 
@@ -105,7 +103,8 @@ const Card: FC<{ item: PortfolioItem; onView: (images: string[], alt: string) =>
 
 // ── Grid ──────────────────────────────────────────────────────────────────────
 
-const DataVizGrid: FC<{ items: PortfolioItem[]; groups: PortfolioGroup[] }> = ({ items, groups }) => {
+// one list, most recent first (by the last year of each project)
+const DataVizGrid: FC<{ items: PortfolioItem[] }> = ({ items }) => {
   const [lightbox, setLightbox] = useState<{ images: string[]; alt: string } | null>(null);
 
   const sorted = [...items].sort((a, b) => Math.max(...b.year) - Math.max(...a.year));
@@ -115,17 +114,9 @@ const DataVizGrid: FC<{ items: PortfolioItem[]; groups: PortfolioGroup[] }> = ({
 
   return (
     <>
-      {groups.map(g => (
-        <section key={g.id} id={g.id} className="pf-section" aria-labelledby={`${g.id}-title`}>
-          <div className="ps-aside">
-            <h2 id={`${g.id}-title`}>{g.name}</h2>
-            <span className="label">{keepCase(g.label)}</span>
-          </div>
-          <div className="pf-grid">
-            {sorted.filter(i => i.category === g.key).map(item => <Card key={item.id} item={item} onView={view} />)}
-          </div>
-        </section>
-      ))}
+      <div className="pf-grid">
+        {sorted.map(item => <Card key={item.id} item={item} onView={view} />)}
+      </div>
       {lightbox && <Lightbox images={lightbox.images} alt={lightbox.alt} onClose={close} />}
     </>
   );

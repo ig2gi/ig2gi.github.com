@@ -2,36 +2,37 @@
 import Layout from '../layouts/Layout.astro';
 import resumeData from '../data/resume.json';
 
+// ultra simple: email first, then the two profiles worth visiting
+// (phone, location and 500px stay in resume.json but are not shown)
 const info     = resumeData.personalInfo;
 const networks = resumeData.socialNetworks ?? [];
+const profile  = (name: string) => {
+  const n = networks.find(n => n.name === name) as { link?: string; url?: string } | undefined;
+  return n?.link ?? n?.url ?? '';
+};
+const short = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 
 const rows = [
-  info.email    ? { label: 'Email',    href: `mailto:${info.email}`,  text: info.email    } : null,
-  info.phone    ? { label: 'Phone',    href: null,                     text: info.phone    } : null,
-  info.location ? { label: 'Location', href: null,                     text: info.location } : null,
-  ...networks.map(n => {
-    const url = (n as any).url ?? (n as any).link ?? '';
-    return { label: n.name, href: url, text: url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') };
-  }),
-].filter(Boolean) as Array<{ label: string; href: string | null; text: string }>;
+  { label: 'email',      href: `mailto:${info.email}`,  text: info.email },
+  { label: 'linkedin',   href: profile('LinkedIn'),     text: short(profile('LinkedIn')) },
+  { label: 'observable', href: profile('ObservableHQ'), text: short(profile('ObservableHQ')) },
+  { label: 'instagram',  href: profile('Instagram'),    text: short(profile('Instagram')) },
+  { label: '500px',      href: profile('500px'),        text: short(profile('500px')) },
+  // the photography site will live at /photography on this domain
+  { label: 'photography', href: '/photography',         text: 'ig2gi.github.io/photography' },
+].filter(r => r.href && r.text);
 ---
 
 <Layout title="Contact" activePage="/contact">
-  <header class="page-head">
-    <span class="label">Contact</span>
-    <h1>Let's talk</h1>
-    <p class="deck">About product leadership, design, data visualisation or an advisory mandate. Email is the fastest way to reach me.</p>
-  </header>
-  <div class="contact-body">
-    <ul class="contact-list">
-      {rows.map(r => (
-        <li>
-          <span class="label">{r.label}</span>
-          {r.href
-            ? <a class="value" href={r.href} target={r.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer">{r.text}</a>
-            : <span class="value">{r.text}</span>}
-        </li>
-      ))}
-    </ul>
-  </div>
+  <!-- the selected nav link already names the page -->
+  <h1 class="sr-only">Contact</h1>
+  <p class="page-intro">Email is the fastest way to reach me.</p>
+  <ul class="contact-list">
+    {rows.map(r => (
+      <li>
+        <span class="label">{r.label}</span>
+        <a href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">{r.text}</a>
+      </li>
+    ))}
+  </ul>
 </Layout>

@@ -1,18 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import DataVizGrid from '../components/DataVizGrid';
-import SectionBar from '../components/SectionBar.astro';
 import datavizData from '../data/dataviz.json';
 
 const years = datavizData.flatMap(d => d.year);
 const span = `${Math.min(...years)}–${Math.max(...years)}`;
-
-const groups = [
-  { id: 'dv-professional', key: 'professional', name: 'Professional',        label: 'at SOPHiA GENETICS' },
-  { id: 'dv-freelance',    key: 'freelance',    name: 'Freelance',           label: 'for clients' },
-  { id: 'dv-personal',     key: 'personal',     name: 'Personal & learning', label: 'experiments and courses' },
-];
-const sections = groups.map(g => ({ id: g.id, name: g.name, count: datavizData.filter(d => d.category === g.key).length }));
 ---
 
 <Layout title="Data visualisation" activePage="/dataviz">
@@ -22,6 +14,5 @@ const sections = groups.map(g => ({ id: g.id, name: g.name, count: datavizData.f
     <span class="label">{datavizData.length} projects · {span}</span>
     Interactive maps, charts and dashboards, from data journalism to genomics.
   </p>
-  <SectionBar sections={sections} label="Portfolio sections" />
-  <DataVizGrid items={datavizData} groups={groups} client:load />
+  <DataVizGrid items={datavizData} client:load />
 </Layout>
