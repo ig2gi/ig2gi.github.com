@@ -5,13 +5,19 @@
     "byline": ["VP, Design & Innovation · SOPHiA GENETICS", "Lausanne, Switzerland", "Open to advisory mandates"]
   },
   "ribbon": {
-    "title": "Build it, then <em>scale it</em>",
-    "caption": "Each bar is a role, drawn to scale. Height marks seniority. The shape repeats: build it hands-on, then lead the team that scales it.",
+    "title": "From engineer to VP, <em>still hands-on</em>",
+    "caption": "Each bar is a role, drawn to scale. Height marks seniority. The thin bands show photography, engineering and data visualisation that never stopped.",
+    "domains": [
+      { "name": "Industry", "from": 1993, "icon": "industry" },
+      { "name": "Finance", "from": 2000.5, "icon": "finance" },
+      { "name": "Healthcare", "from": 2013, "icon": "health" }
+    ],
     "notes": [
-      { "eventId": 17, "title": "1995 · Thermal engineer", "text": "Fluid mechanics and numerical modelling, before switching to software in 1998." },
-      { "eventId": 9,  "title": "2008 · Photography", "text": "A sabbatical for visual studies. It shaped how I see data." },
+      { "eventId": 17, "title": "1995 · Thermal & simulation engineer", "text": "3D finite-element simulations, extending a FORTRAN solver with new physics." },
+      { "eventId": 9,  "title": "2008 · Photography", "text": "A sabbatical for visual studies, then exhibitions and awards. It shaped how I see data." },
       { "eventId": 5,  "title": "2013 · SOPHiA, tenth employee", "text": "Joined as data visualisation engineer. Built the first platform UI myself." },
       { "eventId": 2,  "title": "2018 · First VP", "text": "Functional & UX design, after growing the front-end team I started." },
+      { "eventId": 1,  "title": "2019 · AI & deep learning", "text": "A year invested in machine learning, before returning to SOPHiA to lead product." },
       { "eventId": 26, "title": "2025 · VP, Design & Innovation", "text": "A small team focused on product vision and strategic features." }
     ]
   },

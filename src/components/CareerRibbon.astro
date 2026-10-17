@@ -5,14 +5,33 @@
 import resumeData from '../data/resume.json';
 
 interface Note { eventId: number; title: string; text: string; }
-interface Props { title: string; caption: string; notes: Note[]; }
+interface Domain { name: string; from: number; icon: 'industry' | 'finance' | 'health'; }
+interface Props { title: string; caption: string; notes: Note[]; domains: Domain[]; }
 
-const { title, caption, notes } = Astro.props;
+const { title, caption, notes, domains } = Astro.props;
 
-type Track = 'eng' | 'photo' | 'viz' | 'prod';
+// line icons, 24px grid, drawn with currentColor
+const icons: Record<Domain['icon'], string> = {
+  industry: 'M3 21h18M4 21V11l5 3v-3l5 3v-3l5 3V4h2v17',
+  finance: 'M3 9.5 12 4l9 5.5zM5.5 9.5v8M10 9.5v8M14 9.5v8M18.5 9.5v8M3 20.5h18',
+  health: 'M7 3c0 4.5 10 4.5 10 9s-10 4.5-10 9M17 3c0 4.5-10 4.5-10 9s10 4.5 10 9M8.5 5h7M7.5 12h9M8.5 19h7',
+};
+
+type Track = 'eng' | 'photo' | 'viz' | 'prod' | 'study';
+
+// `ribbon` in resume.json: experiences show unless false, formations only if set;
+// an object keeps the entry and overrides its dates on the chart only; it can also
+// rename the bar (label) and fade its left edge when it stands for a longer past (truncated).
+type RibbonFlag = boolean | { start?: string; end?: string; label?: string; truncated?: boolean };
+interface Event {
+  id: number; title: string; type: string; industry?: string;
+  company?: { name: string }; dates: { start: string; end: string | null };
+  ribbon?: RibbonFlag;
+}
 
 const UNIT = 36;      // px per seniority level
 const HEIGHT = 150;   // ribbon height, leaves headroom for markers
+const MERGE_GAP = 0.5; // years: shorter gaps are closed by stretching the previous bar
 
 const now = new Date();
 const toYear = (d: string | null) => {
@@ -22,30 +41,75 @@ const toYear = (d: string | null) => {
 
 const level = (title: string) => (/\bVP\b/.test(title) ? 3 : /^Head of/.test(title) ? 2 : 1);
 
-const track = (e: { title: string; industry?: string }): Track => {
+const track = (e: Event): Track => {
+  if (e.type === 'formation') return 'study';
   if (e.industry === 'Photography') return 'photo';
   if (/Visuali[sz]ation/.test(e.title)) return 'viz';
   if (/Head of|VP|Product/.test(e.title)) return 'prod';
   return 'eng';
 };
 
-const roles = resumeData.events
-  .filter(e => e.type === 'experience')
-  .map(e => ({
-    id: e.id,
-    title: e.title,
-    company: e.company?.name ?? '',
-    start: toYear(e.dates.start),
-    end: toYear(e.dates.end),
-    current: e.dates.end === null,
-    level: level(e.title),
-    track: track(e),
-  }))
+const shown = (e: Event) => e.ribbon === undefined ? e.type === 'experience' : e.ribbon !== false;
+
+const roles = (resumeData.events as Event[])
+  .filter(shown)
+  .map(e => {
+    const opts = typeof e.ribbon === 'object' ? e.ribbon : {};
+    const dates = { start: opts.start ?? e.dates.start, end: opts.end ?? e.dates.end };
+    return {
+      id: e.id,
+      title: opts.label ?? e.title,
+      truncated: opts.truncated ?? false,
+      company: e.company?.name ?? '',
+      start: toYear(dates.start),
+      end: toYear(dates.end),
+      current: dates.end === null,
+      level: level(e.title),
+      track: track(e),
+    };
+  })
   .sort((a, b) => a.start - b.start);
+
+roles.forEach((r, i) => {
+  const next = roles[i + 1];
+  if (next && next.start > r.end && next.start - r.end < MERGE_GAP) r.end = next.start;
+});
+
+// hands-on engineering and dataviz never stopped: a thin band runs under the leadership roles
+// (photography from the sabbatical on, engineering under dataviz and leadership roles,
+// dataviz under leadership roles)
+const band = (tracks: Track[]) => {
+  const spans: Array<{ start: number; end: number }> = [];
+  for (const r of roles.filter(r => tracks.includes(r.track))) {
+    const last = spans.at(-1);
+    if (last && r.start - last.end < MERGE_GAP) last.end = Math.max(last.end, r.end);
+    else spans.push({ start: r.start, end: r.end });
+  }
+  return spans;
+};
+const photoFrom = roles.filter(r => r.track === 'photo').at(-1)?.end;
+const strands = [
+  ...(photoFrom ? [{ start: photoFrom, end: toYear(null), track: 'photo' as Track }] : []),
+  ...band(['viz', 'prod']).map(s => ({ ...s, track: 'eng' as Track })),
+  ...band(['prod']).map(s => ({ ...s, track: 'viz' as Track })),
+];
+
+const stillTitle: Partial<Record<Track, string>> = {
+  photo: 'Photography carried on: exhibitions, event work, contest awards',
+  eng: 'Still hands-on: engineering',
+  viz: 'Still hands-on: data visualisation',
+};
+
+// study blocks are drawn first so roles held during them sit on top
+const drawn = [...roles.filter(r => r.track === 'study'), ...roles.filter(r => r.track !== 'study')];
 
 const t0 = Math.floor(roles[0].start);
 const t1 = now.getFullYear() + 1;
 const pct = (t: number) => ((t - t0) / (t1 - t0)) * 100;
+
+// when the first bar stands for a longer past, the axis fades in over the same stretch
+const first = roles[0];
+const axisFade = first.truncated ? (pct(first.end) - pct(first.start)) * 0.55 : 0;
 
 const ticks: number[] = [];
 for (let y = Math.ceil(t0 / 5) * 5; y < t1; y += 5) ticks.push(y);
@@ -59,6 +123,7 @@ const legend: Array<[Track, string]> = [
   ['photo', 'Photography'],
   ['viz', 'Data visualisation'],
   ['prod', 'Product & design'],
+  ['study', 'Study'],
 ];
 
 const yearSpan = `${t0}–${now.getFullYear()}`;
@@ -73,30 +138,47 @@ const yearSpan = `${t0}–${now.getFullYear()}`;
   </div>
 
   <div class="ribbon" style={`height:${HEIGHT}px`} role="img"
-    aria-label={`${roles.length} roles from ${yearSpan}. Bar height shows seniority, colour shows discipline: engineering, photography, data visualisation, then product and design leadership.`}>
+    aria-label={`Career from ${yearSpan}. Bar height shows seniority, colour shows discipline: engineering, photography, data visualisation, then product and design leadership, with thin bands showing photography, engineering and data visualisation continuing underneath. Domains: ${domains.map(d => `${d.name.toLowerCase()} from ${d.from}`).join(', then ')}. Hatched blocks are study periods: engineering school and a master in mechanical energy until 1995, a master in computer science in 1997–98, AI and deep learning in 2019–20.`}>
+    <!-- domains are placed loosely by era start, not drawn to scale; the last one runs on to today.
+         They share the top line with the VP markers, which sit on top of the connectors -->
+    <ol class="domains label" aria-hidden="true">
+      {domains.map((d, i) => (
+        <li style={`--x:${pct(Math.max(d.from, t0))}%;--w:${(domains[i + 1] ? pct(domains[i + 1].from) : 100) - pct(Math.max(d.from, t0))}%`}>
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d={icons[d.icon]} /></svg>
+          {d.name}<span class="domain-next" aria-hidden="true"></span>
+        </li>
+      ))}
+    </ol>
     {[['Individual', 1], ['Head of', 2], ['VP', 3]].map(([name, l]) => (
       <div class="ribbon-level" style={`bottom:${(l as number) * UNIT}px`}><b>{name}</b></div>
     ))}
-    {roles.map((r, i) => (
+    {drawn.map((r, i) => (
       <div
-        class={`seg seg-${r.track}`}
+        class={`seg seg-${r.track}${r.truncated ? ' seg-truncated' : ''}`}
         title={`${r.title} · ${r.company} (${Math.floor(r.start)}–${r.current ? 'now' : Math.floor(r.end)})`}
         style={`left:${pct(r.start)}%;width:calc(${pct(r.end) - pct(r.start)}% - 1px);height:${r.level * UNIT}px;--i:${i}`}
       ></div>
     ))}
+    {/* each band starts 1px early to bridge the gap after the bar it grows out of */}
+    {strands.map((s, i) => (
+      <div class={`strand strand-${s.track}`}
+        title={stillTitle[s.track]}
+        style={`left:calc(${pct(s.start)}% - 1px);width:${pct(s.end) - pct(s.start)}%;--i:${drawn.length + i}`}></div>
+    ))}
     {markers.map(({ n, role }) => (
       <div class="marker" aria-hidden="true"
-        style={`left:calc(${pct(role!.start)}% + 6px);top:${HEIGHT - role!.level * UNIT - 34}px`}>{n}</div>
+        style={`left:${pct((role!.start + role!.end) / 2)}%;top:${HEIGHT - role!.level * UNIT - 34}px`}>{n}</div>
     ))}
   </div>
 
-  <div class="axis" aria-hidden="true">
+  <div class="axis" aria-hidden="true" style={`--fade:${axisFade}%`}>
     {ticks.map(y => <span style={`left:${pct(y)}%`}>{y}</span>)}
   </div>
+
+  <p class="ribbon-key">{caption}</p>
 
   <ol class="notes">
     {notes.map(n => <li><b>{n.title}</b>{n.text}</li>)}
   </ol>
 
-  <figcaption>{caption}</figcaption>
 </figure>
