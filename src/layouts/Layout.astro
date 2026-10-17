@@ -14,7 +14,9 @@ const {
   description = 'Gilbert Perrin — Product, Design & Engineering leader',
 } = Astro.props;
 
+// Home comes first: the wordmark alone was not an obvious way back
 const navPages = [
+  { name: 'Home',               path: '/' },
   { name: 'Timeline',           path: '/timeline' },
   { name: 'Resume',             path: '/resume' },
   { name: 'Data visualisation', path: '/dataviz' },
@@ -50,6 +52,10 @@ const year = new Date().getFullYear();
               <span>Product</span><span class="dot">·</span><span>Design</span><span class="dot">·</span><span>Engineering</span><span class="plus">+</span><span class="ai">AI</span>
             </div>
           </div>
+          <!-- small screens: the links fold into a burger menu; <details> opens and closes without JavaScript -->
+          <details class="nav-toggle">
+            <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+          </details>
           <nav class="site-nav" aria-label="Main">
             {navPages.map(p => (
               <a href={p.path} aria-current={activePage === p.path ? 'page' : undefined}>{p.name}</a>
