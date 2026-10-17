@@ -1,0 +1,40 @@
+{
+  "name": "world", 
+  "children": [
+    {
+      "energy": 2832.56, 
+      "name": "Europe & Central Asia", 
+      "emission": 4100333.47
+    }, 
+    {
+      "energy": 14717.34, 
+      "name": "North America", 
+      "emission": 7414349.65
+    }, 
+    {
+      "energy": 1245.47, 
+      "name": "Latin America & Caribbean", 
+      "emission": 2887940.3400000003
+    }, 
+    {
+      "energy": 1398.87, 
+      "name": "Middle East & North Africa", 
+      "emission": 1449442.1600000001
+    }, 
+    {
+      "energy": 531.98, 
+      "name": "South Asia", 
+      "emission": 2725473.42
+    }, 
+    {
+      "energy": 1436.49, 
+      "name": "East Asia & Pacific", 
+      "emission": 9528645.16
+    }, 
+    {
+      "energy": 688.88, 
+      "name": "Sub-Saharan Africa", 
+      "emission": 1568697.4300000002
+    }
+  ]
+}

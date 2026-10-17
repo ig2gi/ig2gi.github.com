@@ -1,0 +1,44 @@
+---
+// Full-window layout for a single dataviz project: a slim bar that keeps the
+// visitor on the site (home, portfolio), then the project fills the rest.
+import '../styles/main.css';
+
+interface Props {
+  title: string;
+  year?: string;
+  description?: string;
+}
+
+const { title, year, description = `${title}, a data visualisation by Gilbert Perrin` } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} · Gilbert Perrin</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500;600&display=swap" />
+  </head>
+  <body class="project-page">
+    <header class="project-bar">
+      <nav class="project-crumbs" aria-label="Breadcrumb">
+        <a class="wordmark" href="/">Gilbert <em>Perrin</em></a>
+        <span class="project-sep" aria-hidden="true">/</span>
+        <a class="project-crumb" href="/dataviz">Data visualisation</a>
+        <span class="project-sep" aria-hidden="true">/</span>
+        <h1 class="project-title">{title}</h1>
+      </nav>
+      {year && <span class="project-year">{year}</span>}
+    </header>
+    <main class="project-main">
+      <slot />
+    </main>
+  </body>
+</html>

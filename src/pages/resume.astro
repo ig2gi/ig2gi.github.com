@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Resume from '../components/Resume';
+import SectionBar from '../components/SectionBar.astro';
 import resumeData from '../data/resume.json';
 
 // same filters as Resume.tsx: one count per role, degree or certificate
@@ -15,35 +16,8 @@ const sections = [
 <Layout title="Resume" activePage="/resume">
   <!-- the selected nav link already names the page -->
   <h1 class="sr-only">Resume</h1>
-  <div class="resume-bar">
-    <nav class="resume-nav" aria-label="Resume sections">
-      {sections.map(s => <a href={`#${s.id}`}>{s.name} <span class="resume-nav-count">{s.count}</span></a>)}
-    </nav>
+  <SectionBar sections={sections} label="Resume sections">
     <a class="btn btn-primary btn-small" href="/gilbert-perrin-resume.pdf" download>PDF <span aria-hidden="true">↓</span></a>
-  </div>
+  </SectionBar>
   <Resume data={resumeData} />
 </Layout>
-
-<script>
-  // marks the section currently under the bar
-  const bar   = document.querySelector<HTMLElement>('.resume-bar')!;
-  const links = [...bar.querySelectorAll<HTMLAnchorElement>('.resume-nav a')];
-  const targets = links.map(a => document.querySelector<HTMLElement>(a.hash)!);
-
-  function update() {
-    const line = bar.getBoundingClientRect().bottom + 24;
-    let current = 0;
-    targets.forEach((t, i) => { if (t.getBoundingClientRect().top <= line) current = i; });
-    // at the very bottom the last section may be too short to reach the line
-    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) current = targets.length - 1;
-    links.forEach((a, i) => a.toggleAttribute('aria-current', i === current));
-  }
-
-  let queued = false;
-  addEventListener('scroll', () => {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(() => { queued = false; update(); });
-  }, { passive: true });
-  update();
-</script>

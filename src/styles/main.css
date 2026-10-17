@@ -250,6 +250,40 @@ main {
 .btn-small { gap: 6px; padding: 7px 12px; font-size: 0.8125rem; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 
+/* sticky bar under the header (resume, data visualisation): section menu on the left, optional action on the right */
+:root:has(.page-bar) { scroll-padding-top: calc(var(--header-h) + var(--subbar-h) + 1rem); }
+.page-bar {
+    position: sticky;
+    /* tucked under the header's last pixels, so no gap shows between the two */
+    top: calc(var(--header-h) - 2px);
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: var(--subbar-h);
+    background: var(--paper);
+}
+.page-bar-nav {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    font: 400 0.9375rem/1 var(--font-body);
+}
+.page-bar-nav a { padding-block: 12px; color: var(--ink-2); white-space: nowrap; }
+.page-bar-nav a[aria-current] { color: var(--ink); font-weight: 500; }
+.page-bar-nav a:hover { color: var(--accent-text); }
+.page-bar-count { font: 400 var(--step--2)/1 var(--font-mono); color: var(--ink-3); }
+
+@media (max-width: 760px) {
+    /* the header no longer sticks, so the bar goes to the top */
+    .page-bar { top: 0; gap: 12px; }
+    :root:has(.page-bar) { scroll-padding-top: calc(var(--subbar-h) + 1rem); }
+    .page-bar-nav { gap: 12px; font-size: 0.8125rem; }
+    .page-bar .btn-small { padding-inline: 8px; }
+}
+
 /* keyword chips */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
@@ -483,9 +517,9 @@ main {
 .profile .ps { display: block; padding-block: 16px; }
 .profile .ps + .ps { border-top: 0; }
 /* sub-section titles echo the section title on one line: title in ink, sub-label in grey */
-.profile .ps-aside, .resume .ps-aside { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.3em; margin-bottom: 8px; font-size: var(--step-1); line-height: 1.15; letter-spacing: -0.03em; }
-.profile .ps-aside h2, .resume .ps-aside h2 { order: -1; margin: 0; font-size: inherit; }
-.profile .ps-aside .label, .resume .ps-aside .label { font-family: var(--font-body); font-size: 1em; font-weight: 650; line-height: inherit; letter-spacing: inherit; text-transform: none; color: var(--ink-3); }
+.profile .ps-aside, .resume .ps-aside, .pf-section .ps-aside { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.3em; margin-bottom: 8px; font-size: var(--step-1); line-height: 1.15; letter-spacing: -0.03em; }
+.profile .ps-aside h2, .resume .ps-aside h2, .pf-section .ps-aside h2 { order: -1; margin: 0; font-size: inherit; }
+.profile .ps-aside .label, .resume .ps-aside .label, .pf-section .ps-aside .label { font-family: var(--font-body); font-size: 1em; font-weight: 650; line-height: inherit; letter-spacing: inherit; text-transform: none; color: var(--ink-3); }
 .profile .ps-prose { max-width: none; }
 .profile .ps-body p { margin-bottom: 0.5em; }
 /* the four expertise lines sit two by two, so lines keep a readable length */
@@ -527,32 +561,6 @@ main {
 /* ============================================================
    RESUME
    ============================================================ */
-
-/* sticky bar under the header: section menu on the left, PDF on the right */
-:root:has(.resume-bar) { scroll-padding-top: calc(var(--header-h) + var(--subbar-h) + 1rem); }
-.resume-bar {
-    position: sticky;
-    /* tucked under the header's last pixels, so no gap shows between the two */
-    top: calc(var(--header-h) - 2px);
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    min-height: var(--subbar-h);
-    background: var(--paper);
-}
-.resume-nav {
-    display: flex;
-    gap: 22px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    font: 400 0.9375rem/1 var(--font-body);
-}
-.resume-nav a { padding-block: 12px; color: var(--ink-2); white-space: nowrap; }
-.resume-nav a[aria-current] { color: var(--ink); font-weight: 500; }
-.resume-nav a:hover { color: var(--accent-text); }
-.resume-nav-count { font: 400 var(--step--2)/1 var(--font-mono); color: var(--ink-3); }
 
 /* sections: title on top, entries across the full width */
 .resume .ps { display: block; padding-block: 32px; }
@@ -631,12 +639,6 @@ main {
 
 
 @media (max-width: 760px) {
-    /* the header no longer sticks, so the bar goes to the top */
-    .resume-bar { top: 0; }
-    :root:has(.resume-bar) { scroll-padding-top: calc(var(--subbar-h) + 1rem); }
-    .resume-bar { gap: 12px; }
-    .resume-nav { gap: 12px; font-size: 0.8125rem; }
-    .resume-bar .btn-small { padding-inline: 8px; }
     .resume .ps { padding-block: 28px; }
     .resume .ps-aside { margin-bottom: 16px; }
     /* one column: the dates sit on one line above the title */
@@ -644,6 +646,46 @@ main {
     .re-entry-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; }
     .re-entry-meta .re-entry-dateline { flex-direction: row; gap: 4px 12px; margin-bottom: 0; }
     .re-entry-meta .re-entry-location { margin: 0; }
+}
+
+/* ============================================================
+   PROJECT FRAME (a dataviz project in its own tab)
+   ============================================================ */
+
+/* the dark bar marks the site around projects that keep their own look */
+.project-page { display: flex; flex-direction: column; height: 100vh; height: 100dvh; padding: 0; }
+.project-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 44px;
+    padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
+    background: var(--ink);
+    color: var(--paper);
+}
+.project-crumbs { display: flex; align-items: baseline; gap: 10px; min-width: 0; padding-block: 10px; }
+.project-bar .wordmark { flex-shrink: 0; font-size: 1rem; color: var(--paper); }
+.project-bar .wordmark em { color: var(--accent); }
+.project-sep { color: rgba(248, 248, 246, 0.35); }
+.project-crumb { flex-shrink: 0; font-size: 0.875rem; color: rgba(248, 248, 246, 0.75); }
+.project-crumb:hover, .project-bar .wordmark:hover { color: var(--accent); }
+.project-title {
+    margin: 0;
+    overflow: hidden;
+    font: 500 0.875rem/1.2 var(--font-body);
+    letter-spacing: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--paper);
+}
+.project-year { flex-shrink: 0; font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; color: var(--accent); }
+.project-main { flex: 1; width: 100%; min-height: 0; max-width: none; margin: 0; padding: 0; }
+.project-frame { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+
+@media (max-width: 520px) {
+    /* the project name matters more than the section name on a phone */
+    .project-crumb, .project-crumb + .project-sep, .project-year { display: none; }
 }
 
 /* ============================================================
@@ -668,20 +710,42 @@ main {
    DATA VISUALISATION GRID
    ============================================================ */
 
+/* page intro: one line, the selected nav link already names the page */
+.page-intro { margin: 0; padding-block: 24px 4px; font-size: 1.0625rem; line-height: 1.5; color: var(--ink-2); }
+.page-intro .label { margin-right: 0.6em; }
+
+/* one section per group, titles like the resume sections */
+.pf-section { padding-block: 32px; }
+.pf-section + .pf-section { border-top: 1px solid var(--rule); }
+.pf-section .ps-aside { margin-bottom: 24px; font-size: var(--step-2); }
+
 .pf-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 48px 32px;
-    padding-block: 40px 72px;
 }
-.pf-card { display: flex; flex-direction: column; min-width: 0; }
+/* the title's link or button covers the whole card, so the card is one large target */
+.pf-card { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.pf-target {
+    padding: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+.pf-target::after { content: ''; position: absolute; inset: 0; }
+.pf-target:focus-visible { outline: none; }
+.pf-card:has(.pf-target:focus-visible) { outline: 2px solid var(--accent); outline-offset: 6px; }
+.pf-card:hover .pf-target { color: var(--accent-text); }
 .pf-image-wrap {
     aspect-ratio: 16 / 10;
     max-width: 100%;
     overflow: hidden;
     background: var(--paper-2);
     border: 1px solid var(--rule);
-    cursor: zoom-in;
 }
 .pf-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .pf-card:hover .pf-image-wrap img { transform: scale(1.02); }
@@ -695,14 +759,15 @@ main {
     color: var(--ink-3);
 }
 .pf-year { color: var(--accent-text); }
-.pf-open-btn {
+.pf-hint {
     margin-left: auto;
     font: 500 var(--step--2)/1.2 var(--font-mono);
     letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--ink);
     border-bottom: 1px solid var(--ink);
 }
-.pf-open-btn:hover { color: var(--accent-text); border-color: var(--accent); }
+.pf-card:hover .pf-hint { color: var(--accent-text); border-color: var(--accent); }
 .pf-title { margin-bottom: 6px; font-size: 1.1875rem; font-weight: 650; line-height: 1.2; letter-spacing: -0.03em; }
 .pf-desc { margin: 0; font-size: 0.9375rem; line-height: 1.55; color: var(--ink-2); }
 .pf-techs { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 12px; }
@@ -730,7 +795,23 @@ main {
     cursor: pointer;
 }
 .pf-lightbox-close:hover { color: #fff; }
-.pf-lightbox-img { position: relative; z-index: 1001; max-width: 90vw; max-height: 85vh; object-fit: contain; animation: lbScaleIn 0.22s ease; }
+.pf-lightbox-img { position: relative; z-index: 1001; max-width: 90vw; max-height: 80vh; object-fit: contain; background: #fff; animation: lbScaleIn 0.22s ease; }
+.pf-lightbox-nav {
+    position: absolute; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: 50%; z-index: 1001;
+    display: flex; align-items: center; gap: 8px;
+    transform: translateX(-50%);
+    font: 400 var(--step--1)/1 var(--font-mono);
+    color: rgba(255, 255, 255, 0.8);
+}
+.pf-lightbox-nav button {
+    min-width: 44px; min-height: 44px;
+    font: 300 1.5rem/1 var(--font-body);
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.pf-lightbox-nav button:hover { color: #fff; }
 @keyframes lbFadeIn { from { opacity: 0; } }
 @keyframes lbScaleIn { from { opacity: 0; transform: scale(0.96); } }
 

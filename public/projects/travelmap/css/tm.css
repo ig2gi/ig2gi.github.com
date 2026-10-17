@@ -1,0 +1,181 @@
+/**
+ * @author gilbert perrin
+ * @email gilbert.perrin@gmail.com
+ * @create date 2019-07-27 16:20:13
+ * @modify date 2019-07-27 16:46:35
+ * @desc [description]
+ */
+
+/*
+* ----------------------------------------------------
+* VARIABLES
+* ----------------------------------------------------
+*/
+:root {
+    --transport-3: '#d53e4f';
+}
+
+/*
+* ----------------------------------------------------
+* HTML
+* ----------------------------------------------------
+*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Families */
+body {
+    font-family: "tablet-gothic", verdana, arial, sans-serif;
+    /* Weights from Typekit: 300, 400 */
+}
+
+h2,
+h3 {
+    font-family: "tablet-gothic-condensed", "arial narrow", arial, verdana, sans-serif;
+    /* Weights from Typekit: 200, 900 */
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+/*
+* ----------------------------------------------------
+* HEADER & Legend
+* ----------------------------------------------------
+*/
+
+#header {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+img.transport {
+    margin-right: 20px;
+    margin-top: auto;
+}
+
+
+
+/*
+* ----------------------------------------------------
+* MAP & SVG Container (Timeline) - Responsive stuff
+* ----------------------------------------------------
+*/
+#map {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 700px;
+    border: 1px solid dimgray;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 1px dashed dimgray;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+/*
+* ----------------------------------------------------
+* SVG Timeline 
+* ----------------------------------------------------
+*/
+
+text {
+    font-size: 10px;
+    fill: black;
+}
+
+/* date axis */
+.axis path,
+.axis line {
+    fill: none;
+    stroke: dimgray;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 10px;
+    fill: black;
+}
+
+/* spots */
+g.spot circle {
+    fill: transparent;
+    stroke-width: 1;
+    stroke: dimgray;
+}
+
+g.spot:hover circle {
+    stroke-width: 4;
+    pointer-events: all;
+}
+
+g.spot line.pin {
+    stroke: dimgray;
+    stroke-width: 1;
+}
+
+g.spot line.spotline {
+    stroke: lightgray;
+    stroke-width: 1;
+    stroke-dasharray: 1, 1;
+}
+
+g.spot text {
+    visibility: hidden;
+}
+
+g.spot:hover text {
+    visibility: visible;
+}
+
+g.spot.fixed text {
+    visibility: visible;
+}
+
+/* routes */
+g.route line {
+    stroke-width: 6;
+}
+
+/* countries */
+g.country text {
+    font-size: 12px;
+    fill: dimgray;
+    font-weight: bold;
+}
+
+g.country line {
+    stroke: gray;
+    stroke-width: 1;
+    stroke-dasharray: 5, 2;
+}

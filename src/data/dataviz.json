@@ -9,7 +9,10 @@
     "company": "Freelance Project",
     "technology": "HTML5 D3.js CSS3 MapBox/ Node.js\u00ae",
     "url": "travelmap/sprint1/",
-    "image": "/images/portfolio/travelmap.png"
+    "image": "/images/portfolio/travelmap.png",
+    "category": "freelance",
+    "link": "/projects/travelmap/index.html",
+    "slug": "travel-map"
   },
   {
     "id": 2,
@@ -19,10 +22,13 @@
       2019
     ],
     "description": "A serie of graphs and visualisations of key indicators, generated automatically server side (Node.js) and constantly updated for a 'dashboard' usage.",
-    "company": "Sophia Genetics",
+    "company": "SOPHiA GENETICS",
     "technology": "HTML5 D3.js CSS3 / Node.js\u00ae",
     "url": "stats/",
-    "image": "/images/portfolio/dashboards.png"
+    "image": "/images/portfolio/dashboards.png",
+    "category": "professional",
+    "link": "/projects/stats/index.html",
+    "slug": "dashboard-metrics"
   },
   {
     "id": 3,
@@ -32,10 +38,18 @@
       2019
     ],
     "description": "",
-    "company": "Sophia Genetics",
+    "company": "SOPHiA GENETICS",
     "technology": "D3.js NODEBOX3",
     "url": "prototypes/",
-    "image": "/images/portfolio/protos.png"
+    "image": "/images/portfolio/protos.png",
+    "category": "professional",
+    "gallery": [
+      "/images/portfolio/full/proto-scores.png",
+      "/images/portfolio/full/proto-acmg.png",
+      "/images/portfolio/full/proto-coverage.png",
+      "/images/portfolio/full/proto-sampleid.png",
+      "/images/portfolio/full/proto-fds.png"
+    ]
   },
   {
     "id": 4,
@@ -44,10 +58,11 @@
       2018
     ],
     "description": "The worldmap displays information about statistics on patient analyses done on the SophiA Data Driven Medicine Platform",
-    "company": "Sophia Genetics",
+    "company": "SOPHiA GENETICS",
     "technology": "HTML5 D3.js CSS3 / Node.js\u00ae server + Express",
     "url": "",
-    "image": "/images/portfolio/sgmap.png"
+    "image": "/images/portfolio/sgmap.png",
+    "category": "professional"
   },
   {
     "id": 5,
@@ -56,11 +71,12 @@
       2017
     ],
     "description": "Study on panel of 3000 patients diagnosed with breast cancer between age of 40 to 70",
-    "company": "Sophia Genetics",
+    "company": "SOPHiA GENETICS",
     "technology": "HTML5 D3.js CSS3",
     "url": "images/prevent.png",
     "image": "/images/portfolio/prevent.png",
-    "open": false
+    "open": false,
+    "category": "professional"
   },
   {
     "id": 6,
@@ -73,7 +89,9 @@
     "technology": "HTML5 D3.js CSS3",
     "url": "https://observablehq.com/@ig2gi/illusion",
     "image": "/images/portfolio/illusion.png",
-    "open": true
+    "open": true,
+    "category": "personal",
+    "link": "https://observablehq.com/@ig2gi/illusion"
   },
   {
     "id": 7,
@@ -87,7 +105,9 @@
     "company": "Personal",
     "url": "https://observablehq.com/@ig2gi/global-surface-temperature-change",
     "image": "/images/portfolio/gtc.png",
-    "open": true
+    "open": true,
+    "category": "personal",
+    "link": "https://observablehq.com/@ig2gi/global-surface-temperature-change"
   },
   {
     "id": 8,
@@ -100,7 +120,8 @@
     "technology": "HTML5 D3.js CSS3 - server Spring Boot",
     "url": "",
     "image": "/images/portfolio/refseq.png",
-    "open": false
+    "open": false,
+    "category": "personal"
   },
   {
     "id": 9,
@@ -113,7 +134,11 @@
     "technology": "NODEBOX3",
     "url": "images/cancer.png",
     "image": "/images/portfolio/cancer-small.png",
-    "open": false
+    "open": false,
+    "category": "personal",
+    "gallery": [
+      "/images/portfolio/full/cancer.png"
+    ]
   },
   {
     "id": 10,
@@ -122,11 +147,12 @@
       2014
     ],
     "description": "Designed & implemented a dynamic Circular Genomic Viewer (circos plot), first implemented in D3.js & HTML5, then integrated into a JavaFX application.",
-    "company": "Sophia Genetics",
+    "company": "SOPHiA GENETICS",
     "technology": "HTML5 D3.js CSS3",
     "url": "images/circos.jpeg",
     "image": "/images/portfolio/circos.jpeg",
-    "open": false
+    "open": false,
+    "category": "professional"
   },
   {
     "id": 11,
@@ -139,7 +165,10 @@
     "company": "International AIDS Society",
     "url": "ias/index.html",
     "image": "/images/portfolio/ias.png",
-    "open": false
+    "open": false,
+    "category": "freelance",
+    "link": "/projects/ias/map.html",
+    "slug": "ias-cohorts-map"
   },
   {
     "id": 12,
@@ -152,7 +181,8 @@
     "company": "Personal",
     "url": "images/cv_1.png",
     "image": "/images/portfolio/cv_1.png",
-    "open": false
+    "open": false,
+    "category": "personal"
   },
   {
     "id": 13,
@@ -165,7 +195,10 @@
     "company": "Personal",
     "url": "knightcenter/w5/",
     "image": "/images/portfolio/w5.png",
-    "open": false
+    "open": false,
+    "category": "personal",
+    "link": "/projects/knightcenter/w5/index.html",
+    "slug": "climate-change-2012"
   },
   {
     "id": 14,
@@ -178,7 +211,10 @@
     "company": "Personal",
     "url": "knightcenter/w4/",
     "image": "/images/portfolio/w4.png",
-    "open": false
+    "open": false,
+    "category": "personal",
+    "link": "/projects/knightcenter/w4/index.html",
+    "slug": "us-jobless-rate"
   },
   {
     "id": 15,
@@ -191,7 +227,14 @@
     "url": "knightcenter/w3/",
     "company": "Personal",
     "image": "/images/portfolio/w3.png",
-    "open": false
+    "open": false,
+    "category": "personal",
+    "gallery": [
+      "/images/portfolio/full/w3-overall-1.png",
+      "/images/portfolio/full/w3-overall-3.png",
+      "/images/portfolio/full/w3-overall-4.png",
+      "/images/portfolio/full/w3-indicators.png"
+    ]
   },
   {
     "id": 16,
@@ -204,7 +247,11 @@
     "company": "Personal",
     "url": "knightcenter/w2/w2_v2.png",
     "image": "/images/portfolio/w2.png",
-    "open": false
+    "open": false,
+    "category": "personal",
+    "gallery": [
+      "/images/portfolio/full/w2.png"
+    ]
   },
   {
     "id": 17,
@@ -218,7 +265,9 @@
     "company": "Personal",
     "url": "https://github.com/ig2gi/philo_graph/wiki",
     "image": "/images/portfolio/philo.png",
-    "open": false
+    "open": false,
+    "category": "personal",
+    "link": "https://github.com/ig2gi/philo_graph/wiki"
   },
   {
     "id": 18,
@@ -231,6 +280,8 @@
     "company": "Personal",
     "url": "https://observablehq.com/@ig2gi/sieve-of-eratosthenes",
     "image": "/images/portfolio/eratosthene.png",
-    "open": true
+    "open": true,
+    "category": "personal",
+    "link": "https://observablehq.com/@ig2gi/sieve-of-eratosthenes"
   }
 ]

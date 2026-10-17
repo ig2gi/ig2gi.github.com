@@ -1,0 +1,19 @@
+---
+// Frame page for the archived projects in public/projects/: the site bar on top,
+// the original page untouched below. Projects built in this repo later can use
+// ProjectLayout directly, without the frame.
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import datavizData from '../../data/dataviz.json';
+
+export function getStaticPaths() {
+  return datavizData
+    .filter(d => d.slug && d.link?.startsWith('/projects/'))
+    .map(d => ({ params: { slug: d.slug }, props: { item: d } }));
+}
+
+const { item } = Astro.props;
+---
+
+<ProjectLayout title={item.title} year={item.year.join('–')} description={item.description}>
+  <iframe class="project-frame" src={item.link} title={item.title}></iframe>
+</ProjectLayout>

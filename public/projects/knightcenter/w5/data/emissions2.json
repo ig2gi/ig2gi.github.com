@@ -1,0 +1,1209 @@
+{
+  "name": "world", 
+  "children": [
+    {
+      "name": "Sub-Saharan Africa", 
+      "children": [
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Angola", 
+          "energy": 641.11, 
+          "emission": 108679.68000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Namibia", 
+          "energy": 763.8, 
+          "emission": 12821.39
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Ghana", 
+          "energy": 387.86, 
+          "emission": 22494.98
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Cape Verde", 
+          "energy": 213.24, 
+          "emission": 308.03
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Tanzania", 
+          "energy": 450.69, 
+          "emission": 60135.31999999999
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Botswana", 
+          "energy": 1033.7, 
+          "emission": 12421.839999999998
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Ethiopia", 
+          "energy": 402.5, 
+          "emission": 89869.65
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Seychelles", 
+          "energy": 2410.83, 
+          "emission": 682.06
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "South Africa", 
+          "energy": 2920.54, 
+          "emission": 526262.26
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Togo", 
+          "energy": 445.05, 
+          "emission": 6046.429999999999
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Congo Dem. Rep.", 
+          "energy": 357.0, 
+          "emission": 113904.46
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Benin", 
+          "energy": 403.97, 
+          "emission": 11049.2
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Nigeria", 
+          "energy": 700.71, 
+          "emission": 248307.07
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Cameroon", 
+          "energy": 360.77, 
+          "emission": 33367.08
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Zimbabwe", 
+          "energy": 762.67, 
+          "emission": 24728.53
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Mozambique", 
+          "energy": 427.23, 
+          "emission": 24939.280000000002
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Mauritius", 
+          "energy": 947.1, 
+          "emission": 3953.03
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Congo Rep.", 
+          "energy": 355.77, 
+          "emission": 11090.779999999999
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Comoros", 
+          "energy": 60.42, 
+          "emission": 124.68
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Sao Tome and Principe", 
+          "energy": 279.61, 
+          "emission": 128.35
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Senegal", 
+          "energy": 242.76, 
+          "emission": 16187.92
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Zambia", 
+          "energy": 617.47, 
+          "emission": 46250.71
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Gambia The", 
+          "energy": 83.58, 
+          "emission": 410.7
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Kenya", 
+          "energy": 474.46, 
+          "emission": 43063.78
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Cote d'Ivoire", 
+          "energy": 535.03, 
+          "emission": 25375.47
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Equatorial Guinea", 
+          "energy": 2731.64, 
+          "emission": 4814.77
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Guinea-Bissau", 
+          "energy": 66.7, 
+          "emission": 282.36
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Swaziland", 
+          "energy": 373.34, 
+          "emission": 1092.77
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Eritrea", 
+          "energy": 142.32, 
+          "emission": 4069.87
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Gabon", 
+          "energy": 1214.19, 
+          "emission": 11179.960000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Sudan", 
+          "energy": 372.31, 
+          "emission": 130964.54000000001
+        }
+      ]
+    }, 
+    {
+      "name": "Middle East & North Africa", 
+      "children": [
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Algeria", 
+          "energy": 1137.56, 
+          "emission": 170909.65
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Egypt Arab Rep.", 
+          "energy": 903.39, 
+          "emission": 279493.99
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Jordan", 
+          "energy": 1259.63, 
+          "emission": 23956.379999999997
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Libya", 
+          "energy": 3258.22, 
+          "emission": 74577.87000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Saudi Arabia", 
+          "energy": 5888.1, 
+          "emission": 490403.54
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Lebanon", 
+          "energy": 1580.32, 
+          "emission": 18773.52
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Djibouti", 
+          "energy": 170.35, 
+          "emission": 524.38
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Yemen Rep.", 
+          "energy": 324.08, 
+          "emission": 33311.36
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Syrian Arab Republic", 
+          "energy": 1122.97, 
+          "emission": 89564.87999999999
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Malta", 
+          "energy": 1934.73, 
+          "emission": 2915.27
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Morocco", 
+          "energy": 476.8, 
+          "emission": 64292.39
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Israel", 
+          "energy": 2873.3321092254, 
+          "emission": 44954.26
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Oman", 
+          "energy": 5554.06, 
+          "emission": 64335.29
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Tunisia", 
+          "energy": 881.26, 
+          "emission": 35537.909999999996
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Qatar", 
+          "energy": 14911.15, 
+          "emission": 84383.95999999999
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Kuwait", 
+          "energy": 11402.06, 
+          "emission": 92703.98000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Iraq", 
+          "energy": 1034.87, 
+          "emission": 122399.26000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Iran Islamic Rep.", 
+          "energy": 2951.3, 
+          "emission": 682201.21
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "United Arab Emirates", 
+          "energy": 8587.96, 
+          "emission": 180593.12999999998
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Bahrain", 
+          "energy": 8096.25, 
+          "emission": 25604.71
+        }
+      ]
+    }, 
+    {
+      "name": "South Asia", 
+      "children": [
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Bangladesh", 
+          "energy": 201.31, 
+          "emission": 160326.3
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Pakistan", 
+          "energy": 501.6, 
+          "emission": 328236.03
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Nepal", 
+          "energy": 338.4, 
+          "emission": 30199.72
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Sri Lanka", 
+          "energy": 449.04, 
+          "emission": 24029.84
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "India", 
+          "energy": 584.96, 
+          "emission": 2548035.75
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Bhutan", 
+          "energy": 354.35, 
+          "emission": 733.4
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Maldives", 
+          "energy": 985.05, 
+          "emission": 920.42
+        }
+      ]
+    }, 
+    {
+      "name": "Europe & Central Asia", 
+      "children": [
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Bulgaria", 
+          "energy": 2304.54, 
+          "emission": 66015.48999999999
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Slovenia", 
+          "energy": 3455.3, 
+          "emission": 22284.289999999997
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Switzerland", 
+          "energy": 3361.65, 
+          "emission": 49663.71000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Croatia", 
+          "energy": 1964.84, 
+          "emission": 30077.39
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Gibraltar", 
+          "energy": 5596.85, 
+          "emission": 437.21
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Finland", 
+          "energy": 6639.37, 
+          "emission": 74204.73999999999
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Kazakhstan", 
+          "energy": 4134.07, 
+          "emission": 302006.61
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Belgium", 
+          "energy": 5220.89, 
+          "emission": 123619.97
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Germany", 
+          "energy": 4057.42182698366, 
+          "emission": 942343.71
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "United Kingdom", 
+          "energy": 3282.51, 
+          "emission": 629611.73
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Romania", 
+          "energy": 1601.76, 
+          "emission": 131274.14
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Hungary", 
+          "energy": 2541.93195661816, 
+          "emission": 70918.5
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Turkmenistan", 
+          "energy": 3932.75, 
+          "emission": 80172.98
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Netherlands", 
+          "energy": 5016.13, 
+          "emission": 213354.29
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Georgia", 
+          "energy": 722.94, 
+          "emission": 11644.47
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Montenegro", 
+          "energy": 1383.84, 
+          "emission": 1950.84
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Belarus", 
+          "energy": 2814.8, 
+          "emission": 86461.20999999999
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Greece", 
+          "energy": 2386.73, 
+          "emission": 112922.06
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Tajikistan", 
+          "energy": 341.78, 
+          "emission": 8805.79
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Latvia", 
+          "energy": 1871.43, 
+          "emission": 12840.989999999998
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Norway", 
+          "energy": 6332.36, 
+          "emission": 76800.51000000001
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Czech Republic", 
+          "energy": 4022.17, 
+          "emission": 138491.43999999997
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Luxembourg", 
+          "energy": 8312.66964658156, 
+          "emission": 12129.09
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Macedonia FYR", 
+          "energy": 1351.95, 
+          "emission": 13937.669999999998
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Iceland", 
+          "energy": 16876.0263139654, 
+          "emission": 3200.7400000000002
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Portugal", 
+          "energy": 2210.04, 
+          "emission": 75224.54999999999
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Moldova", 
+          "energy": 686.94, 
+          "emission": 9003.130000000001
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "France", 
+          "energy": 4072.81, 
+          "emission": 518834.63999999996
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Lithuania", 
+          "energy": 2511.66, 
+          "emission": 23753.140000000003
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Denmark", 
+          "energy": 3550.21, 
+          "emission": 61670.32
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Ukraine", 
+          "energy": 2507.36, 
+          "emission": 420681.28
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Austria", 
+          "energy": 3943.55, 
+          "emission": 83017.52
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Turkey", 
+          "energy": 1440.5, 
+          "emission": 386077.21
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Albania", 
+          "energy": 537.83, 
+          "emission": 7681.51
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Italy", 
+          "energy": 2813.51, 
+          "emission": 528497.1
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Russian Federation", 
+          "energy": 4560.56, 
+          "emission": 2407247.92
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Serbia", 
+          "energy": 1973.79, 
+          "emission": 66789.23999999999
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Sweden", 
+          "energy": 5413.91, 
+          "emission": 68303.99
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Azerbaijan", 
+          "energy": 1337.63, 
+          "emission": 86468.29
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Slovak Republic", 
+          "energy": 3177.84, 
+          "emission": 45216.91
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Cyprus", 
+          "energy": 2297.72, 
+          "emission": 9653.01
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Bosnia and Herzegovina", 
+          "energy": 1579.9, 
+          "emission": 35783.939999999995
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Uzbekistan", 
+          "energy": 1757.8, 
+          "emission": 175118.44999999998
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Poland", 
+          "energy": 2663.44, 
+          "emission": 418738.4600000001
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Estonia", 
+          "energy": 4085.25, 
+          "emission": 21370.0
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Spain", 
+          "energy": 2780.63290546456, 
+          "emission": 401233.0
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Ireland", 
+          "energy": 3333.28, 
+          "emission": 67572.1
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Kyrgyz Republic", 
+          "energy": 565.75, 
+          "emission": 11333.43
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Armenia", 
+          "energy": 843.18, 
+          "emission": 9425.270000000002
+        }
+      ]
+    }, 
+    {
+      "name": "Latin America & Caribbean", 
+      "children": [
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Venezuela RB", 
+          "energy": 2356.91, 
+          "emission": 248118.44
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Bolivia", 
+          "energy": 637.6, 
+          "emission": 58276.100000000006
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Nicaragua", 
+          "energy": 540.32, 
+          "emission": 13688.630000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Paraguay", 
+          "energy": 749.37, 
+          "emission": 28573.04
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Chile", 
+          "energy": 1826.32, 
+          "emission": 99406.67999999998
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "St. Kitts and Nevis", 
+          "energy": 1645.03, 
+          "emission": 249.36
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Jamaica", 
+          "energy": 1208.24, 
+          "emission": 14155.980000000001
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Uruguay", 
+          "energy": 1223.73, 
+          "emission": 34992.659999999996
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Dominica", 
+          "energy": 628.34, 
+          "emission": 128.35
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Guyana", 
+          "energy": 666.61, 
+          "emission": 1525.47
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Costa Rica", 
+          "energy": 1067.05, 
+          "emission": 11991.46
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Trinidad and Tobago", 
+          "energy": 15158.19, 
+          "emission": 60072.69
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Belize", 
+          "energy": 571.43, 
+          "emission": 425.37
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Grenada", 
+          "energy": 783.61, 
+          "emission": 245.69
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Haiti", 
+          "energy": 263.09, 
+          "emission": 7879.1900000000005
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Mexico", 
+          "energy": 1497.34, 
+          "emission": 651110.99
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "St. Lucia", 
+          "energy": 760.37, 
+          "emission": 396.04
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "St. Vincent and the Grenadines", 
+          "energy": 641.85, 
+          "emission": 201.69
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Antigua and Barbuda", 
+          "energy": 1698.96, 
+          "emission": 447.37
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Honduras", 
+          "energy": 591.6, 
+          "emission": 16728.359999999997
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Dominican Republic", 
+          "energy": 826.09, 
+          "emission": 29953.37
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Peru", 
+          "energy": 550.34, 
+          "emission": 65611.92
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Suriname", 
+          "energy": 1399.63, 
+          "emission": 2438.56
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Colombia", 
+          "energy": 697.24, 
+          "emission": 147178.45
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Ecuador", 
+          "energy": 795.97, 
+          "emission": 48583.41
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Guatemala", 
+          "energy": 701.31, 
+          "emission": 26077.780000000002
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Barbados", 
+          "energy": 1476.34, 
+          "emission": 1353.12
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Brazil", 
+          "energy": 1242.77, 
+          "emission": 1133183.14
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "El Salvador", 
+          "energy": 828.21, 
+          "emission": 10698.39
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Panama", 
+          "energy": 895.52, 
+          "emission": 11335.4
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Argentina", 
+          "energy": 1853.33, 
+          "emission": 344804.94999999995
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Bahamas The", 
+          "energy": 2155.93, 
+          "emission": 2156.2
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Cuba", 
+          "energy": 1021.56, 
+          "emission": 47358.06
+        }
+      ]
+    }, 
+    {
+      "name": "East Asia & Pacific", 
+      "children": [
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Malaysia", 
+          "energy": 2390.97, 
+          "emission": 270849.47
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Korea Dem. Rep.", 
+          "energy": 794.96, 
+          "emission": 102781.72
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Cambodia", 
+          "energy": 370.75, 
+          "emission": 30611.19
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Hong Kong SAR China", 
+          "energy": 2132.98, 
+          "emission": 41933.77
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "China", 
+          "energy": 1695.31, 
+          "emission": 8973621.71
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Thailand", 
+          "energy": 1503.74, 
+          "emission": 392397.24000000005
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Philippines", 
+          "energy": 423.57, 
+          "emission": 148360.86
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Kiribati", 
+          "energy": 115.74, 
+          "emission": 29.34
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Mongolia", 
+          "energy": 1193.9, 
+          "emission": 20449.86
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Marshall Islands", 
+          "energy": 609.67, 
+          "emission": 99.01
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Myanmar", 
+          "energy": 316.42, 
+          "emission": 120919.03
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Vietnam", 
+          "energy": 744.53, 
+          "emission": 233391.65
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Timor-Leste", 
+          "energy": 57.51, 
+          "emission": 190.68
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Fiji", 
+          "energy": 627.34, 
+          "emission": 1254.11
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Indonesia", 
+          "energy": 850.83, 
+          "emission": 739274.7799999999
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Vanuatu", 
+          "energy": 157.39, 
+          "emission": 91.68
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Australia", 
+          "energy": 5635.65, 
+          "emission": 595177.66
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Samoa", 
+          "energy": 319.95, 
+          "emission": 161.35
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Brunei Darussalam", 
+          "energy": 7971.32, 
+          "emission": 17232.659999999996
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Tonga", 
+          "energy": 567.21, 
+          "emission": 176.02
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Korea Rep.", 
+          "energy": 5043.8, 
+          "emission": 565007.28
+        }, 
+        {
+          "yenergy": 2009, 
+          "yemission": 2006, 
+          "name": "Singapore", 
+          "energy": 3704.39, 
+          "emission": 38131.77
+        }, 
+        {
+          "yenergy": 2007, 
+          "yemission": 1990, 
+          "name": "Solomon Islands", 
+          "energy": 128.9, 
+          "emission": 198.02
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "New Zealand", 
+          "energy": 4192.81, 
+          "emission": 74632.88
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Japan", 
+          "energy": 3883.04655693708, 
+          "emission": 1334505.62
+        }
+      ]
+    }, 
+    {
+      "name": "North America", 
+      "children": [
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "United States", 
+          "energy": 7231.8, 
+          "emission": 6565757.94
+        }, 
+        {
+          "yenergy": 2010, 
+          "yemission": 2006, 
+          "name": "Canada", 
+          "energy": 7485.54, 
+          "emission": 695542.13
+        }
+      ]
+    }
+  ]
+}

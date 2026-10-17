@@ -1,0 +1,40 @@
+---
+// Sticky bar under the header: one link per page section with its item count,
+// plus an optional action on the right (slot), e.g. the resume PDF button.
+interface Props {
+  sections: { id: string; name: string; count: number }[];
+  label: string;
+}
+const { sections, label } = Astro.props;
+---
+
+<div class="page-bar">
+  <nav class="page-bar-nav" aria-label={label}>
+    {sections.map(s => <a href={`#${s.id}`}>{s.name} <span class="page-bar-count">{s.count}</span></a>)}
+  </nav>
+  <slot />
+</div>
+
+<script>
+  // marks the section currently under the bar
+  const bar   = document.querySelector<HTMLElement>('.page-bar')!;
+  const links = [...bar.querySelectorAll<HTMLAnchorElement>('.page-bar-nav a')];
+  const targets = links.map(a => document.querySelector<HTMLElement>(a.hash)!);
+
+  function update() {
+    const line = bar.getBoundingClientRect().bottom + 24;
+    let current = 0;
+    targets.forEach((t, i) => { if (t.getBoundingClientRect().top <= line) current = i; });
+    // at the very bottom the last section may be too short to reach the line
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) current = targets.length - 1;
+    links.forEach((a, i) => a.toggleAttribute('aria-current', i === current));
+  }
+
+  let queued = false;
+  addEventListener('scroll', () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; update(); });
+  }, { passive: true });
+  update();
+</script>

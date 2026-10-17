@@ -1,0 +1,70 @@
+[
+	{
+		"code": "EuroCoord", 
+		"name": "EuroCoord" 
+	},
+	{
+		"code": "CASCADE", 
+		"name": "CASCADE"
+	},
+	{
+		"code": "COHERE", 
+		"name": "COHERE"
+	},
+	{
+		"code": "PENTA", 
+		"name": "PENTA"
+	},
+	{
+		"code": "EPPICC", 
+		"name": "EPPICC"
+	},
+	{
+		"code": "EDCTP", 
+		"name": "EDCTP"
+	},
+	{
+		"code": "ANRS", 
+		"name": "ANRS"
+	},
+	{
+		"code": "IeDEA", 
+		"name": "IeDEA"
+	},
+	{
+		"code": "TREATAsia", 
+		"name": "TREAT Asia"
+	},
+	{
+		"code": "CCASAnet", 
+		"name": "CCASAnet"
+	},
+	{
+		"code": "EastAfricaConsortium", 
+		"name": "East Africa Consortium"
+	},
+	{
+		"code": "CentralAfrica", 
+		"name": "Central Africa"
+	},
+	{
+		"code": "WestAfrica", 
+		"name": "West Africa"
+	},
+	{
+		"code": "SouthernAfrica", 
+		"name": "Southern Africa"
+	},
+	{
+		"code": "Other", 
+		"name": "Other" 
+	},
+	{
+		"code": "PHACS", 
+		"name": "PHACS"
+	},
+	{
+		"code": "Independent", 
+		"name": "Independent"
+	}
+]
