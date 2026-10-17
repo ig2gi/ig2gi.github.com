@@ -295,8 +295,8 @@ main {
 .ribbon-fig {
     margin: 0;
     padding-block: 40px;
+    /* the only rule on the home page: it ends the introduction; section titles and space separate the rest */
     border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
 }
 .fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 12px; }
 .fig-head h2 { font-size: var(--step-2); }
@@ -421,17 +421,32 @@ main {
     .notes li::before { position: absolute; left: 0; top: 0; margin: 0; }
 }
 
+/* home section titles, set like the ribbon title: highlight on its own line in grey */
+.section-title { grid-column: 1 / -1; margin: 0; font-size: var(--step-2); }
+.section-title em { display: block; color: var(--ink-3); }
+
 /* principles */
 .principles {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 40px 32px;
-    padding-block: 56px;
+    padding-block: 32px 56px;
 }
 .principle h3 { margin: 10px 0; font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.03em; }
 .principle p { margin: 0; font-size: 0.9375rem; color: var(--ink-2); }
 .principle .label { color: var(--accent-text); }
-@media (max-width: 960px) { .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* sequence: each step points to the next across the column gap, like the domain connectors */
+.principle-when { display: flex; align-items: center; gap: 10px; }
+.principle-next { flex: 1; display: flex; align-items: center; margin-right: -24px; color: var(--ink-3); }
+.principle-next::before { content: ""; flex: 1; border-top: 1px solid currentColor; }
+.principle-next::after { content: ""; border-left: 5px solid currentColor; border-block: 3.5px solid transparent; }
+/* the constant runs alongside the steps rather than after them */
+.principle-always { padding-left: 16px; margin-left: -16px; border-left: 1px dashed var(--rule); }
+@media (max-width: 960px) {
+    .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .principle-next { display: none; }
+    .principle-always { padding-left: 0; margin-left: 0; border-left: 0; }
+}
 @media (max-width: 520px) { .principles { grid-template-columns: 1fr; } }
 
 /* closing call to action */
@@ -439,10 +454,10 @@ main {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 24px;
-    padding-block: 56px 72px;
-    border-top: 1px solid var(--ink);
+    padding-block: 16px 72px;
 }
-.close h2 { grid-column: 1 / span 7; font-size: var(--step-2); }
+/* two thirds for the question, one third for the button */
+.close h2 { grid-column: 1 / span 8; font-size: var(--step-2); }
 .close h2 em { color: var(--accent-text); }
 .close .ctas { grid-column: 9 / span 4; align-self: end; }
 @media (max-width: 760px) { .close h2, .close .ctas { grid-column: 1 / -1; } }
@@ -451,7 +466,22 @@ main {
    LONG-FORM SECTIONS (home profile, resume)
    ============================================================ */
 
-.profile-sections { border-top: 1px solid var(--ink); padding-block: 8px 48px; }
+/* home: no rules, about 72px of space above each section title */
+.profile { padding-block: 16px 56px; }
+.profile-sections { margin-top: 12px; }
+/* compact on the home page: title on top, text below across the full width */
+.profile .ps { display: block; padding-block: 16px; }
+.profile .ps + .ps { border-top: 0; }
+/* sub-section titles echo the section title on one line: title in ink, sub-label in grey */
+.profile .ps-aside { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.3em; margin-bottom: 8px; font-size: var(--step-1); line-height: 1.15; letter-spacing: -0.03em; }
+.profile .ps-aside h2 { order: -1; margin: 0; font-size: inherit; }
+.profile .ps-aside .label { font-family: var(--font-body); font-size: 1em; font-weight: 650; line-height: inherit; letter-spacing: inherit; text-transform: none; color: var(--ink-3); }
+.profile .ps-prose { max-width: none; }
+.profile .ps-body p { margin-bottom: 0.5em; }
+/* the four expertise lines sit two by two, so lines keep a readable length */
+#expertise .ps-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+#expertise .ps-body > :not(p) { grid-column: 1 / -1; }
+@media (max-width: 760px) { #expertise .ps-body { grid-template-columns: 1fr; } }
 
 .ps {
     display: grid;

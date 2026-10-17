@@ -4,7 +4,7 @@ import CareerRibbon from '../components/CareerRibbon.astro';
 import ProfileSections from '../components/ProfileSection';
 import profile from '../data/profile.json';
 
-const { hero, ribbon, principles, close } = profile;
+const { hero, ribbon, headings, principles, close } = profile;
 
 // labels are uppercased by CSS; SOPHiA keeps its lowercase i
 const keepCase = (s: string) => s.replaceAll('SOPHiA', 'SOPH<span class="keep-case">i</span>A');
@@ -21,17 +21,24 @@ const keepCase = (s: string) => s.replaceAll('SOPHiA', 'SOPH<span class="keep-ca
 
   <CareerRibbon title={ribbon.title} caption={ribbon.caption} notes={ribbon.notes} domains={ribbon.domains} />
 
-  <section class="principles" aria-label="How I work">
-    {principles.map(p => (
-      <div class="principle">
-        <span class="label">{p.when}</span>
+  <section class="principles" aria-labelledby="principles-title">
+    <h2 id="principles-title" class="section-title" set:html={headings.principles} />
+    {principles.map((p, i) => (
+      <div class={`principle${p.when === 'Always' ? ' principle-always' : ''}`}>
+        <div class="principle-when">
+          <span class="label">{p.when}</span>
+          {principles[i + 1]?.when === 'Then' && <span class="principle-next" aria-hidden="true"></span>}
+        </div>
         <h3>{p.title}</h3>
         <p>{p.text}</p>
       </div>
     ))}
   </section>
 
-  <ProfileSections data={profile} />
+  <section class="profile" aria-labelledby="profile-title">
+    <h2 id="profile-title" class="section-title" set:html={headings.sections} />
+    <ProfileSections data={profile} />
+  </section>
 
   <section class="close">
     <h2 set:html={close.title} />

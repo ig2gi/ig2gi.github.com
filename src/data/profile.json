@@ -21,11 +21,15 @@
       { "eventId": 26, "title": "2025 · VP, Design & Innovation", "text": "A small team focused on product vision and strategic features." }
     ]
   },
+  "headings": {
+    "principles": "Build it, then <em>scale it</em>",
+    "sections": "Product, design, engineering, <em>and now AI</em>"
+  },
   "principles": [
     { "when": "Before", "title": "Clarify first", "text": "Speed matters less than direction. I make sure the team is solving the right problem before anyone writes a line." },
     { "when": "Then", "title": "Build it myself", "text": "I prototype the first version hands-on, with AI as a daily tool. Deep enough to direct it, fast enough to ship before the spec is done." },
     { "when": "Then", "title": "Scale through teams", "text": "I grow the team that takes what works to production, and delegate with the credibility of having built it." },
-    { "when": "Always", "title": "Data into stories", "text": "Complex datasets turned into clear interfaces people actually use. D3.js has been my core tool since 2012." }
+    { "when": "Always", "title": "Data into stories", "text": "Complex datasets turned into clear interfaces people actually use. Advanced dataviz libraries have been my core tools since 2012." }
   ],
   "close": {
     "title": "Need someone who clarifies before building, and builds before delegating? <em>Let's talk.</em>",
@@ -35,48 +39,32 @@
     {
       "id": "profile",
       "label": "Profile",
-      "sublabel": "WHO I AM",
+      "sublabel": "who I am",
       "paragraphs": [
-        "I'm a <b>product, design, and engineering leader</b> with a data‑ and facts‑driven mindset, focused on <b>turning complex business needs into clear, usable experiences.</b> My background blends Product Management, Data Visualization, Data Engineering, and Frontend Engineering — grounded in curiosity about the underlying domain and strong attention to detail.",
-        "I joined <a href=\"https://www.sophiagenetics.com/\" target=\"_blank\">Sophia Genetics</a> as its tenth employee — the company is now 400+ people. In more than 10 years I've built tools and platforms at the intersection of data and healthcare, from the founding stage through scale."
+        "Part scientist, part designer, part engineer, and a <b>leader who makes the call</b>. I'm most useful where those meet: products built on dense data, where mistakes are costly, from private banking to clinical genomics. When the data is incomplete, I still decide, explain why and own the outcome. I have led organisations of up to <b>25 people</b> across development, product and design."
       ],
       "links": []
     },
     {
       "id": "expertise",
       "label": "Expertise",
-      "sublabel": "WHAT I DO",
+      "sublabel": "what I do",
       "paragraphs": [
-        "<b>Product Management</b> — I frame ambiguous problems into actionable roadmaps, bridging business stakeholders and engineering teams with structured reasoning and clear communication.",
-        "<b>Data Visualization</b> — I build interactive charts and dashboards that make complex datasets legible. D3.js has been my core tool for over a decade, from genomics platforms to business metrics.",
-        "<b>Frontend Engineering</b> — I write production code. From UI prototypes to full data pipelines, I step in and build when it matters — not just specify."
-      ],
-      "links": []
-    },
-    {
-      "id": "approach",
-      "label": "Approach",
-      "sublabel": "HOW I WORK",
-      "paragraphs": [
-        "I am recognised for my <b>high-level communication skills and structured reasoning</b>. I help teams frame problems clearly, make faster decisions and share knowledge across departments — in major presentations as much as in day-to-day collaboration.",
-        "I'm a <b>hands-on person who steps in to move work forward.</b> I combine this with a track record of building dashboards spanning business outcomes, platform usage, and software development metrics.",
-        "I work <b>AI-natively</b> — using these tools daily to prototype, reason, and ship faster. What I bring beyond the tools is <b>critical thinking</b> and fundamental AI/ML knowledge: the ability to direct AI well, evaluate its output, and understand what it means to deploy it responsibly in regulated environments like healthcare."
+        "<b>Product.</b> I turn unclear needs into a roadmap a team can act on, from portfolio management platforms for private banks to a clinical genomics platform.",
+        "<b>Design & data visualisation.</b> I design for experts who live in their data: bankers, broadcasters, clinicians. From a world map of paediatric HIV cohorts to genomic viewers.",
+        "<b>Engineering.</b> I write the code that proves an idea before the team scales it: Java platforms for banks, tapeless TV production at RTS, the first React web app at SOPHiA GENETICS.",
+        "<b>AI.</b> From a 2004 datastore that took near-natural-language questions to a multimodal oncology prototype, backed by training in deep learning, medical diagnosis and NLP."
       ],
       "links": []
     },
     {
       "id": "background",
       "label": "Background",
-      "sublabel": "ORIGINS",
+      "sublabel": "origins",
       "paragraphs": [
-        "I hold a first master's degree in <b>Mathematics, Fluid Mechanics, and Thermodynamics</b>, followed by a second master's in <b>Computer Science</b>. That blend of rigorous science and applied engineering has shaped how I think about every problem.",
-        "I've always been passionate about data and the art of telling stories through <b>data visualizations</b> — that sweet spot where logic and design come together. Outside of work, I love reading, running, and <b>photography</b>, which keep me creative and observant."
+        "My roots are in science and physics: <b>thermodynamics, fluid mechanics, heat transfer</b>, and the fundamentals underneath them. I started out running finite-element simulations in FORTRAN. A second master in <b>computer science</b> moved me into software: telecom, private banking, broadcast. A year out for <b>photography</b> gave me the visual side. <b>Data visualisation</b> is where the three meet."
       ],
-      "links": [
-        { "label": "View Timeline →", "url": "/timeline", "external": false },
-        { "label": "See DataViz →", "url": "/dataviz", "external": false },
-        { "label": "LinkedIn →", "url": "https://www.linkedin.com/in/gilbertperrin/", "external": true }
-      ]
+      "links": []
     }
   ]
 }
