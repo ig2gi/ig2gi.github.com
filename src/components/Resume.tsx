@@ -88,22 +88,7 @@ function fmtGap(months: number) {
   return m === 0 ? `${y}yr` : y === 0 ? `${months}mo` : `${y}yr ${m}mo`;
 }
 
-function getEndYear(dateStr?: string | null) {
-  if (dateStr === null) return String(new Date().getFullYear());
-  if (!dateStr) return '';
-  const d = new Date(dateStr);
-  return isNaN(d.getTime()) ? '' : String(d.getFullYear());
-}
-
 // ── Sub-components ────────────────────────────────────────────────────────────
-
-const SkillDots: FC<{ level: number }> = ({ level }) => (
-  <span className="re-skill-level">
-    {Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={i < level ? 're-skill-dot filled' : 're-skill-dot'} />
-    ))}
-  </span>
-);
 
 const Dateline: FC<{ dates?: { start: string; end: string | null } }> = ({ dates }) => {
   if (!dates) return null;
@@ -128,7 +113,11 @@ const EntryLinks: FC<{ links: Link[] }> = ({ links }) => {
   );
 };
 
+// role tags are hidden until we decide whether they add anything beyond the text (data kept in resume.json)
+const SHOW_TAGS = false;
+
 const Achievements: FC<{ achievements: string[] }> = ({ achievements }) => {
+  if (!SHOW_TAGS) return null;
   const filtered = achievements.filter(Boolean);
   if (!filtered.length) return null;
   return (
@@ -146,23 +135,19 @@ const GapIndicator: FC<{ months: number }> = ({ months }) => (
   </div>
 );
 
-const EntryWrap: FC<{ year: string; company?: string; children: ReactNode }> = ({ year, company, children }) => (
-  <div className="re-entry-wrap">
-    {children}
-    <div className="re-entry-year-cell" aria-hidden="true">
-      <span className="re-entry-year">{year}</span>
-      {company && <span className="re-entry-company-tag">{company}</span>}
-    </div>
+// dates on the left, the role itself on the right
+const EntryWrap: FC<{ meta: ReactNode; className?: string; children: ReactNode }> = ({ meta, className, children }) => (
+  <div className={className ? `re-entry-wrap ${className}` : 're-entry-wrap'}>
+    <div className="re-entry-meta">{meta}</div>
+    <div className="re-entry-main">{children}</div>
   </div>
 );
 
-const SectionAside: FC<{ label: string; title: string }> = ({ label, title }) => (
-  <aside className="ps-aside">
-    <div className="ps-aside-sticky">
-      <span className="label">{label}</span>
-      <h2>{title}</h2>
-    </div>
-  </aside>
+const SectionHead: FC<{ label: string; title: string }> = ({ label, title }) => (
+  <div className="ps-aside">
+    <h2>{title}</h2>
+    <span className="label">{label}</span>
+  </div>
 );
 
 // ── Single entry ──────────────────────────────────────────────────────────────
@@ -178,17 +163,16 @@ const Entry: FC<{ event: ResumeEvent }> = ({ event }) => {
   const hasSub  = !!(companyName || industry);
 
   return (
-    <EntryWrap year={getEndYear(event.dates?.end)} company={companyName || undefined}>
-      <div className="re-entry">
-        <div className="re-entry-title">{event.title}</div>
-        <Dateline dates={event.dates} />
-        {hasSub && <div className="re-entry-sub">{subText}</div>}
-        {event.location && <div className="re-entry-sub re-entry-location">{event.location}</div>}
-        {event.diploma  && <div className="re-entry-sub">{event.diploma}</div>}
-        {event.description && <p className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.description }} />}
-        <Achievements achievements={event.achievements ?? []} />
-        <EntryLinks links={event.links ?? []} />
-      </div>
+    <EntryWrap meta={<>
+      <Dateline dates={event.dates} />
+      {event.location && <div className="re-entry-sub re-entry-location">{event.location}</div>}
+    </>}>
+      <div className="re-entry-title">{event.title}</div>
+      {hasSub && <div className="re-entry-sub">{subText}</div>}
+      {event.diploma  && <div className="re-entry-sub">{event.diploma}</div>}
+      {event.description && <p className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.description }} />}
+      <Achievements achievements={event.achievements ?? []} />
+      <EntryLinks links={event.links ?? []} />
     </EntryWrap>
   );
 };
@@ -196,14 +180,13 @@ const Entry: FC<{ event: ResumeEvent }> = ({ event }) => {
 // ── Role inside a grouped company ─────────────────────────────────────────────
 
 const Role: FC<{ event: ResumeEvent }> = ({ event }) => (
-  <div className="re-role">
+  <EntryWrap className="re-role" meta={<Dateline dates={event.dates} />}>
     <div className="re-role-title">{event.title}</div>
-    <Dateline dates={event.dates} />
     {event.diploma && <div className="re-entry-sub">{event.diploma}</div>}
     {event.description && <p className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.description }} />}
     <Achievements achievements={event.achievements ?? []} />
     <EntryLinks links={event.links ?? []} />
-  </div>
+  </EntryWrap>
 );
 
 // ── Grouped company ───────────────────────────────────────────────────────────
@@ -225,11 +208,7 @@ const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[] }> = ({ group, e
   const roleItems: ReactNode[] = [];
   for (let i = 0; i < events.length; i++) {
     const ev = events[i];
-    roleItems.push(
-      <EntryWrap key={ev.id ?? i} year={getEndYear(ev.dates?.end)} company={group.company}>
-        <Role event={ev} />
-      </EntryWrap>
-    );
+    roleItems.push(<Role key={ev.id ?? i} event={ev} />);
     if (i < events.length - 1) {
       const gap = gapMonths(events[i], events[i + 1]);
       if (gap >= 2) roleItems.push(<GapIndicator key={`gap-${i}`} months={gap} />);
@@ -238,18 +217,19 @@ const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[] }> = ({ group, e
 
   return (
     <div className="re-group-block">
-      <div className="re-group-header">
+      <EntryWrap className="re-group-header" meta={
+        <div className="re-entry-dateline">
+          <span className="re-entry-period">{groupPeriod}</span>
+          {groupDuration && <span className="re-entry-duration">{groupDuration}</span>}
+        </div>
+      }>
         <div className="re-entry-company-name">
           {companyUrl
             ? <a href={companyUrl} target="_blank" rel="noopener noreferrer">{group.company}</a>
             : group.company}
         </div>
-        <div className="re-entry-dateline">
-          <span className="re-entry-period">{groupPeriod}</span>
-          {groupDuration && <span className="re-entry-duration">{groupDuration}</span>}
-        </div>
         {industry && <div className="re-entry-sub">{industry}</div>}
-      </div>
+      </EntryWrap>
       <div className="re-entry-roles">{roleItems}</div>
     </div>
   );
@@ -297,39 +277,19 @@ const Resume: FC<{ data: ResumeData }> = ({ data }) => {
   const education      = applyGrouping(sorted.filter(e => e.type === 'formation' && e.category === 'education'), eventToGroup, e => <Entry key={e.id} event={e} />);
   const certifications = sorted.filter(e => e.type === 'formation' && e.category === 'formation').map(e => <Entry key={e.id} event={e} />);
 
-  const softTags  = (data.skills?.soft ?? []).map((s, i) => <span key={i} className="re-soft-tag">{s}</span>);
-  const hardItems = (data.skills?.hard ?? []).map(([skill, level], i) => (
-    <li key={i}><span>{skill}</span><SkillDots level={level} /></li>
-  ));
-
   return (
-    <div className="profile-sections">
+    <div className="profile-sections resume">
       <section className="ps" id="rs-experience">
-        <SectionAside label="Career" title="Experience" />
+        <SectionHead label="Career" title="Experience" />
         <div className="ps-body">{experiences}</div>
       </section>
       <section className="ps" id="rs-education">
-        <SectionAside label="Degrees" title="Education" />
+        <SectionHead label="Degrees" title="Education" />
         <div className="ps-body">{education}</div>
       </section>
       <section className="ps" id="rs-certifications">
-        <SectionAside label="Continuous learning" title="Certifications" />
+        <SectionHead label="Continuous learning" title="Certifications" />
         <div className="ps-body">{certifications}</div>
-      </section>
-      <section className="ps" id="rs-skills">
-        <SectionAside label="Toolbox" title="Skills" />
-        <div className="ps-body">
-          <div className="re-skills-grid">
-            <div>
-              <span className="re-skill-group-title">Soft Skills</span>
-              <div className="re-soft-tags">{softTags}</div>
-            </div>
-            <div>
-              <span className="re-skill-group-title">Technical Skills</span>
-              <ul className="re-skill-list">{hardItems}</ul>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   );
