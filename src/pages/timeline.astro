@@ -1,10 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/Timeline/index.tsx';
+import profile from '../data/resume.json';
 ---
 
 <Layout title="Timeline" activePage="/timeline">
-  <div class="page-full">
-    <div class="page-full-watermark">TIMELINE</div>
-    <div class="page-full-label">[WORK IN PROGRESS — COMING SOON]</div>
+  <header class="page-head">
+    <span class="label">Career map · 5 domains · 1 trajectory</span>
+    <h1>Journey</h1>
+    <p class="deck">Every role, degree and course since 1987, arranged by the kind of contribution it asked for: from technical execution to strategic leadership.</p>
+  </header>
+
+  <div class="timeline-page">
+
+    <Timeline events={profile.events} client:load />
+
+    <!-- About section -->
+    <section class="tl-about">
+      <span class="label">Colophon</span>
+      <h2>About this visualisation</h2>
+      <div class="tl-about-body">
+        <p>
+          A first version of this visualisation was built in <strong>2012</strong> using
+          <a href="http://www.nodebox.net/" target="_blank" rel="noopener">nodebox3</a> —
+          a Python generative graphics tool, not D3. It already carried the design DNA of this site:
+          orange accents, monospace typography, data-journalism density, and a skills-over-time axis
+          that most CV tools don't attempt.
+        </p>
+        <p>
+          This 2026 rebuild uses <strong>D3.js v7</strong> (for scales and path mathematics) +
+          <strong>React</strong> (for declarative SVG rendering) inside an <strong>Astro</strong> static site.
+          D3 never touches the DOM — it computes numbers and bezier paths; React renders the SVG tree.
+          All data comes from a single <code>resume.json</code> source of truth, transformed through
+          typed utility layers before reaching the components.
+        </p>
+        <p>
+          The map is a <em>schematic</em>, not a timeline — equal station spacing (like a real metro map)
+          so that every role gets the same visual weight regardless of duration.
+          The Y-axis encodes contribution type: from technical execution at the bottom to strategic
+          leadership at the top. The career arc is the path the line draws as it climbs.
+        </p>
+        <div class="tl-about-legend">
+          <span class="tl-legend-item"><svg width="14" height="14"><polygon points="7,0 14,11 0,11" fill="#a0aec0"/></svg> mooc</span>
+          <span class="tl-legend-item"><svg width="14" height="14"><rect width="12" height="12" x="1" y="1" fill="#a0aec0" rx="1"/></svg> degree</span>
+          <span class="tl-legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#6b7280"/></svg> IC role</span>
+          <span class="tl-legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#d87943" stroke="white" stroke-width="2"/><circle cx="7" cy="7" r="3" fill="none" stroke="white" stroke-width="1.5"/></svg> head-of</span>
+          <span class="tl-legend-item"><svg width="14" height="16"><polygon points="7,1 13,5 13,11 7,15 1,11 1,5" fill="#d87943" stroke="white" stroke-width="1.5"/></svg> VP</span>
+        </div>
+      </div>
+    </section>
+
   </div>
 </Layout>

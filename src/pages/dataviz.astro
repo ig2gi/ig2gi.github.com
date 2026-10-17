@@ -2,11 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import DataVizGrid from '../components/DataVizGrid';
 import datavizData from '../data/dataviz.json';
+
+const years = datavizData.flatMap(d => d.year);
+const span = `${Math.min(...years)}–${Math.max(...years)}`;
 ---
 
-<Layout title="DataViz" activePage="/dataviz">
-  <div class="page-full">
-    <div class="page-full-watermark">DATAVIZ</div>
-  </div>
+<Layout title="Data visualisation" activePage="/dataviz">
+  <header class="page-head">
+    <span class="label">Portfolio · {datavizData.length} projects · {span}</span>
+    <h1>Data visualisation</h1>
+    <p class="deck">Interactive maps, charts and dashboards, from data journalism to genomics. Most of them built with D3.js.</p>
+  </header>
   <DataVizGrid items={datavizData} client:load />
 </Layout>

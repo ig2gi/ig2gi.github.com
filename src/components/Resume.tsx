@@ -156,6 +156,15 @@ const EntryWrap: FC<{ year: string; company?: string; children: ReactNode }> = (
   </div>
 );
 
+const SectionAside: FC<{ label: string; title: string }> = ({ label, title }) => (
+  <aside className="ps-aside">
+    <div className="ps-aside-sticky">
+      <span className="label">{label}</span>
+      <h2>{title}</h2>
+    </div>
+  </aside>
+);
+
 // ── Single entry ──────────────────────────────────────────────────────────────
 
 const Entry: FC<{ event: ResumeEvent }> = ({ event }) => {
@@ -295,16 +304,20 @@ const Resume: FC<{ data: ResumeData }> = ({ data }) => {
 
   return (
     <div className="profile-sections">
-      <div className="ps" id="rs-experience">
+      <section className="ps" id="rs-experience">
+        <SectionAside label="Career" title="Experience" />
         <div className="ps-body">{experiences}</div>
-      </div>
-      <div className="ps" id="rs-education">
+      </section>
+      <section className="ps" id="rs-education">
+        <SectionAside label="Degrees" title="Education" />
         <div className="ps-body">{education}</div>
-      </div>
-      <div className="ps" id="rs-certifications">
+      </section>
+      <section className="ps" id="rs-certifications">
+        <SectionAside label="Continuous learning" title="Certifications" />
         <div className="ps-body">{certifications}</div>
-      </div>
-      <div className="ps" id="rs-skills">
+      </section>
+      <section className="ps" id="rs-skills">
+        <SectionAside label="Toolbox" title="Skills" />
         <div className="ps-body">
           <div className="re-skills-grid">
             <div>
@@ -317,7 +330,7 @@ const Resume: FC<{ data: ResumeData }> = ({ data }) => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

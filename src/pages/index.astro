@@ -1,47 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CareerRibbon from '../components/CareerRibbon.astro';
 import ProfileSections from '../components/ProfileSection';
-import profileData from '../data/profile.json';
+import profile from '../data/profile.json';
+
+const { hero, ribbon, principles, close } = profile;
+
+// labels are uppercased by CSS; SOPHiA keeps its lowercase i
+const keepCase = (s: string) => s.replaceAll('SOPHiA', 'SOPH<span class="keep-case">i</span>A');
 ---
 
 <Layout title="Gilbert Perrin" activePage="/">
-  <section class="ih-hero">
-    <h1 class="ih-hero-title">
-      Everyone solves problems. I make sure we're solving the <span class="ih-accent">right</span> ones.
-    </h1>
-    <p class="ih-hero-sub">
-      Founding operator at Sophia Genetics (employee #10, now 400+). Roadmap → data pipeline → dataviz → exec deck, end to end. VP Product &amp; Analytics — open to new roles and advisory mandates.
-    </p>
-    <div class="ih-hero-ctas">
-      <a class="ih-btn ih-btn-primary" href="/dataviz">View portfolio</a>
-      <a class="ih-btn" href="/contact">Get in touch</a>
+  <section class="hero">
+    <h1 set:html={hero.title} />
+    <p class="deck">{hero.deck}</p>
+    <div class="byline label">
+      {hero.byline.map(b => <span set:html={keepCase(b)} />)}
     </div>
   </section>
 
-  <section class="ih-features">
-    <article class="ih-feature">
-      <h3 class="ih-feature-title">clarify first</h3>
-      <p>My edge isn't solving problems faster. It's making sure we're solving the right ones.</p>
-    </article>
-    <article class="ih-feature">
-      <h3 class="ih-feature-title">hands-on, AI-native</h3>
-      <p>I build the first version myself — with AI. Deep enough to direct it. Fast enough to ship it before anyone else has finished the spec.</p>
-    </article>
-    <article class="ih-feature">
-      <h3 class="ih-feature-title">scale through teams</h3>
-      <p>Then grow the team to take what works to production. Build-first leadership.</p>
-    </article>
-    <article class="ih-feature">
-      <h3 class="ih-feature-title">data into stories</h3>
-      <p>Turning complex datasets into clear, navigable interfaces that people actually use.</p>
-    </article>
+  <CareerRibbon title={ribbon.title} caption={ribbon.caption} notes={ribbon.notes} />
+
+  <section class="principles" aria-label="How I work">
+    {principles.map(p => (
+      <div class="principle">
+        <span class="label">{p.when}</span>
+        <h3>{p.title}</h3>
+        <p>{p.text}</p>
+      </div>
+    ))}
   </section>
 
-  <ProfileSections data={profileData} client:load />
+  <ProfileSections data={profile} />
 
-  <section class="ih-cta">
-    <h2>Ready to talk?</h2>
-    <p>If you need someone who clarifies before they build — and builds before they delegate — let's talk.</p>
-    <a class="ih-btn ih-btn-primary" href="/contact">Get in touch <span aria-hidden="true">→</span></a>
+  <section class="close">
+    <h2 set:html={close.title} />
+    <div class="ctas">
+      <a class="btn btn-primary" href={close.cta.url}>{close.cta.label} <span aria-hidden="true">→</span></a>
+    </div>
   </section>
 </Layout>

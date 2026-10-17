@@ -18,46 +18,48 @@ interface ProfileSectionData {
   label: string;
   sublabel: string;
   paragraphs: string[];
+  keywords?: string[];
   image?: SectionImage;
   links?: SectionLink[];
 }
 
 const ProfileSection: FC<{ section: ProfileSectionData }> = ({ section }) => {
   const img = section.image ? (
-    <span>
+    <figure>
       <img src={section.image.src} className="ps-image" alt={section.image.alt} />
-      {section.image.caption && (
-        <span className="ps-caption">{section.image.caption}</span>
-      )}
-    </span>
+      {section.image.caption && <figcaption className="ps-caption">{section.image.caption}</figcaption>}
+    </figure>
   ) : null;
 
   return (
-    <div className="ps">
-      <div className="ps-label">
-        <strong>{section.label}</strong>
-        {' — '}
-        <span className="ps-sublabel">{section.sublabel}</span>
-      </div>
-      <div className="ps-body">
+    <section className="ps" id={section.id}>
+      <aside className="ps-aside">
+        <span className="label">{section.sublabel}</span>
+        <h2>{section.label}</h2>
+      </aside>
+      <div className="ps-body ps-prose">
         {section.image?.position === 'top' && img}
         {section.paragraphs.map((text, i) => (
           <p key={i} dangerouslySetInnerHTML={{ __html: text }} />
         ))}
         {section.image?.position === 'bottom' && img}
+        {section.keywords && section.keywords.length > 0 && (
+          <div className="chips">
+            {section.keywords.map(k => <span key={k} className="chip">{k}</span>)}
+          </div>
+        )}
         {section.links && section.links.length > 0 && (
           <div className="ps-links">
-            {section.links.map((l, i) =>
-              l.external ? (
-                <a key={i} href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
-              ) : (
-                <a key={i} href={l.url}>{l.label}</a>
-              )
-            )}
+            {section.links.map((l, i) => (
+              <a key={i} className="btn" href={l.url}
+                {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                {l.label}
+              </a>
+            ))}
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

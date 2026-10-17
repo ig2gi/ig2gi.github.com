@@ -1,0 +1,102 @@
+---
+// Career ribbon: every experience from resume.json drawn to scale.
+// Bar height = seniority (individual / head of / VP), colour = discipline track.
+// Computed at build time, so the page ships no JavaScript for it.
+import resumeData from '../data/resume.json';
+
+interface Note { eventId: number; title: string; text: string; }
+interface Props { title: string; caption: string; notes: Note[]; }
+
+const { title, caption, notes } = Astro.props;
+
+type Track = 'eng' | 'photo' | 'viz' | 'prod';
+
+const UNIT = 36;      // px per seniority level
+const HEIGHT = 150;   // ribbon height, leaves headroom for markers
+
+const now = new Date();
+const toYear = (d: string | null) => {
+  const date = d ? new Date(d) : now;
+  return date.getFullYear() + date.getMonth() / 12;
+};
+
+const level = (title: string) => (/\bVP\b/.test(title) ? 3 : /^Head of/.test(title) ? 2 : 1);
+
+const track = (e: { title: string; industry?: string }): Track => {
+  if (e.industry === 'Photography') return 'photo';
+  if (/Visuali[sz]ation/.test(e.title)) return 'viz';
+  if (/Head of|VP|Product/.test(e.title)) return 'prod';
+  return 'eng';
+};
+
+const roles = resumeData.events
+  .filter(e => e.type === 'experience')
+  .map(e => ({
+    id: e.id,
+    title: e.title,
+    company: e.company?.name ?? '',
+    start: toYear(e.dates.start),
+    end: toYear(e.dates.end),
+    current: e.dates.end === null,
+    level: level(e.title),
+    track: track(e),
+  }))
+  .sort((a, b) => a.start - b.start);
+
+const t0 = Math.floor(roles[0].start);
+const t1 = now.getFullYear() + 1;
+const pct = (t: number) => ((t - t0) / (t1 - t0)) * 100;
+
+const ticks: number[] = [];
+for (let y = Math.ceil(t0 / 5) * 5; y < t1; y += 5) ticks.push(y);
+
+const markers = notes
+  .map((n, i) => ({ n: i + 1, role: roles.find(r => r.id === n.eventId) }))
+  .filter(m => m.role);
+
+const legend: Array<[Track, string]> = [
+  ['eng', 'Engineering'],
+  ['photo', 'Photography'],
+  ['viz', 'Data visualisation'],
+  ['prod', 'Product & design'],
+];
+
+const yearSpan = `${t0}–${now.getFullYear()}`;
+---
+
+<figure class="ribbon-fig" aria-labelledby="ribbon-title">
+  <div class="fig-head">
+    <h2 id="ribbon-title" set:html={title} />
+    <div class="legend label">
+      {legend.map(([k, name]) => <span><i class={`seg-${k}`}></i>{name}</span>)}
+    </div>
+  </div>
+
+  <div class="ribbon" style={`height:${HEIGHT}px`} role="img"
+    aria-label={`${roles.length} roles from ${yearSpan}. Bar height shows seniority, colour shows discipline: engineering, photography, data visualisation, then product and design leadership.`}>
+    {[['Individual', 1], ['Head of', 2], ['VP', 3]].map(([name, l]) => (
+      <div class="ribbon-level" style={`bottom:${(l as number) * UNIT}px`}><b>{name}</b></div>
+    ))}
+    {roles.map((r, i) => (
+      <div
+        class={`seg seg-${r.track}`}
+        title={`${r.title} · ${r.company} (${Math.floor(r.start)}–${r.current ? 'now' : Math.floor(r.end)})`}
+        style={`left:${pct(r.start)}%;width:calc(${pct(r.end) - pct(r.start)}% - 1px);height:${r.level * UNIT}px;--i:${i}`}
+      ></div>
+    ))}
+    {markers.map(({ n, role }) => (
+      <div class="marker" aria-hidden="true"
+        style={`left:calc(${pct(role!.start)}% + 6px);top:${HEIGHT - role!.level * UNIT - 34}px`}>{n}</div>
+    ))}
+  </div>
+
+  <div class="axis" aria-hidden="true">
+    {ticks.map(y => <span style={`left:${pct(y)}%`}>{y}</span>)}
+  </div>
+
+  <ol class="notes">
+    {notes.map(n => <li><b>{n.title}</b>{n.text}</li>)}
+  </ol>
+
+  <figcaption>{caption}</figcaption>
+</figure>

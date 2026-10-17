@@ -69,8 +69,8 @@ const PhotoGallery: FC<{ photos: Photo[] }> = ({ photos }) => {
               ))}
             </div>
 
-            <a href="https://ig2gi.500px.photography/" target="_blank" rel="noopener noreferrer" className="ph-ext-link">
-              → Full portfolio on 500px ↗
+            <a href="https://ig2gi.500px.photography/" target="_blank" rel="noopener noreferrer" className="btn ph-ext-link">
+              Full portfolio on 500px <span aria-hidden="true">↗</span>
             </a>
 
             {secondary.length > 0 && (

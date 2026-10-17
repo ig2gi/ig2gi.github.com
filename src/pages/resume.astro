@@ -1,14 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Resume from '../components/Resume';
-import ResumeScrollNav from '../components/ResumeScrollNav';
 import resumeData from '../data/resume.json';
 ---
 
 <Layout title="Resume" activePage="/resume">
-  <div class="page-full">
-    <div class="page-full-watermark">RESUME</div>
-  </div>
+  <header class="page-head">
+    <span class="label">Resume</span>
+    <h1>Resume</h1>
+    <p class="deck">Engineering, data visualisation, then product and design leadership. More than 10 years at SOPHiA GENETICS, from tenth employee to VP.</p>
+  </header>
   <Resume data={resumeData} />
-  <ResumeScrollNav client:load />
 </Layout>
