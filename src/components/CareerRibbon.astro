@@ -167,7 +167,7 @@ const yearSpan = `${t0}–${now.getFullYear()}`;
     ))}
     {markers.map(({ n, role }) => (
       <div class="marker" aria-hidden="true"
-        style={`left:${pct((role!.start + role!.end) / 2)}%;top:${HEIGHT - role!.level * UNIT - 34}px`}>{n}</div>
+        style={`left:clamp(10px, ${pct((role!.start + role!.end) / 2)}%, calc(100% - 10px));top:${HEIGHT - role!.level * UNIT - 34}px`}>{n}</div>
     ))}
   </div>
 

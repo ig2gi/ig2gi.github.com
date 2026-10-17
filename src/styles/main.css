@@ -407,6 +407,18 @@ main {
     .domains { top: auto; bottom: calc(100% + 12px); display: flex; flex-wrap: wrap; gap: 4px 14px; height: auto; }
     .domains li { position: static; width: auto; }
     .domain-next { flex: 0 0 18px; margin: 0 0 0 4px; }
+    /* the last era runs on to today: no arrow pointing at nothing */
+    .domains li:last-child .domain-next { display: none; }
+}
+
+@media (max-width: 520px) {
+    /* a size smaller, so the five tracks fit on two lines */
+    .legend { gap: 4px 12px; font-size: var(--step--2); letter-spacing: 0.03em; }
+    .legend span { gap: 5px; }
+    /* one column, number beside the text */
+    .notes { grid-template-columns: 1fr; gap: 14px; }
+    .notes li { position: relative; padding-left: 32px; }
+    .notes li::before { position: absolute; left: 0; top: 0; margin: 0; }
 }
 
 /* principles */
