@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>advisory · mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #f8f8f6; --band: #e9e8e2; --surface: #fff; --ink: #15171b; --ink-2: #4a4d55; --ink-3: #6f727a;
+    --rule: #dcdcd8; --accent: #d87943; --accent-text: #b4561f;
+    --font-body: 'Geist', system-ui, sans-serif; --font-mono: 'Geist Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--font-body); }
+  .bar { background: var(--band); height: 44px; }
+  .bar div { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); height: 44px; display: flex; align-items: center; gap: 22px; font-size: .875rem; color: var(--ink-2); }
+  .bar b { color: var(--ink); font-weight: 600; margin-right: auto; } .bar b span { color: var(--accent-text); }
+  .bar .on { color: var(--ink); box-shadow: inset 0 -2px var(--accent); padding-block: 12px; }
+  main { max-width: 1120px; margin: 0 auto; padding: 28px clamp(16px, 4vw, 48px) 72px; }
+  .label { font: 400 .6875rem/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15; letter-spacing: -.02em; margin: 6px 0 0; font-weight: 650; }
+  .ask { margin: 26px 0 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .ask .label { margin-right: 6px; }
+  .ask button { font: 500 .875rem/1 var(--font-body); padding: 10px 14px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 40px; }
+  .ask button i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); display: inline-block; }
+  .ask button[aria-pressed="true"] { border-color: var(--c); box-shadow: inset 0 0 0 1px var(--c); }
+  .grid { display: grid; gap: 20px; }
+  .map { background: var(--surface); border: 1px solid var(--rule); overflow-x: auto; }
+  svg { display: block; width: 100%; height: auto; min-width: 760px; }
+  svg text { font-family: var(--font-body); }
+  .line { fill: none; stroke-width: 7; stroke-linecap: round; transition: opacity .25s; }
+  .fast { fill: none; stroke: #fff; stroke-width: 2.5; transition: opacity .25s; }
+  .stn text { font-size: 12px; fill: var(--ink-2); transition: opacity .25s; }
+  .stn text.co { font: 400 9.5px var(--font-mono); fill: var(--ink-3); letter-spacing: .03em; }
+  .stn { cursor: pointer; }
+  .stn:hover text:not(.co) { fill: var(--ink); }
+  .dim { opacity: .12; }
+  .term text { font: 600 12px var(--font-body); }
+  .panel { background: var(--surface); border: 1px solid var(--rule); padding: 18px 20px 20px; }
+  .panel ol { columns: 2 280px; column-gap: 32px; }
+  .panel li { break-inside: avoid; }
+  .panel h2 { font-size: 1.15rem; line-height: 1.25; margin: 4px 0 12px; }
+  .panel ol { list-style: none; margin: 0; padding: 0; border-left: 4px solid var(--c, var(--rule)); }
+  .panel li { position: relative; padding: 0 0 12px 16px; font-size: .875rem; line-height: 1.45; color: var(--ink-2); }
+  .panel li::before { content: ''; position: absolute; left: -9px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--c, var(--rule)); }
+  .panel li b { display: block; color: var(--ink); font-weight: 600; }
+  .panel li span { font: 400 .6875rem var(--font-mono); color: var(--ink-3); }
+  .panel .cta { display: inline-block; margin-top: 8px; padding: 10px 14px; background: var(--ink); color: #fff; text-decoration: none; font-size: .875rem; }
+  .panel p { margin: 0 0 10px; font-size: .9375rem; color: var(--ink-2); }
+  .note { margin-top: 28px; font-size: .8125rem; color: var(--ink-3); max-width: 70ch; }
+  
+</style>
+</head>
+<body>
+<div class="bar"><div><b>Gilbert <span>Perrin</span></b><span>home</span><span>resume</span><span>dataviz</span><span>photography</span><span class="on">advisory</span><span>contact</span></div></div>
+<main>
+  <span class="label">advisory · open to mandates</span>
+  <h1>Where do you want to go?</h1>
+  <div class="ask" id="ask"><span class="label">pick a destination</span></div>
+  <div class="grid">
+    <div class="map"><svg id="map" role="img" aria-label="Metro map of capabilities"></svg></div>
+    <aside class="panel" id="panel"></aside>
+  </div>
+  <p class="note">Mock-up · stations are real roles, in order, not to scale. Which line each role belongs to is my first draft, to be checked.</p>
+</main>
+<script>
+// lines = what a client can come for; order = track order, top to bottom
+const LINES = [
+  // fast: AI tools now speed this line up (drawn as a double track on its last stretch)
+  { id: 'E', name: 'Analytical reports & dashboards',       short: 'reports & dashboards',  c: '#7d8696', fast: true },
+  { id: 'D', name: 'Make complex data clear',               short: 'complex data, clear',   c: '#b08d4f' },
+  { id: 'A', name: 'Turn data into a product',              short: 'data → product',        c: '#d87943' },
+  { id: 'C', name: 'Build the prototype, then scale it',    short: 'prototype, then scale', c: '#4f8a5b', fast: true },
+  { id: 'F', name: 'Build products with AI inside',         short: 'AI inside',             c: '#2a8c8c' },
+  { id: 'B', name: 'Scale a product & design team',         short: 'scale a team',          c: '#23313f' },
+];
+// stations in chronological order; on = lines that stop here
+const STATIONS = [
+  ['Thermal engineer', 'Spie Batignolles', '1995–97', 'D', 'Thermodynamic simulations for large construction projects: complex physics turned into decisions.'],
+  ['Java developer', 'BIPE Sirius', '1998–2000', 'E', 'Moved a telecom market-intelligence platform, used by analysts to write strategic reports, to the web.'],
+  ['Senior Java developer', 'Odyssey', '2000–04', 'A', 'Core development of a portfolio management platform for private banks.'],
+  ['Co-founder', 'DALIN Software', '2004', 'ACF', 'Prototyped an ontology-based datastore answering semi-natural-language queries, well ahead of its time.'],
+  ['Senior engineer', 'Pictet & Cie', '2004–05', 'C', 'Built the batch-processing backbone of a portfolio management system.'],
+  ['Senior engineer', 'Neo Technologies', '2006–07', 'C', 'Re-engineered a utility logistics platform for third-party integration.'],
+  ['Senior engineer', 'RTS', '2007–08', 'AC', 'Use cases, architecture and build of a collaborative app for tapeless TV production.'],
+  ['Photography', 'year out', '2008–09', 'D', 'A year to train the eye: composition, light, what to leave out.'],
+  ['Senior engineer', 'Pictet AM', '2009–12', 'E', 'Business and technical analysis with full-stack development for asset management.'],
+  ['Dataviz developer', 'IAS', '2013', 'DE', 'Interactive world map of paediatric HIV cohort data.'],
+  ['Dataviz engineer', 'SOPHiA GENETICS', '2013–15', 'ACDE', 'One of the first ten employees; drove the GEN1 clinical genomics platform as product owner and developer.'],
+  ['Head of front-end', 'SOPHiA GENETICS', '2015–18', 'BCE', 'Led a 4-person team while still writing code.'],
+  ['VP functional & UX', 'SOPHiA GENETICS', '2018–19', 'ACDE', 'Owned functional requirements for the data-driven features of the SOPHiA DDM platform.'],
+  ['Deep learning & AI', 'courses', '2019–21', 'F', 'Deep learning, AI for medical diagnosis, natural language processing.'],
+  ['Product manager', 'GenomSys', '2020', 'A', 'Product for genomic data tools built on the MPEG-G standard.'],
+  ['Head of product owners, UX/UI', 'SOPHiA GENETICS', '2020–23', 'BCDE', 'Led a 7-person product and design team through the GEN2 platform rewrite.'],
+  ['Head of platform product & eng.', 'SOPHiA GENETICS', '2023–25', 'ABCE', 'A 25-person product and engineering organisation, 5 direct reports.'],
+  ['VP design & innovation', 'SOPHiA GENETICS', 'now', 'ABCDEF', 'A focused Design & Innovation team on product vision and strategic features, including an AI agent (RAG / CAG / agentic) that drafts variant and gene descriptions for clinical reports.'],
+].map(([title, co, years, on, proof], i) => ({ i, title, co, years, on, proof }));
+
+const W = 1040, TOP = 150, GAP = 32, X0 = 40, X1 = 800, TERM = 850, STACK = 11, M = 6;
+
+// track order (top to bottom): the one where interchanges enclose the fewest lines that don't stop there
+const perms = a => a.length < 2 ? [a] : a.flatMap((v, i) => perms([...a.slice(0, i), ...a.slice(i + 1)]).map(p => [v, ...p]));
+const cost = order => STATIONS.reduce((n, s) => {
+  const idx = [...s.on].map(id => order.indexOf(id));
+  return n + (Math.max(...idx) - Math.min(...idx) + 1 - idx.length);
+}, 0);
+const ORDER = perms(LINES.map(l => l.id)).reduce((best, o) => cost(o) < cost(best) ? o : best);
+LINES.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
+
+const H = TOP + GAP * (LINES.length - 1) + 40;
+const x = i => X0 + (X1 - X0) * i / (STATIONS.length - 1);
+const home = id => TOP + GAP * ORDER.indexOf(id);
+// at a station, the lines that stop bend in and run side by side around their average track
+const stopY = (s, id) => {
+  const on = [...s.on].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+  const centre = on.reduce((t, l) => t + home(l), 0) / on.length;
+  return centre + (on.indexOf(id) - (on.length - 1) / 2) * STACK;
+};
+
+const svg = document.getElementById('map');
+svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+
+// a line's path: horizontal runs joined by 45° diagonals, like a metro map
+function linePath(id) {
+  const stops = STATIONS.filter(s => s.on.includes(id));
+  const h = home(id);
+  let d = `M${x(stops[0].i)},${stopY(stops[0], id)}`;
+  stops.forEach((s, k) => {
+    const xa = x(s.i), ya = stopY(s, id);
+    const next = stops[k + 1];
+    if (!next) {                                   // after the last stop: back to its track, on to the terminus
+      d += ` H${xa + M} L${xa + M + Math.abs(ya - h)},${h} H${TERM}`;
+      return;
+    }
+    const xb = x(next.i), yb = stopY(next, id);
+    const room = xb - xa - 2 * M;
+    if (Math.abs(ya - h) + Math.abs(yb - h) <= room - 10 && (ya !== h || yb !== h)) {
+      // enough room: return to its own track between the two stops
+      d += ` H${xa + M} L${xa + M + Math.abs(ya - h)},${h} H${xb - M - Math.abs(yb - h)} L${xb - M},${yb} H${xb}`;
+    } else {
+      // stops close together: one diagonal in the middle
+      const mid = (xa + xb) / 2, half = Math.min(Math.abs(yb - ya), room) / 2;
+      d += ` H${mid - half} L${mid + half},${yb} H${xb}`;
+    }
+  });
+  return d;
+}
+
+for (const l of LINES) {
+  el('path', { d: linePath(l.id), class: 'line', stroke: l.c, 'data-line': l.id });
+  if (l.fast) {
+    // from today's stations on (the AI era), not from the line's last stop
+    const last = STATIONS.filter(s => s.on.includes(l.id)).pop();
+    const now = STATIONS.find(s => s.years === 'now');
+    const from = Math.max(x(now.i), x(last.i) + M + Math.abs(stopY(last, l.id) - home(l.id))) + 6;
+    el('path', { d: `M${from},${home(l.id)} H${TERM - 10}`, class: 'fast', 'data-line': l.id });
+  }
+  const g = el('g', { class: 'term', 'data-line': l.id });
+  el('circle', { cx: TERM, cy: home(l.id), r: 8, fill: l.c }, g);
+  el('text', { x: TERM + 16, y: home(l.id) + 4, fill: l.c }, g).textContent = l.short;
+}
+// stations: a ring for one line, a white capsule across the lines of an interchange, label above at an angle
+for (const s of STATIONS) {
+  const g = el('g', { class: 'stn', 'data-on': s.on });
+  const ys = [...s.on].map(id => stopY(s, id));
+  const top = Math.min(...ys), bot = Math.max(...ys);
+  if (ys.length > 1) {
+    el('line', { x1: x(s.i), x2: x(s.i), y1: top, y2: bot, stroke: '#15171b', 'stroke-width': 14, 'stroke-linecap': 'round' }, g);
+    el('line', { x1: x(s.i), x2: x(s.i), y1: top, y2: bot, stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
+  } else {
+    el('circle', { cx: x(s.i), cy: top, r: 6.5, fill: '#fff', stroke: '#15171b', 'stroke-width': 2.5 }, g);
+  }
+  const t = el('text', { transform: `translate(${x(s.i) + 2},${TOP - 30}) rotate(-38)` }, g);
+  t.textContent = s.title;
+  const c = el('text', { class: 'co', transform: `translate(${x(s.i) + 12},${TOP - 20}) rotate(-38)` }, g);
+  c.textContent = s.co;
+  g.addEventListener('click', () => select([...s.on][0]));
+}
+
+const panel = document.getElementById('panel');
+const ask = document.getElementById('ask');
+const buttons = LINES.map(l => {
+  const b = document.createElement('button');
+  b.style.setProperty('--c', l.c);
+  b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = `<i></i>${l.name}`;
+  b.onclick = () => select(current === l.id ? null : l.id);
+  ask.appendChild(b);
+  return b;
+});
+let current = null;
+function select(id) {
+  current = id;
+  buttons.forEach((b, i) => b.setAttribute('aria-pressed', LINES[i].id === id));
+  svg.querySelectorAll('[data-line]').forEach(e => e.classList.toggle('dim', !!id && e.dataset.line !== id));
+  svg.querySelectorAll('.stn').forEach(e => e.classList.toggle('dim', !!id && !e.dataset.on.includes(id)));
+  if (!id) {
+    panel.style.removeProperty('--c');
+    panel.innerHTML = `<span class="label">how to read it</span><h2>Six lines, one person</h2>
+      <p>Each line is something you can hire me for. Each station is a role that proves it. Where lines meet, several skills worked together.</p>
+      <p><svg width="34" height="8" style="vertical-align: middle"><path d="M2,4 H32" stroke="#7d8696" stroke-width="7" stroke-linecap="round"/><path d="M6,4 H28" stroke="#fff" stroke-width="2.5"/></svg>
+      AI-accelerated: AI tools now multiply what I used to build by hand.</p>
+      <p>Pick a destination above, or click a station.</p>`;
+    return;
+  }
+  const l = LINES.find(l => l.id === id);
+  panel.style.setProperty('--c', l.c);
+  panel.innerHTML = `<span class="label">line ${'·'} ${STATIONS.filter(s => s.on.includes(id)).length} stations</span><h2>${l.name}</h2><ol>` +
+    STATIONS.filter(s => s.on.includes(id)).map(s => `<li><b>${s.title}</b><span>${s.co} · ${s.years}</span><br>${s.proof}</li>`).join('') +
+    `</ol>` + (l.fast ? `<p><b>Now AI-accelerated.</b> I have always built these by hand, coding them myself. AI coding tools now let me build them far faster.</p>` : '') +
+    `<a class="cta" href="#">Taking this line? Let's talk →</a>`;
+}
+select(null);
+</script>
+</body>
+</html>

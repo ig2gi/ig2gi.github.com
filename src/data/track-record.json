@@ -1,0 +1,40 @@
+{
+  "lines": [
+    { "id": "D", "name": "Make complex data clear", "short": "complex data, clear", "color": "--line-clarity" },
+    { "id": "E", "name": "Analytical reports & dashboards", "short": "reports & dashboards", "color": "--line-reports", "fast": true },
+    { "id": "C", "name": "Build the prototype, then scale it", "short": "prototype, then scale", "color": "--line-prototype", "fast": true },
+    { "id": "A", "name": "Turn data into a product", "short": "data → product", "color": "--line-product" },
+    { "id": "B", "name": "Scale a product & design team", "short": "scale a team", "color": "--line-team" },
+    { "id": "F", "name": "Build products with AI inside", "short": "products with AI inside", "color": "--line-ai" }
+  ],
+  "lanes": ["D", "E", "C", "A", "B"],
+  "stations": {
+    "hub": { "title": "VP design & innovation", "co": "SOPHiA GENETICS", "years": "since 2025", "proof": "A focused Design & Innovation team on product vision and strategic features, the AI agent for clinical reports among them." },
+    "s13": { "ring": 0, "fan": "AC", "lab": [-30, 54, "start"], "title": "VP functional & UX", "co": "SOPHiA GENETICS", "years": "2018–2019", "proof": "Owned functional requirements for the data-driven features of the SOPHiA DDM platform." },
+    "s16": { "ring": 140, "fan": "DE", "lab": [-62, -8, "end"], "title": "Head of product owners, UX/UI", "co": "SOPHiA GENETICS", "years": "2020–2023", "proof": "Led a 7-person product and design team through the GEN2 platform rewrite." },
+    "s12": { "ring": 196, "title": "Head of front-end", "co": "SOPHiA GENETICS", "years": "2015–2018", "proof": "Led a 4-person team while still writing code." },
+    "s17": { "ring": 250, "lab": [-16, 6, "end"], "title": "Head of platform product & eng.", "co": "SOPHiA GENETICS", "years": "2023–2025", "proof": "A 25-person product and engineering organisation, 5 direct reports." },
+    "s11": { "ring": 308, "title": "Dataviz engineer", "co": "SOPHiA GENETICS", "years": "2013–2015", "proof": "One of the first ten employees; drove the GEN1 clinical genomics platform as product owner and developer." },
+    "agent": { "x": 595, "y": 190, "lab": [0, -30, "middle"], "title": "AI agent · clinical reports", "co": "current role", "years": "since 2025", "proof": "A RAG / CAG / agentic system that drafts variant and gene descriptions for clinical reports. Part of my current role." },
+    "rts": { "x": 790, "y": 320, "order": "AC", "lab": [-16, -10, "end"], "title": "Senior engineer", "co": "RTS", "years": "2007–2008", "proof": "Use cases, architecture and build of a collaborative app for tapeless TV production." },
+    "dalin": { "x": 860, "y": 230, "order": "FAC", "lab": [-66, 46, "end"], "title": "Co-founder", "co": "DALIN Software", "years": "2004", "proof": "Prototyped an ontology-based datastore answering semi-natural-language queries, well ahead of its time." },
+    "courses": { "x": 720, "y": 190, "lab": [-8, -22, "start"], "title": "Deep learning & AI", "co": "courses", "years": "2019–2025", "proof": "Deep learning, AI for medical diagnosis, natural language processing." },
+    "odyssey": { "x": 945, "y": 230, "lab": [14, 28, "middle"], "title": "Senior Java developer", "co": "Odyssey", "years": "2000–2004", "proof": "Core development of a portfolio management platform for private banks." },
+    "genomsys": { "x": 1045, "y": 230, "lab": [0, -20, "middle"], "title": "Product manager", "co": "GenomSys", "years": "2020", "proof": "Product for genomic data tools built on the MPEG-G standard." },
+    "pictet": { "x": 950, "y": 330, "lab": [14, -6, "start"], "title": "Senior engineer", "co": "Pictet & Cie", "years": "2004–2005", "proof": "Built the batch-processing backbone of a portfolio management system." },
+    "neo": { "x": 1030, "y": 410, "lab": [-12, 30, "end"], "title": "Senior engineer", "co": "Neo Technologies", "years": "2006–2007", "proof": "Re-engineered a utility logistics platform for third-party integration." },
+    "ias": { "x": 330, "y": 570, "order": "ED", "lab": [16, 22, "start"], "title": "Dataviz developer", "co": "IAS", "years": "2013", "proof": "Interactive world map of paediatric HIV cohort data." },
+    "photo": { "x": 250, "y": 650, "lab": [14, 6, "start"], "title": "Photography", "co": "year out", "years": "2008–2009", "proof": "A year to train the eye: composition, light, what to leave out." },
+    "thermal": { "x": 180, "y": 720, "lab": [14, 6, "start"], "title": "Thermal engineer", "co": "Spie Batignolles", "years": "1995–1997", "proof": "Thermodynamic simulations for large construction projects: complex physics turned into decisions." },
+    "bipe": { "x": 220, "y": 530, "lab": [-14, 26, "middle"], "title": "Java developer", "co": "BIPE Sirius", "years": "1998–2000", "proof": "Moved a telecom market-intelligence platform, used by analysts to write strategic reports, to the web." },
+    "pictetam": { "x": 130, "y": 500, "lab": [-22, 26, "middle"], "title": "Senior engineer", "co": "Pictet AM", "years": "2009–2012", "proof": "Business and technical analysis with full-stack development for asset management." }
+  },
+  "routes": {
+    "A": { "stops": ["hub", "s17", "s11", "s13", "rts", "dalin", "odyssey", "genomsys"], "end": [1140, 230, "end-below"] },
+    "C": { "stops": ["hub", "s16", "s12", "s17", "s11", "s13", "rts", "dalin", "pictet", "neo"], "end": [1100, 490, "end-below"] },
+    "F": { "stops": ["hub", "agent", "courses", "dalin"], "end": [900, 80, "start"] },
+    "D": { "stops": ["hub", "s11", "s13", "s16", "ias", "photo", "thermal"], "end": [110, 790, "start"] },
+    "E": { "stops": ["hub", "s12", "s17", "s11", "s13", "s16", "ias", "bipe", "pictetam"], "end": [40, 460, "above"] },
+    "B": { "stops": ["hub", "s16", "s12", "s17"], "end": [430, 70, "start"] }
+  }
+}

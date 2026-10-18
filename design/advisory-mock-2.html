@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>track record · mock-up 2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #f8f8f6; --band: #e9e8e2; --surface: #fff; --ink: #15171b; --ink-2: #4a4d55; --ink-3: #6f727a;
+    --rule: #dcdcd8; --accent: #d87943; --accent-text: #b4561f;
+    --font-body: 'Geist', system-ui, sans-serif; --font-mono: 'Geist Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--font-body); }
+  .bar { background: var(--band); height: 44px; }
+  .bar div { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); height: 44px; display: flex; align-items: center; gap: 22px; font-size: .875rem; color: var(--ink-2); }
+  .bar b { color: var(--ink); font-weight: 600; margin-right: auto; } .bar b span { color: var(--accent-text); }
+  .bar .on { color: var(--ink); box-shadow: inset 0 -2px var(--accent); padding-block: 12px; }
+  main { max-width: 1120px; margin: 0 auto; padding: 28px clamp(16px, 4vw, 48px) 72px; }
+  .label { font: 400 .6875rem/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15; letter-spacing: -.02em; margin: 6px 0 0; font-weight: 650; }
+  .map { margin-top: 20px; background: var(--surface); border: 1px solid var(--rule); overflow-x: auto; }
+  svg { display: block; width: 100%; height: auto; min-width: 760px; }
+  svg text { font-family: var(--font-body); }
+  .line { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; transition: opacity .25s; }
+  .fast { fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; transition: opacity .25s; }
+  .stn text { font-size: 12.5px; fill: var(--ink); font-weight: 500; transition: opacity .25s; }
+  .stn text.co { font: 400 9.5px var(--font-mono); fill: var(--ink-3); letter-spacing: .03em; font-weight: 400; }
+  .stn { cursor: pointer; }
+  .ring-name { font: 400 10px var(--font-mono); letter-spacing: .12em; fill: var(--ink-3); text-transform: uppercase; }
+  .term text { font: 650 14px var(--font-body); }
+  .term text.sub { font: 400 9.5px var(--font-mono); letter-spacing: .06em; fill: var(--ink-3); text-transform: uppercase; }
+  .dim { opacity: .12; }
+  .halo { font: 600 9.5px var(--font-mono); letter-spacing: .1em; fill: #2a8c8c; }
+  .term { cursor: pointer; outline: none; }
+  .term .hit { fill: transparent; }
+  .term:hover circle.dot, .term:focus-visible circle.dot { r: 13; }
+  .term:focus-visible text:not(.sub) { text-decoration: underline; }
+  .term[aria-pressed="true"] circle.dot { r: 13; }
+  .line { cursor: pointer; }
+  .hint { font: 400 10px var(--font-mono); letter-spacing: .08em; fill: var(--ink-3); }
+  .hint tspan.b { fill: var(--ink); font-weight: 600; }
+  .panel { background: var(--surface); border: 1px solid var(--rule); padding: 18px 20px 20px; margin-top: 20px; }
+  .panel h2 { font-size: 1.15rem; line-height: 1.25; margin: 4px 0 12px; }
+  .panel ol { list-style: none; margin: 0; padding: 0; border-left: 4px solid var(--c, var(--rule)); columns: 2 280px; column-gap: 32px; }
+  .panel li { position: relative; padding: 0 0 12px 16px; font-size: .875rem; line-height: 1.45; color: var(--ink-2); break-inside: avoid; }
+  .panel li::before { content: ''; position: absolute; left: -9px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--c, var(--rule)); }
+  .panel li b { display: block; color: var(--ink); font-weight: 600; }
+  .panel li span { font: 400 .6875rem var(--font-mono); color: var(--ink-3); }
+  /* connections: the other lines that stop at this station */
+  .panel li .x { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: 1px; }
+  .panel li .x i { width: 9px; height: 9px; border-radius: 50%; background: var(--d); display: inline-block; }
+  .panel li.end { color: var(--c); font-weight: 650; font-size: 1rem; }
+  .panel li.end::before { background: var(--c); width: 14px; height: 14px; left: -11px; top: 3px; }
+  .badges { display: none; }
+  @media (max-width: 700px) {
+    .map { overflow: visible; }
+    svg { min-width: 0; }
+    /* the overview keeps the network's shape; names move to the badges and the strip below */
+    svg text, .hint { display: none; }
+    .badges { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px; border-top: 1px solid var(--rule); }
+    .badges button { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 10px; text-align: left;
+      font: 500 .8125rem/1.2 var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); cursor: pointer; }
+    .badges button i { flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 4px var(--c), inset 0 0 0 7px #fff; }
+    .badges button[aria-pressed="true"] { border-color: var(--c); box-shadow: inset 0 0 0 1px var(--c); }
+    .panel { padding: 16px; }
+    .panel ol { columns: 1; }
+  }
+  .panel .cta { display: inline-block; margin-top: 8px; padding: 10px 14px; background: var(--ink); color: #fff; text-decoration: none; font-size: .875rem; }
+  .panel p { margin: 0 0 10px; font-size: .9375rem; color: var(--ink-2); max-width: 70ch; }
+  .note { margin-top: 20px; font-size: .8125rem; color: var(--ink-3); max-width: 70ch; }
+</style>
+</head>
+<body>
+<div class="bar"><div><b>Gilbert <span>Perrin</span></b><span>home</span><span>resume</span><span>dataviz</span><span>photography</span><span class="on">track record</span><span>contact</span></div></div>
+<main>
+  <span class="label">track record · open to mandates</span>
+  <h1>Where do you want to go?</h1>
+  <div class="map"><svg id="map" role="img" aria-label="Metro map of capabilities"></svg>
+    <div class="badges" id="badges" role="group" aria-label="Pick a destination"></div></div>
+  <aside class="panel" id="panel"></aside>
+  <p class="note">Mock-up 2 · no time axis: today in the centre, the SOPHiA roles on the circle, earlier work in the outskirts, one terminus per offer.</p>
+</main>
+<script>
+// ── data ─────────────────────────────────────────────────────────────────────
+// lane = position on the circle, inside → outside; fast = AI-accelerated today
+const LINES = [
+  { id: 'D', name: 'Make complex data clear',            short: 'complex data, clear',   c: '#b08d4f' },
+  { id: 'E', name: 'Analytical reports & dashboards',    short: 'reports & dashboards',  c: '#7d8696', fast: true },
+  { id: 'C', name: 'Build the prototype, then scale it', short: 'prototype, then scale', c: '#4f8a5b', fast: true },
+  { id: 'A', name: 'Turn data into a product',           short: 'data → product',        c: '#d87943' },
+  { id: 'B', name: 'Scale a product & design team',      short: 'scale a team',          c: '#23313f' },
+  { id: 'F', name: 'Build products with AI inside',      short: 'products with AI inside',             c: '#2a8c8c' },
+];
+const LANE = ['D', 'E', 'C', 'A', 'B'];
+
+// ring: angle on the circle (degrees, clockwise from east). Others: x, y.
+// lab: label offset [dx, dy, anchor]
+const STATIONS = {
+  hub:      { title: 'VP design & innovation', co: 'SOPHiA GENETICS · today', proof: 'A focused Design & Innovation team on product vision and strategic features, the AI agent for clinical reports among them.' },
+  agent:    { x: 595, y: 190, lab: [0, -30, 'middle'], title: 'AI agent · clinical reports', co: 'VP design & innovation', proof: 'A RAG / CAG / agentic system that drafts variant and gene descriptions for clinical reports. Part of my current role.' },
+  s13:      { ring: 0,   fan: 'AC', lab: [-30, 40, 'start'], title: 'VP functional & UX', co: 'SOPHiA GENETICS', proof: 'Owned functional requirements for the data-driven features of the SOPHiA DDM platform.' },
+  s16:      { ring: 140, fan: 'DE', lab: [-62, -8, 'end'], title: 'Head of product owners, UX/UI', co: 'SOPHiA GENETICS', proof: 'Led a 7-person product and design team through the GEN2 platform rewrite.' },
+  s12:      { ring: 196, title: 'Head of front-end', co: 'SOPHiA GENETICS', proof: 'Led a 4-person team while still writing code.' },
+  s17:      { ring: 250, lab: [-16, 6, 'end'], title: 'Head of platform product & eng.', co: 'SOPHiA GENETICS', proof: 'A 25-person product and engineering organisation, 5 direct reports.' },
+  s11:      { ring: 308, title: 'Dataviz engineer', co: 'SOPHiA GENETICS', proof: 'One of the first ten employees; drove the GEN1 clinical genomics platform as product owner and developer.' },
+  rts:      { x: 790, y: 320, order: 'AC', lab: [-16, -10, 'end'], title: 'Senior engineer', co: 'RTS', proof: 'Use cases, architecture and build of a collaborative app for tapeless TV production.' },
+  dalin:    { x: 860, y: 230, order: 'FAC', lab: [-50, 46, 'end'], title: 'Co-founder', co: 'DALIN Software', proof: 'Prototyped an ontology-based datastore answering semi-natural-language queries, well ahead of its time.' },
+  courses:  { x: 720, y: 190, lab: [0, 26, 'middle'], title: 'Deep learning & AI', co: 'courses', proof: 'Deep learning, AI for medical diagnosis, natural language processing.' },
+  odyssey:  { x: 945, y: 230, lab: [0, 28, 'middle'], title: 'Senior Java developer', co: 'Odyssey', proof: 'Core development of a portfolio management platform for private banks.' },
+  genomsys: { x: 1045, y: 230, lab: [0, -20, 'middle'], title: 'Product manager', co: 'GenomSys', proof: 'Product for genomic data tools built on the MPEG-G standard.' },
+  pictet:   { x: 950, y: 330, lab: [14, 4, 'start'], title: 'Senior engineer', co: 'Pictet & Cie', proof: 'Built the batch-processing backbone of a portfolio management system.' },
+  neo:      { x: 1030, y: 410, lab: [14, 4, 'start'], title: 'Senior engineer', co: 'Neo Technologies', proof: 'Re-engineered a utility logistics platform for third-party integration.' },
+  ias:      { x: 330, y: 570, order: 'ED', lab: [16, 22, 'start'], title: 'Dataviz developer', co: 'IAS', proof: 'Interactive world map of paediatric HIV cohort data.' },
+  photo:    { x: 250, y: 650, lab: [14, 6, 'start'], title: 'Photography', co: 'year out', proof: 'A year to train the eye: composition, light, what to leave out.' },
+  thermal:  { x: 180, y: 720, lab: [14, 6, 'start'], title: 'Thermal engineer', co: 'Spie Batignolles', proof: 'Thermodynamic simulations for large construction projects: complex physics turned into decisions.' },
+  bipe:     { x: 220, y: 530, lab: [0, 26, 'middle'], title: 'Java developer', co: 'BIPE Sirius', proof: 'Moved a telecom market-intelligence platform, used by analysts to write strategic reports, to the web.' },
+  pictetam: { x: 130, y: 500, lab: [0, 26, 'middle'], title: 'Senior engineer', co: 'Pictet AM', proof: 'Business and technical analysis with full-stack development for asset management.' },
+};
+// each line's route, from the hub out to its terminus: [x, y, label anchor]
+const ROUTES = {
+  A: { stops: ['hub', 's17', 's11', 's13', 'rts', 'dalin', 'odyssey', 'genomsys'], end: [1140, 230, 'end-below'] },
+  C: { stops: ['hub', 's16', 's12', 's17', 's11', 's13', 'rts', 'dalin', 'pictet', 'neo'], end: [1100, 490, 'end-below'] },
+  F: { stops: ['hub', 'agent', 'courses', 'dalin'], end: [900, 80, 'start'] },
+  D: { stops: ['hub', 's11', 's13', 's16', 'ias', 'photo', 'thermal'], end: [110, 790, 'start'] },
+  E: { stops: ['hub', 's12', 's17', 's11', 's13', 's16', 'ias', 'bipe', 'pictetam'], end: [40, 460, 'above'] },
+  B: { stops: ['hub', 's16', 's12', 's17'], end: [430, 70, 'start'] },
+};
+for (const [id, r] of Object.entries(ROUTES)) for (const s of r.stops) (STATIONS[s].on ??= []).push(id);
+
+// ── geometry ─────────────────────────────────────────────────────────────────
+const W = 1180, H = 830, CX = 540, CY = 380, R = 125, LANE_GAP = 10, SLOT = 10, HUB_R = 34;
+const rad = a => a * Math.PI / 180;
+const laneR = id => R + (LANE.indexOf(id) - (LANE.length - 1) / 2) * LANE_GAP;
+const onRing = (a, r) => [CX + r * Math.cos(rad(a)), CY + r * Math.sin(rad(a))];
+const order = id => LINES.findIndex(l => l.id === id);
+// a station off the circle gives each of its lines a slot, side by side
+const slot = (sid, id) => {
+  const s = STATIONS[sid], on = s.order ? [...s.order] : [...s.on].sort((a, b) => order(a) - order(b));
+  return [s.x, s.y + (on.indexOf(id) - (on.length - 1) / 2) * SLOT];
+};
+// lines that enter (from the hub) or leave (outwards) at the same station fan out by a few degrees
+const FAN = 5;
+const fan = (sid, id, kind) => {
+  const group = Object.keys(ROUTES).filter(l => {
+    const st = ROUTES[l].stops, rings = st.filter(x => STATIONS[x].ring !== undefined);
+    return kind === 'in' ? rings[0] === sid : rings[rings.length - 1] === sid;
+  }).sort((a, b) => kind === 'out' && STATIONS[sid].fan
+    ? STATIONS[sid].fan.indexOf(a) - STATIONS[sid].fan.indexOf(b) : order(a) - order(b));
+  const k = group.indexOf(id);
+  return kind === 'in' ? -FAN * (group.length - k) : FAN * (k + 1);
+};
+// 45° connector: straight, diagonal, straight
+const oct = ([x1, y1], [x2, y2]) => {
+  const dx = x2 - x1, dy = y2 - y1, ax = Math.abs(dx), ay = Math.abs(dy);
+  if (ax >= ay) { const e = (ax - ay) / 2 * Math.sign(dx); return ` L${x1 + e},${y1} L${x2 - e},${y2} L${x2},${y2}`; }
+  const e = (ay - ax) / 2 * Math.sign(dy); return ` L${x1},${y1 + e} L${x2},${y2 - e} L${x2},${y2}`;
+};
+
+function routePath(id) {
+  const { stops, end } = ROUTES[id];
+  let d = '', prev = null, lastRing = null;
+  stops.forEach((sid, k) => {
+    const s = STATIONS[sid];
+    if (sid === 'hub') { prev = [CX, CY]; d = `M${CX},${CY}`; return; }
+    if (s.ring !== undefined) {
+      const isFirst = lastRing === null;
+      const isLast = !stops.slice(k + 1).some(x => STATIONS[x].ring !== undefined);
+      if (isFirst) {                                                            // spoke from the hub, fanned
+        const a0 = s.ring + fan(sid, id, 'in'), p0 = onRing(a0, laneR(id));
+        d += ` L${p0[0]},${p0[1]}`;
+      }
+      const a = isLast ? s.ring + fan(sid, id, 'out') : s.ring;
+      const p = onRing(a, laneR(id));
+      d += ` A${laneR(id)},${laneR(id)} 0 0 1 ${p[0]},${p[1]}`;                // along the circle, clockwise
+      lastRing = a; prev = p; return;
+    }
+    if (lastRing !== null) {                                                    // leave the circle outwards
+      const out = onRing(lastRing, R + 62);
+      d += ` L${out[0]},${out[1]}`; prev = out; lastRing = null;
+    }
+    const p = slot(sid, id);
+    d += oct(prev, p); prev = p;
+  });
+  if (lastRing !== null) { const out = onRing(lastRing, R + 62); d += ` L${out[0]},${out[1]}`; prev = out; }
+  d += oct(prev, end.slice(0, 2));
+  return d;
+}
+
+// ── drawing ──────────────────────────────────────────────────────────────────
+const svg = document.getElementById('map');
+svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+
+// the circle itself, faint, named after the company
+el('circle', { cx: CX, cy: CY, r: R, fill: 'none', stroke: '#efefeb', 'stroke-width': LANE_GAP * LANE.length + 8 });
+const hint = el('text', { x: 24, y: 36, class: 'hint' });
+hint.innerHTML = '<tspan class="b">PICK A DESTINATION</tspan><tspan x="24" dy="16">click a terminus ◉ or a line</tspan>';
+svg.addEventListener('click', () => select(null));
+
+for (const l of LINES) {
+  el('path', { d: routePath(l.id), class: 'line', stroke: l.c, 'data-line': l.id })
+    .addEventListener('click', e => { e.stopPropagation(); select(l.id); });
+  const [ex, ey, anchor] = ROUTES[l.id].end;
+  const g = el('g', { class: 'term', 'data-line': l.id, role: 'button', tabindex: 0, 'aria-pressed': 'false', 'aria-label': `Destination: ${l.name}` });
+  el('circle', { cx: ex, cy: ey, r: 26, class: 'hit' }, g);
+  el('circle', { cx: ex, cy: ey, r: 10, fill: l.c, class: 'dot' }, g);
+  el('circle', { cx: ex, cy: ey, r: 4, fill: '#fff' }, g);
+  // label beside the terminus, or under it ('end-below') or over it ('above'), away from the line coming in
+  const below = anchor === 'end-below', above = anchor === 'above';
+  const tx = below ? ex : above ? ex - 10 : ex + (anchor === 'end' ? -18 : 18);
+  const ty = below ? ey + 32 : above ? ey - 34 : ey + 5;
+  const ta = below ? 'end' : above ? 'start' : anchor;
+  const t = el('text', { x: tx, y: ty, fill: l.c, 'text-anchor': ta }, g); t.textContent = l.short;
+  const sub = el('text', { x: tx, y: ty + 15, class: 'sub', 'text-anchor': ta }, g); sub.textContent = 'terminus';
+  g.addEventListener('click', e => { e.stopPropagation(); select(current === l.id ? null : l.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(current === l.id ? null : l.id); } });
+}
+
+// today is AI-accelerated: a teal halo around the hub
+el('circle', { cx: CX, cy: CY, r: HUB_R + 18, fill: 'none', stroke: '#2a8c8c', 'stroke-width': 10, opacity: .28 });
+el('text', { x: CX, y: CY + HUB_R + 38, 'text-anchor': 'middle', class: 'halo' }).textContent = 'AI-ACCELERATED';
+
+// stations
+for (const [sid, s] of Object.entries(STATIONS)) {
+  const g = el('g', { class: 'stn', 'data-on': s.on.join('') });
+  if (sid === 'hub') {
+    el('circle', { cx: CX, cy: CY, r: HUB_R, fill: '#fff', stroke: '#15171b', 'stroke-width': 3 }, g);
+    el('text', { x: CX, y: CY - 7, 'text-anchor': 'middle', style: 'font-size: 10.5px; font-weight: 650' }, g).textContent = 'VP design';
+    el('text', { x: CX, y: CY + 6, 'text-anchor': 'middle', style: 'font-size: 10.5px; font-weight: 650' }, g).textContent = '& innovation';
+    el('text', { x: CX, y: CY + 20, 'text-anchor': 'middle', class: 'co' }, g).textContent = 'TODAY';
+  } else if (s.ring !== undefined) {
+    const rs = s.on.map(laneR), [x1, y1] = onRing(s.ring, Math.min(...rs)), [x2, y2] = onRing(s.ring, Math.max(...rs));
+    el('line', { x1, y1, x2, y2, stroke: '#15171b', 'stroke-width': 14, 'stroke-linecap': 'round' }, g);
+    el('line', { x1, y1, x2, y2, stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
+    let [lx, ly] = onRing(s.ring, R + 44), c = Math.cos(rad(s.ring));
+    let anchor = c > 0.3 ? 'start' : c < -0.3 ? 'end' : 'middle';
+    let dy = Math.sin(rad(s.ring)) < -0.5 ? -8 : Math.sin(rad(s.ring)) > 0.5 ? 14 : 0;
+    if (s.lab) { lx += s.lab[0]; dy = s.lab[1]; anchor = s.lab[2]; }
+    el('text', { x: lx, y: ly + dy, 'text-anchor': anchor }, g).textContent = s.title;
+    el('text', { x: lx, y: ly + dy + 13, 'text-anchor': anchor, class: 'co' }, g).textContent = s.co;
+  } else {
+    const ys = s.on.map(id => slot(sid, id)[1]);
+    if (ys.length > 1) {
+      el('line', { x1: s.x, x2: s.x, y1: Math.min(...ys), y2: Math.max(...ys), stroke: '#15171b', 'stroke-width': 14, 'stroke-linecap': 'round' }, g);
+      el('line', { x1: s.x, x2: s.x, y1: Math.min(...ys), y2: Math.max(...ys), stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
+    } else {
+      el('circle', { cx: s.x, cy: s.y, r: 6.5, fill: '#fff', stroke: '#15171b', 'stroke-width': 2.5 }, g);
+    }
+    const [dx, dy, anchor] = s.lab;
+    el('text', { x: s.x + dx, y: s.y + dy, 'text-anchor': anchor }, g).textContent = s.title;
+    el('text', { x: s.x + dx, y: s.y + dy + 13, 'text-anchor': anchor, class: 'co' }, g).textContent = s.co;
+  }
+  g.addEventListener('click', e => { e.stopPropagation(); select(s.on.includes(current) ? current : s.on[0]); });
+}
+
+// ── interaction ──────────────────────────────────────────────────────────────
+const panel = document.getElementById('panel');
+const badges = document.getElementById('badges');
+for (const l of LINES) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.dataset.line = l.id; b.style.setProperty('--c', l.c); b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = `<i></i>${l.short}`;
+  b.onclick = () => select(current === l.id ? null : l.id);
+  badges.appendChild(b);
+}
+let current = null;
+function select(id) {
+  current = id;
+  document.querySelectorAll('.term, .badges button').forEach(t => t.setAttribute('aria-pressed', t.dataset.line === id));
+  svg.querySelectorAll('[data-line]').forEach(e => e.classList.toggle('dim', !!id && e.dataset.line !== id));
+  svg.querySelectorAll('.halo').forEach(e => e.classList.toggle('dim', !!id && !LINES.find(l => l.id === id).fast && id !== 'F'));
+  svg.querySelectorAll('.stn').forEach(e => e.classList.toggle('dim', !!id && !e.dataset.on.includes(id)));
+  if (!id) {
+    panel.style.removeProperty('--c');
+    panel.innerHTML = `<span class="label">how to read it</span><h2>Six lines, one person</h2>
+      <p>Each line is something you can hire me for, and ends at its terminus. Each station is a role that proves it. Today is in the centre, where every line meets; the SOPHiA years form the circle around it; earlier work lies further out.</p>
+      <p><svg width="16" height="16" style="vertical-align: -3px"><circle cx="8" cy="8" r="6" fill="none" stroke="#2a8c8c" stroke-opacity=".5" stroke-width="3"/></svg>
+      AI-accelerated: today, AI tools multiply everything I used to build by hand. AI is also a line of its own: products with AI inside.</p>
+      <p>Click a terminus to pick a destination.</p>`;
+    return;
+  }
+  const l = LINES.find(l => l.id === id);
+  const stops = ROUTES[id].stops.map(s => STATIONS[s]);
+  panel.style.setProperty('--c', l.c);
+  panel.innerHTML = `<span class="label">line · ${stops.length} stations</span><h2>${l.name}</h2><ol>` +
+    stops.map(s => {
+      const others = s.on.filter(o => o !== id).map(o => `<i style="--d:${LINES.find(x => x.id === o).c}" title="${LINES.find(x => x.id === o).name}"></i>`).join('');
+      return `<li><b>${s.title}${others ? `<span class="x" aria-label="also on ${s.on.length - 1} other lines">${others}</span>` : ''}</b><span>${s.co}</span><br>${s.proof}</li>`;
+    }).join('') +
+    `<li class="end">${l.short}</li></ol>` + (l.fast ? `<p><b>Now AI-accelerated.</b> I have always built these by hand, coding them myself. AI coding tools now let me build them far faster.</p>` : '') +
+    `<a class="cta" href="#">Taking this line? Let's talk →</a>`;
+}
+select(null);
+</script>
+</body>
+</html>

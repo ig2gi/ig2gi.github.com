@@ -1,0 +1,151 @@
+---
+// The track record map: drawn at build time, a small script picks a route.
+// Termini (and lines) are the destination buttons; on a phone the map becomes
+// an overview with line badges, and the route reads as a vertical strip map.
+import { W, H, HUB, RING, lines, stations, linePath, terminus, mark, label, routeStops } from '../lib/trackRecordMap';
+
+const color = (id: string) => `var(${lines.find(l => l.id === id)!.color})`;
+---
+
+<div class="tr" data-current="">
+  <div class="tr-map">
+    <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label="Metro map of what I can help with: six lines, one per destination">
+      <text class="tr-hint" x="24" y="36"><tspan class="tr-hint-b">PICK A DESTINATION</tspan><tspan x="24" dy="16">click a terminus ◉ or a line</tspan></text>
+
+      <circle class="tr-ring" cx={RING.x} cy={RING.y} r={RING.r} stroke-width={RING.width} />
+
+      {lines.map(l => {
+        const t = terminus(l.id);
+        return (
+          <>
+            <path class="tr-line" d={linePath(l.id)} style={`stroke: ${color(l.id)}`} data-line={l.id} />
+            <g class="tr-term" data-line={l.id} role="button" tabindex="0" aria-pressed="false" aria-label={`Destination: ${l.name}`}>
+              <circle class="tr-hit" cx={t.x} cy={t.y} r="26" />
+              <circle class="tr-dot" cx={t.x} cy={t.y} r="10" style={`fill: ${color(l.id)}`} />
+              <circle cx={t.x} cy={t.y} r="4" fill="#fff" />
+              <text x={t.tx} y={t.ty} text-anchor={t.anchor} style={`fill: ${color(l.id)}`}>{l.short}</text>
+              <text class="tr-sub" x={t.tx} y={t.ty + 15} text-anchor={t.anchor}>terminus</text>
+            </g>
+          </>
+        );
+      })}
+
+      <!-- today is AI-accelerated: a halo around the hub -->
+      <circle class="tr-halo" cx={HUB.x} cy={HUB.y} r={HUB.r + 18} />
+      <text class="tr-halo-label" x={HUB.x} y={HUB.y + HUB.r + 38} text-anchor="middle">AI-ACCELERATED</text>
+
+      {Object.entries(stations).map(([sid, s]) => {
+        if (sid === 'hub') return (
+          <g class="tr-stn" data-on={s.on.join('')}>
+            <circle cx={HUB.x} cy={HUB.y} r={HUB.r} class="tr-hub" />
+            <text class="tr-hub-name" x={HUB.x} y={HUB.y - 7} text-anchor="middle">VP design</text>
+            <text class="tr-hub-name" x={HUB.x} y={HUB.y + 6} text-anchor="middle">&amp; innovation</text>
+            <text class="tr-co" x={HUB.x} y={HUB.y + 20} text-anchor="middle">TODAY</text>
+          </g>
+        );
+        const m = mark(sid), lb = label(sid);
+        return (
+          <g class="tr-stn" data-on={s.on.join('')}>
+            {m.single
+              ? <circle cx={m.x1} cy={m.y1} r="6.5" class="tr-stop" />
+              : <>
+                  <line x1={m.x1} y1={m.y1} x2={m.x2} y2={m.y2} class="tr-cap-out" />
+                  <line x1={m.x1} y1={m.y1} x2={m.x2} y2={m.y2} class="tr-cap-in" />
+                </>}
+            <text x={lb.x} y={lb.y} text-anchor={lb.anchor}>{s.title}</text>
+            <text class="tr-co" x={lb.x} y={lb.y + 13} text-anchor={lb.anchor}>{s.co} · {s.years}</text>
+          </g>
+        );
+      })}
+    </svg>
+
+    <!-- set in the map's empty corner on wide screens, below the map otherwise -->
+    <aside class="tr-note">
+      <span class="label">a note on this map</span>
+      <p>This is a resume, redrawn. Instead of a list of dates, a metro map: each line is something I can help with,
+        each station a role that proves it. It is an experiment as much as a resume, a way to show <strong>how I like to turn
+        something classic into something new</strong>. I hope it is useful; I hope even more that it gives you an idea of what
+        I can bring to the table. The full record is on the <a href="/resume">resume</a> page.</p>
+    </aside>
+
+    <div class="tr-badges" role="group" aria-label="Pick a destination">
+      {lines.map(l => (
+        <button type="button" data-line={l.id} aria-pressed="false" style={`--c: ${color(l.id)}`}><i></i>{l.short}</button>
+      ))}
+    </div>
+  </div>
+
+  <!-- before a destination is picked: a short key under the map, not a card -->
+  <section class="tr-panel tr-key" data-panel="">
+    <p><span class="label">how to read it</span>
+      Each line is something I can help you with; each station is a role that proves it.
+      Today is in the centre, my SOPHiA years on the circle, earlier work further out.
+      <span class="tr-key-ai"><svg width="16" height="16" aria-hidden="true" class="tr-halo-key"><circle cx="8" cy="8" r="6" /></svg>
+      AI-accelerated: AI tools now multiply what I used to build by hand.</span></p>
+  </section>
+
+  {lines.map(l => {
+    const stops = routeStops(l.id);
+    return (
+      <section class="tr-panel" data-panel={l.id} style={`--c: ${color(l.id)}`} hidden>
+        <span class="label">line · {stops.length} stations</span>
+        <h2>{l.name}</h2>
+        <ol>
+          {stops.map(s => {
+            const others = s.on.filter(o => o !== l.id);
+            return (
+              <li>
+                <b>{s.title}{others.length > 0 && (
+                  <span class="tr-x" title={`Also on: ${others.map(o => lines.find(x => x.id === o)!.name).join(', ')}`}>
+                    {others.map(o => <i style={`--d: ${color(o)}`}></i>)}
+                  </span>
+                )}</b>
+                <span>{s.co} · {s.years}</span><br />{s.proof}
+              </li>
+            );
+          })}
+          <li class="tr-end">{l.short}</li>
+        </ol>
+        {l.fast && <p><b>Now AI-accelerated.</b> I have always built these by hand, coding them myself. AI coding tools now let me build them far faster.</p>}
+        <a class="btn btn-primary" href="/contact">Taking this line? Let's talk →</a>
+      </section>
+    );
+  })}
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.tr')!;
+  let current = '';
+
+  function select(id: string) {
+    current = id;
+    root.dataset.current = id;
+    root.querySelectorAll<HTMLElement>('.tr-term, .tr-badges button')
+      .forEach(t => t.setAttribute('aria-pressed', String(t.dataset.line === id)));
+    root.querySelectorAll<SVGElement>('[data-line]:not(button)')
+      .forEach(e => e.classList.toggle('tr-dim', !!id && e.dataset.line !== id));
+    root.querySelectorAll<SVGElement>('.tr-stn')
+      .forEach(e => e.classList.toggle('tr-dim', !!id && !e.dataset.on!.includes(id)));
+    root.querySelectorAll<HTMLElement>('.tr-panel')
+      .forEach(p => { p.hidden = p.dataset.panel !== id; });
+  }
+  const toggle = (id: string) => select(current === id ? '' : id);
+
+  // termini and badges are the destination buttons; a line or a station picks a route too
+  root.querySelectorAll<HTMLElement>('.tr-term, .tr-badges button').forEach(t => {
+    t.addEventListener('click', e => { e.stopPropagation(); toggle(t.dataset.line!); });
+    t.addEventListener('keydown', e => {
+      if (t.tagName !== 'BUTTON' && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggle(t.dataset.line!); }
+    });
+  });
+  root.querySelectorAll<SVGElement>('.tr-line').forEach(l =>
+    l.addEventListener('click', e => { e.stopPropagation(); select(l.dataset.line!); }));
+  root.querySelectorAll<SVGElement>('.tr-stn').forEach(s =>
+    s.addEventListener('click', e => {
+      e.stopPropagation();
+      const on = s.dataset.on!;
+      select(on.includes(current) && current ? current : on[0]);
+    }));
+  // a click on the empty map shows every line again
+  root.querySelector('svg')!.addEventListener('click', () => select(''));
+</script>
