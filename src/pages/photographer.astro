@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhotoGallery from '../components/PhotoGallery';
+import resumeData from '../data/resume.json';
+
+// This page describes the photography work. /photography is kept free for
+// the photo site itself, which will live in this repo with its own look.
+
+// The hero: one mosaic per set, b&w first, switched in place. Built from
+// 500px photos by `npm run mosaic -- <set>` (see design/photo-mosaic/).
+const mosaic = (set: string) => ({
+  src: `/images/photography/mosaic-${set}.jpg`,
+  srcSet: `/images/photography/mosaic-${set}-1028.jpg 1028w, /images/photography/mosaic-${set}.jpg 2056w`,
+});
+const mosaics = [
+  {
+    label: 'b&w', ...mosaic('bw'),
+    alt: 'Eight black and white photographs: a lift bridge over calm water, a man playing chinese chess, a pensive gorilla, a child\'s gaze, two dogs, a small dog on a leash, a man in a hat sitting on a street, port cranes against a white sky',
+  },
+  {
+    label: 'colour', ...mosaic('colour'),
+    alt: 'Eight colour photographs: a Mediterranean sunset, ivy against red paint, a red car on a crosswalk, a frame on the horizon, New York towers, a walker beside a yellow taxi, a silhouette by a brick house at dusk, a golden sunset over the sea',
+  },
+];
+
+// Single photos, shown below the mosaic. src paths are relative to /public.
+const photos: { id: number; src: string; title: string; year: number; theme: string }[] = [];
+
+// free 500px profile until the photo site at /photography is live
+const n = resumeData.socialNetworks.find(n => n.name === '500px') as { link?: string; url?: string } | undefined;
+const portfolio = n?.link ?? n?.url ?? '';
+---
+
+<Layout title="Photography" activePage="/photographer">
+  <!-- the selected nav link already names the page -->
+  <h1 class="sr-only">Photography</h1>
+  <PhotoGallery photos={photos} mosaics={mosaics} portfolio={portfolio} client:load />
+</Layout>

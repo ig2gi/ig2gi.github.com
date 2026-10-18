@@ -5,7 +5,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "mosaic": "node design/photo-mosaic/mosaic.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.5",

@@ -4,9 +4,21 @@ export interface Photo {
   id: number;
   src: string;
   title: string;
-  year: number;
+  year?: number;      // no year → no caption (e.g. a mosaic)
   theme: string;
+  srcSet?: string;    // smaller versions for phones
 }
+
+// one hero mosaic per set (b&w, colour…), same size, switched in place
+export interface Mosaic {
+  label: string;      // switch label, e.g. "b&w"
+  src: string;        // full size, also opened in the lightbox
+  srcSet: string;
+  alt: string;
+}
+
+// theme chips are hidden for now (data kept), like the resume and dataviz tags
+const SHOW_TAGS = false;
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 
@@ -30,47 +42,103 @@ const Lightbox: FC<{ src: string; alt: string; onClose: () => void }> = ({ src, 
   );
 };
 
+// ── Mosaic switch ─────────────────────────────────────────────────────────────
+
+const MosaicSwitch: FC<{ mosaics: Mosaic[]; onOpen: (m: Mosaic) => void }> = ({ mosaics, onOpen }) => {
+  const [active, setActive] = useState(0);
+  // the other mosaics are only downloaded once the visitor reaches for the switch
+  const [warm, setWarm] = useState(false);
+  const current = mosaics[active];
+
+  return (
+    <>
+      {mosaics.length > 1 && (
+        <div className="ph-switch" role="group" aria-label="Mosaic"
+             onPointerEnter={() => setWarm(true)} onFocus={() => setWarm(true)}>
+          {mosaics.map((m, i) => (
+            <button key={m.label} type="button" aria-pressed={i === active}
+                    onPointerDown={() => setWarm(true)} onClick={() => setActive(i)}>{m.label}</button>
+          ))}
+        </div>
+      )}
+      <figure className="ph-fig ph-fig--hero ph-mosaic" onClick={() => onOpen(current)}>
+        {mosaics.map((m, i) => (i === active || warm) && (
+          <img key={m.src} src={m.src} srcSet={m.srcSet} sizes="(max-width: 768px) 100vw, 640px"
+               alt={i === active ? m.alt : ''} aria-hidden={i !== active}
+               className={i === active ? 'is-active' : undefined} />
+        ))}
+      </figure>
+    </>
+  );
+};
+
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
-const PhotoGallery: FC<{ photos: Photo[] }> = ({ photos }) => {
+const PhotoGallery: FC<{ photos: Photo[]; mosaics?: Mosaic[]; portfolio: string }> = ({ photos, mosaics = [], portfolio }) => {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   const open  = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
   const close = useCallback(() => setLightbox(null), []);
 
-  const hero      = photos[0];
-  const secondary = photos.slice(1, 3);
-  const fold      = photos.slice(3);
+  // with mosaics, they are the hero and every photo goes below
+  const hero      = mosaics.length ? undefined : photos[0];
+  const rest      = hero ? photos.slice(1) : photos;
+  const secondary = rest.slice(0, 2);
+  const fold      = rest.slice(2);
 
-  if (!hero) return null;
+  if (!hero && !mosaics.length) return null;
 
   return (
     <>
       <div className="ph-newspaper">
         <div className="ph-frontpage">
           <div className="ph-hero-col">
-            <figure className="ph-fig ph-fig--hero" onClick={() => open(hero.src, hero.theme)}>
-              <img src={hero.src} alt={hero.theme} loading="lazy" />
-            </figure>
-            <div className="ph-caption">{hero.theme.toUpperCase()} · {hero.year}</div>
+            {hero ? (
+              <>
+                <figure className="ph-fig ph-fig--hero" onClick={() => open(hero.src, hero.title || hero.theme)}>
+                  <img src={hero.src} srcSet={hero.srcSet} sizes="(max-width: 768px) 100vw, 640px" alt={hero.title || hero.theme} />
+                </figure>
+                {hero.year && <div className="ph-caption">{hero.theme.toUpperCase()} · {hero.year}</div>}
+              </>
+            ) : (
+              <MosaicSwitch mosaics={mosaics} onOpen={m => open(m.src, m.alt)} />
+            )}
           </div>
 
           <div className="ph-text-col">
-            <p className="ph-article">
-              Self-taught since 2008, grounded in <em>Shore</em>, <em>Mante</em>, and <em>Freeman</em>.
-              A press internship at the Police Cantonale Vaudoise, then four years as official photographer
-              for <em>La Nuit des Musées de Lausanne</em> — events, crowds, low light. The same attention
-              to composition and light informs my work in UX design and data visualisation.
-            </p>
-
-            <div className="ph-chips">
-              {['Street', 'Urban', 'Portraits', 'Minimalist'].map(t => (
-                <span key={t} className="ph-chip">{t}</span>
-              ))}
+            <div className="ph-article">
+              <p>
+                Photography began in 2008 as a deliberate year out, to train my eye for composition and light.
+                I took formal courses and studied the classics on my own: <em>Stephen Shore</em> for how
+                to frame the ordinary, <em>Harald Mante</em> for colour and form, <em>Michael Freeman</em> for
+                the <span className="no-hyphens">photographer's</span> eye.
+              </p>
+              <p>
+                Then practice. A four-month internship as a press photographer at the Police Cantonale Vaudoise
+                taught me to document events with factual precision. From 2009 to 2012 I was the official
+                photographer of <em>La Nuit des Musées de Lausanne</em>: crowds, events and low light, four
+                years in a row.
+              </p>
+              <p>
+                Today I photograph streets and cities, people, landscapes and abstract forms, in black and
+                white and in colour.
+              </p>
+              <p>
+                The same habits run through my design and data visualisation work: what to leave out of the
+                frame, where the eye lands first, how light and contrast carry the message.
+              </p>
             </div>
 
-            <a href="https://ig2gi.500px.photography/" target="_blank" rel="noopener noreferrer" className="btn ph-ext-link">
-              Full portfolio on 500px <span aria-hidden="true">↗</span>
+            {SHOW_TAGS && (
+              <div className="ph-chips">
+                {['Street', 'Urban', 'Portraits', 'Landscape', 'Abstract', 'Minimalist'].map(t => (
+                  <span key={t} className="ph-chip">{t}</span>
+                ))}
+              </div>
+            )}
+
+            <a href={portfolio} target="_blank" rel="noopener noreferrer" className="btn ph-ext-link">
+              Portfolio on 500px <span aria-hidden="true">↗</span>
             </a>
 
             {secondary.length > 0 && (
