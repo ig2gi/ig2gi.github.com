@@ -464,9 +464,11 @@
         "logo": "ias.png",
         "url": "https://www.iasociety.org"
       },
-      "description": "Freelance data visualization project for the <b>International AIDS Society (IAS)</b> — designed and built an <b>interactive world map</b> visualizing global data from an online database of paediatric HIV cohorts, turning complex epidemiological datasets into a clear, accessible experience on the IAS website. Built with D3.js, SVG, and JavaScript.",
+      "description": "After my years in finance software, I turned to <b>data visualisation</b> as a freelancer. For the <b>International AIDS Society</b>, I designed and built an <b>interactive world map</b> of the <b>CIPHER paediatric HIV cohorts</b>, so visitors to the IAS website could see at a glance where the cohorts are around the world. I built it with <b>D3.js</b>, SVG and JavaScript.",
       "achievements": ["D3.js interactive map", "paediatric HIV data", "global epidemiology", "IAS nonprofit"],
-      "links": [],
+      "links": [
+        { "name": "Project", "url": "/dataviz/ias-cohorts-map" }
+      ],
       "hardSkills": ["JavaScript", "D3.js", "SVG", "CSS"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
@@ -534,7 +536,7 @@
         "logo": "pictet.png",
         "url": "https://www.am.pictet"
       },
-      "description": "Three-year freelance engagement at <b>Pictet Asset Management</b>, one of Europe's leading independent asset managers, delivering business and technical analysis alongside full-stack development. Contributed to a <b>web-based CRM</b> for the asset management division, and led the end-to-end analysis, design, and implementation of a new <b>cash-management module</b> within the Portfolio Management System — covering both server and client layers. Consistently operated at the intersection of business and engineering: translating stakeholder needs into functional specifications, then carrying them through to production-ready features.",
+      "description": "As a freelance engineer at <b>Pictet Asset Management</b>, I did both the <b>business analysis</b> and the <b>full-stack development</b>: I turned stakeholder needs into functional specifications, then built them. I led the analysis, design and implementation of a new <b>cash-management module</b> in the <b>Portfolio Management System</b>, server and client, and contributed to a web-based <b>CRM</b>.",
       "achievements": ["asset management CRM", "cash-management module", "business & technical analysis", "full-stack delivery"],
       "links": [],
       "hardSkills": ["Java", "J2EE", "Web"],
@@ -543,7 +545,7 @@
     },
     {
       "id": 9,
-      "title": "Photography — Sabbatical & Visual Studies",
+      "title": "Photography — Independent Study",
       "dates": { "start": "2008-05-01", "end": "2009-07-01" },
       "location": "Remote",
       "industry": "Photography",
@@ -556,7 +558,7 @@
         "logo": "",
         "url": "https://ig2gi.500px.photography"
       },
-      "description": "A deliberate year out to invest in <b>visual thinking and composition</b> — studied photography through formal courses and structured self-study grounded in foundational works by Stephen Shore, Harald Mante, and Michael Freeman. Grounded theory in practice through a <b>4-month photo-reporter internship</b> at the Police Cantonale Vaudoise, documenting events with factual precision. Went on to serve as <b>official photographer</b> for La Nuit des Musées de Lausanne for four consecutive years (2009–2012). The visual discipline, attention to composition, and practice of communicating clearly through images directly informed later work in <b>UX design and data visualization</b>.",
+      "description": "I dedicated this year to <b>photography</b> and <b>visual composition</b>, through formal courses and self-study based on the work of Stephen Shore, Harald Mante and Michael Freeman. I did a <b>4-month photo-reporter internship</b> with the Vaud cantonal police, then was the <b>official photographer</b> of La Nuit des Musées in Lausanne for four years (2009–2012). This visual training shaped my later work in <b>UX design and data visualisation</b>.",
       "achievements": ["visual composition & theory", "photo-reporter internship", "La Nuit des Musées (4 years)", "intentional creative development"],
       "links": [
         { "name": "Portfolio", "url": "https://ig2gi.500px.photography" }
@@ -580,7 +582,7 @@
         "logo": "rts.png",
         "url": "https://www.rts.ch"
       },
-      "description": "Freelance engagement at <b>RTS — Radio Télévision Suisse</b>, architecting and building a workflow-based collaborative application for fully digital, <b>tapeless TV production</b> — a significant industry transition at the time. Defined the use-case catalog, system architecture, component and framework selection, and delivery plan before writing a single line of code. Delivered the design and core implementation, integrating production data flows through a <b>REST-based</b> integration layer. Architecture-first delivery on a greenfield system, in a domain where reliability and workflow continuity directly affect broadcast output.",
+      "description": "As a freelance engineer at <b>RTS (Radio Télévision Suisse)</b>, I designed and built a collaborative workflow application for <b>tapeless TV production</b>, as broadcasting moved to fully digital. I started with the use cases, the <b>architecture</b>, the choice of frameworks and the delivery plan, then built the core, with a <b>REST</b> integration layer for the production data flows.",
       "achievements": ["tapeless TV production", "REST integration", "workflow system", "architecture-first delivery"],
       "links": [],
       "hardSkills": ["Java", "REST", "Workflow"],
@@ -602,7 +604,7 @@
         "logo": "neo.png",
         "url": "http://www.neo-technologies.ch"
       },
-      "description": "Consultant engagement at Neo Technologies, re-engineering their proprietary <b>electricity-management logistics platform</b> to support third-party integration and extend coverage to gas and <b>cable infrastructure</b> for internet and telecom services. Began with a full reverse-engineering of the legacy system — extracting use cases, sequence diagrams, and class diagrams — before leading <b>stakeholder interviews</b> to surface new requirements and define the expanded platform's specifications. Delivered the full architecture, design, and implementation across the entire delivery cycle: system analyst, solution architect, and engineer.",
+      "description": "As a consultant at <b>Neo Technologies</b>, I re-engineered a logistics platform for <b>electricity networks</b> so it could integrate third-party systems and also cover <b>gas and cable networks</b>. I reverse-engineered the legacy system, ran <b>stakeholder interviews</b> to define the new requirements, then took the <b>architecture</b>, design and implementation through to delivery.",
       "achievements": ["multi-utility platform", "stakeholder discovery", "platform re-engineering", "UML reverse-engineering"],
       "links": [],
       "hardSkills": ["Java", "J2EE", "UML"],
@@ -624,7 +626,7 @@
         "logo": "pictet.png",
         "url": "https://www.pictet.com"
       },
-      "description": "Consultant engagement at <b>Pictet & Cie</b>, one of Europe's most prestigious independent private banks, building the batch-processing backbone of the <b>Portfolio Management System (PMS)</b>. Designed an asynchronous server-based framework using EJB message-driven beans on WebLogic to execute and monitor complex <b>financial computation tasks</b>. Defined a cross-application <b>change-notification system</b>, including a cache-invalidation strategy ensuring PMS data consistency across services. High-reliability financial infrastructure where correctness and auditability were non-negotiable.",
+      "description": "As a consultant at <b>Pictet & Cie</b>, I built the batch-processing backbone of the <b>Portfolio Management System</b>: an <b>asynchronous framework</b> (EJB message-driven beans on WebLogic) that runs and monitors the <b>financial computation tasks</b>. I also designed a cross-application <b>change-notification system</b>, with the cache invalidation that keeps portfolio data consistent across services.",
       "achievements": ["portfolio management system", "async batch framework", "cache invalidation", "Pictet private banking"],
       "links": [],
       "hardSkills": ["Java", "J2EE", "EJB", "WebLogic", "Batch Processing"],
@@ -646,7 +648,7 @@
         "logo": "",
         "url": ""
       },
-      "description": "Co-founded <b>DALIN Software SA</b> with three partners to pursue an idea well ahead of its time: an ontology-based intelligent datastore enabling <b>semi-natural-language queries</b> and real-time alert configuration over complex, multidimensional datasets. Prototyped a knowledge-based query interface in Java 2D, defined the full functional specifications for the NLP query system, and built the development environment from scratch. The venture wound down after seven months without securing funding — but the core idea proved prescient two decades before LLMs made <b>natural-language data querying</b> a mainstream expectation.",
+      "description": "I co-founded <b>DALIN Software</b> with three partners around an <b>ontology-based datastore</b> that answered <b>semi-natural-language queries</b> and raised real-time alerts on complex data. I prototyped the query interface in Java 2D and wrote the functional specifications of the query system. The company closed after seven months without funding; <b>natural-language querying of data</b> has since become mainstream with LLMs.",
       "achievements": ["ontology-based datastore", "natural-language querying", "real-time data monitoring", "4-person founding team"],
       "links": [],
       "hardSkills": ["Java", "Maven", "Java 2D", "NLP", "Ontology"],
@@ -691,7 +693,7 @@
         "logo": "odyssey.jpg",
         "url": "https://www.temenos.com"
       },
-      "description": "Over three and a half years at Odyssey Financial Technologies (now part of <b>Temenos</b>), contributed analysis, architecture, and core development for a large-scale <b>J2EE portfolio management platform</b> serving private banking clients. Designed an <b>XML data-exchange framework</b> handling partial updates and structured import/export — a significant data interoperability challenge at a time when XML was an emerging standard. Built a <b>business tag library</b> bridging the web layer to EJB services, and took technical ownership of the EJB tier and deployment environment. Even as a developer, the work was firmly anchored in financial domain logic: data flows and integration patterns were designed around the business, not just the stack.",
+      "description": "At <b>Odyssey Financial Technologies</b> (now part of <b>Temenos</b>), I worked on the analysis, architecture and core development of a <b>J2EE portfolio management platform</b> for private banks. I designed an <b>XML data-exchange framework</b> for imports, exports and partial updates, built a tag library connecting the web layer to the EJB services, and owned the <b>EJB tier</b> and the deployment environment.",
       "achievements": ["portfolio management platform", "XML data-exchange framework", "EJB layer ownership", "private banking"],
       "links": [],
       "hardSkills": ["Java", "J2EE", "EJB", "XML", "WebLogic"],
@@ -713,7 +715,7 @@
         "logo": "bipe.png",
         "url": "https://lebipe.com"
       },
-      "description": "First professional role at a company whose core product was <b>telecom market intelligence</b> — serving professional analysts who produced strategic reports for the telecom industry. Within a 4-person team, migrated the analytical platform from 4D to Java/Web and co-designed a custom <b>Syntagm database engine</b>: a multidimensional index enabling flexible queries across geographic, financial, and equipment dimensions. An early, hands-on encounter with the architecture of analytical systems — years before OLAP tools became mainstream.",
+      "description": "My first software role, in a 4-person team at <b>BIPE Sirius</b>, which sold <b>telecom market intelligence</b> to industry analysts. We moved its analysis platform from 4D to <b>Java and the web</b>, and I co-designed its <b>multidimensional database engine</b> (Syntagm), which indexed data by geography, finance and equipment, before OLAP tools became mainstream.",
       "achievements": ["telecom market intelligence", "Syntagm multidimensional engine", "OLAP-style analytics", "Java/Web migration"],
       "links": [],
       "hardSkills": ["Java", "Web", "4D"],
@@ -759,7 +761,7 @@
         "logo": "spie.png",
         "url": "https://www.spiebatignolles.fr"
       },
-      "description": "First career role as a thermal engineer within a computation group delivering thermodynamic and fluid-mechanics analysis for large-scale construction projects. Worked on HVAC design for a <b>nuclear-waste storage enclosure in Novosibirsk</b> (Siberia), and on safety-critical <b>tunnel smoke-evacuation systems</b> modelled with <b>SES</b> — a sophisticated American FORTRAN program running 3D finite-element simulations across thermal conduction, convection, radiation, and fluid dynamics. Extended SES with new physical modules on a project-by-project basis, requiring deep fluency with its simulation internals. High-stakes engineering where analytical precision was non-negotiable — a foundation that shaped every subsequent approach to data and problem-solving.",
+      "description": "My first career, as a <b>thermal engineer</b> in a computation group working on large construction projects. I worked on the HVAC design of a <b>nuclear-waste storage building in Novosibirsk</b>, and on <b>tunnel smoke-evacuation systems</b> modelled with <b>SES</b>, a FORTRAN simulation program that I extended with new physical modules. SES models the tunnel network in one dimension; for local events such as a <b>wagon fire</b>, we built <b>3D models</b> coupling radiation, convection and conduction, whose results fed back into the <b>one-dimensional model</b> of the whole tunnel.",
       "achievements": ["nuclear-waste facility HVAC", "tunnel smoke-evacuation", "SES FORTRAN extensions", "3D finite-element simulation"],
       "links": [],
       "hardSkills": ["FORTRAN", "SES", "Thermodynamics", "Fluid Mechanics"],
