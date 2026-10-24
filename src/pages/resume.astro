@@ -11,16 +11,13 @@ const sections = [
   { id: 'rs-education',      name: 'Education',      count: events.filter(e => e.type === 'formation' && e.category === 'education').length },
   { id: 'rs-certifications', name: 'Certifications', count: events.filter(e => e.type === 'formation' && e.category === 'formation').length },
 ];
-
-// the PDF button comes back with the up-to-date PDF (public/gilbert-perrin-resume.pdf)
-const PDF_READY = false;
 ---
 
 <Layout title="Resume" activePage="/resume">
   <!-- the selected nav link already names the page -->
   <h1 class="sr-only">Resume</h1>
   <SectionBar sections={sections} label="Resume sections">
-    {PDF_READY && <a class="btn btn-primary btn-small" href="/gilbert-perrin-resume.pdf" download>PDF <span aria-hidden="true">↓</span></a>}
+    <a class="btn btn-small" href="/gilbert-perrin-resume.pdf" download>PDF <span aria-hidden="true">↓</span></a>
   </SectionBar>
   <Resume data={resumeData} />
 </Layout>

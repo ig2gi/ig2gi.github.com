@@ -6,7 +6,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "clean": "rimraf dist",
-    "mosaic": "node design/photo-mosaic/mosaic.mjs"
+    "mosaic": "node design/photo-mosaic/mosaic.mjs",
+    "pdf": "node scripts/resume-pdf.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.5",
@@ -18,6 +19,7 @@
     "@types/node": "^25.0.10",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "geist": "^1.8.2",
     "playwright": "^1.49.1",
     "rimraf": "^5.0.5"
   },

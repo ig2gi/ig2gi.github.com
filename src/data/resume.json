@@ -16,11 +16,28 @@
   ],
   "languages": [
     { "name": "French", "level": "native" },
-    { "name": "English", "level": "B2" }
+    { "name": "English", "level": "B2–C1", "label": "professional working proficiency" }
   ],
   "header": {
     "description": "French Citizen, born in 1969. Living in Switzerland (permit C) near Lausanne. Engineer with 2 Master's degrees.",
     "title": "Product · Design · Engineering"
+  },
+  "pdf": {
+    "skills": [
+      { "label": "Leadership & product", "items": ["Product Strategy", "Product Management", "AI Product Management", "Engineering Leadership", "Team Leadership", "Stakeholder Management", "Roadmap Prioritisation", "Legacy Modernisation"] },
+      { "label": "AI & data", "items": ["Generative AI", "LLM", "Retrieval-Augmented Generation (RAG)", "Knowledge Graphs", "Machine Learning", "Data Platform", "Data Modelling", "Data Visualisation"] },
+      { "label": "Design & engineering", "items": ["UX Design", "Rapid Prototyping", "Solution Architecture", "Software Architecture", "React", "D3.js", "Python", "Java"] },
+      { "label": "Domains", "items": ["Clinical Genomics", "Regulated Healthcare", "Private Banking & Asset Management", "Broadcast Media", "Energy"] }
+    ],
+    "work": [
+      { "id": 10, "title": "Circular genomic viewer" },
+      { "id": 4, "title": "Sequencing usage world map" },
+      { "id": 2, "title": "Dashboards & metrics" },
+      { "id": 11, "title": "CIPHER cohorts world map" },
+      { "id": 8, "title": "Gene transcript viewer" },
+      { "id": 7, "title": "Global surface temperature" }
+    ],
+    "photography": "Official photographer of La Nuit des Musées, Lausanne (2009–2012), after a photo-reporter internship with the Vaud cantonal police."
   },
   "skills": {
     "soft": [
