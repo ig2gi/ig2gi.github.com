@@ -18,6 +18,7 @@ interface ResumeEvent {
   company?: { name?: string; url?: string };
   description?: string;
   descriptionLong?: string;
+  resume?: boolean;
   achievements?: string[];
   links?: Link[];
 }
@@ -297,7 +298,8 @@ function applyGrouping(
 // ── Main component ────────────────────────────────────────────────────────────
 
 const Resume: FC<{ data: ResumeData }> = ({ data }) => {
-  const sorted = [...(data.events ?? [])].sort((a, b) => {
+  // `resume: false` keeps an entry in the data but off the page
+  const sorted = (data.events ?? []).filter(e => e.resume !== false).sort((a, b) => {
     const da = new Date(a.dates?.start ?? '').getTime() || 0;
     const db = new Date(b.dates?.start ?? '').getTime() || 0;
     return db - da;

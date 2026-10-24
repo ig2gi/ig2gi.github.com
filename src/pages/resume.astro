@@ -5,7 +5,7 @@ import SectionBar from '../components/SectionBar.astro';
 import resumeData from '../data/resume.json';
 
 // same filters as Resume.tsx: one count per role, degree or certificate
-const events = resumeData.events;
+const events = resumeData.events.filter(e => (e as { resume?: boolean }).resume !== false);
 const sections = [
   { id: 'rs-experience',     name: 'Experience',     count: events.filter(e => e.type === 'experience').length },
   { id: 'rs-education',      name: 'Education',      count: events.filter(e => e.type === 'formation' && e.category === 'education').length },
