@@ -9,9 +9,9 @@
   ],
   "lanes": ["D", "E", "C", "A", "B"],
   "stations": {
-    "hub": { "title": "VP design & innovation", "co": "SOPHiA GENETICS", "years": "since 2025", "proof": "A focused Design & Innovation team on product vision and strategic features, the AI agent for clinical reports among them." },
+    "hub": { "title": "Head of design & innovation, VP", "co": "SOPHiA GENETICS", "years": "since 2025", "proof": "A focused Design & Innovation team on product vision and strategic features, the AI agent for clinical reports among them." },
     "s13": { "ring": 0, "fan": "AC", "lab": [-30, 54, "start"], "title": "VP functional & UX", "co": "SOPHiA GENETICS", "years": "2018–2019", "proof": "Owned functional requirements for the data-driven features of the SOPHiA DDM platform." },
-    "s16": { "ring": 140, "fan": "DE", "lab": [-62, -8, "end"], "title": "Head of product owners, UX/UI", "co": "SOPHiA GENETICS", "years": "2020–2023", "proof": "Led a 7-person product and design team through the rewrite of the platform for the web." },
+    "s16": { "ring": 140, "fan": "DE", "lab": [-62, -8, "end"], "title": "Head of platform product & UX", "co": "SOPHiA GENETICS", "years": "2020–2023", "proof": "Led a 7-person product and design team through the rewrite of the platform for the web." },
     "s12": { "ring": 196, "title": "Head of front-end", "co": "SOPHiA GENETICS", "years": "2015–2018", "proof": "Led a 4-person team while still writing code." },
     "s17": { "ring": 250, "lab": [-16, 6, "end"], "title": "Head of platform product & eng.", "co": "SOPHiA GENETICS", "years": "2023–2025", "proof": "A 25-person product and engineering organisation, 5 direct reports." },
     "s11": { "ring": 308, "title": "Dataviz engineer", "co": "SOPHiA GENETICS", "years": "2013–2015", "proof": "One of the first ten employees; drove the clinical genomics platform as product owner and developer." },
