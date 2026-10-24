@@ -17,6 +17,7 @@ interface ResumeEvent {
   teamSize?: number | null;
   company?: { name?: string; url?: string };
   description?: string;
+  descriptionLong?: string;
   achievements?: string[];
   links?: Link[];
 }
@@ -113,6 +114,19 @@ const EntryLinks: FC<{ links: Link[] }> = ({ links }) => {
   );
 };
 
+// short text always shown; the long one opens under it (native <details>, no JS, still in the HTML for crawlers)
+const Description: FC<{ event: ResumeEvent }> = ({ event }) => (
+  <>
+    {event.description && <p className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.description }} />}
+    {event.descriptionLong && (
+      <details className="re-entry-more">
+        <summary><span className="re-more-open">More</span><span className="re-more-close">Less</span></summary>
+        <div className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.descriptionLong }} />
+      </details>
+    )}
+  </>
+);
+
 // role tags are hidden until we decide whether they add anything beyond the text (data kept in resume.json)
 const SHOW_TAGS = false;
 
@@ -127,11 +141,28 @@ const Achievements: FC<{ achievements: string[] }> = ({ achievements }) => {
   );
 };
 
-const GapIndicator: FC<{ months: number }> = ({ months }) => (
-  <div className="re-role-gap" aria-hidden="true">
-    <span className="re-role-gap-line" />
-    <span className="re-role-gap-label"><strong>{fmtGap(months)}</strong> — other activities</span>
-    <span className="re-role-gap-line" />
+// what happened between two roles of a group, named from the other experiences in that window
+function gapActivities(later: ResumeEvent, earlier: ResumeEvent, others: ResumeEvent[]) {
+  const from = new Date(earlier.dates?.end ?? '').getTime();
+  const to   = new Date(later.dates?.start ?? '').getTime();
+  return others
+    .filter(e => {
+      const start = new Date(e.dates?.start ?? '').getTime();
+      return start >= from && start < to;
+    })
+    .sort((a, b) => new Date(a.dates!.start).getTime() - new Date(b.dates!.start).getTime())
+    .map(e => e.category === 'other'
+      ? e.title.split(' — ')[0]
+      : [e.title, e.company?.name].filter(Boolean).join(', '));
+}
+
+const GapIndicator: FC<{ months: number; activities: string[] }> = ({ months, activities }) => (
+  <div className="re-role-gap">
+    <span className="re-role-gap-line" aria-hidden="true" />
+    <span className="re-role-gap-label">
+      <strong>{fmtGap(months)}</strong> — {activities.length ? activities.join(' · ') : 'other activities'}
+    </span>
+    <span className="re-role-gap-line" aria-hidden="true" />
   </div>
 );
 
@@ -170,7 +201,7 @@ const Entry: FC<{ event: ResumeEvent }> = ({ event }) => {
       <div className="re-entry-title">{event.title}</div>
       {hasSub && <div className="re-entry-sub">{subText}</div>}
       {event.diploma  && <div className="re-entry-sub">{event.diploma}</div>}
-      {event.description && <p className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.description }} />}
+      <Description event={event} />
       <Achievements achievements={event.achievements ?? []} />
       <EntryLinks links={event.links ?? []} />
     </EntryWrap>
@@ -183,7 +214,7 @@ const Role: FC<{ event: ResumeEvent }> = ({ event }) => (
   <EntryWrap className="re-role" meta={<Dateline dates={event.dates} />}>
     <div className="re-role-title">{event.title}</div>
     {event.diploma && <div className="re-entry-sub">{event.diploma}</div>}
-    {event.description && <p className="re-entry-desc" dangerouslySetInnerHTML={{ __html: event.description }} />}
+    <Description event={event} />
     <Achievements achievements={event.achievements ?? []} />
     <EntryLinks links={event.links ?? []} />
   </EntryWrap>
@@ -191,7 +222,7 @@ const Role: FC<{ event: ResumeEvent }> = ({ event }) => (
 
 // ── Grouped company ───────────────────────────────────────────────────────────
 
-const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[] }> = ({ group, events }) => {
+const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[]; others: ResumeEvent[] }> = ({ group, events, others }) => {
   const starts     = events.map(e => e.dates?.start ? new Date(e.dates.start).getTime() : NaN).filter(t => !isNaN(t));
   const ends       = events.map(e => e.dates?.end   ? new Date(e.dates.end).getTime()   : NaN).filter(t => !isNaN(t));
   const hasPresent = events.some(e => e.dates?.end === null);
@@ -211,7 +242,9 @@ const GroupEntry: FC<{ group: EventGroup; events: ResumeEvent[] }> = ({ group, e
     roleItems.push(<Role key={ev.id ?? i} event={ev} />);
     if (i < events.length - 1) {
       const gap = gapMonths(events[i], events[i + 1]);
-      if (gap >= 2) roleItems.push(<GapIndicator key={`gap-${i}`} months={gap} />);
+      if (gap >= 2) roleItems.push(
+        <GapIndicator key={`gap-${i}`} months={gap} activities={gapActivities(events[i], events[i + 1], others)} />
+      );
     }
   }
 
@@ -251,7 +284,8 @@ function applyGrouping(
       if (!seen.has(group.id)) {
         seen.add(group.id);
         const groupEvents = events.filter(e => e.id != null && group.events.includes(e.id));
-        result.push(<GroupEntry key={group.id} group={group} events={groupEvents} />);
+        const others = events.filter(e => !groupEvents.includes(e));
+        result.push(<GroupEntry key={group.id} group={group} events={groupEvents} others={others} />);
       }
     } else {
       result.push(buildSingle(event));

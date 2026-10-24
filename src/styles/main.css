@@ -647,8 +647,30 @@ main {
 .re-entry-sub { text-transform: uppercase; margin-bottom: 4px; }
 .re-entry-sub a:hover { color: var(--accent-text); }
 
-.re-entry-desc { margin: 10px 0 0; color: var(--ink-2); }
+.re-entry-desc { margin: 10px 0 0; color: var(--ink-2); font-size: 0.9375rem; line-height: 1.55; text-align: justify; hyphens: auto; }
 .re-entry-desc b { color: var(--ink); font-weight: 600; }
+
+/* long role text, opened under the short one */
+.re-entry-more { margin-top: 8px; }
+.re-entry-more summary {
+    display: inline-block;
+    cursor: pointer;
+    list-style: none;
+    font: 500 0.75rem/1 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+}
+.re-entry-more summary::-webkit-details-marker { display: none; }
+.re-entry-more summary::after { content: " +"; }
+.re-entry-more[open] summary::after { content: " −"; }
+.re-entry-more .re-more-close, .re-entry-more[open] .re-more-open { display: none; }
+.re-entry-more[open] .re-more-close { display: inline; }
+.re-entry-more[open] summary { margin-bottom: 2px; }
+.re-entry-more .re-entry-desc p { margin: 0 0 10px; }
+.re-entry-more .re-entry-desc ul { margin: 0 0 10px; padding-left: 18px; text-align: left; }
+.re-entry-more .re-entry-desc li { margin-bottom: 2px; }
+.re-entry-more .re-entry-desc > :last-child { margin-bottom: 0; }
 
 .re-entry-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .re-entry-links a {
@@ -670,8 +692,9 @@ main {
 .re-role .re-entry-main { padding-left: 20px; border-left: 2px solid var(--accent); }
 
 .re-role-gap { display: flex; align-items: center; gap: 12px; }
-.re-role-gap-line { flex: 1; border-top: 1px dashed var(--rule); }
-.re-role-gap-label { font: 400 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.re-role-gap-line { flex: 1; min-width: 24px; border-top: 1px dashed var(--rule); }
+/* names what filled the gap, so it may wrap on a phone */
+.re-role-gap-label { font: 400 var(--step--2)/1.5 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: center; }
 .re-role-gap-label strong { color: var(--accent-text); font-weight: 500; }
 
 .re-soft-tags { display: flex; flex-wrap: wrap; gap: 8px; }

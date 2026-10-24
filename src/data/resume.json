@@ -52,7 +52,7 @@
   "events": [
     {
       "id": 26,
-      "title": "VP, Design & Innovation",
+      "title": "Head of Design & Innovation, Vice President",
       "dates": { "start": "2025-09-01", "end": null },
       "location": "Vaud, Switzerland",
       "industry": "Healthcare",
@@ -65,12 +65,38 @@
         "logo": "sophia.svg",
         "url": "https://www.sophiagenetics.com"
       },
-      "description": "Promoted to <b>VP level</b> to lead a focused <b>5-person Design & Innovation team</b> — a deliberate shift from large-scale org management back to strategic depth. Concentrating on <b>product vision and strategic features</b> for the SOPHiA DDM platform: combining design leadership, product strategy, and the data visualisation craft built over twelve years as a founding contributor to the platform.",
-      "achievements": ["VP promotion", "5-person innovation team", "strategic product vision"],
+      "description": "I lead a <b>5-person Design & Innovation team</b> that owns the <b>strategic features and vision</b> of the <b>SOPHiA DDM™ platform</b>, a deliberate move from large-scale management back to strategic depth. The team works as an <b>R&D unit</b>: we prototype and test ideas before development starts, and we stay accountable for delivery. Our current project is a <b>generative-AI assistant for clinical variant interpretation</b>, designed for <b>regulated healthcare</b> with the clinician confirming every result.",
+      "descriptionLong": "<p>The team brings together <b>germline and oncology domain experts</b>, <b>platform experts</b> and a <b>UX/UI designer</b>. Some strategic features can't go straight into development, because the problem has to be explored first. So we <b>prototype</b>, <b>test with users</b>, <b>write the requirements</b>, and hand them over to the development teams.</p><p>With the team, I <b>conceived and built</b> the variant interpretation assistant and <b>designed the architecture</b> of the <b>harness around the LLM</b>:</p><ul><li>curated evidence is <b>retrieved at query time</b>;</li><li>a <b>deterministic grounding gate</b> checks every citation against its source;</li><li>the model writes a <b>structured draft</b>;</li><li>nothing is saved until a <b>clinician confirms</b> it.</li></ul><p>The <b>domain experts own the prompts</b>, so the clinical reasoning stays with the people who know it. The feature is in development, with an <b>early-access programme</b> planned for December 2026.</p><p>I have built much of the platform since its earliest days. That lets me steer these projects across <b>technology, product, design and delivery</b> at once.</p><p>I work <b>AI-natively</b>, using <b>Claude</b> for prototyping, coding, requirements and documentation, and I drive internal AI projects beyond the assistant:</p><ul><li><b>customer metrics dashboards</b>;</li><li><b>Claude skills</b> that help the teams write requirements;</li><li>a <b>knowledge graph</b> linking the platform documentation and Jira stories, to help people write new stories.</li></ul>",
+      "achievements": ["R&D team with delivery accountability", "generative AI · RAG", "human-in-the-loop", "regulated healthcare", "product vision"],
       "links": [],
-      "hardSkills": [],
-      "softSkills": [],
+      "hardSkills": ["Solution design", "Generative AI", "RAG", "Python", "Prototyping", "Product Management", "UX Design"],
+      "softSkills": ["team leadership", "creativity", "product strategy", "problem solving"],
       "teamSize": 5
+    },
+    {
+      "id": 36,
+      "title": "Retrieval Augmented Generation (RAG)",
+      "dates": { "start": "2026-05-01", "end": "2026-08-01" },
+      "location": "",
+      "industry": "Machine Learning",
+      "subIndustry": "Generative AI",
+      "type": "formation",
+      "category": "formation",
+      "diploma": "certificate",
+      "company": {
+        "name": "DeepLearning.AI — Coursera",
+        "department": "",
+        "logo": "",
+        "url": "https://www.coursera.org"
+      },
+      "description": "Building retrieval-augmented generation systems that ground LLM answers in retrieved evidence.",
+      "achievements": [],
+      "links": [
+        { "name": "Certificate", "url": "https://www.coursera.org/account/accomplishments/verify/Z16BEJWZAHXS" }
+      ],
+      "hardSkills": ["RAG", "AI", "Agents"],
+      "softSkills": [],
+      "teamSize": null
     },
     {
       "id": 32,
@@ -112,11 +138,12 @@
         "logo": "sophia.svg",
         "url": "https://www.sophiagenetics.com"
       },
-      "description": "Expanded leadership role combining full <b>Platform Product Management</b> with engineering org leadership — managing a <b>25-person organisation</b> (developers, Product Owners, UX/UI designers) with 5 direct reports. Owned the DDM platform as Product Owner while steering the team through the completion of the <b>GEN1→GEN2 migration</b>: from JavaFX desktop to React web, including a fundamental redesign of the clinical interaction paradigm. Aligned stakeholders, defined user flows, and oversaw frontend architecture to deliver high-impact features. Built <b>metrics and dashboards</b> to track both development team performance and customer migration progress — applying the data analytics lens directly to engineering management.",
-      "achievements": ["25-person engineering org", "GEN2 migration completion", "dev performance dashboards", "platform PM + engineering lead"],
+      "description": "I led a <b>25-person organisation</b> (developers, Product Owners, UX/UI designers) owning both <b>product and engineering</b> for the <b>SOPHiA DDM™ platform</b>, and took its new <b>web version</b> to the point where <b>customer migration</b> could start. I set the design direction for clinical users, <b>balancing ease of use with data density</b>, and steered a very large backlog with <b>dashboards</b> that let me arbitrate between new features and moving customers quickly.",
+      "descriptionLong": "<p>With <b>5 direct reports</b>, I ran product and engineering as one development organisation, with developers, Product Owners and UX/UI designers working in the same teams. I was also the platform's <b>Product Owner</b>: I <b>aligned stakeholders</b>, defined the <b>user flows</b> and oversaw the <b>frontend architecture</b>.</p><p>The design challenge, still open today, is to combine two constraints that pull against each other: making the platform <b>easier to use</b>, and keeping <b>enough information visible at once</b> for clinicians' demanding workflows. A web technology doesn't mean consumer-web conventions, so I chose the <b>web-desktop</b> standard for professional tools, with <b>data density</b> rather than long vertical scrolling.</p><p>The backlog mixed new features with <b>parity features</b> from the desktop application. I built <b>dashboards combining Jira, production data and internal sources</b> to decide what came first: staying competitive, or moving users quickly to limit the cost of <b>running two platforms</b>. The same dashboards tracked the <b>development teams' performance</b>.</p><p>My engineering background let me make technical calls with the engineers, not only product calls.</p><p>Moving a clinical application is not a switch: each customer has validated workflows to carry over. Once the platform was ready, the company put <b>sales, domain experts and product</b> behind the migration, which is on track to close in Q1 2027.</p>",
+      "achievements": ["25-person org", "desktop → web-desktop migration", "data-dense clinical UX", "backlog arbitration dashboards", "React"],
       "links": [],
-      "hardSkills": ["React", "Design Control", "Team Management"],
-      "softSkills": [],
+      "hardSkills": ["React", "Architecture", "Solution design", "Product Management", "UX Design", "Data Visualisation", "Design Control", "Agile / Scrum"],
+      "softSkills": ["team leadership", "product strategy", "stakeholder alignment", "problem solving"],
       "teamSize": 25
     },
     {
@@ -146,7 +173,7 @@
     },
     {
       "id": 28,
-      "title": "Head of Product Owners, UX/UI",
+      "title": "Head of Platform Product & UX",
       "dates": { "start": "2020-06-01", "end": "2023-06-01" },
       "location": "Vaud, Switzerland",
       "industry": "Healthcare",
@@ -159,11 +186,12 @@
         "logo": "sophia.svg",
         "url": "https://www.sophiagenetics.com"
       },
-      "description": "Returned to SOPHiA GENETICS to lead a <b>7-person Product Owners and UX/UI team</b>, heading the product and design side of the <b>GEN2 platform</b> — a full rewrite of the original GEN1 JavaFX desktop application into a <b>React web architecture</b> with microservices backend. Built end-to-end the <b>multimodal prototype for oncologists</b>: a proof of concept moving the platform beyond single-omics genomics into a unified clinical view combining <b>radiomics, digital pathology, and clinical data</b> — then led the full delivery program to scale it with the development team. Delivered the company's first React web application, pioneering the platform's transition to web. For the first time, worked within a structured product organisation with dedicated PO and UX specialists — a maturation of the product function bootstrapped during the GEN1 era.",
-      "achievements": ["GEN1→GEN2 platform rewrite", "multiomics oncology prototype", "React + microservices", "7-person PO/UX team"],
+      "description": "I came back to SOPHiA GENETICS to lead a <b>7-person team of Product Owners and UX/UI designers</b>, owning product and design for the <b>new web platform</b>. I was heavily involved in designing it as a <b>data platform</b>, managed as a <b>product in its own right</b>, a direction the company still follows. To show where it could go, I <b>built a multimodal prototype for oncologists</b> end to end, then led the programme to <b>scale it with the development team</b>.",
+      "descriptionLong": "<p>Working closely with the <b>CTO</b>, I helped design the new platform as a <b>data platform</b>: I shaped the <b>high-level data model</b> and its core <b>data concepts</b>. We treated the platform as a <b>product in its own right</b>, serving both internal teams building on it and <b>external partners</b>, and that direction shapes the platform today.</p><p>The multimodal prototype was the proof of that direction. It combined <b>radiomics, digital pathology and clinical data</b> with genomics in one view, towards <b>data-driven medicine</b>. I designed and coded it myself, then handed it to developers to scale it. It was a <b>strategic project</b>, meant to bring <b>clinical data</b> into the platform. Released as an <b>early-access programme</b>, it paved the way for the new platform, and that investment is paying off today.</p><p>I was one of the <b>influencers of the technology choice</b> for the new platform. The first React application I built started as a separate app and is now a <b>module of the platform</b>. Building it myself gave me the ground to make technical calls with the engineers later.</p><p>I wrote the <b>architecture documentation</b> and <b>generated its diagrams automatically</b> from Jira assets with Python graph libraries, so it stayed aligned with the code.</p><p>For the first time, the platform had a structured <b>product organisation</b>, with dedicated Product Owners and UX specialists, all <b>7 reporting to me</b>. I led the maturation of a function that had been bootstrapped in the early years, driving <b>clear requirements</b> and <b>cross-team alignment</b> to take complex work from concept to production.</p>",
+      "achievements": ["desktop → web platform rewrite", "multimodal oncology prototype", "first React app", "automated architecture docs", "early-access programme", "7-person PO/UX team"],
       "links": [],
-      "hardSkills": ["React", "UX/UI Design", "Product Management"],
-      "softSkills": [],
+      "hardSkills": ["React", "UX/UI Design", "Product Management", "Solution design", "Prototyping", "Agile / Scrum", "Architecture", "Python"],
+      "softSkills": ["team leadership", "creativity", "problem solving", "product strategy"],
       "teamSize": 7
     },
     {
@@ -182,11 +210,37 @@
         "logo": "",
         "url": "https://www.genomsys.com"
       },
-      "description": "Brief engagement as Product Manager at <b>GenomSys</b>, a Swiss startup building clinical tools around the <b>MPEG-G standard</b> (ISO/IEC 23092) — the international specification for efficient genomic data compression, access control, and unified data containers for sequencing data. Brought deep clinical genomics domain expertise from seven years at SOPHiA GENETICS to assess product strategy and positioning for this emerging standard. After three months, concluded the engagement following strategic differences on product direction — and accepted an invitation from SOPHiA GENETICS to return and continue the platform mission.",
-      "achievements": ["MPEG-G ISO standard", "genomic data infrastructure", "strategic product assessment"],
+      "description": "At <b>GenomSys</b>, a Swiss start-up built around the <b>MPEG-G standard</b> (ISO/IEC 23092) for genomic data compression and access, I ran the <b>market and competitor analysis</b> to shape the product strategy, bringing my <b>clinical genomics</b> experience. The vision was still open: the company wanted to go beyond a compression format towards <b>analysis services</b>, close to what SOPHiA GENETICS offered. After three months, our views on product direction differed, and I accepted <b>SOPHiA GENETICS' invitation to come back</b>.",
+      "achievements": ["MPEG-G ISO standard", "market & competitor analysis", "product strategy"],
       "links": [],
-      "hardSkills": [],
-      "softSkills": [],
+      "hardSkills": ["Product Management", "Market analysis", "Competitive analysis"],
+      "softSkills": ["product strategy", "critical thinking"],
+      "teamSize": null
+    },
+    {
+      "id": 37,
+      "title": "Deep Learning — Independent Study",
+      "dates": { "start": "2019-07-01", "end": "2020-01-01" },
+      "ribbon": false,
+      "location": "Remote",
+      "industry": "Machine Learning",
+      "subIndustry": "Deep Learning",
+      "type": "experience",
+      "category": "other",
+      "company": {
+        "name": "Deep Learning",
+        "department": "",
+        "logo": "",
+        "url": "https://observablehq.com/collection/@ig2gi/deep-learning"
+      },
+      "description": "I dedicated these months to studying <b>machine learning and deep learning</b> in depth, through the <b>DeepLearning.AI specialisation</b> (five courses: neural networks, optimisation, structuring ML projects, convolutional networks, sequence models). I wrote a <b>series of articles</b> on Observable to explain what I learned, with <b>interactive visualisations</b>.",
+      "achievements": ["deep learning specialisation", "articles with interactive visualisations", "intentional learning"],
+      "links": [
+        { "name": "Articles", "url": "https://observablehq.com/collection/@ig2gi/deep-learning" },
+        { "name": "Specialisation", "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/YDGTV6XN3LAT" }
+      ],
+      "hardSkills": ["Machine Learning", "Deep Learning", "Python", "Data Visualisation"],
+      "softSkills": ["self-directed learning", "communication"],
       "teamSize": null
     },
     {
@@ -339,8 +393,8 @@
         "logo": "sophia.svg",
         "url": "https://www.sophiagenetics.com"
       },
-      "description": "Continued leading the evolution of the <b>GEN1 platform</b> with a 4-person team — still acting as both <b>product owner and hands-on developer</b>: defining features, owning functional specifications, assigning tasks, and writing code. Built the internal <b>admin web app</b> used by the Support team, and contributed to two <b>CTI/Innosuisse</b> innovation projects. On personal initiative, built a D3.js <b>gene/transcript viewer</b> and a suite of internal data apps — including a <b>real-time global usage map</b> and stats dashboards — making platform data legible across the whole company. A five-year chapter building the platform from the ground up, as engineer, product thinker, and team lead simultaneously.",
-      "achievements": ["GEN1 platform", "PM/PO + hands-on dev", "gene/transcript viewer", "CTI/Innosuisse projects"],
+      "description": "Continued leading the evolution of the <b>platform</b> with a 4-person team — still acting as both <b>product owner and hands-on developer</b>: defining features, owning functional specifications, assigning tasks, and writing code. Built the internal <b>admin web app</b> used by the Support team, and contributed to two <b>CTI/Innosuisse</b> innovation projects. On personal initiative, built a D3.js <b>gene/transcript viewer</b> and a suite of internal data apps — including a <b>real-time global usage map</b> and stats dashboards — making platform data legible across the whole company. A five-year chapter building the platform from the ground up, as engineer, product thinker, and team lead simultaneously.",
+      "achievements": ["platform evolution", "PM/PO + hands-on dev", "gene/transcript viewer", "CTI/Innosuisse projects"],
       "links": [],
       "hardSkills": ["Java", "JavaFX", "Spring", "JavaScript", "Node.js", "D3.js", "Python"],
       "softSkills": ["critical thinking", "reasoning"],
@@ -385,8 +439,8 @@
         "logo": "sophia.svg",
         "url": "https://www.sophiagenetics.com"
       },
-      "description": "Joined <b>SOPHiA GENETICS</b> as one of its <b>first ten employees</b> and became the primary driver behind what would later be known as the <b>GEN1 platform</b> — the company's foundational clinical genomics platform. Operated simultaneously as <b>Product Owner, product thinker, and hands-on developer</b>: defining what to build, assigning development tasks to the team, and writing core code. Drove the migration from web to a <b>Java/JavaFX desktop application</b>, owning architecture, UI framework, and implementation. Also designed and built a dynamic <b>circular genomic viewer</b> in D3.js and HTML5 — a Circos-style multi-layer visualisation displaying SNVs/INDELs across coverage, gene transcripts, and clinical annotation databases, bringing complex variant data directly to clinical users.",
-      "achievements": ["GEN1 platform", "PM/PO + hands-on developer", "circular genomic viewer", "founding team — first 10"],
+      "description": "Joined <b>SOPHiA GENETICS</b> as one of its <b>first ten employees</b> and became the primary driver behind what became the company's <b>foundational clinical genomics platform</b>. Operated simultaneously as <b>Product Owner, product thinker, and hands-on developer</b>: defining what to build, assigning development tasks to the team, and writing core code. Drove the migration from web to a <b>Java/JavaFX desktop application</b>, owning architecture, UI framework, and implementation. Also designed and built a dynamic <b>circular genomic viewer</b> in D3.js and HTML5 — a Circos-style multi-layer visualisation displaying SNVs/INDELs across coverage, gene transcripts, and clinical annotation databases, bringing complex variant data directly to clinical users.",
+      "achievements": ["foundational platform", "PM/PO + hands-on developer", "circular genomic viewer", "founding team — first 10"],
       "links": [],
       "hardSkills": ["Java", "JavaFX", "D3.js", "HTML5"],
       "softSkills": ["critical thinking", "reasoning"],
