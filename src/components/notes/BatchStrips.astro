@@ -1,0 +1,29 @@
+---
+// Batch, mini-batch and stochastic gradient descent as one pass (epoch) over m = 24 examples:
+// each box is the set of examples behind one update step; the first one is highlighted.
+const M = 24;
+const rows = [
+  { name: 'Batch', size: 'm', each: M, updates: '1 update per pass' },
+  { name: 'Mini-batch', size: 's', each: 6, updates: 'm / s updates per pass' },
+  { name: 'Stochastic', size: '1', each: 1, updates: 'm updates per pass' },
+];
+---
+
+<figure class="note-batch">
+  {rows.map(r => (
+    <div class="note-batch-row">
+      <div class="note-batch-name">
+        <b>{r.name}</b>
+        <span class="label">size {r.size} · {r.updates}</span>
+      </div>
+      <div class="note-batch-strip" aria-hidden="true">
+        {Array.from({ length: M / r.each }, (_, g) => (
+          <span class:list={['note-batch-group', { 'note-batch-group--on': g === 0 }]} style={`--n:${r.each}`}>
+            {Array.from({ length: r.each }, () => <i />)}
+          </span>
+        ))}
+      </div>
+    </div>
+  ))}
+  <figcaption class="ps-caption">One pass over m = 24 training examples. Each box feeds one update step.</figcaption>
+</figure>

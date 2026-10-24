@@ -1,0 +1,296 @@
+---
+title: Logistic regression
+summary: Binary classification with a single unit, the smallest neural network. Prediction, loss, cost, gradient descent and L2 regularisation.
+---
+
+import Section from '../../components/notes/Section.astro';
+import Key from '../../components/notes/Key.astro';
+import SingleUnit from '../../components/notes/SingleUnit.astro';
+import LossExplorer from '../../components/notes/LossExplorer.astro';
+
+<Section n="01" title="Notation" id="notation">
+
+<dl class="note-defs">
+  <dt>$n$</dt><dd>number of input features</dd>
+  <dt>$m$</dt><dd>number of training examples</dd>
+  <dt>$(i)$</dt><dd>refers to the $i$-th training example</dd>
+  <dt>$\{x^{(i)}, y^{(i)}\}$</dt><dd>the $i$-th training example: input features $x$ and labelled output $y$</dd>
+  <dt>$\hat y$ or $a$</dt><dd>the prediction: for the same $x$ we want $\hat y \approx y$. Also written $a$, for activation</dd>
+  <dt>$\{w, b\}$</dt><dd>the model: parameters learned during training</dd>
+  <dt>$\alpha$</dt><dd>learning rate</dd>
+  <dt>$\lambda$</dt><dd>regularisation parameter</dd>
+</dl>
+
+<SingleUnit />
+
+For one training example $\{x^{(i)}, y^{(i)}\}$:
+
+<div class="note-grid">
+
+<div class="note-cell">
+<span class="note-cell-label">features</span>
+
+$$
+x^{(i)} \in \R^{n \times 1} =
+\begin{bmatrix} x_1^{(i)} \\ x_2^{(i)} \\ \vdots \\ x_n^{(i)} \end{bmatrix}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">weights</span>
+
+$$
+w \in \R^{n \times 1} =
+\begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{bmatrix}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">label</span>
+
+$$
+y^{(i)} \in \{0, 1\}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">bias</span>
+
+$$
+b \in \R
+$$
+
+</div>
+
+</div>
+
+</Section>
+
+<Section n="02" title="Prediction" id="prediction">
+
+For binary classification, the label $y$ is 0 or 1 and the prediction $\hat y$ is the probability that $y = 1$.
+
+<Key label="Linear input">
+
+$$
+z^{(i)} = w^T \cdot x^{(i)} + b = \sum_{j=1}^{n} w_j \, x_j^{(i)} + b
+$$
+
+</Key>
+
+<Key label="Prediction, through the sigmoid">
+
+$$
+a^{(i)} = \hat y^{(i)} = \sigma\big(z^{(i)}\big) = \frac{1}{1 + e^{-z^{(i)}}}
+$$
+
+</Key>
+
+</Section>
+
+<Section n="03" title="Loss function" id="loss">
+
+The loss $\mathcal{L}$ measures the error on one training example: we want $\hat y \approx y$. The index $(i)$ is left out.
+
+<Key label="Cross-entropy loss">
+
+$$
+\mathcal{L}(a, y) = -\,y \log a - (1 - y) \log(1 - a)
+$$
+
+</Key>
+
+Only one term is left for a given label. If $y = 1$, the loss is $-\log a$, small when $a$ is close to 1. If $y = 0$, it is $-\log(1 - a)$, small when $a$ is close to 0. Move $z$ to see both.
+
+<LossExplorer />
+
+</Section>
+
+<Section n="04" title="Cost and vectorisation" id="cost">
+
+The cost $J$ is the mean of the loss over the whole training set of $m$ examples.
+
+<Key label="Cost">
+
+$$
+J(w, b) = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\big(\hat y^{(i)}, y^{(i)}\big)
+$$
+
+</Key>
+
+Put the examples side by side as columns, and one pass computes them all.
+
+<div class="note-grid">
+
+$$
+X = \begin{bmatrix}
+\mid & \mid & & \mid \\
+x^{(1)} & x^{(2)} & \cdots & x^{(m)} \\
+\mid & \mid & & \mid
+\end{bmatrix} \in \R^{n \times m}
+$$
+
+$$
+\begin{aligned}
+Y &= \begin{bmatrix} y^{(1)} & \cdots & y^{(m)} \end{bmatrix} \\
+Z &= \begin{bmatrix} z^{(1)} & \cdots & z^{(m)} \end{bmatrix} \\
+A &= \begin{bmatrix} a^{(1)} & \cdots & a^{(m)} \end{bmatrix} \\
+B &= \begin{bmatrix} b & \cdots & b \end{bmatrix}
+\end{aligned}
+\quad \in \R^{1 \times m}
+$$
+
+</div>
+
+<Key label="Over all the examples">
+
+$$
+\begin{aligned}
+Z &= w^T \cdot X + B \\[4pt]
+A &= \sigma(Z) \\[4pt]
+J &= -\frac{1}{m}\, \operatorname{sum}\big(Y \odot \log A \\
+&\qquad + (1 - Y) \odot \log(1 - A)\big)
+\end{aligned}
+$$
+
+<p class="note-key-note">$\odot$ is the element-wise product, and sum adds up the $m$ columns</p>
+
+</Key>
+
+</Section>
+
+<Section n="05" title="Gradient descent" id="gradient-descent">
+
+Gradient descent finds the $w$ and $b$ that minimise the cost $J(w, b)$.
+
+<ol class="note-steps">
+  <li class="note-step-init">
+    <span class="note-step-n">0</span>
+    <div><b>Initialise</b> $w$ and $b$, zeros are fine for a single unit.</div>
+  </li>
+  <li class="note-loop">
+    <span class="note-loop-label">Repeat until convergence</span>
+    <ol>
+      <li><span class="note-step-n">1</span><div><b>Prediction</b> $A = \sigma(w^T X + B)$ for all the examples.</div></li>
+      <li><span class="note-step-n">2</span><div><b>Cost</b> $J$, mainly to check that it decreases from one iteration to the next.</div></li>
+      <li>
+        <span class="note-step-n">3</span>
+        <div>
+          <b>Update</b> the parameters:
+
+$$
+\begin{aligned}
+w &:= w - \alpha \, \frac{\partial J}{\partial w}(w, b) \\[4pt]
+b &:= b - \alpha \, \frac{\partial J}{\partial b}(w, b)
+\end{aligned}
+$$
+
+        </div>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+### The partial derivatives
+
+The cost is a mean, so its derivative is the mean of the derivatives of the loss:
+
+$$
+\frac{\partial J}{\partial w}(w, b) = \frac{1}{m} \sum_{i=1}^{m} \frac{\partial}{\partial w} \mathcal{L}\big(a^{(i)}, y^{(i)}\big)
+$$
+
+For one example, with $z = w^T x + b$, the chain rule splits each derivative into small parts:
+
+<div class="note-grid">
+
+$$
+\frac{\partial \mathcal{L}}{\partial w} = \underbrace{\frac{\partial \mathcal{L}}{\partial a}}_{(1)} \cdot \underbrace{\frac{\partial a}{\partial z}}_{(2)} \cdot \underbrace{\frac{\partial z}{\partial w}}_{(3)}
+$$
+
+$$
+\frac{\partial \mathcal{L}}{\partial b} = \underbrace{\frac{\partial \mathcal{L}}{\partial a}}_{(1)} \cdot \underbrace{\frac{\partial a}{\partial z}}_{(2)} \cdot \underbrace{\frac{\partial z}{\partial b}}_{(4)}
+$$
+
+</div>
+
+<div class="note-derive">
+
+$$
+\begin{alignedat}{2}
+&(1) \quad & \frac{\partial \mathcal{L}}{\partial a} &= -\frac{y}{a} + \frac{1 - y}{1 - a} \\[10pt]
+&(2) & \frac{\partial a}{\partial z} &= \sigma(z)\big(1 - \sigma(z)\big) = a(1 - a) \\[10pt]
+&(3) & \frac{\partial z}{\partial w} &= x \\[10pt]
+&(4) & \frac{\partial z}{\partial b} &= 1
+\end{alignedat}
+$$
+
+</div>
+
+The first two parts simplify nicely:
+
+$$
+(1) \cdot (2) = -y(1 - a) + (1 - y)\,a = a - y
+$$
+
+<Key label="For one example">
+
+<div class="note-grid">
+
+$$
+\frac{\partial \mathcal{L}}{\partial w} = x\,(a - y) \quad \in \R^{n \times 1}
+$$
+
+$$
+\frac{\partial \mathcal{L}}{\partial b} = a - y \quad \in \R
+$$
+
+</div>
+
+</Key>
+
+<Key label="Over all the examples">
+
+<div class="note-grid">
+
+$$
+\frac{\partial J}{\partial w} = \frac{1}{m}\, X \cdot (A - Y)^T \quad \in \R^{n \times 1}
+$$
+
+$$
+\frac{\partial J}{\partial b} = \frac{1}{m} \sum_{i=1}^{m} \big(a^{(i)} - y^{(i)}\big)
+$$
+
+</div>
+
+</Key>
+
+</Section>
+
+<Section n="06" title="Regularisation" id="regularisation">
+
+Adding regularisation often helps to prevent overfitting. L2 regularisation adds the squared norm of the weights to the cost, so large weights cost more.
+
+<Key label="L2-regularised cost">
+
+$$
+J(w, b) = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\big(\hat y^{(i)}, y^{(i)}\big) + \frac{\lambda}{2m} \lVert w \rVert^2
+$$
+
+<p class="note-key-note">with $\lVert w \rVert^2 = \sum_{j=1}^{n} w_j^2$, the squared Euclidean norm</p>
+
+</Key>
+
+Each $w_j^2$ derives to $2\,w_j$, so the extra term adds $\frac{\lambda}{m}\,w$ to the gradient. The bias $b$ is not regularised.
+
+<Key label="Gradient with L2">
+
+$$
+\frac{\partial J}{\partial w} = \frac{1}{m}\, X \cdot (A - Y)^T + \frac{\lambda}{m}\, w \quad \in \R^{n \times 1}
+$$
+
+</Key>
+
+</Section>

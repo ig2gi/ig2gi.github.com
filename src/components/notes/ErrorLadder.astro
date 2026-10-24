@@ -1,0 +1,35 @@
+---
+// Error analysis on a worked example: each error level is a bar, and the step up from the
+// level it is compared to is coloured by its diagnosis. Values are illustrative.
+const levels = [
+  { n: '0', name: 'Human level', note: 'proxy for the Bayes error', value: 1 },
+  { n: '1', name: 'Training set', value: 6, from: 1, gap: 'Avoidable bias', key: 'bias' },
+  { n: '2', name: 'Train-dev set', value: 8, from: 6, gap: 'Variance', key: 'variance' },
+  { n: '3', name: 'Dev set', value: 12, from: 8, gap: 'Data mismatch', key: 'mismatch' },
+  { n: '4', name: 'Test set', value: 13, from: 12, gap: 'Overfitting the dev set', key: 'devfit' },
+];
+const MAX = 15;
+const pct = (v: number) => `${(v / MAX) * 100}%`;
+---
+
+<figure class="note-ladder">
+  <div class="note-ladder-rows">
+    {levels.map(l => (
+      <div class="note-ladder-row">
+        <span class="label note-ladder-n">#{l.n}</span>
+        <span class="note-ladder-name">{l.name}{l.note && <small>{l.note}</small>}</span>
+        <span class="note-ladder-track">
+          <i class="note-ladder-base" style={`width:${pct(l.from ?? l.value)}`}></i>
+          {l.from !== undefined && (
+            <i class={`note-ladder-step note-ladder--${l.key}`} style={`left:${pct(l.from)};width:${pct(l.value - l.from)}`}></i>
+          )}
+          <b style={`left:${pct(l.value)}`}>{l.value} %</b>
+        </span>
+        <span class="note-ladder-gap">
+          {l.gap && <><span class={`note-ladder-dot note-ladder--${l.key}`}></span>+{l.value - (l.from ?? 0)} · {l.gap}</>}
+        </span>
+      </div>
+    ))}
+  </div>
+  <figcaption class="ps-caption">Illustrative error rates. Each step is compared with the level just above it and coloured by what it reveals.</figcaption>
+</figure>

@@ -1,0 +1,46 @@
+---
+// Logistic regression as the smallest network: n inputs, one unit (z | a), the prediction.
+// Drawn after the NodeBox diagram of the deep network note: split unit circle, fan of links.
+// Symbols use KaTeX's math font so they match the formulas around them.
+const W = 600, H = 260;
+const IN = { x: 70, r: 20 };
+const UNIT = { x: 360, y: 130, r: 40 };
+const OUT = { x: 520 };
+const inputs = [
+  { y: 40, sub: '1' },
+  { y: 95, sub: '2' },
+  { y: 150, sub: '3' },
+  { y: 220, sub: 'n' },
+];
+---
+
+<figure class="note-unit">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Logistic regression as a single unit: inputs x1 to xn, weighted by w, feed one unit that computes z then a, the prediction y hat.">
+    {inputs.map(i => (
+      <line class="note-unit-link" x1={IN.x + IN.r} y1={i.y} x2={UNIT.x - UNIT.r} y2={UNIT.y} />
+    ))}
+    {inputs.map(i => (
+      <g>
+        <circle class="note-unit-in" cx={IN.x} cy={i.y} r={IN.r} />
+        <text class="note-unit-sym" x={IN.x - 3} y={i.y + 6} text-anchor="middle">x<tspan class="note-unit-sub" dx="1" dy="5">{i.sub}</tspan></text>
+      </g>
+    ))}
+    <text class="note-unit-sym note-unit-vdots" x={IN.x} y="190" text-anchor="middle">⋮</text>
+
+    <text class="note-unit-sym note-unit-w" x={(IN.x + UNIT.x) / 2 + 20} y={UNIT.y - 52} text-anchor="middle">w</text>
+
+    <circle class="note-unit-cell" cx={UNIT.x} cy={UNIT.y} r={UNIT.r} />
+    <line class="note-unit-split" x1={UNIT.x} y1={UNIT.y - UNIT.r} x2={UNIT.x} y2={UNIT.y + UNIT.r} />
+    <text class="note-unit-sym" x={UNIT.x - 19} y={UNIT.y + 7} text-anchor="middle">z</text>
+    <text class="note-unit-sym" x={UNIT.x + 19} y={UNIT.y + 7} text-anchor="middle">a</text>
+    <text class="note-unit-sym note-unit-w" x={UNIT.x} y={UNIT.y - UNIT.r - 14} text-anchor="middle">b</text>
+
+    <line class="note-unit-arrow" x1={UNIT.x + UNIT.r + 8} y1={UNIT.y} x2={OUT.x - 14} y2={UNIT.y} />
+    <path class="note-unit-head" d={`M${OUT.x - 14},${UNIT.y - 6}L${OUT.x - 2},${UNIT.y}L${OUT.x - 14},${UNIT.y + 6}Z`} />
+    <text class="note-unit-sym" x={OUT.x + 22} y={UNIT.y + 7} text-anchor="middle">ŷ</text>
+
+    <text class="note-unit-label" x={IN.x} y={H - 4} text-anchor="middle">INPUT FEATURES</text>
+    <text class="note-unit-label" x={UNIT.x} y={UNIT.y + UNIT.r + 26} text-anchor="middle">ONE UNIT</text>
+    <text class="note-unit-label" x={OUT.x + 22} y={UNIT.y + 32} text-anchor="middle">PREDICTION</text>
+  </svg>
+</figure>

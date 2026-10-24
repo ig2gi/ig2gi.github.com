@@ -1,0 +1,22 @@
+---
+// One numbered section of a note: number and title in a sticky aside, content on the right
+interface Props {
+  n: string;
+  title: string;
+  id: string;
+}
+
+const { n, title, id } = Astro.props;
+---
+
+<section class="ps note-sec" id={id}>
+  <div class="ps-aside">
+    <div class="ps-aside-sticky">
+      <span class="label note-sec-n">{n}</span>
+      <h2>{title}</h2>
+    </div>
+  </div>
+  <div class="ps-body note-body">
+    <slot />
+  </div>
+</section>

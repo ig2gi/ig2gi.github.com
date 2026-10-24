@@ -1,0 +1,105 @@
+---
+title: Structuring machine learning projects
+summary: How to split the data, read the gaps between error rates, decide what to try next, and measure a classifier.
+---
+
+import Section from '../../components/notes/Section.astro';
+import Figure from '../../components/notes/Figure.astro';
+import ErrorLadder from '../../components/notes/ErrorLadder.astro';
+import ConfusionMatrix from '../../components/notes/ConfusionMatrix.astro';
+
+<Section n="01" title="Train, dev and test sets" id="sets">
+
+<Figure
+  src="/images/notes/deep-learning/data-split.svg"
+  alt="Top: a train set of 60%, a dev set of 20% and a test set of 20%, for up to 10,000 examples. Bottom: for more than a million examples, the train set takes almost everything, with a train-dev set carved out of it, and the dev and test sets take 1% each. The train set can come from another distribution than the dev and test sets."
+  caption="How to split the data, small and large. Drawn with NodeBox 3."
+  width={1500}
+  height={500}
+/>
+
+With up to about 10,000 examples, the usual split is **60 / 20 / 20**. With more than a million, 1% is already plenty to evaluate on, so the split becomes about **98 / 1 / 1**.
+
+The **dev set** (or cross-validation set) is where models are compared; the **test set** gives an unbiased estimate at the end. Both must come from the same distribution: the data the model will meet in production. The training set can come from another distribution, often a larger one that is easier to collect.
+
+The **train-dev set** has the same distribution as the training set, but is not used for training. It tells a variance problem apart from a data mismatch.
+
+</Section>
+
+<Section n="02" title="Error analysis" id="error-analysis">
+
+<Figure
+  src="/images/notes/deep-learning/error-analysis.svg"
+  alt="Training, train-dev, cross validation and test as circles from #1 to #4, then production. Blue arrows move forward to the next set, orange arrows go back to training."
+  caption="From training to production. Blue: good enough, move on. Brown: back to training. Drawn with NodeBox 3."
+  width={1500}
+  height={500}
+/>
+
+Compare the error rates two by two, in order. Each gap points to one problem:
+
+<ErrorLadder />
+
+<dl class="note-defs note-defs--3">
+  <dt>#0</dt><dd class="note-defs-v">Bayes error</dd><dd>the lowest possible error. Human-level performance is a good proxy in most perception tasks, computer vision for instance</dd>
+  <dt>#1 − #0</dt><dd class="note-defs-v">Avoidable bias</dd><dd>the model does not fit the training set as well as it could</dd>
+  <dt>#2 − #1</dt><dd class="note-defs-v">Variance</dd><dd>overfitting: the model does worse on data from the same distribution that it has not seen</dd>
+  <dt>#3 − #2</dt><dd class="note-defs-v">Data mismatch</dd><dd>the dev distribution differs from the training one. Without a train-dev set, #3 − #1 mixes variance and data mismatch</dd>
+  <dt>#4 − #3</dt><dd class="note-defs-v">Overfitting the dev set</dd><dd>too many choices tuned on the dev set</dd>
+</dl>
+
+</Section>
+
+<Section n="03" title="What to try next" id="improve">
+
+<div class="note-fixes">
+
+<div class="note-fix note-fix--bias">
+<span class="note-fix-label">Avoidable bias</span>
+
+- train a bigger model
+- train longer
+- a better optimisation algorithm: momentum, RMSprop, Adam
+- another architecture: activation functions, CNN, RNN
+
+</div>
+
+<div class="note-fix note-fix--variance">
+<span class="note-fix-label">Variance</span>
+
+- get more data
+- data augmentation
+- regularisation: L2, dropout
+- another architecture: activation functions, CNN, RNN
+
+</div>
+
+<div class="note-fix note-fix--mismatch">
+<span class="note-fix-label">Data mismatch</span>
+
+- carry out a manual error analysis
+- make the training data more like the dev set
+- clean up incorrectly labelled data
+
+</div>
+
+<div class="note-fix note-fix--devfit">
+<span class="note-fix-label">Overfitting the dev set</span>
+
+- get a bigger dev set
+
+</div>
+
+</div>
+
+</Section>
+
+<Section n="04" title="Metrics" id="metrics">
+
+For a binary classifier, every prediction falls into one of four boxes: right or wrong, for a positive or a negative.
+
+<ConfusionMatrix />
+
+Accuracy alone can mislead when one class is rare: a model that always predicts "negative" scores 99% if only 1% of the samples are positive. Precision, recall and their F1 score tell the real story.
+
+</Section>

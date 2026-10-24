@@ -283,5 +283,21 @@
     "open": true,
     "category": "personal",
     "link": "https://observablehq.com/@ig2gi/sieve-of-eratosthenes"
+  },
+  {
+    "id": 19,
+    "title": "Deep Learning Notes",
+    "year": [
+      2019
+    ],
+    "description": "My notes on the maths of deep learning, one sheet per topic: formulas, activation curves and diagrams drawn in NodeBox 3.",
+    "company": "Personal",
+    "technology": "KaTeX D3.js NodeBox3",
+    "url": "dataviz/deep-learning",
+    "image": "/images/portfolio/deep-learning.png",
+    "open": true,
+    "category": "personal",
+    "link": "/dataviz/deep-learning",
+    "slug": "deep-learning"
   }
 ]

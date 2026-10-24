@@ -1,0 +1,20 @@
+---
+// A diagram on a white plate; a tap opens the SVG on its own (useful on a phone)
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  narrow?: boolean;
+}
+
+const { src, alt, caption, width, height, narrow = false } = Astro.props;
+---
+
+<figure class:list={['note-fig', { 'note-fig--narrow': narrow }]}>
+  <a class="note-fig-plate" href={src} target="_blank" rel="noopener">
+    <img src={src} alt={alt} width={width} height={height} loading="lazy" />
+  </a>
+  <figcaption class="ps-caption">{caption}</figcaption>
+</figure>

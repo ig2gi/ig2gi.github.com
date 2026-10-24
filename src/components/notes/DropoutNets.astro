@@ -1,0 +1,43 @@
+---
+// Dropout: the same network on three training iterations, each with its own random mask.
+// Dropped units are dashed and lose their links. Masks are fixed (keep_prob ≈ 0.6) so the
+// drawing is the same on every build.
+const W = 200, H = 170;
+const layers = [
+  { x: 22, n: 3 },
+  { x: 78, n: 5 },
+  { x: 134, n: 5 },
+  { x: 182, n: 1 },
+];
+const masks = [
+  [[1, 1, 1], [1, 0, 1, 1, 0], [0, 1, 1, 0, 1], [1]],
+  [[1, 1, 1], [0, 1, 1, 0, 1], [1, 1, 0, 1, 0], [1]],
+  [[1, 1, 1], [1, 0, 0, 1, 1], [1, 0, 1, 1, 0], [1]],
+];
+
+const unitY = (n: number, j: number) => H / 2 + (j - (n - 1) / 2) * 30;
+const R = 9;
+---
+
+<figure class="note-drop">
+  <div class="note-drop-grid">
+    {masks.map((mask, it) => (
+      <div class="note-drop-net">
+        <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Iteration ${it + 1}: ${mask.slice(1, 3).flat().filter(v => !v).length} hidden units dropped`}>
+          {layers.slice(1).map((l, k) => {
+            const prev = layers[k];
+            return Array.from({ length: prev.n }, (_, a) => Array.from({ length: l.n }, (_, b) =>
+              mask[k][a] && mask[k + 1][b]
+                ? <line class="note-drop-link" x1={prev.x} y1={unitY(prev.n, a)} x2={l.x} y2={unitY(l.n, b)} />
+                : null));
+          })}
+          {layers.map((l, k) => Array.from({ length: l.n }, (_, j) => (
+            <circle class:list={['note-drop-unit', { 'note-drop-unit--off': !mask[k][j], 'note-drop-unit--io': k === 0 || k === layers.length - 1 }]}
+                    cx={l.x} cy={unitY(l.n, j)} r={R} />
+          )))}
+        </svg>
+        <span class="label">Iteration {it + 1}</span>
+      </div>
+    ))}
+  </div>
+</figure>

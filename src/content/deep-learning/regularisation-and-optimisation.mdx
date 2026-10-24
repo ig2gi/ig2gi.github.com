@@ -1,0 +1,268 @@
+---
+title: Regularisation and optimisation
+summary: Two ways to fight overfitting, L2 and dropout, then four ways to train faster, from mini-batches to Adam.
+---
+
+import Section from '../../components/notes/Section.astro';
+import Key from '../../components/notes/Key.astro';
+import DropoutNets from '../../components/notes/DropoutNets.astro';
+import BatchStrips from '../../components/notes/BatchStrips.astro';
+import EwaChart from '../../components/notes/EwaChart.astro';
+
+<Section n="01" title="Notation" id="notation">
+
+Same notation as in [Deep neural networks](/dataviz/deep-learning/deep-neural-networks), with a few new symbols:
+
+<dl class="note-defs">
+  <dt>$\lambda$</dt><dd>regularisation parameter</dd>
+  <dt>$keep\_prob$</dt><dd>probability of keeping a unit with dropout</dd>
+  <dt>$s$</dt><dd>mini-batch size</dd>
+  <dt>$\{k\}$</dt><dd>refers to the $k$-th mini-batch</dd>
+  <dt>$t$</dt><dd>iteration, one update step</dd>
+  <dt>$\beta_1, \beta_2$</dt><dd>weights of the past in the momentum and RMSprop averages</dd>
+  <dt>$\epsilon$</dt><dd>a tiny number that avoids a division by zero</dd>
+</dl>
+
+</Section>
+
+<Section n="02" title="L2 regularisation" id="l2">
+
+Regularisation reduces overfitting. L2 adds the squared weights of every layer to the cost, so large weights cost more.
+
+<Key label="Cost with L2">
+
+$$
+\begin{aligned}
+J = & \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\big(a^{[L](i)}, y^{(i)}\big) \\
+& + \frac{\lambda}{2m} \sum_{l=1}^{L} \big\lVert W^{[l]} \big\rVert_F^2
+\end{aligned}
+$$
+
+<p class="note-key-note">with the squared Frobenius norm $\lVert W^{[l]} \rVert_F^2 = \sum_{i=1}^{n^{[l]}} \sum_{j=1}^{n^{[l-1]}} \big(W^{[l]}_{ij}\big)^2$</p>
+
+</Key>
+
+If $dW^{[l]}_{BP}$ is the gradient from backward propagation, the extra term adds $\frac{\lambda}{m} W^{[l]}$ to it:
+
+$$
+dW^{[l]} = dW^{[l]}_{BP} + \frac{\lambda}{m}\, W^{[l]}
+$$
+
+so the update becomes $W^{[l]} := W^{[l]} - \alpha \big(dW^{[l]}_{BP} + \frac{\lambda}{m} W^{[l]}\big)$, which reads better as:
+
+<Key label="Weight decay">
+
+$$
+W^{[l]} := \Big(1 - \frac{\alpha \lambda}{m}\Big)\, W^{[l]} - \alpha \, dW^{[l]}_{BP}
+$$
+
+</Key>
+
+Each step first shrinks the weights by a factor just below 1, hence the name.
+
+</Section>
+
+<Section n="03" title="Dropout" id="dropout">
+
+Dropout shuts down some units of the hidden layers at random, a new draw on every training iteration. Each iteration trains a different, smaller network, so no unit can rely on one other unit: it might be gone at the next step.
+
+<DropoutNets />
+
+The mask $D^{[l]}$ has the shape of $A^{[l]}$, one column per example. Each entry is 1 with probability $keep\_prob$, and 0 otherwise.
+
+<div class="note-grid">
+
+<div class="note-cell">
+<span class="note-cell-label">Activations</span>
+
+$$
+A^{[l]} = \begin{bmatrix}
+\mid & & \mid \\
+a^{[l](1)} & \cdots & a^{[l](m)} \\
+\mid & & \mid
+\end{bmatrix}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">Mask</span>
+
+$$
+D^{[l]} = \begin{bmatrix}
+\mid & & \mid \\
+d^{[l](1)} & \cdots & d^{[l](m)} \\
+\mid & & \mid
+\end{bmatrix}
+$$
+
+</div>
+
+</div>
+
+<Key label="Forward propagation">
+
+$$
+\begin{aligned}
+A^{[l]} &:= A^{[l]} \odot D^{[l]} \\[4pt]
+A^{[l]} &:= A^{[l]} \,/\, keep\_prob
+\end{aligned}
+$$
+
+<p class="note-key-note">apply the mask, then scale up what is left</p>
+
+</Key>
+
+<Key label="Backward propagation">
+
+$$
+\begin{aligned}
+dA^{[l]} &:= dA^{[l]} \odot D^{[l]} \\[4pt]
+dA^{[l]} &:= dA^{[l]} \,/\, keep\_prob
+\end{aligned}
+$$
+
+<p class="note-key-note">the same mask: the units shut down going forward stay shut going back</p>
+
+</Key>
+
+Dividing by $keep\_prob$ keeps the expected value of $A^{[l]}$ unchanged. That is the "inverted" in inverted dropout: nothing changes at test time, when dropout is off.
+
+</Section>
+
+<Section n="04" title="Mini-batch gradient descent" id="mini-batch">
+
+Batch, mini-batch and stochastic gradient descent differ only in the number of examples used for one update step.
+
+<BatchStrips />
+
+**Batch** gradient descent takes a step on all the $m$ examples. **Mini-batch** cuts the training set into mini-batches of $s$ examples, $1 < s < m$, and loops over them. **Stochastic** gradient descent is a mini-batch of one example.
+
+<div class="note-grid">
+
+<div class="note-cell">
+<span class="note-cell-label">Mini-batch k, inputs</span>
+
+$$
+X^{\{k\}} = \begin{bmatrix}
+\mid & & \mid \\
+x^{(1)} & \cdots & x^{(s)} \\
+\mid & & \mid
+\end{bmatrix} \in \R^{n \times s}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">Mini-batch k, labels</span>
+
+$$
+Y^{\{k\}} = \begin{bmatrix}
+\mid & & \mid \\
+y^{(1)} & \cdots & y^{(s)} \\
+\mid & & \mid
+\end{bmatrix} \in \R^{n^{[L]} \times s}
+$$
+
+</div>
+
+</div>
+
+Each step only sees part of the data, so the direction of the update varies: the path to the minimum oscillates. The next three methods smooth it out.
+
+</Section>
+
+<Section n="05" title="Momentum" id="momentum">
+
+Momentum keeps an exponentially weighted average of the past gradients and steps along that average instead of the raw gradient.
+
+<Key label="Exponentially weighted average">
+
+<div class="note-grid">
+
+$$
+V_t = \beta_1 V_{t-1} + (1 - \beta_1)\, \theta_t
+$$
+
+$$
+V_t^{corr} = \frac{V_t}{1 - \beta_1^{\,t}}
+$$
+
+</div>
+
+<p class="note-key-note">$V_0 = 0$, so the first values are too small: the bias correction divides them back up</p>
+
+</Key>
+
+Here on real data: a large $\beta_1$ remembers more of the past and gives a smoother, later curve. Turn the bias correction off to see the average start from 0.
+
+<EwaChart />
+
+<Key label="Each iteration">
+
+$$
+\begin{aligned}
+& V_{dW^{[l]}} = \beta_1 V_{dW^{[l]}} + (1 - \beta_1)\, dW^{[l]} \\[2pt]
+& V_{db^{[l]}} = \beta_1 V_{db^{[l]}} + (1 - \beta_1)\, db^{[l]} \\[6pt]
+& W^{[l]} := W^{[l]} - \alpha \, V_{dW^{[l]}} \\[2pt]
+& b^{[l]} := b^{[l]} - \alpha \, V_{db^{[l]}}
+\end{aligned}
+$$
+
+<p class="note-key-note">$dW^{[l]}$ and $db^{[l]}$ come from backward propagation on the current mini-batch</p>
+
+</Key>
+
+</Section>
+
+<Section n="06" title="RMSprop" id="rmsprop">
+
+Root mean square propagation averages the squares of the gradients instead. Dividing by their root slows the steps down in the directions that oscillate the most.
+
+<Key label="Each iteration">
+
+$$
+\begin{aligned}
+& S_{dW^{[l]}} = \beta_2 S_{dW^{[l]}} + (1 - \beta_2) \big(dW^{[l]}\big)^2 \\[2pt]
+& S_{db^{[l]}} = \beta_2 S_{db^{[l]}} + (1 - \beta_2) \big(db^{[l]}\big)^2 \\[8pt]
+& W^{[l]} := W^{[l]} - \alpha \, \frac{dW^{[l]}}{\sqrt{S_{dW^{[l]}}} + \epsilon} \\[4pt]
+& b^{[l]} := b^{[l]} - \alpha \, \frac{db^{[l]}}{\sqrt{S_{db^{[l]}}} + \epsilon}
+\end{aligned}
+$$
+
+<p class="note-key-note">squares, roots and divisions are element-wise</p>
+
+</Key>
+
+</Section>
+
+<Section n="07" title="Adam" id="adam">
+
+Adaptive moment estimation combines momentum and RMSprop, both with bias correction.
+
+<Key label="Each iteration">
+
+$$
+\begin{aligned}
+& V_{dW^{[l]}} = \beta_1 V_{dW^{[l]}} + (1 - \beta_1)\, dW^{[l]} \\[2pt]
+& S_{dW^{[l]}} = \beta_2 S_{dW^{[l]}} + (1 - \beta_2) \big(dW^{[l]}\big)^2 \\[8pt]
+& V^{corr}_{dW^{[l]}} = \frac{V_{dW^{[l]}}}{1 - \beta_1^{\,t}} \\[4pt]
+& S^{corr}_{dW^{[l]}} = \frac{S_{dW^{[l]}}}{1 - \beta_2^{\,t}} \\[8pt]
+& W^{[l]} := W^{[l]} - \alpha \, \frac{V^{corr}_{dW^{[l]}}}{\sqrt{S^{corr}_{dW^{[l]}}} + \epsilon}
+\end{aligned}
+$$
+
+<p class="note-key-note">the same for $b^{[l]}$, with $db^{[l]}$</p>
+
+</Key>
+
+### Hyperparameters
+
+<dl class="note-defs note-defs--3">
+  <dt>$\alpha$</dt><dd class="note-defs-v">to be tuned</dd><dd>learning rate</dd>
+  <dt>$\beta_1$</dt><dd class="note-defs-v">0.9</dd><dd>momentum, average of $dW$</dd>
+  <dt>$\beta_2$</dt><dd class="note-defs-v">0.999</dd><dd>RMSprop, average of $dW^2$</dd>
+  <dt>$\epsilon$</dt><dd class="note-defs-v">10⁻⁸</dd><dd>avoids a division by zero</dd>
+</dl>
+
+</Section>

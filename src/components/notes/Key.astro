@@ -1,0 +1,13 @@
+---
+// A key formula (or short algorithm) set apart on a white panel, with a mono label
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="note-key">
+  <span class="note-key-label">{label}</span>
+  <slot />
+</div>

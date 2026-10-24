@@ -1,0 +1,320 @@
+---
+title: Deep neural networks
+summary: The maths of a deep neural network on one sheet, from notation to gradient descent.
+---
+
+import Section from '../../components/notes/Section.astro';
+import Key from '../../components/notes/Key.astro';
+import Figure from '../../components/notes/Figure.astro';
+import ActivationCurves from '../../components/notes/ActivationCurves.astro';
+
+<Section n="01" title="Notation" id="notation">
+
+<dl class="note-defs">
+  <dt>$n$</dt><dd>number of input features</dd>
+  <dt>$m$</dt><dd>number of training examples</dd>
+  <dt>$(i)$</dt><dd>refers to the $i$-th training example</dd>
+  <dt>$[l]$</dt><dd>refers to the $l$-th layer of the network</dd>
+  <dt>$L$</dt><dd>the output layer, and the number of layers: hidden layers plus the output layer</dd>
+  <dt>$\{x^{(i)}, y^{(i)}\}$</dt><dd>the $i$-th training example: input features $x$ and labelled output $y$</dd>
+  <dt>$\hat y$ or $a$</dt><dd>the prediction: for the same $x$ we want $\hat y \approx y$. Also written $a$, for activation</dd>
+  <dt>$g$</dt><dd>activation function</dd>
+  <dt>$\{W, b\}$</dt><dd>the model: parameters learned during training</dd>
+  <dt>$\alpha$</dt><dd>learning rate</dd>
+  <dt>$\lambda$</dt><dd>regularisation parameter</dd>
+</dl>
+
+<Figure
+  src="/images/notes/deep-learning/network.svg"
+  alt="A network from the input layer x to the output layer L. Layer l is highlighted with its parameters W and b, and its i-th unit computes z then a."
+  caption="A network of L layers, and the i-th unit of layer l with its parameters W and b. Drawn with NodeBox 3."
+  width={2000}
+  height={1500}
+/>
+
+<div class="note-grid">
+
+<div class="note-cell">
+<span class="note-cell-label">features</span>
+
+$$
+x^{(i)} \in \R^{n \times 1} =
+\begin{bmatrix} x_1^{(i)} \\ x_2^{(i)} \\ \vdots \\ x_n^{(i)} \end{bmatrix}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">labels</span>
+
+$$
+y^{(i)} \in \R^{n^{[L]} \times 1} =
+\begin{bmatrix} y_1^{(i)} \\ y_2^{(i)} \\ \vdots \\ y_{n^{[L]}}^{(i)} \end{bmatrix}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">weights</span>
+
+$$
+W^{[l]} \in \R^{n^{[l]} \times n^{[l-1]}} =
+\begin{bmatrix}
+W_{1,1} & \cdots & W_{1,n^{[l-1]}} \\
+W_{2,1} & \cdots & W_{2,n^{[l-1]}} \\
+\vdots & & \vdots \\
+W_{n^{[l]},1} & \cdots & W_{n^{[l]},n^{[l-1]}}
+\end{bmatrix}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">bias</span>
+
+$$
+b^{[l]} \in \R^{n^{[l]} \times 1} =
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_{n^{[l]}} \end{bmatrix}
+$$
+
+</div>
+
+</div>
+
+</Section>
+
+<Section n="02" title="Neuron and activation" id="neuron">
+
+For one training example, vectorised over all the units of layer $l$. The index $(i)$ is left out.
+
+<Key label="Linear input">
+
+$$
+z^{[l]} = W^{[l]} \cdot a^{[l-1]} + b^{[l]} \qquad \in \R^{n^{[l]} \times 1}
+$$
+
+</Key>
+
+<Key label="Activation, the non-linear output">
+
+$$
+a^{[l]} = g^{[l]}\big(z^{[l]}\big) \qquad \in \R^{n^{[l]} \times 1}
+$$
+
+</Key>
+
+Four usual choices for $g$. The dashed curve is the derivative $g'$, which backward propagation needs.
+
+<ActivationCurves />
+
+</Section>
+
+<Section n="03" title="Prediction" id="prediction">
+
+The output layer gives the prediction. It is computed by **forward propagation**.
+
+<Key label="Prediction">
+
+$$
+\hat y^{(i)} = a^{[L](i)} \qquad \in \R^{n^{[L]} \times 1}
+$$
+
+</Key>
+
+</Section>
+
+<Section n="04" title="Vectorisation" id="vectorisation">
+
+Put the $m$ training examples side by side as columns, and one pass computes the whole training set.
+
+<div class="note-grid">
+
+$$
+X = \begin{bmatrix}
+\mid & \mid & & \mid \\
+x^{(1)} & x^{(2)} & \cdots & x^{(m)} \\
+\mid & \mid & & \mid
+\end{bmatrix} \in \R^{n \times m}
+$$
+
+$$
+Y = \begin{bmatrix}
+\mid & \mid & & \mid \\
+y^{(1)} & y^{(2)} & \cdots & y^{(m)} \\
+\mid & \mid & & \mid
+\end{bmatrix} \in \R^{n^{[L]} \times m}
+$$
+
+$$
+Z^{[l]} = \begin{bmatrix}
+\mid & \mid & & \mid \\
+z^{[l](1)} & z^{[l](2)} & \cdots & z^{[l](m)} \\
+\mid & \mid & & \mid
+\end{bmatrix} \in \R^{n^{[l]} \times m}
+$$
+
+$$
+A^{[l]} = \begin{bmatrix}
+\mid & \mid & & \mid \\
+a^{[l](1)} & a^{[l](2)} & \cdots & a^{[l](m)} \\
+\mid & \mid & & \mid
+\end{bmatrix} \in \R^{n^{[l]} \times m}
+$$
+
+$$
+B^{[l]} = \begin{bmatrix}
+\mid & \mid & & \mid \\
+b^{[l]} & b^{[l]} & \cdots & b^{[l]} \\
+\mid & \mid & & \mid
+\end{bmatrix} \in \R^{n^{[l]} \times m}
+$$
+
+</div>
+
+<Key label="For each layer">
+
+$$
+\begin{aligned}
+Z^{[l]} &= W^{[l]} \cdot A^{[l-1]} + B^{[l]} \\[4pt]
+A^{[l]} &= g^{[l]}\big(Z^{[l]}\big)
+\end{aligned}
+$$
+
+<p class="note-key-note">with $Z^{[l]}, A^{[l]} \in \R^{n^{[l]} \times m}$</p>
+
+</Key>
+
+</Section>
+
+<Section n="05" title="Forward propagation" id="forward">
+
+<Key label="Algorithm">
+
+$$
+\begin{aligned}
+& A^{[0]} = X \\[2pt]
+& \textbf{for } l = 1 \textbf{ to } L \\
+& \qquad Z^{[l]} = W^{[l]} \cdot A^{[l-1]} + B^{[l]} \\
+& \qquad A^{[l]} = g^{[l]}\big(Z^{[l]}\big)
+\end{aligned}
+$$
+
+</Key>
+
+The last activation, $A^{[L]}$, is the prediction for all the training examples.
+
+</Section>
+
+<Section n="06" title="Cost function" id="cost">
+
+The cost is the average of the loss $\mathcal{L}$ over the $m$ training examples.
+
+<Key label="Cost">
+
+$$
+J = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\big(a^{[L](i)}, y^{(i)}\big)
+$$
+
+<p class="note-key-note">$J$ is a function of all the parameters $W^{[1]}, b^{[1]}, \ldots, W^{[L]}, b^{[L]}$</p>
+
+</Key>
+
+With the cross-entropy loss, for a binary output:
+
+$$
+\begin{aligned}
+J = -\frac{1}{m} \sum_{i=1}^{m} \Big[\, & y^{(i)} \log a^{[L](i)} \\
++ & \big(1 - y^{(i)}\big) \log\big(1 - a^{[L](i)}\big) \Big]
+\end{aligned}
+$$
+
+</Section>
+
+<Section n="07" title="Backward propagation" id="backward">
+
+Notation: for any variable $v$ of the loss, $dv$ is the partial derivative of the loss with respect to $v$. For example:
+
+$$
+dv = \frac{\partial \mathcal{L}}{\partial v}
+\qquad\qquad
+dz^{[l]} = \frac{\partial \mathcal{L}}{\partial z^{[l]}}
+$$
+
+<Key label="Algorithm">
+
+$$
+\begin{aligned}
+& dA^{[L]} = \frac{\partial \mathcal{L}}{\partial A^{[L]}}\big(A^{[L]}, Y\big) \\[4pt]
+& \textbf{for } l = L \textbf{ down to } 1 \\
+& \qquad dZ^{[l]} = dA^{[l]} \odot g^{[l]\prime}\big(Z^{[l]}\big) \\[2pt]
+& \qquad dW^{[l]} = \frac{1}{m}\, dZ^{[l]} \cdot A^{[l-1]T} \\[2pt]
+& \qquad dB^{[l]} = \frac{1}{m} \sum_{i=1}^{m} dZ^{[l](i)} \\[2pt]
+& \qquad dA^{[l-1]} = W^{[l]T} \cdot dZ^{[l]}
+\end{aligned}
+$$
+
+</Key>
+
+$\odot$ is the element-wise product. The sum for $dB$ runs over the columns, one per training example.
+
+### Why: the chain rule
+
+For one example, with $z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}$ and $a^{[l]} = g^{[l]}(z^{[l]})$:
+
+<div class="note-derive">
+
+$$
+\begin{alignedat}{2}
+dz^{[l]} &= \frac{\partial \mathcal{L}}{\partial a^{[l]}} \cdot \frac{\partial a^{[l]}}{\partial z^{[l]}} &&= da^{[l]} \odot g^{[l]\prime}\big(z^{[l]}\big) \\[10pt]
+da^{[l-1]} &= \frac{\partial \mathcal{L}}{\partial z^{[l]}} \cdot \frac{\partial z^{[l]}}{\partial a^{[l-1]}} &&= W^{[l]T} \cdot dz^{[l]} \\[10pt]
+dW^{[l]} &= \frac{\partial \mathcal{L}}{\partial z^{[l]}} \cdot \frac{\partial z^{[l]}}{\partial W^{[l]}} &&= dz^{[l]} \cdot a^{[l-1]T} \\[10pt]
+db^{[l]} &= \frac{\partial \mathcal{L}}{\partial z^{[l]}} \cdot \frac{\partial z^{[l]}}{\partial b^{[l]}} &&= dz^{[l]}
+\end{alignedat}
+$$
+
+</div>
+
+</Section>
+
+<Section n="08" title="Gradient descent" id="gradient-descent">
+
+<Figure
+  src="/images/notes/deep-learning/layer-passes.svg"
+  alt="Layer l in both passes: forward from A[l-1] to Z[l] then A[l], backward from dA[l] to dZ[l] then dA[l-1], and the gradients dW[l] and dB[l]."
+  caption="Layer l in both passes. Forward caches Z, backward returns the gradients. Drawn with NodeBox 3."
+  width={800}
+  height={600}
+  narrow
+/>
+
+<ol class="note-steps">
+  <li class="note-step-init">
+    <span class="note-step-n">0</span>
+    <div><b>Initialise</b> the parameters $W^{[l]}$ and $B^{[l]}$ of every layer, the weights at random.</div>
+  </li>
+  <li class="note-loop">
+    <span class="note-loop-label">Repeat until convergence</span>
+    <ol>
+      <li><span class="note-step-n">1</span><div><b>Forward propagation</b> from $X$ to the prediction $A^{[L]}$.</div></li>
+      <li><span class="note-step-n">2</span><div><b>Cost</b> $J$, mainly to check that it decreases from one iteration to the next.</div></li>
+      <li><span class="note-step-n">3</span><div><b>Start backward propagation</b> with $dA^{[L]} = \partial \mathcal{L} / \partial A^{[L]}$.</div></li>
+      <li><span class="note-step-n">4</span><div><b>Backward propagation</b> down to layer 1, giving $dW^{[l]}$ and $dB^{[l]}$.</div></li>
+      <li>
+        <span class="note-step-n">5</span>
+        <div>
+          <b>Update</b> the parameters of each layer:
+
+$$
+\begin{aligned}
+W^{[l]} &:= W^{[l]} - \alpha \, dW^{[l]} \\
+B^{[l]} &:= B^{[l]} - \alpha \, dB^{[l]}
+\end{aligned}
+$$
+
+        </div>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</Section>

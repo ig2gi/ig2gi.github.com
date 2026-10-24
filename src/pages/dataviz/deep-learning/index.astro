@@ -1,0 +1,39 @@
+---
+// The deep learning notes series: the notes on this site, and the ones still on Observable
+import { getCollection } from 'astro:content';
+import ProjectLayout from '../../../layouts/ProjectLayout.astro';
+import series from '../../../data/deep-learning.json';
+
+const converted = new Set((await getCollection('deepLearning')).map(e => e.id));
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+<ProjectLayout title={series.title} year={String(series.year)} description={series.deck} article>
+  <div class="wrap note">
+    <header class="page-head note-head">
+      <p class="label">Personal notes · {series.year}</p>
+      <h1>{series.title}</h1>
+      <p class="deck">{series.deck}</p>
+      <p class="note-source"><span>{series.course}</span></p>
+    </header>
+
+    <ol class="note-list">
+      {series.notes.map((n, i) => {
+        const here = converted.has(n.slug);
+        return (
+          <li>
+            <a href={here ? `/dataviz/deep-learning/${n.slug}` : `https://observablehq.com/@ig2gi/${n.observable}`}
+               {...(here ? {} : { target: '_blank', rel: 'noopener noreferrer' })}>
+              <span class="label note-list-n">{num(i)}</span>
+              <span class="note-list-text">
+                <span class="note-list-title">{n.title}</span>
+                <span class="note-list-summary">{n.summary}</span>
+              </span>
+              <span class:list={['label', 'note-list-go', { 'note-list-go--here': here }]}>{here ? 'Read →' : 'Observable ↗'}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</ProjectLayout>

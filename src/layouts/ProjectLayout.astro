@@ -1,15 +1,18 @@
 ---
 // Full-window layout for a single dataviz project: a slim bar that keeps the
 // visitor on the site (home, portfolio), then the project fills the rest.
+// `article` turns it into a scrolling page with a sticky bar (the deep learning notes).
 import '../styles/main.css';
 
 interface Props {
   title: string;
   year?: string;
   description?: string;
+  parent?: { href: string; label: string };
+  article?: boolean;
 }
 
-const { title, year, description = `${title}, a data visualisation by Gilbert Perrin` } = Astro.props;
+const { title, year, description = `${title}, a data visualisation by Gilbert Perrin`, parent, article = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,13 +29,15 @@ const { title, year, description = `${title}, a data visualisation by Gilbert Pe
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500;600&display=swap" />
   </head>
-  <body class="project-page">
+  <body class:list={['project-page', { 'project-page--article': article }]}>
     <header class="project-bar">
       <nav class="project-crumbs" aria-label="Breadcrumb">
         <a class="wordmark" href="/">Gilbert <em>Perrin</em></a>
         <span class="project-sep" aria-hidden="true">/</span>
         <a class="project-crumb" href="/dataviz">dataviz</a>
         <span class="project-sep" aria-hidden="true">/</span>
+        {parent && <a class="project-crumb" href={parent.href}>{parent.label}</a>}
+        {parent && <span class="project-sep" aria-hidden="true">/</span>}
         <h1 class="project-title">{title}</h1>
       </nav>
       {year && <span class="project-year">{year}</span>}

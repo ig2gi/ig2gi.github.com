@@ -1,0 +1,208 @@
+---
+title: Batch normalisation and softmax
+summary: Normalise the inputs, then the activations inside the network, to train faster and more robustly. Then softmax, to classify into more than two classes.
+---
+
+import Section from '../../components/notes/Section.astro';
+import Key from '../../components/notes/Key.astro';
+import NormalisePanels from '../../components/notes/NormalisePanels.astro';
+import BnFlow from '../../components/notes/BnFlow.astro';
+import SoftmaxBars from '../../components/notes/SoftmaxBars.astro';
+
+<Section n="01" title="Notation" id="notation">
+
+Same notation as in [Deep neural networks](/dataviz/deep-learning/deep-neural-networks), with a few new symbols:
+
+<dl class="note-defs">
+  <dt>$\mu, \sigma^2$</dt><dd>mean and variance, computed on the training set or on the current mini-batch</dd>
+  <dt>$\epsilon$</dt><dd>a tiny number that avoids a division by zero</dd>
+  <dt>$\gamma^{[l]}, \beta^{[l]}$</dt><dd>scale and shift of batch normalisation in layer $l$, learned like $W^{[l]}$. Not the $\beta$ of momentum</dd>
+  <dt>$C$</dt><dd>number of classes, the size of the output layer: $C = n^{[L]}$</dd>
+  <dt>$c_j$</dt><dd>the $j$-th class</dd>
+</dl>
+
+</Section>
+
+<Section n="02" title="Normalising inputs" id="inputs">
+
+Features on very different scales stretch the cost function into a long, thin valley, and gradient descent zigzags across it. Normalised inputs give a rounder cost, and learning goes faster.
+
+<Key label="Normalise each feature">
+
+<div class="note-grid">
+
+$$
+\mu = \frac{1}{m} \sum_{i=1}^{m} x^{(i)}
+$$
+
+$$
+\sigma^2 = \frac{1}{m} \sum_{i=1}^{m} \big(x^{(i)} - \mu\big)^2
+$$
+
+$$
+X := \frac{X - \mu}{\sigma}
+$$
+
+</div>
+
+<p class="note-key-note">element-wise, one $\mu$ and one $\sigma$ per feature</p>
+
+</Key>
+
+<NormalisePanels />
+
+Normalise the test set with the same $\mu$ and $\sigma$, those of the training set.
+
+</Section>
+
+<Section n="03" title="Batch normalisation" id="batch-norm">
+
+Batch normalisation applies the same idea inside the network, to $z^{[l]}$ in each hidden layer. It makes the network more robust and the search for hyperparameters much easier.
+
+For a layer $l$, with $\mu$ and $\sigma^2$ computed over the $z^{[l](i)}$ of the current mini-batch:
+
+<Key label="Normalise">
+
+$$
+z^{[l](i)}_{norm} = \frac{z^{[l](i)} - \mu}{\sqrt{\sigma^2 + \epsilon}}
+$$
+
+<p class="note-key-note">mean 0 and variance 1 for every unit</p>
+
+</Key>
+
+Mean 0 and variance 1 is not always the best distribution for learning. Two new learned parameters let the network pick its own:
+
+<Key label="Scale and shift">
+
+$$
+\begin{aligned}
+\tilde z^{[l](i)} &= \gamma^{[l]} \, z^{[l](i)}_{norm} + \beta^{[l]} \\[4pt]
+a^{[l](i)} &= g^{[l]}\big(\tilde z^{[l](i)}\big)
+\end{aligned}
+$$
+
+</Key>
+
+With $\gamma^{[l]} = \sqrt{\sigma^2 + \epsilon}$ and $\beta^{[l]} = \mu$, batch normalisation would give back $z^{[l]}$ unchanged: the network can learn to undo it where it does not help.
+
+<BnFlow />
+
+The bias $b^{[l]}$ is no longer needed: subtracting the mean cancels it, and $\beta^{[l]}$ already shifts the values.
+
+</Section>
+
+<Section n="04" title="Training with batch norm" id="training">
+
+$\mu$ and $\sigma^2$ are computed on each mini-batch. $\gamma^{[l]}$ and $\beta^{[l]}$ are parameters, learned across all the mini-batches.
+
+<Key label="Each iteration">
+
+$$
+\begin{aligned}
+& J\big(\ldots, W^{[l]}, \gamma^{[l]}, \beta^{[l]}, \ldots\big) \\[6pt]
+& \text{gradients } dW^{[l]}, \; d\gamma^{[l]}, \; d\beta^{[l]} \\[6pt]
+& W^{[l]} := W^{[l]} - \alpha \, dW^{[l]} \\[2pt]
+& \gamma^{[l]} := \gamma^{[l]} - \alpha \, d\gamma^{[l]} \\[2pt]
+& \beta^{[l]} := \beta^{[l]} - \alpha \, d\beta^{[l]}
+\end{aligned}
+$$
+
+<p class="note-key-note">works the same with momentum, RMSprop or Adam</p>
+
+</Key>
+
+</Section>
+
+<Section n="05" title="Softmax" id="softmax">
+
+Softmax generalises logistic regression to $C$ classes. The output layer has $C$ units, and the prediction is a probability for each class.
+
+<div class="note-grid">
+
+<div class="note-cell">
+<span class="note-cell-label">Label, one-hot</span>
+
+$$
+y^{(i)} = \begin{bmatrix} 0 \\ \vdots \\ 1 \\ \vdots \\ 0 \end{bmatrix} \in \R^{C \times 1}
+$$
+
+</div>
+
+<div class="note-cell">
+<span class="note-cell-label">Prediction</span>
+
+$$
+\hat y^{(i)} = \begin{bmatrix} \vdots \\ P\big(c_j \mid x^{(i)}\big) \\ \vdots \end{bmatrix} \in \R^{C \times 1}
+$$
+
+</div>
+
+</div>
+
+<Key label="Softmax activation, for one example">
+
+$$
+\begin{aligned}
+z^{[L]} &= W^{[L]} a^{[L-1]} + b^{[L]} \\[4pt]
+t &= e^{z^{[L]}} \\[4pt]
+\hat y_j &= \frac{t_j}{\sum_{k=1}^{C} t_k}
+\end{aligned}
+$$
+
+<p class="note-key-note">$t \in \R^{C \times 1}$, the exponential is element-wise; the $\hat y_j$ are positive and add up to 1</p>
+
+</Key>
+
+<SoftmaxBars />
+
+</Section>
+
+<Section n="06" title="Loss and gradient" id="loss">
+
+<Key label="Loss, for one example">
+
+$$
+\mathcal{L}(\hat y, y) = -\sum_{j=1}^{C} y_j \log \hat y_j
+$$
+
+<p class="note-key-note">with a one-hot $y$, only the true class counts: $\mathcal{L} = -\log \hat y_{true}$</p>
+
+</Key>
+
+With $C = 2$ this is the cross-entropy loss of logistic regression. The cost is the mean over the $m$ examples, as before:
+
+$$
+J = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}\big(\hat y^{(i)}, y^{(i)}\big)
+$$
+
+Backward propagation starts from a remarkably simple gradient:
+
+<Key label="Start of backward propagation">
+
+$$
+dz^{[L]} = \frac{\partial \mathcal{L}}{\partial z^{[L]}} = \hat y - y
+$$
+
+</Key>
+
+### Why: softmax and log cancel out
+
+The derivative of softmax is $\dfrac{\partial \hat y_j}{\partial z_k} = \hat y_j \big(\delta_{jk} - \hat y_k\big)$, with $\delta_{jk} = 1$ if $j = k$ and 0 otherwise. Then:
+
+<div class="note-derive">
+
+$$
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial z_k}
+&= -\sum_{j=1}^{C} \frac{y_j}{\hat y_j} \cdot \hat y_j \big(\delta_{jk} - \hat y_k\big) \\[6pt]
+&= -y_k + \hat y_k \sum_{j=1}^{C} y_j \\[6pt]
+&= \hat y_k - y_k
+\end{aligned}
+$$
+
+</div>
+
+The last step uses $\sum_j y_j = 1$, true for a one-hot label.
+
+</Section>

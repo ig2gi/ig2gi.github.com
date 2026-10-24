@@ -1,0 +1,62 @@
+---
+// One deep learning note (MDX in src/content/deep-learning), formulas typeset at build time.
+// Previous / next follow the series order; a note not converted yet links to its notebook.
+import 'katex/dist/katex.min.css';
+import { getCollection, render } from 'astro:content';
+import ProjectLayout from '../../../layouts/ProjectLayout.astro';
+import series from '../../../data/deep-learning.json';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('deepLearning');
+  return entries.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const converted = new Set((await getCollection('deepLearning')).map(e => e.id));
+const notes = series.notes.map(n => ({
+  ...n,
+  href: converted.has(n.slug) ? `/dataviz/deep-learning/${n.slug}` : `https://observablehq.com/@ig2gi/${n.observable}`,
+  external: !converted.has(n.slug),
+}));
+const index = notes.findIndex(n => n.slug === entry.id);
+const note = notes[index];
+const pager = [
+  { dir: 'Previous', note: notes[index - 1] },
+  { dir: 'Next', note: notes[index + 1] },
+];
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+<ProjectLayout
+  title={entry.data.title}
+  year={String(series.year)}
+  description={`${entry.data.title}: ${entry.data.summary} Deep learning notes by Gilbert Perrin.`}
+  parent={{ href: '/dataviz/deep-learning', label: 'deep learning notes' }}
+  article
+>
+  <article class="wrap note">
+    <header class="page-head note-head">
+      <p class="label">Deep learning notes · {num(index)} of {num(notes.length - 1)}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="deck">{entry.data.summary}</p>
+      <p class="note-source">
+        <span>{series.course} · {series.year}</span>
+        <a href={`https://observablehq.com/@ig2gi/${note.observable}`} target="_blank" rel="noopener noreferrer">Original notebook ↗</a>
+      </p>
+    </header>
+
+    <Content />
+
+    <nav class="note-pager" aria-label="Deep learning notes">
+      {pager.map(({ dir, note: n }) => n ? (
+        <a class:list={['note-pager-link', `note-pager-link--${dir.toLowerCase()}`]} href={n.href}
+           {...(n.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+          <span class="label">{dir} · {num(notes.indexOf(n))}{n.external ? ' · on Observable ↗' : ''}</span>
+          <span class="note-pager-title">{n.title}</span>
+        </a>
+      ) : <span />)}
+    </nav>
+  </article>
+</ProjectLayout>

@@ -1,0 +1,95 @@
+---
+// Exponentially weighted average on real data: NASA temperature anomalies, 64°S–90°S, 1880–2020.
+// Raw series and the starting average are drawn at build time; the script redraws the average
+// when β or the bias correction change. Same stretchable 0–100 box as the other note charts.
+import series from '../../data/temperature-90s-64s.json';
+
+const data = series.data as [number, number][];
+const X: [number, number] = [1880, 2020];
+const Y: [number, number] = [-2.8, 1.6];
+const BETA = 0.9;
+
+const px = (x: number) => ((x - X[0]) / (X[1] - X[0])) * 100;
+const py = (y: number) => ((Y[1] - y) / (Y[1] - Y[0])) * 100;
+const line = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${px(x).toFixed(2)},${py(y).toFixed(2)}`).join('');
+
+// V_t = β V_{t−1} + (1 − β) θ_t, and V_t / (1 − β^t) once corrected
+function ewa(beta: number, corrected: boolean): [number, number][] {
+  let v = 0;
+  return data.map(([year, temp], i) => {
+    v = beta * v + (1 - beta) * temp;
+    return [year, corrected ? v / (1 - beta ** (i + 1)) : v];
+  });
+}
+
+const tick = (t: number) => String(t).replace('-', '−');
+// an average with weight β spans about 1 / (1 − β) values
+const years = (beta: number) => { const n = Math.round(1 / (1 - beta)); return `${n} year${n > 1 ? 's' : ''}`; };
+---
+
+<figure class="note-ewa" data-beta={BETA} data-series={JSON.stringify(data)}>
+  <div class="note-loss-readout">
+    <span>β₁ <b data-out="beta">{BETA.toFixed(2)}</b></span>
+    <span>averages about the last <b data-out="window">{years(BETA)}</b></span>
+  </div>
+
+  <div class="note-ewa-key" aria-hidden="true">
+    <span><i class="note-ewa-swatch note-ewa-swatch--raw"></i>yearly anomaly θₜ</span>
+    <span><i class="note-ewa-swatch"></i>weighted average Vₜ</span>
+  </div>
+
+  <div class="note-ewa-plot">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="Yearly temperature anomalies in the 64°S–90°S zone from 1880 to 2020, and their exponentially weighted average">
+      {[-2, -1, 1].map(t => <line class="note-act-grid-line" x1="0" x2="100" y1={py(t)} y2={py(t)} />)}
+      <line class="note-act-axis" x1="0" x2="100" y1={py(0)} y2={py(0)} />
+      <path class="note-ewa-raw" d={line(data)} />
+      <path class="note-ewa-avg" d={line(ewa(BETA, true))} />
+    </svg>
+    {[-2, -1, 0, 1].map(t => <span class="note-act-tick note-act-tick--y" style={`top:${py(t)}%`}>{tick(t)}</span>)}
+    {[1880, 1920, 1960, 2000].map(t => <span class="note-act-tick note-act-tick--x" style={`left:${px(t)}%`}>{t}</span>)}
+  </div>
+
+  <div class="note-ewa-controls">
+    <label class="note-loss-slider">
+      <span class="label">Weight of the past</span>
+      <input type="range" min="0" max="0.98" step="0.01" value={BETA} aria-label="beta 1, the weight of the past" />
+    </label>
+    <label class="note-ewa-check">
+      <input type="checkbox" checked />
+      <span>Bias correction</span>
+    </label>
+  </div>
+
+  <figcaption class="ps-caption">
+    Temperature anomalies in °C, zone 64°S–90°S, against the 1951–1980 mean. Data: NASA GISTEMP (Hansen et al., 2010).
+  </figcaption>
+</figure>
+
+<script>
+  const X = [1880, 2020], Y = [-2.8, 1.6];
+  const px = (x: number) => ((x - X[0]) / (X[1] - X[0])) * 100;
+  const py = (y: number) => ((Y[1] - y) / (Y[1] - Y[0])) * 100;
+
+  document.querySelectorAll<HTMLElement>('.note-ewa').forEach(root => {
+    const data: [number, number][] = JSON.parse(root.dataset.series!);
+    const slider = root.querySelector<HTMLInputElement>('input[type="range"]')!;
+    const check = root.querySelector<HTMLInputElement>('input[type="checkbox"]')!;
+    const path = root.querySelector<SVGPathElement>('.note-ewa-avg')!;
+
+    function draw() {
+      const beta = +slider.value;
+      let v = 0;
+      path.setAttribute('d', data.map(([year, temp], i) => {
+        v = beta * v + (1 - beta) * temp;
+        const y = check.checked ? v / (1 - beta ** (i + 1)) : v;
+        return `${i ? 'L' : 'M'}${px(year).toFixed(2)},${py(y).toFixed(2)}`;
+      }).join(''));
+      root.querySelector('[data-out="beta"]')!.textContent = beta.toFixed(2);
+      const n = Math.round(1 / (1 - beta));
+      root.querySelector('[data-out="window"]')!.textContent = `${n} year${n > 1 ? 's' : ''}`;
+    }
+
+    slider.addEventListener('input', draw);
+    check.addEventListener('change', draw);
+  });
+</script>

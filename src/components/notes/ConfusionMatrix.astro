@@ -1,0 +1,45 @@
+---
+// Confusion matrix on a worked example (100 samples), with each metric computed from it.
+import katex from 'katex';
+const tex = (s: string) => katex.renderToString(s, { throwOnError: true, displayMode: false });
+
+const TP = 40, FN = 10, FP = 5, TN = 45;
+const total = TP + FN + FP + TN;
+const precision = TP / (TP + FP);
+const recall = TP / (TP + FN);
+
+const metrics = [
+  { name: 'Accuracy', what: 'share of all predictions that are right', tex: '\\dfrac{\\text{TP} + \\text{TN}}{\\text{total}}', value: (TP + TN) / total },
+  { name: 'Error', what: '1 − accuracy', tex: '\\dfrac{\\text{FP} + \\text{FN}}{\\text{total}}', value: (FP + FN) / total },
+  { name: 'Precision', what: 'how often a positive prediction is right', tex: '\\dfrac{\\text{TP}}{\\text{TP} + \\text{FP}}', value: precision },
+  { name: 'Recall, sensitivity', what: 'share of actual positives that are found', tex: '\\dfrac{\\text{TP}}{\\text{TP} + \\text{FN}}', value: recall },
+  { name: 'Specificity', what: 'share of actual negatives that are found', tex: '\\dfrac{\\text{TN}}{\\text{TN} + \\text{FP}}', value: TN / (TN + FP) },
+  { name: 'F1 score', what: 'harmonic mean of precision and recall', tex: '2\\,\\dfrac{\\text{precision} \\cdot \\text{recall}}{\\text{precision} + \\text{recall}}', value: (2 * precision * recall) / (precision + recall) },
+];
+const fmt = (v: number) => `${(v * 100).toFixed(1).replace(/\.0$/, '')} %`;
+---
+
+<figure class="note-cm">
+  <div class="note-cm-matrix" role="table" aria-label={`Confusion matrix: ${TP} true positives, ${FN} false negatives, ${FP} false positives, ${TN} true negatives`}>
+    <span class="note-cm-corner"></span>
+    <span class="label note-cm-axis">Predicted positive</span>
+    <span class="label note-cm-axis">Predicted negative</span>
+    <span class="label note-cm-axis note-cm-axis--row">Actual positive</span>
+    <span class="note-cm-cell note-cm-cell--right"><b>TP</b><span>true positive</span><em>{TP}</em></span>
+    <span class="note-cm-cell"><b>FN</b><span>false negative</span><em>{FN}</em></span>
+    <span class="label note-cm-axis note-cm-axis--row">Actual negative</span>
+    <span class="note-cm-cell"><b>FP</b><span>false positive</span><em>{FP}</em></span>
+    <span class="note-cm-cell note-cm-cell--right"><b>TN</b><span>true negative</span><em>{TN}</em></span>
+  </div>
+
+  <dl class="note-cm-metrics">
+    {metrics.map(m => (
+      <div class="note-cm-metric">
+        <dt><b>{m.name}</b><span>{m.what}</span></dt>
+        <dd class="note-cm-tex" set:html={tex(m.tex)} />
+        <dd class="note-cm-value">{fmt(m.value)}</dd>
+      </div>
+    ))}
+  </dl>
+  <figcaption class="ps-caption">An example on {total} samples: total = TP + FN + FP + TN. The right column applies each formula to it.</figcaption>
+</figure>

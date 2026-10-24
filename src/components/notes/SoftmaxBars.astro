@@ -1,0 +1,41 @@
+---
+// Softmax on a worked example with C = 4 classes: z, then t = e^z, then ŷ = t / Σt.
+// Bars are scaled per column; the most likely class is highlighted.
+import katex from 'katex';
+const tex = (s: string) => katex.renderToString(s, { throwOnError: true });
+
+const z = [5, 2, -1, 3];
+const t = z.map(Math.exp);
+const sum = t.reduce((a, b) => a + b, 0);
+const y = t.map(v => v / sum);
+const best = y.indexOf(Math.max(...y));
+
+const tmax = Math.max(...t);
+const fmt = (v: number, d: number) => v.toFixed(d).replace('-', '−');
+---
+
+<figure class="note-soft">
+  <div class="note-soft-table" role="table" aria-label="Softmax on four classes">
+    <div class="note-soft-row note-soft-head" role="row">
+      <span role="columnheader">class</span>
+      <span role="columnheader" set:html={tex('z_j')} />
+      <span role="columnheader" set:html={tex('t_j = e^{z_j}')} />
+      <span role="columnheader" set:html={tex('\\hat y_j = t_j / \\textstyle\\sum t')} />
+    </div>
+    {z.map((zj, j) => (
+      <div class:list={['note-soft-row', { 'note-soft-row--best': j === best }]} role="row">
+        <span class="note-soft-class" role="cell" set:html={tex(`c_${j + 1}`)} />
+        <span class="note-soft-cell note-soft-cell--z" role="cell"><b>{fmt(zj, 0)}</b></span>
+        <span class="note-soft-cell" role="cell">
+          <span class="note-soft-track"><i class="note-soft-bar" style={`width:${(t[j] / tmax) * 100}%`}></i></span>
+          <b>{fmt(t[j], 1)}</b>
+        </span>
+        <span class="note-soft-cell" role="cell">
+          <span class="note-soft-track"><i class="note-soft-bar note-soft-bar--p" style={`width:${y[j] * 100}%`}></i></span>
+          <b>{fmt(y[j] * 100, 1)} %</b>
+        </span>
+      </div>
+    ))}
+  </div>
+  <figcaption class="ps-caption">With z = (5, 2, −1, 3): Σt = {fmt(sum, 1)}, the four probabilities add up to 1, and the largest z wins most of it.</figcaption>
+</figure>

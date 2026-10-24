@@ -1,0 +1,38 @@
+{
+  "title": "Deep Learning Notes",
+  "deck": "The maths of deep learning, one summary sheet per topic. Personal notes I took in 2019 during the Deep Learning Specialization by deeplearning.ai, first written as Observable notebooks.",
+  "course": "Deep Learning Specialization · deeplearning.ai · Coursera",
+  "year": 2019,
+  "notes": [
+    {
+      "slug": "logistic-regression",
+      "title": "Logistic regression",
+      "summary": "The simplest network, a single unit: prediction, loss, cost and the gradient descent derivatives, then L2 regularisation.",
+      "observable": "supervised-learning-logistic-regression"
+    },
+    {
+      "slug": "deep-neural-networks",
+      "title": "Deep neural networks",
+      "summary": "Notation, the neuron and its activation functions, forward propagation, cost, backward propagation and gradient descent.",
+      "observable": "supervised-learning-deep-learning-part1"
+    },
+    {
+      "slug": "regularisation-and-optimisation",
+      "title": "Regularisation and optimisation",
+      "summary": "L2 and inverted dropout, then mini-batch gradient descent, momentum, RMSprop and Adam.",
+      "observable": "supervised-learning-deep-learning-part-2"
+    },
+    {
+      "slug": "batch-normalisation-and-softmax",
+      "title": "Batch normalisation and softmax",
+      "summary": "Normalising inputs and activations, and the softmax output for multi-class classification.",
+      "observable": "supervised-learning-deep-learning-part-3"
+    },
+    {
+      "slug": "structuring-ml-projects",
+      "title": "Structuring machine learning projects",
+      "summary": "Train, dev and test distributions, error analysis and choosing a metric.",
+      "observable": "structuring-machine-learning-projects"
+    }
+  ]
+}

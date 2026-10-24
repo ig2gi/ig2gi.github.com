@@ -1,0 +1,133 @@
+---
+// Logistic loss explorer: pick z (slider, or point at either plot), see a = σ(z) and the loss
+// for both labels. Curves are drawn at build time in the same stretchable 0–100 box as the
+// activation curves; dots, guides and readouts are moved by the small script below.
+const sigmoid = (z: number) => 1 / (1 + Math.exp(-z));
+
+const Z: [number, number] = [-7, 7];
+const SY: [number, number] = [-0.08, 1.08];   // sigmoid plot, a
+const LY: [number, number] = [-0.3, 5];       // loss plot, loss (clipped at 5)
+const Z0 = -1.5;
+
+const sx = (z: number) => ((z - Z[0]) / (Z[1] - Z[0])) * 100;
+const lx = (a: number) => a * 100;
+const yy = (y: number, [y0, y1]: [number, number]) => ((y1 - y) / (y1 - y0)) * 100;
+
+const line = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(2)},${y.toFixed(2)}`).join('');
+const steps = (n: number, a: number, b: number) => Array.from({ length: n + 1 }, (_, i) => a + ((b - a) * i) / n);
+
+const sigmoidPath = line(steps(280, Z[0], Z[1]).map(z => [sx(z), yy(sigmoid(z), SY)]));
+// −log a reaches the top of the plot (5) at a = e^−5
+const amin = Math.exp(-LY[1]);
+const loss1Path = line(steps(400, amin, 1).map(a => [lx(a), yy(-Math.log(a), LY)]));
+const loss0Path = line(steps(400, 0, 1 - amin).map(a => [lx(a), yy(-Math.log(1 - a), LY)]));
+
+const tick = (t: number) => String(t).replace('-', '−');
+---
+
+<figure class="note-loss" data-z0={Z0}>
+  <div class="note-loss-readout" aria-live="polite">
+    <span>z <b data-out="z"></b></span>
+    <span>a = σ(z) <b data-out="a"></b></span>
+    <span class="note-loss-y1">loss if y = 1 <b data-out="l1"></b></span>
+    <span class="note-loss-y0">loss if y = 0 <b data-out="l0"></b></span>
+  </div>
+
+  <div class="note-loss-panels">
+    <div class="note-loss-panel">
+      <h3>Sigmoid <span>a = σ(z)</span></h3>
+      <div class="note-loss-plot" data-plot="z">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <line class="note-act-grid-line" x1="0" x2="100" y1={yy(1, SY)} y2={yy(1, SY)} />
+          <line class="note-act-grid-line" x1="0" x2="100" y1={yy(0.5, SY)} y2={yy(0.5, SY)} />
+          <line class="note-act-axis" x1="0" x2="100" y1={yy(0, SY)} y2={yy(0, SY)} />
+          <line class="note-act-axis" x1={sx(0)} x2={sx(0)} y1="0" y2="100" />
+          <line class="note-loss-guide" data-guide="z" y1="0" y2="100" />
+          <path class="note-loss-sigmoid" d={sigmoidPath} />
+        </svg>
+        <i class="note-loss-dot note-loss-dot--a" data-dot="a"></i>
+        {[0, 0.5, 1].map(t => <span class="note-act-tick note-act-tick--y" style={`top:${yy(t, SY)}%`}>{t}</span>)}
+        {[Z[0], Z[1]].map(t => <span class="note-act-tick note-act-tick--x" style={`left:${sx(t)}%`}>{tick(t)}</span>)}
+        <span class="note-loss-axis-name">z</span>
+      </div>
+    </div>
+
+    <div class="note-loss-panel">
+      <h3>Loss <span>for each label</span></h3>
+      <div class="note-loss-plot" data-plot="a">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          {[2, 4].map(t => <line class="note-act-grid-line" x1="0" x2="100" y1={yy(t, LY)} y2={yy(t, LY)} />)}
+          <line class="note-act-axis" x1="0" x2="100" y1={yy(0, LY)} y2={yy(0, LY)} />
+          <line class="note-loss-guide" data-guide="a" y1="0" y2="100" />
+          <path class="note-loss-l1" d={loss1Path} />
+          <path class="note-loss-l0" d={loss0Path} />
+        </svg>
+        <span class="note-loss-curve note-loss-y1" style={`left:${lx(0.045)}%;top:${yy(4.6, LY)}%`}>y = 1</span>
+        <span class="note-loss-curve note-loss-y0" style={`right:${lx(0.045)}%;top:${yy(4.6, LY)}%`}>y = 0</span>
+        <i class="note-loss-dot note-loss-dot--l1" data-dot="l1"></i>
+        <i class="note-loss-dot note-loss-dot--l0" data-dot="l0"></i>
+        {[0, 2, 4].map(t => <span class="note-act-tick note-act-tick--y" style={`top:${yy(t, LY)}%`}>{t}</span>)}
+        {[0, 1].map(t => <span class="note-act-tick note-act-tick--x" style={`left:${lx(t)}%`}>{t}</span>)}
+        <span class="note-loss-axis-name">a</span>
+      </div>
+    </div>
+  </div>
+
+  <label class="note-loss-slider">
+    <span class="label">Move z</span>
+    <input type="range" min={Z[0]} max={Z[1]} step="0.01" value={Z0} aria-label="z, the linear input" />
+  </label>
+</figure>
+
+<script>
+  const Z = [-7, 7], SY = [-0.08, 1.08], LY = [-0.3, 5];
+  const sigmoid = (z: number) => 1 / (1 + Math.exp(-z));
+  const sx = (z: number) => ((z - Z[0]) / (Z[1] - Z[0])) * 100;
+  const yy = (y: number, [y0, y1]: number[]) => ((y1 - Math.min(y, y1)) / (y1 - y0)) * 100;
+  const fmt = (v: number) => v.toFixed(2).replace('-', '−');
+  const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
+  document.querySelectorAll<HTMLElement>('.note-loss').forEach(root => {
+    const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
+    const input = q<HTMLInputElement>('input');
+
+    function place(dot: string, x: number, y: number) {
+      const el = q<HTMLElement>(`[data-dot="${dot}"]`);
+      el.style.left = `${x}%`;
+      el.style.top = `${y}%`;
+      el.hidden = y <= 0;   // off the top of the loss plot
+    }
+
+    function set(z: number) {
+      z = clamp(z, Z[0], Z[1]);
+      const a = sigmoid(z), l1 = -Math.log(a), l0 = -Math.log(1 - a);
+      input.value = String(z);
+      for (const [g, x] of [['z', sx(z)], ['a', a * 100]] as const) {
+        const line = q<SVGLineElement>(`[data-guide="${g}"]`);
+        line.setAttribute('x1', String(x));
+        line.setAttribute('x2', String(x));
+      }
+      place('a', sx(z), yy(a, SY));
+      place('l1', a * 100, yy(l1, LY));
+      place('l0', a * 100, yy(l0, LY));
+      q('[data-out="z"]').textContent = fmt(z);
+      q('[data-out="a"]').textContent = fmt(a);
+      q('[data-out="l1"]').textContent = fmt(l1);
+      q('[data-out="l0"]').textContent = fmt(l0);
+    }
+
+    input.addEventListener('input', () => set(+input.value));
+
+    // pointing at the sigmoid sets z; pointing at the loss plot sets a, so z = log(a / (1 − a))
+    root.querySelectorAll<HTMLElement>('[data-plot]').forEach(plot => {
+      plot.addEventListener('pointermove', e => {
+        const r = plot.getBoundingClientRect();
+        const t = clamp((e.clientX - r.left) / r.width, 0, 1);
+        if (plot.dataset.plot === 'z') set(Z[0] + t * (Z[1] - Z[0]));
+        else { const a = clamp(t, 0.001, 0.999); set(Math.log(a / (1 - a))); }
+      });
+    });
+
+    set(+(root.dataset.z0 ?? 0));
+  });
+</script>

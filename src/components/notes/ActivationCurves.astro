@@ -1,0 +1,80 @@
+---
+// The four usual activation functions g(z) with their derivative g'(z), drawn at build time.
+// The plot stretches to its box (preserveAspectRatio none, non-scaling strokes) and the
+// tick labels are HTML placed in %, so the text stays crisp at every width.
+import katex from 'katex';
+
+interface Fn {
+  name: string;
+  tex: string;
+  g: (z: number) => number;
+  dg: (z: number) => number;
+  y: [number, number];
+  ticks: number[];
+}
+
+const sigmoid = (z: number) => 1 / (1 + Math.exp(-z));
+
+const fns: Fn[] = [
+  { name: 'Sigmoid', tex: '\\sigma(z) = \\dfrac{1}{1 + e^{-z}}',
+    g: sigmoid, dg: z => sigmoid(z) * (1 - sigmoid(z)), y: [-0.25, 1.25], ticks: [0, 0.5, 1] },
+  { name: 'Tanh', tex: '\\tanh(z) = \\dfrac{e^{z} - e^{-z}}{e^{z} + e^{-z}}',
+    g: Math.tanh, dg: z => 1 - Math.tanh(z) ** 2, y: [-1.5, 1.5], ticks: [-1, 0, 1] },
+  { name: 'ReLU', tex: '\\text{relu}(z) = \\max(0,\\, z)',
+    g: z => Math.max(0, z), dg: z => (z > 0 ? 1 : 0), y: [-1, 4.4], ticks: [0, 2, 4] },
+  { name: 'Leaky ReLU', tex: '\\text{lrelu}(z) = \\max(0.1z,\\, z)',
+    g: z => (z > 0 ? z : 0.1 * z), dg: z => (z > 0 ? 1 : 0.1), y: [-1, 4.4], ticks: [0, 2, 4] },
+];
+
+const X: [number, number] = [-4, 4];
+const xs = Array.from({ length: 321 }, (_, i) => X[0] + (i * (X[1] - X[0])) / 320);
+const px = (x: number) => ((x - X[0]) / (X[1] - X[0])) * 100;
+const py = (y: number, [y0, y1]: [number, number]) => ((y1 - y) / (y1 - y0)) * 100;
+
+// a jump between two samples (ReLU derivative at 0) starts a new subpath instead of a vertical line
+function path(f: (z: number) => number, dom: [number, number]) {
+  let d = '';
+  let prev: number | undefined;
+  for (const x of xs) {
+    const y = f(x);
+    const cmd = prev === undefined || Math.abs(y - prev) > 0.2 * (dom[1] - dom[0]) ? 'M' : 'L';
+    d += `${cmd}${px(x).toFixed(2)},${py(y, dom).toFixed(2)}`;
+    prev = y;
+  }
+  return d;
+}
+
+const tex = (s: string) => katex.renderToString(s, { throwOnError: true });
+---
+
+<figure class="note-act">
+  <figcaption class="note-act-key" aria-hidden="true">
+    <span><i class="note-act-swatch"></i>g(z)</span>
+    <span><i class="note-act-swatch note-act-swatch--d"></i>g′(z)</span>
+  </figcaption>
+  <div class="note-act-grid">
+    {fns.map(f => (
+      <div class="note-act-cell">
+        <h3>{f.name}</h3>
+        <div class="note-act-tex" set:html={tex(f.tex)} />
+        <div class="note-act-plot">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label={`${f.name} and its derivative, z from −4 to 4`}>
+            {f.ticks.filter(t => t !== 0).map(t => (
+              <line class="note-act-grid-line" x1="0" x2="100" y1={py(t, f.y)} y2={py(t, f.y)} />
+            ))}
+            <line class="note-act-axis" x1="0" x2="100" y1={py(0, f.y)} y2={py(0, f.y)} />
+            <line class="note-act-axis" x1={px(0)} x2={px(0)} y1="0" y2="100" />
+            <path class="note-act-d" d={path(f.dg, f.y)} />
+            <path class="note-act-g" d={path(f.g, f.y)} />
+          </svg>
+          {f.ticks.map(t => (
+            <span class="note-act-tick note-act-tick--y" style={`top:${py(t, f.y)}%`}>{String(t).replace('-', '−')}</span>
+          ))}
+          {[X[0], X[1]].map(t => (
+            <span class="note-act-tick note-act-tick--x" style={`left:${px(t)}%`}>{String(t).replace('-', '−')}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</figure>
