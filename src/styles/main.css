@@ -672,6 +672,15 @@ main {
 .re-entry-more .re-entry-desc li { margin-bottom: 2px; }
 .re-entry-more .re-entry-desc > :last-child { margin-bottom: 0; }
 
+/* skills line: standard terms for screeners, kept quiet for people */
+.re-entry-skills {
+    margin: 10px 0 0;
+    font: 400 var(--step--2)/1.6 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
 .re-entry-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .re-entry-links a {
     font: 500 0.75rem/1 var(--font-mono);

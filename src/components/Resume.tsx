@@ -19,6 +19,7 @@ interface ResumeEvent {
   description?: string;
   descriptionLong?: string;
   resume?: boolean;
+  hardSkills?: string[];
   achievements?: string[];
   links?: Link[];
 }
@@ -128,6 +129,13 @@ const Description: FC<{ event: ResumeEvent }> = ({ event }) => (
   </>
 );
 
+// standard skill terms for screeners, one quiet line under the text (roles only, not certificates)
+const SkillsLine: FC<{ event: ResumeEvent }> = ({ event }) => {
+  const skills = event.type === 'experience' ? (event.hardSkills ?? []).filter(Boolean) : [];
+  if (!skills.length) return null;
+  return <p className="re-entry-skills"><span className="sr-only">Skills: </span>{skills.join(' · ')}</p>;
+};
+
 // role tags are hidden until we decide whether they add anything beyond the text (data kept in resume.json)
 const SHOW_TAGS = false;
 
@@ -203,6 +211,7 @@ const Entry: FC<{ event: ResumeEvent }> = ({ event }) => {
       {hasSub && <div className="re-entry-sub">{subText}</div>}
       {event.diploma  && <div className="re-entry-sub">{event.diploma}</div>}
       <Description event={event} />
+      <SkillsLine event={event} />
       <Achievements achievements={event.achievements ?? []} />
       <EntryLinks links={event.links ?? []} />
     </EntryWrap>
@@ -216,6 +225,7 @@ const Role: FC<{ event: ResumeEvent }> = ({ event }) => (
     <div className="re-role-title">{event.title}</div>
     {event.diploma && <div className="re-entry-sub">{event.diploma}</div>}
     <Description event={event} />
+    <SkillsLine event={event} />
     <Achievements achievements={event.achievements ?? []} />
     <EntryLinks links={event.links ?? []} />
   </EntryWrap>

@@ -69,7 +69,7 @@
       "descriptionLong": "<p>The team brings together <b>germline and oncology domain experts</b>, <b>platform experts</b> and a <b>UX/UI designer</b>. Some strategic features can't go straight into development, because the problem has to be explored first. So we <b>prototype</b>, <b>test with users</b>, <b>write the requirements</b>, and hand them over to the development teams.</p><p>With the team, I <b>conceived and built</b> the variant interpretation assistant and <b>designed the architecture</b> of the <b>harness around the LLM</b>:</p><ul><li>curated evidence is <b>retrieved at query time</b>;</li><li>a <b>deterministic grounding gate</b> checks every citation against its source;</li><li>the model writes a <b>structured draft</b>;</li><li>nothing is saved until a <b>clinician confirms</b> it.</li></ul><p>The <b>domain experts own the prompts</b>, so the clinical reasoning stays with the people who know it. The feature is in development, with an <b>early-access programme</b> planned for December 2026.</p><p>I have built much of the platform since its earliest days. That lets me steer these projects across <b>technology, product, design and delivery</b> at once.</p><p>I work <b>AI-natively</b>, using <b>Claude</b> for prototyping, coding, requirements and documentation, and I drive internal AI projects beyond the assistant:</p><ul><li><b>customer metrics dashboards</b>;</li><li><b>Claude skills</b> that help the teams write requirements;</li><li>a <b>knowledge graph</b> linking the platform documentation and Jira stories, to help people write new stories.</li></ul>",
       "achievements": ["R&D team with delivery accountability", "generative AI · RAG", "human-in-the-loop", "regulated healthcare", "product vision"],
       "links": [],
-      "hardSkills": ["Solution design", "Generative AI", "RAG", "Python", "Prototyping", "Product Management", "UX Design"],
+      "hardSkills": ["Generative AI", "LLM", "Retrieval-Augmented Generation (RAG)", "AI Product Management", "Product Strategy", "Solution Architecture", "Rapid Prototyping", "Knowledge Graphs"],
       "softSkills": ["team leadership", "creativity", "product strategy", "problem solving"],
       "teamSize": 5
     },
@@ -142,7 +142,7 @@
       "descriptionLong": "<p>With <b>5 direct reports</b>, I ran product and engineering as one development organisation, with developers, Product Owners and UX/UI designers working in the same teams. I was also the platform's <b>Product Owner</b>: I <b>aligned stakeholders</b>, defined the <b>user flows</b> and oversaw the <b>frontend architecture</b>.</p><p>The design challenge, still open today, is to combine two constraints that pull against each other: making the platform <b>easier to use</b>, and keeping <b>enough information visible at once</b> for clinicians' demanding workflows. A web technology doesn't mean consumer-web conventions, so I chose the <b>web-desktop</b> standard for professional tools, with <b>data density</b> rather than long vertical scrolling.</p><p>The backlog mixed new features with <b>parity features</b> from the desktop application. I built <b>dashboards combining Jira, production data and internal sources</b> to decide what came first: staying competitive, or moving users quickly to limit the cost of <b>running two platforms</b>. The same dashboards tracked the <b>development teams' performance</b>.</p><p>My engineering background let me make technical calls with the engineers, not only product calls.</p><p>Moving a clinical application is not a switch: each customer has validated workflows to carry over. Once the platform was ready, the company put <b>sales, domain experts and product</b> behind the migration, which is on track to close in Q1 2027.</p>",
       "achievements": ["25-person org", "desktop → web-desktop migration", "data-dense clinical UX", "backlog arbitration dashboards", "React"],
       "links": [],
-      "hardSkills": ["React", "Architecture", "Solution design", "Product Management", "UX Design", "Data Visualisation", "Design Control", "Agile / Scrum"],
+      "hardSkills": ["Product Management", "Engineering Leadership", "Legacy Modernisation", "React", "Roadmap Prioritisation", "Stakeholder Management", "UX Design", "Data-Driven Decision Making"],
       "softSkills": ["team leadership", "product strategy", "stakeholder alignment", "problem solving"],
       "teamSize": 25
     },
@@ -190,7 +190,7 @@
       "descriptionLong": "<p>Working closely with the <b>CTO</b>, I helped design the new platform as a <b>data platform</b>: I shaped the <b>high-level data model</b> and its core <b>data concepts</b>. We treated the platform as a <b>product in its own right</b>, serving both internal teams building on it and <b>external partners</b>, and that direction shapes the platform today.</p><p>The multimodal prototype was the proof of that direction. It combined <b>radiomics, digital pathology and clinical data</b> with genomics in one view, towards <b>data-driven medicine</b>. I designed and coded it myself, then handed it to developers to scale it. It was a <b>strategic project</b>, meant to bring <b>clinical data</b> into the platform. Released as an <b>early-access programme</b>, it paved the way for the new platform, and that investment is paying off today.</p><p>I was one of the <b>influencers of the technology choice</b> for the new platform. The first React application I built started as a separate app and is now a <b>module of the platform</b>. Building it myself gave me the ground to make technical calls with the engineers later.</p><p>I wrote the <b>architecture documentation</b> and <b>generated its diagrams automatically</b> from Jira assets with Python graph libraries, so it stayed aligned with the code.</p><p>For the first time, the platform had a structured <b>product organisation</b>, with dedicated Product Owners and UX specialists, all <b>7 reporting to me</b>. I led the maturation of a function that had been bootstrapped in the early years, driving <b>clear requirements</b> and <b>cross-team alignment</b> to take complex work from concept to production.</p>",
       "achievements": ["desktop → web platform rewrite", "multimodal oncology prototype", "first React app", "automated architecture docs", "early-access programme", "7-person PO/UX team"],
       "links": [],
-      "hardSkills": ["React", "UX/UI Design", "Product Management", "Solution design", "Prototyping", "Agile / Scrum", "Architecture", "Python"],
+      "hardSkills": ["Product Management", "Data Platform", "Data Modelling", "Product Discovery", "Rapid Prototyping", "UX Design", "React", "Software Architecture"],
       "softSkills": ["team leadership", "creativity", "problem solving", "product strategy"],
       "teamSize": 7
     },
@@ -213,7 +213,7 @@
       "description": "At <b>GenomSys</b>, a Swiss start-up built around the <b>MPEG-G standard</b> (ISO/IEC 23092) for genomic data compression and access, I ran the <b>market and competitor analysis</b> to shape the product strategy, bringing my <b>clinical genomics</b> experience. The vision was still open: the company wanted to go beyond a compression format towards <b>analysis services</b>, close to what SOPHiA GENETICS offered. After three months, our views on product direction differed, and I accepted <b>SOPHiA GENETICS' invitation to come back</b>.",
       "achievements": ["MPEG-G ISO standard", "market & competitor analysis", "product strategy"],
       "links": [],
-      "hardSkills": ["Product Management", "Market analysis", "Competitive analysis"],
+      "hardSkills": ["Product Strategy", "Market Analysis", "Competitive Analysis", "Product Management", "Genomics"],
       "softSkills": ["product strategy", "critical thinking"],
       "teamSize": null
     },
@@ -239,7 +239,7 @@
         { "name": "Articles", "url": "https://observablehq.com/collection/@ig2gi/deep-learning" },
         { "name": "Specialisation", "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/YDGTV6XN3LAT" }
       ],
-      "hardSkills": ["Machine Learning", "Deep Learning", "Python", "Data Visualisation"],
+      "hardSkills": ["Machine Learning", "Deep Learning", "Neural Networks", "Python", "TensorFlow", "Technical Writing", "Data Visualisation"],
       "softSkills": ["self-directed learning", "communication"],
       "teamSize": null
     },
@@ -350,7 +350,7 @@
       "description": "I led the <b>functional design and UX</b> of the <b>SOPHiA DDM™ platform</b>, owning the <b>functional requirements</b> of its data-driven features. I prioritised the backlog by impact, feasibility and <b>data readiness</b>, and built <b>UI prototypes</b> in D3.js and Balsamiq to test concepts before development. I designed the platform's <b>visual analysis features</b>, such as <b>familial variant analysis</b> and a <b>coverage calculator</b>. In July 2019, I left to study <b>deep learning</b> in depth.",
       "achievements": ["functional requirements ownership", "data UI prototyping", "data readiness prioritisation", "visual analysis features", "clinical genomics UX"],
       "links": [],
-      "hardSkills": ["UX Design", "Prototyping", "Balsamiq", "D3.js"],
+      "hardSkills": ["UX Design", "Functional Specifications", "Backlog Prioritisation", "Rapid Prototyping", "Data Visualisation", "D3.js"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
     },
@@ -398,7 +398,7 @@
       "descriptionLong": "<p>I designed and built the <b>admin web app</b> used by the Support team.</p><p>I contributed to two <b>CTI (now Innosuisse) innovation projects</b>, among them the <b>FDS score</b> with <b>neXtProt</b>: a new functional score to better interpret <b>variants of unknown significance (VUS)</b>.</p><p>I also built <b>internal data apps</b>, among them a <b>real-time world map of platform usage</b>, used with <b>investors</b>, by marketing and across the company.</p>",
       "achievements": ["4-person team", "product owner + hands-on dev", "gene/transcript viewer in the product", "CTI project: FDS score for VUS", "real-time usage map"],
       "links": [],
-      "hardSkills": ["Java", "JavaFX", "Spring", "JavaScript", "Node.js", "D3.js", "Python"],
+      "hardSkills": ["Front-End Development", "Team Leadership", "Product Ownership", "Java", "JavaFX", "D3.js", "Node.js", "Data Visualisation"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": 4
     },
@@ -446,7 +446,7 @@
       "descriptionLong": "<p>I built the foundations of the desktop application: the <b>application framework</b>, <b>authentication</b> and the <b>UI components</b>. I also assigned the development work to the team.</p><p>The circular genomic viewer is a <b>Circos-style</b> view showing variants (SNVs and indels) across coverage, gene transcripts and clinical annotation databases. I built it first in <b>D3.js</b>, then integrated it into the <b>JavaFX application</b>, bringing complex variant data to <b>clinical users</b>.</p>",
       "achievements": ["founding team — first 10", "web → desktop move", "platform architecture", "product decisions with the founders", "circular genomic viewer"],
       "links": [],
-      "hardSkills": ["Java", "JavaFX", "D3.js", "HTML5"],
+      "hardSkills": ["Software Architecture", "Java", "JavaFX", "Desktop Applications", "Data Visualisation", "D3.js", "Clinical Genomics", "Product Ownership"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
     },
@@ -471,7 +471,7 @@
       "links": [
         { "name": "Project", "url": "/dataviz/ias-cohorts-map" }
       ],
-      "hardSkills": ["JavaScript", "D3.js", "SVG", "CSS"],
+      "hardSkills": ["Data Visualisation", "D3.js", "JavaScript", "SVG", "Interactive Maps"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
     },
@@ -541,7 +541,7 @@
       "description": "As a freelance engineer at <b>Pictet Asset Management</b>, I did both the <b>business analysis</b> and the <b>full-stack development</b>: I turned stakeholder needs into functional specifications, then built them. I led the analysis, design and implementation of a new <b>cash-management module</b> in the <b>Portfolio Management System</b>, server and client, and contributed to a web-based <b>CRM</b>.",
       "achievements": ["asset management CRM", "cash-management module", "business & technical analysis", "full-stack delivery"],
       "links": [],
-      "hardSkills": ["Java", "J2EE", "Web"],
+      "hardSkills": ["Business Analysis", "Full-Stack Development", "Functional Specifications", "Java", "J2EE", "Asset Management", "CRM"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
     },
@@ -565,7 +565,7 @@
       "links": [
         { "name": "Portfolio", "url": "https://ig2gi.500px.photography" }
       ],
-      "hardSkills": [],
+      "hardSkills": ["Photography", "Photojournalism", "Visual Composition"],
       "softSkills": ["digital photography", "communication"],
       "teamSize": null
     },
@@ -587,7 +587,7 @@
       "description": "As a freelance engineer at <b>RTS (Radio Télévision Suisse)</b>, I designed and built a collaborative workflow application for <b>tapeless TV production</b>, as broadcasting moved to fully digital. I started with the use cases, the <b>architecture</b>, the choice of frameworks and the delivery plan, then built the core, with a <b>REST</b> integration layer for the production data flows.",
       "achievements": ["tapeless TV production", "REST integration", "workflow system", "architecture-first delivery"],
       "links": [],
-      "hardSkills": ["Java", "REST", "Workflow"],
+      "hardSkills": ["Software Architecture", "Java", "REST APIs", "Workflow Systems", "Use Case Modelling", "Broadcast Media"],
       "softSkills": ["reasoning", "problem solving"],
       "teamSize": null
     },
@@ -609,7 +609,7 @@
       "description": "As a consultant at <b>Neo Technologies</b>, I re-engineered a logistics platform for <b>electricity networks</b> so it could integrate third-party systems and also cover <b>gas and cable networks</b>. I reverse-engineered the legacy system, ran <b>stakeholder interviews</b> to define the new requirements, then took the <b>architecture</b>, design and implementation through to delivery.",
       "achievements": ["multi-utility platform", "stakeholder discovery", "platform re-engineering", "UML reverse-engineering"],
       "links": [],
-      "hardSkills": ["Java", "J2EE", "UML"],
+      "hardSkills": ["Software Architecture", "Requirements Gathering", "Reverse Engineering", "UML", "Java", "J2EE", "Utilities"],
       "softSkills": ["reasoning", "problem solving"],
       "teamSize": null
     },
@@ -631,7 +631,7 @@
       "description": "As a consultant at <b>Pictet & Cie</b>, I built the batch-processing backbone of the <b>Portfolio Management System</b>: an <b>asynchronous framework</b> (EJB message-driven beans on WebLogic) that runs and monitors the <b>financial computation tasks</b>. I also designed a cross-application <b>change-notification system</b>, with the cache invalidation that keeps portfolio data consistent across services.",
       "achievements": ["portfolio management system", "async batch framework", "cache invalidation", "Pictet private banking"],
       "links": [],
-      "hardSkills": ["Java", "J2EE", "EJB", "WebLogic", "Batch Processing"],
+      "hardSkills": ["Java", "J2EE", "EJB", "WebLogic", "Batch Processing", "Asynchronous Messaging", "Private Banking"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
     },
@@ -653,7 +653,7 @@
       "description": "I co-founded <b>DALIN Software</b> with three partners around an <b>ontology-based datastore</b> that answered <b>semi-natural-language queries</b> and raised real-time alerts on complex data. I prototyped the query interface in Java 2D and wrote the functional specifications of the query system. The company closed after seven months without funding; <b>natural-language querying of data</b> has since become mainstream with LLMs.",
       "achievements": ["ontology-based datastore", "natural-language querying", "real-time data monitoring", "4-person founding team"],
       "links": [],
-      "hardSkills": ["Java", "Maven", "Java 2D", "NLP", "Ontology"],
+      "hardSkills": ["Entrepreneurship", "Natural Language Processing (NLP)", "Ontologies", "Knowledge Representation", "Prototyping", "Java"],
       "softSkills": ["critical thinking", "reasoning"],
       "teamSize": null
     },
@@ -698,7 +698,7 @@
       "description": "At <b>Odyssey Financial Technologies</b> (now part of <b>Temenos</b>), I worked on the analysis, architecture and core development of a <b>J2EE portfolio management platform</b> for private banks. I designed an <b>XML data-exchange framework</b> for imports, exports and partial updates, built a tag library connecting the web layer to the EJB services, and owned the <b>EJB tier</b> and the deployment environment.",
       "achievements": ["portfolio management platform", "XML data-exchange framework", "EJB layer ownership", "private banking"],
       "links": [],
-      "hardSkills": ["Java", "J2EE", "EJB", "XML", "WebLogic"],
+      "hardSkills": ["Java", "J2EE", "EJB", "XML", "WebLogic", "Software Architecture", "Wealth Management"],
       "softSkills": ["reasoning", "problem solving"],
       "teamSize": null
     },
@@ -720,7 +720,7 @@
       "description": "My first software role, in a 4-person team at <b>BIPE Sirius</b>, which sold <b>telecom market intelligence</b> to industry analysts. We moved its analysis platform from 4D to <b>Java and the web</b>, and I co-designed its <b>multidimensional database engine</b> (Syntagm), which indexed data by geography, finance and equipment, before OLAP tools became mainstream.",
       "achievements": ["telecom market intelligence", "Syntagm multidimensional engine", "OLAP-style analytics", "Java/Web migration"],
       "links": [],
-      "hardSkills": ["Java", "Web", "4D"],
+      "hardSkills": ["Java", "Web Development", "Database Design", "Multidimensional Data", "Market Intelligence"],
       "softSkills": ["reasoning"],
       "teamSize": null
     },
@@ -766,7 +766,7 @@
       "description": "My first career, as a <b>thermal engineer</b> in a computation group working on large construction projects. I worked on the HVAC design of a <b>nuclear-waste storage building in Novosibirsk</b>, and on <b>tunnel smoke-evacuation systems</b> modelled with <b>SES</b>, a FORTRAN simulation program that I extended with new physical modules. SES models the tunnel network in one dimension; for local events such as a <b>wagon fire</b>, we built <b>3D models</b> coupling radiation, convection and conduction, whose results fed back into the <b>one-dimensional model</b> of the whole tunnel.",
       "achievements": ["nuclear-waste facility HVAC", "tunnel smoke-evacuation", "SES FORTRAN extensions", "3D finite-element simulation"],
       "links": [],
-      "hardSkills": ["FORTRAN", "SES", "Thermodynamics", "Fluid Mechanics"],
+      "hardSkills": ["Thermal Engineering", "Computational Fluid Dynamics (CFD)", "Numerical Simulation", "Heat Transfer", "HVAC Design", "FORTRAN"],
       "softSkills": ["reasoning", "problem solving"],
       "teamSize": null
     },
