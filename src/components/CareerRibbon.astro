@@ -39,7 +39,7 @@ const toYear = (d: string | null) => {
   return date.getFullYear() + date.getMonth() / 12;
 };
 
-const level = (title: string) => (/\bVP\b/.test(title) ? 3 : /^Head of/.test(title) ? 2 : 1);
+const level = (title: string) => (/\bVP\b|Vice President/.test(title) ? 3 : /^Head of/.test(title) ? 2 : 1);
 
 const track = (e: Event): Track => {
   if (e.type === 'formation') return 'study';
