@@ -3,6 +3,8 @@
 // visitor on the site (home, portfolio), then the project fills the rest.
 // `article` turns it into a scrolling page with a sticky bar (the deep learning notes).
 import '../styles/main.css';
+import { THEME } from '../lib/theme';
+import ThemeInit from '../components/ThemeInit.astro';
 
 interface Props {
   title: string;
@@ -16,9 +18,10 @@ const { title, year, description = `${title}, a data visualisation by Gilbert Pe
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={THEME}>
   <head>
     <meta charset="UTF-8" />
+    <ThemeInit />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title} · Gilbert Perrin</title>

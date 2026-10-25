@@ -16,8 +16,9 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const linkText = url => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 const linkedin = resume.socialNetworks.find(n => n.name === 'LinkedIn').link;
 
-// colours: the site's tokens, so the line colours match the track record map
-const css = readFileSync(new URL('src/styles/main.css', ROOT), 'utf8');
+// colours: the site's tokens (default palette, then the roles that point into it),
+// so the line colours match the track record map
+const css = ['src/styles/themes/default.css', 'src/styles/tokens.css'].map(f => readFileSync(new URL(f, ROOT), 'utf8')).join('\n');
 const token = name => {
   const v = css.match(new RegExp(`${name}:\\s*([^;]+);`))[1].trim();
   return v.startsWith('var(') ? token(v.slice(4, -1)) : v;

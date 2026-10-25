@@ -1,0 +1,25 @@
+/* ============================================================
+   THEME: blue (cool paper, blue)
+   Same slots as default.css; see there for the rules.
+   ============================================================ */
+
+[data-theme="blue"] {
+    --neutral-0: #ffffff;
+    --neutral-50: #f5f7fa;
+    --neutral-100: #ebeff4;
+    --neutral-150: #e2e8ef;
+    --neutral-200: #d5dce5;
+    --neutral-500: #606b7f;  /* 4.7:1 on neutral-100 */
+    --neutral-700: #434d5c;
+    --neutral-900: #131a24;
+
+    --primary-500: #3b7be0;
+    --primary-700: #2b64ca;  /* 4.8:1 on neutral-100 */
+
+    --cat-1: #8a94a3;
+    --cat-2: #93c5c0;    /* pale aqua: photography, cool like the rest */
+    --cat-3: #1c2a3f;
+    --cat-4: #b08d4f;
+    --cat-5: #4f8a5b;
+    --cat-6: #7b5fc4;    /* violet: AI, teal sat too close to the blue */
+}

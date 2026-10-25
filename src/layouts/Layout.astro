@@ -1,5 +1,8 @@
 ---
 import '../styles/main.css';
+import { THEME } from '../lib/theme';
+import ThemeInit from '../components/ThemeInit.astro';
+import ThemeMenu from '../components/ThemeMenu.astro';
 import resumeData from '../data/resume.json';
 
 interface Props {
@@ -36,9 +39,10 @@ const year = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={THEME}>
   <head>
     <meta charset="UTF-8" />
+    <ThemeInit />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title === 'Gilbert Perrin' ? title : `${title} · Gilbert Perrin`}</title>
@@ -68,6 +72,7 @@ const year = new Date().getFullYear();
               <a href={p.path} aria-current={activePage === p.path ? 'page' : undefined}>{p.name}</a>
             ))}
           </nav>
+          <ThemeMenu />
         </div>
       </div>
     </header>

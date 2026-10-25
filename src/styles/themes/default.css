@@ -1,0 +1,35 @@
+/* ============================================================
+   THEME: default (warm paper, orange)
+   A theme is a palette: it fills every slot below. Roles map
+   onto these slots once, in tokens.css. To make a theme, copy
+   this file, change the values, import it in tokens.css.
+   The selector also matches any element with data-theme="<id>", so
+   the theme menu swatches can show a palette inside another theme.
+   Keep neutral-500, neutral-700 and primary-700 at 4.5:1 on
+   neutral-100, the darkest surface text sits on (block bands).
+   ============================================================ */
+
+:root,
+[data-theme="default"] {
+    /* neutrals: surfaces, rules, text */
+    --neutral-0: #ffffff;    /* cards */
+    --neutral-50: #f8f8f6;   /* page */
+    --neutral-100: #efefeb;  /* wells, chips, block bands */
+    --neutral-150: #e9e8e2;  /* header band */
+    --neutral-200: #dcdcd8;  /* rules */
+    --neutral-500: #686b73;  /* labels, 4.6:1 on neutral-100 */
+    --neutral-700: #4a4d55;  /* body copy, 8.0:1 */
+    --neutral-900: #15171b;  /* headlines */
+
+    /* primary: the highlight */
+    --primary-500: #d87943;  /* marks and fills */
+    --primary-700: #ab511c;  /* text, 4.6:1 on neutral-100 */
+
+    /* categorical: career tracks and track record lines (numbered: each theme picks its own hues) */
+    --cat-1: #7d8696;    /* slate: engineering, reports */
+    --cat-2: #c9b48a;    /* sand: photography */
+    --cat-3: #23313f;    /* navy: product & design, team */
+    --cat-4: #b08d4f;    /* ochre: complex data */
+    --cat-5: #4f8a5b;    /* green: prototype */
+    --cat-6: #2a8c8c;    /* teal: AI */
+}

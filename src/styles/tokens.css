@@ -1,0 +1,71 @@
+@import './themes/default.css';
+@import './themes/blue.css';
+
+/* ============================================================
+   DESIGN TOKENS
+   Editorial layout on a 12-column grid. One family, two voices:
+   Geist for reading and headlines, Geist Mono for labels and data.
+
+   Themes are about colour, and a theme is a palette
+   (src/styles/themes/*.css): it fills the same slots
+   (--neutral-*, --primary-*, --cat-*) with its own values.
+   Roles below map onto those slots once, for every theme.
+   Components use roles only, never slots or literals.
+   Fonts, type sizes and layout are fixed, outside the themes.
+   The active theme is set in src/lib/theme.ts.
+   ============================================================ */
+
+/* ---------- colour roles ---------- */
+:root {
+    --paper: var(--neutral-50);          /* page background */
+    --paper-2: var(--neutral-100);       /* wells, chips, image backgrounds */
+    --band: var(--neutral-150);          /* header band */
+    --surface: var(--neutral-0);         /* cards, map stations */
+    --block: var(--neutral-100);         /* full-width bands that set a block apart */
+    --rule: var(--neutral-200);
+    --ink: var(--neutral-900);           /* headlines, dark bars */
+    --ink-2: var(--neutral-700);         /* body copy */
+    --ink-3: var(--neutral-500);         /* labels, metadata */
+    --on-ink: var(--paper);              /* text on --ink fills */
+
+    --accent: var(--primary-500);        /* highlight: marks and fills */
+    --accent-text: var(--primary-700);   /* highlight as readable text */
+    --on-accent: var(--paper);           /* text on accent fills */
+
+    /* career tracks (ribbon); data visualisation is the highlight */
+    --track-eng: var(--cat-1);
+    --track-photo: var(--cat-2);
+    --track-viz: var(--accent);
+    --track-prod: var(--cat-3);
+    --track-study: var(--ink-3);
+
+    /* track record lines: one colour per destination */
+    --line-reports: var(--track-eng);
+    --line-clarity: var(--cat-4);
+    --line-product: var(--accent);
+    --line-prototype: var(--cat-5);
+    --line-ai: var(--cat-6);
+    --line-team: var(--track-prod);
+}
+
+/* ---------- fixed: the same in every theme ---------- */
+:root {
+    --white: #ffffff;                    /* behind iframes and photos, print */
+
+    --font-body: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    --step--2: 0.6875rem;
+    --step--1: 0.8125rem;
+    --step-0: 1.0625rem;
+    --step-1: 1.375rem;
+    --step-2: 2rem;
+    --step-3: clamp(2.125rem, 4.4vw, 3.75rem);
+    --step-page: clamp(1.875rem, 3.6vw, 2.75rem);
+
+    --page-max: 1120px;
+    --gutter: clamp(16px, 4vw, 48px);
+    --measure: 64ch;
+    --header-h: 44px;
+    --subbar-h: 3rem;
+}

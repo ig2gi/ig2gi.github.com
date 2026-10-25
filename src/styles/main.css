@@ -1,54 +1,4 @@
-/* ============================================================
-   DESIGN TOKENS
-   Editorial layout on a 12-column grid. One family, two voices:
-   Geist for reading and headlines, Geist Mono for labels and data.
-   ============================================================ */
-
-:root {
-    --paper: #f8f8f6;
-    --paper-2: #efefeb;          /* wells, chips, image backgrounds */
-    --band: #e9e8e2;             /* header band */
-    --surface: #ffffff;          /* cards */
-    --ink: #15171b;
-    --ink-2: #4a4d55;            /* body copy */
-    --ink-3: #6f727a;            /* labels, metadata */
-    --rule: #dcdcd8;
-    --accent: #d87943;           /* brand orange: marks and fills */
-    --accent-text: #b4561f;      /* orange darkened for readable text */
-
-    /* career tracks (ribbon) */
-    --track-eng: #7d8696;
-    --track-photo: #c9b48a;
-    --track-viz: var(--accent);
-    --track-prod: #23313f;
-    --track-study: var(--ink-3);
-
-    /* track record lines: one colour per destination */
-    --line-reports: var(--track-eng);
-    --line-clarity: #b08d4f;
-    --line-product: var(--accent);
-    --line-prototype: #4f8a5b;
-    --line-ai: #2a8c8c;
-    --line-team: var(--track-prod);
-
-    --font-body: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-
-    --step--2: 0.6875rem;
-    --step--1: 0.8125rem;
-    --step-0: 1.0625rem;
-    --step-1: 1.375rem;
-    --step-2: 2rem;
-    --step-3: clamp(2.125rem, 4.4vw, 3.75rem);
-    --step-page: clamp(1.875rem, 3.6vw, 2.75rem);
-
-    --page-max: 1120px;
-    --gutter: clamp(16px, 4vw, 48px);
-    --measure: 64ch;
-    --header-h: 44px;
-    --subbar-h: 3rem;
-
-}
+@import './tokens.css';
 
 /* ============================================================
    BASE
@@ -119,7 +69,7 @@ main {
 
 @media print {
     .site-header, .site-footer { display: none; }
-    body { background: #fff; }
+    body { background: var(--white); }
 }
 
 /* ============================================================
@@ -174,6 +124,7 @@ main {
 .site-nav {
     display: flex;
     gap: 4px 22px;
+    margin-left: auto;
     font: 400 0.875rem/1 var(--font-body);
 }
 .site-nav a {
@@ -192,6 +143,56 @@ main {
 
 .nav-toggle { display: none; }
 
+/* theme menu: a gear after the links, a small dropdown under it */
+.theme-menu { position: relative; margin-left: -10px; }
+.theme-menu summary {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: var(--header-h);
+    list-style: none;
+    color: var(--ink-2);
+    cursor: pointer;
+}
+.theme-menu summary::-webkit-details-marker { display: none; }
+.theme-menu summary:hover, .theme-menu[open] summary { color: var(--accent-text); }
+.theme-menu svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.theme-menu-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 110;
+    display: grid;
+    gap: 2px;
+    min-width: 168px;
+    padding: 10px 8px 8px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.theme-menu-panel .label { padding: 0 8px 6px; color: var(--ink-3); }
+.theme-menu-panel button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    font: 400 0.875rem/1 var(--font-body);
+    color: var(--ink-2);
+    text-align: left;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.theme-menu-panel button:hover { background: var(--paper-2); color: var(--ink); }
+.theme-menu-panel button[aria-pressed="true"] { color: var(--ink); font-weight: 500; }
+.theme-menu-panel button[aria-pressed="true"]::after { content: "✓"; margin-left: auto; color: var(--accent-text); }
+/* swatches read palette slots, not roles: each one shows its own theme */
+.theme-swatch { display: flex; border: 1px solid var(--neutral-200); }
+.theme-swatch i { width: 10px; height: 16px; }
+.theme-swatch i:nth-child(1) { background: var(--neutral-50); }
+.theme-swatch i:nth-child(2) { background: var(--primary-500); }
+.theme-swatch i:nth-child(3) { background: var(--neutral-900); }
+
 @media (max-width: 1000px) {
     /* the six links and the tagline no longer share one line */
     .pillars { display: none; }
@@ -199,7 +200,10 @@ main {
 @media (max-width: 860px) {
     .pillars { display: flex; }
     /* the links fold into a burger; the open menu drops below the band */
-    .nav-toggle { display: block; margin-right: -10px; }
+    .nav-toggle { display: block; order: 2; margin-right: -10px; }
+    /* gear stays visible next to the burger */
+    .theme-menu { order: 1; margin-left: auto; margin-right: -16px; }
+    .theme-menu summary { width: 44px; }
     .nav-toggle summary {
         display: grid;
         place-items: center;
@@ -291,8 +295,8 @@ main {
     white-space: nowrap;
 }
 .btn:hover { border-color: var(--accent); color: var(--accent-text); }
-.btn-primary { background: var(--ink); color: var(--paper); }
-.btn-primary:hover { background: var(--accent-text); border-color: var(--accent-text); color: var(--paper); }
+.btn-primary { background: var(--ink); color: var(--on-ink); }
+.btn-primary:hover { background: var(--accent-text); border-color: var(--accent-text); color: var(--on-accent); }
 .btn-small { gap: 6px; padding: 7px 12px; font-size: 0.8125rem; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -513,6 +517,13 @@ main {
 .section-title { grid-column: 1 / -1; margin: 0; font-size: var(--step-2); }
 .section-title em { display: block; color: var(--ink-3); }
 
+/* a block set apart by a full-width band; the shadow paints past the column, the clip keeps it horizontal */
+.block-band {
+    background: var(--block);
+    box-shadow: 0 0 0 100vmax var(--block);
+    clip-path: inset(0 -100vmax);
+}
+
 /* principles */
 .principles {
     display: grid;
@@ -520,6 +531,7 @@ main {
     gap: 40px 32px;
     padding-block: 32px 56px;
 }
+.principles.block-band { padding-block: 48px 56px; }
 .principle h3 { margin: 10px 0; font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.03em; }
 .principle p { margin: 0; font-size: 0.9375rem; color: var(--ink-2); }
 .principle .label { color: var(--accent-text); }
@@ -546,6 +558,8 @@ main {
     /* the one separator after the profile sections, before the advisory offer */
     border-top: 1px solid var(--rule);
 }
+/* on a band the colour change is the separator */
+.close.block-band { padding-block: 48px 56px; border-top: 0; }
 /* two thirds for the question, one third for the button */
 .close h2 { grid-column: 1 / span 8; font-size: var(--step-2); }
 .close h2 em { color: var(--accent-text); }
@@ -558,6 +572,7 @@ main {
 
 /* home: no rules, about 72px of space above each section title */
 .profile { padding-block: 16px 56px; }
+.block-band + .profile { padding-top: 40px; }
 .profile-sections { margin-top: 12px; }
 /* compact on the home page: title on top, text below across the full width */
 .profile .ps { display: block; padding-block: 16px; }
@@ -690,7 +705,7 @@ main {
     border: 1px solid var(--ink);
     padding: 7px 10px;
 }
-.re-entry-links a:hover { background: var(--ink); color: var(--paper); }
+.re-entry-links a:hover { background: var(--ink); color: var(--on-ink); }
 
 .re-group-block { padding-bottom: 32px; margin-bottom: 32px; border-bottom: 1px solid var(--rule); }
 .re-group-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
@@ -740,13 +755,13 @@ main {
     min-height: 44px;
     padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
     background: var(--ink);
-    color: var(--paper);
+    color: var(--on-ink);
 }
 .project-crumbs { display: flex; align-items: baseline; gap: 10px; min-width: 0; padding-block: 10px; }
-.project-bar .wordmark { flex-shrink: 0; font-size: 1rem; color: var(--paper); }
+.project-bar .wordmark { flex-shrink: 0; font-size: 1rem; color: var(--on-ink); }
 .project-bar .wordmark em { color: var(--accent); }
-.project-sep { color: rgba(248, 248, 246, 0.35); }
-.project-crumb { flex-shrink: 0; font-size: 0.875rem; color: rgba(248, 248, 246, 0.75); }
+.project-sep { color: color-mix(in srgb, var(--on-ink) 35%, transparent); }
+.project-crumb { flex-shrink: 0; font-size: 0.875rem; color: color-mix(in srgb, var(--on-ink) 75%, transparent); }
 .project-crumb:hover, .project-bar .wordmark:hover { color: var(--accent); }
 .project-title {
     margin: 0;
@@ -755,11 +770,11 @@ main {
     letter-spacing: normal;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: var(--paper);
+    color: var(--on-ink);
 }
 .project-year { flex-shrink: 0; font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; color: var(--accent); }
 .project-main { flex: 1; width: 100%; min-height: 0; max-width: none; margin: 0; padding: 0; }
-.project-frame { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+.project-frame { display: block; width: 100%; height: 100%; border: 0; background: var(--white); }
 
 @media (max-width: 520px) {
     /* the project name matters more than the section name on a phone */
@@ -1183,7 +1198,7 @@ main {
 }
 .pf-card:hover {
     border-color: var(--ink-3);
-    box-shadow: 0 6px 18px rgba(21, 23, 27, 0.08);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 8%, transparent);
     transform: translateY(-2px);
 }
 .pf-target {
@@ -1243,34 +1258,34 @@ main {
 /* lightbox (portfolio + photography) */
 .pf-lightbox { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; }
 .pf-lightbox--open { display: flex; }
-.pf-lightbox-backdrop { position: absolute; inset: 0; background: rgba(21, 23, 27, 0.92); cursor: zoom-out; animation: lbFadeIn 0.2s ease; }
+.pf-lightbox-backdrop { position: absolute; inset: 0; background: color-mix(in srgb, var(--ink) 92%, transparent); cursor: zoom-out; animation: lbFadeIn 0.2s ease; }
 .pf-lightbox-close {
     position: absolute; top: 20px; right: 24px; z-index: 1001;
     padding: 4px 8px;
     font: 300 2rem/1 var(--font-body);
-    color: rgba(255, 255, 255, 0.7);
+    color: color-mix(in srgb, var(--on-ink) 70%, transparent);
     background: transparent;
     border: none;
     cursor: pointer;
 }
-.pf-lightbox-close:hover { color: #fff; }
-.pf-lightbox-img { position: relative; z-index: 1001; max-width: 90vw; max-height: 80vh; object-fit: contain; background: #fff; animation: lbScaleIn 0.22s ease; }
+.pf-lightbox-close:hover { color: var(--on-ink); }
+.pf-lightbox-img { position: relative; z-index: 1001; max-width: 90vw; max-height: 80vh; object-fit: contain; background: var(--white); animation: lbScaleIn 0.22s ease; }
 .pf-lightbox-nav {
     position: absolute; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: 50%; z-index: 1001;
     display: flex; align-items: center; gap: 8px;
     transform: translateX(-50%);
     font: 400 var(--step--1)/1 var(--font-mono);
-    color: rgba(255, 255, 255, 0.8);
+    color: color-mix(in srgb, var(--on-ink) 80%, transparent);
 }
 .pf-lightbox-nav button {
     min-width: 44px; min-height: 44px;
     font: 300 1.5rem/1 var(--font-body);
-    color: rgba(255, 255, 255, 0.8);
+    color: color-mix(in srgb, var(--on-ink) 80%, transparent);
     background: transparent;
     border: 0;
     cursor: pointer;
 }
-.pf-lightbox-nav button:hover { color: #fff; }
+.pf-lightbox-nav button:hover { color: var(--on-ink); }
 @keyframes lbFadeIn { from { opacity: 0; } }
 @keyframes lbScaleIn { from { opacity: 0; transform: scale(0.96); } }
 
@@ -1368,11 +1383,11 @@ main {
 .tr svg .tr-hint-b { fill: var(--ink); font-weight: 600; }
 .tr-ring { fill: none; stroke: var(--paper-2); }
 .tr-line { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; transition: opacity 0.25s; }
-.tr-stop { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.tr-stop { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
 .tr-cap-out { stroke: var(--ink); stroke-width: 14; stroke-linecap: round; }
-.tr-cap-in { stroke: #fff; stroke-width: 9; stroke-linecap: round; }
+.tr-cap-in { stroke: var(--surface); stroke-width: 9; stroke-linecap: round; }
 .tr-stn { cursor: pointer; transition: opacity 0.25s; }
-.tr-hub { fill: #fff; stroke: var(--ink); stroke-width: 3; }
+.tr-hub { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
 .tr svg .tr-hub-name { font-size: 10.5px; font-weight: 650; }
 .tr-halo { fill: none; stroke: var(--line-ai); stroke-width: 10; opacity: 0.28; }
 .tr svg .tr-halo-label { font: 600 9.5px var(--font-mono); letter-spacing: 0.1em; fill: var(--line-ai); }
@@ -1392,7 +1407,7 @@ main {
 .tr-panel p { margin: 0 0 10px; max-width: var(--measure); font-size: 0.9375rem; color: var(--ink-2); }
 .tr-panel ol { list-style: none; margin: 0 0 12px; padding: 0; border-left: 4px solid var(--c); columns: 2 280px; column-gap: 32px; }
 .tr-panel li { position: relative; padding: 0 0 12px 16px; font-size: 0.875rem; line-height: 1.45; color: var(--ink-2); break-inside: avoid; }
-.tr-panel li::before { content: ''; position: absolute; left: -9px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--c); }
+.tr-panel li::before { content: ''; position: absolute; left: -9px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--c); }
 .tr-panel li b { display: block; font-weight: 600; color: var(--ink); }
 .tr-panel li > span { font: 400 var(--step--2) var(--font-mono); color: var(--ink-3); }
 .tr-x { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: 1px; }
@@ -1415,7 +1430,7 @@ main {
         display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 10px; text-align: left;
         font: 500 0.8125rem/1.2 var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); cursor: pointer;
     }
-    .tr-badges i { flex: none; width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 4px var(--c), inset 0 0 0 7px #fff; background: var(--c); }
+    .tr-badges i { flex: none; width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 4px var(--c), inset 0 0 0 7px var(--surface); background: var(--c); }
     .tr-badges button[aria-pressed="true"] { border-color: var(--c); box-shadow: inset 0 0 0 1px var(--c); }
     .tr-panel { padding: 16px; }
     .tr-key { padding: 12px 0 0; }

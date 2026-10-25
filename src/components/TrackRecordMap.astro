@@ -22,7 +22,7 @@ const color = (id: string) => `var(${lines.find(l => l.id === id)!.color})`;
             <g class="tr-term" data-line={l.id} role="button" tabindex="0" aria-pressed="false" aria-label={`Destination: ${l.name}`}>
               <circle class="tr-hit" cx={t.x} cy={t.y} r="26" />
               <circle class="tr-dot" cx={t.x} cy={t.y} r="10" style={`fill: ${color(l.id)}`} />
-              <circle cx={t.x} cy={t.y} r="4" fill="#fff" />
+              <circle cx={t.x} cy={t.y} r="4" style="fill: var(--surface)" />
               <text x={t.tx} y={t.ty} text-anchor={t.anchor} style={`fill: ${color(l.id)}`}>{l.short}</text>
               <text class="tr-sub" x={t.tx} y={t.ty + 15} text-anchor={t.anchor}>terminus</text>
             </g>

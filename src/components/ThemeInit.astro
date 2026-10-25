@@ -1,0 +1,11 @@
+---
+// In <head>: applies the visitor's saved theme before the first paint, so the page never flashes the default.
+import { THEMES, THEME_KEY } from '../lib/theme';
+const ids = THEMES.map(t => t.id);
+---
+<script is:inline define:vars={{ ids, key: THEME_KEY }}>
+  try {
+    const t = localStorage.getItem(key);
+    if (t && ids.includes(t)) document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>

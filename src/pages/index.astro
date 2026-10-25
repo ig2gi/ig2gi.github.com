@@ -21,7 +21,7 @@ const keepCase = (s: string) => s.replaceAll('SOPHiA', 'SOPH<span class="keep-ca
 
   <CareerRibbon title={ribbon.title} caption={ribbon.caption} notes={ribbon.notes} domains={ribbon.domains} />
 
-  <section class="principles" aria-labelledby="principles-title">
+  <section class="principles block-band" aria-labelledby="principles-title">
     <h2 id="principles-title" class="section-title" set:html={headings.principles} />
     {principles.map((p, i) => (
       <div class={`principle${p.when === 'Always' ? ' principle-always' : ''}`}>
@@ -40,7 +40,7 @@ const keepCase = (s: string) => s.replaceAll('SOPHiA', 'SOPH<span class="keep-ca
     <ProfileSections data={profile} />
   </section>
 
-  <section class="close">
+  <section class="close block-band">
     <h2 set:html={close.title} />
     <div class="ctas">
       <a class="btn btn-primary" href={close.cta.url}>{close.cta.label} <span aria-hidden="true">→</span></a>
