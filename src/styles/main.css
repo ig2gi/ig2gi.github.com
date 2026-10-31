@@ -1522,20 +1522,36 @@ main {
 .clim-read { padding-top: 14px; font-size: var(--step--1); }
 .clim-read p { margin: 0; }
 .clim-read-when { margin-top: 2px !important; font: 600 var(--step-2)/1.1 var(--font-mono); letter-spacing: -0.04em; color: var(--ink); }
+/* the takeaway: the selected year or month, and its global value at the same size */
+.clim-read-head, .clim-read-when { display: flex; justify-content: space-between; gap: 12px; white-space: nowrap; }
 /* four fixed rows: label, bar from zero, value, rank */
 .clim-rows { margin-top: 12px; border-top: 1px solid var(--rule); }
-.clim-row { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr) 3.1rem 2.2rem; align-items: center; gap: 8px; height: 30px; border-bottom: 1px solid var(--rule); }
+.clim-row { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr) 3.4rem; align-items: center; gap: 10px; height: 36px; border-bottom: 1px solid var(--rule); }
 .clim-row-k { display: flex; align-items: center; gap: 7px; color: var(--ink-2); white-space: nowrap; }
 .clim-row-k i { flex: none; width: 12px; height: 3px; }
 .clim-row-k i.clim-row-ring { width: 8px; height: 8px; margin-inline: 2px; border: 1.5px solid var(--ink-3); border-radius: 50%; }
+/* value with its rank underneath, so the bar gets the width */
+.clim-row-v { display: grid; gap: 3px; justify-items: end; }
 .clim-row b { font: 500 var(--step--1)/1 var(--font-mono); color: var(--ink); text-align: right; }
-.clim-row-rank { font: 400 var(--step--2)/1 var(--font-mono); color: var(--ink-3); text-align: right; }
-.clim-row.is-empty .clim-row-k, .clim-row.is-empty b { color: var(--ink-3); font-weight: 400; }
+.clim-row-rank { min-height: 1em; font: 400 var(--step--2)/1 var(--font-mono); color: var(--ink-3); text-align: right; }
 .clim-row--head { height: 20px; border-bottom: 0; }
-.clim-row--head span { font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: right; }
+.clim-row--head span { font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: right; white-space: nowrap; }
+.clim-row-head-v { grid-column: 2 / -1; }
 .clim-meter { position: relative; height: 10px; }
-.clim-meter::before { content: ''; position: absolute; left: var(--zero); top: -3px; bottom: -3px; border-left: 1px solid var(--ink-3); }
+/* the track is the shared scale; the coloured part is this series' own range */
+.clim-meter { background: var(--paper-2); }
 .clim-meter i { position: absolute; top: 0; bottom: 0; }
+.clim-meter em { position: absolute; top: -3px; bottom: -3px; translate: -50% 0; }
+.clim-meter .clim-meter-zero { top: 0; bottom: 0; border-left: 1px solid var(--ink-3); }
+/* ▼ above the bar: the selected year; ▲ below: the selected month */
+.clim-meter .clim-meter-y, .clim-meter .clim-meter-m { width: 0; }
+.clim-meter-y { top: -6px; }
+.clim-meter-m { bottom: -6px; }
+.clim-meter-y::before, .clim-meter-m::before { content: ''; position: absolute; left: -4px; border-inline: 4px solid transparent; }
+.clim-meter-y::before { top: 0; border-top: 5px solid var(--ink); }
+.clim-meter-m::before { bottom: 0; border-bottom: 5px solid var(--ink); }
+.clim-row-v small { margin-right: 3px; font-size: 0.7em; color: var(--ink-3); }
+.clim-row .clim-row-m { font-weight: 400; color: var(--ink-2); }
 .clim-read .clim-read-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .clim-zones { margin-top: 24px; }
 .clim-zones .clim-read-zones { font-size: var(--step--1); }

@@ -1,13 +1,15 @@
-// NASA GISTEMP v4, read at build time from the two CSVs in src/data/gistemp/
-// (downloaded as is from https://data.giss.nasa.gov/gistemp/). To update the page,
-// download both files again, replace them, change ACCESSED and rebuild.
+// NASA GISTEMP v4, read at build time from the four CSVs in src/data/gistemp/
+// (downloaded as is from https://data.giss.nasa.gov/gistemp/tabledata_v4/). To update the page,
+// download them again, replace them, change ACCESSED and rebuild.
 import { csvParse, geoEqualEarth, geoPath } from 'd3';
 import { feature } from 'topojson-client';
 import land110 from 'world-atlas/land-110m.json';
 import zonalCsv from '../data/gistemp/ZonAnn.Ts+dSST.csv?raw';
 import globalCsv from '../data/gistemp/GLB.Ts+dSST.csv?raw';
+import northCsv from '../data/gistemp/NH.Ts+dSST.csv?raw';
+import southCsv from '../data/gistemp/SH.Ts+dSST.csv?raw';
 
-export const ACCESSED = '2026-10-24';
+export const ACCESSED = '2026-10-31';
 
 /** The 8 latitude bands, north to south, with their edges in degrees. */
 const BANDS = [
@@ -66,7 +68,7 @@ export const GLOBALS = ['Glob', 'NHem', 'SHem'];
 export interface ClimateData {
   years: number[];                          // one entry per complete year
   series: Record<string, number[]>;        // annual anomalies (°C vs 1951–1980), aligned on years
-  monthly: { start: number; values: (number | null)[] }; // global, from January of `start`
+  monthly: { start: number; values: (number | null)[]; hem: Record<'NHem' | 'SHem', (number | null)[]> }; // global and hemispheres, from January of `start`
   zones: typeof ZONES;
   map: ReturnType<typeof worldMap>;         // world map paths, 1000 wide (Equal Earth)
   accessed: string;
@@ -89,13 +91,21 @@ function load(): ClimateData {
     series[key] = zonal.map(r => num(r[key]) as number);
   }
 
-  // GLB has a title line before the header
-  const glb = csvParse(globalCsv.trim().split('\n').slice(1).join('\n'));
+  // the monthly tables have a title line before the header; all three start in January 1880
   const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const values = glb.flatMap(r => MONTHS.map(m => num(r[m])));
+  const monthlyOf = (csv: string) => {
+    const rows = csvParse(csv.trim().split('\n').slice(1).join('\n'));
+    return { start: Number(rows[0].Year), values: rows.flatMap(r => MONTHS.map(m => num(r[m]))) };
+  };
+  const glb = monthlyOf(globalCsv);
+  const values = glb.values;
   while (values.length && values[values.length - 1] == null) values.pop();
+  const hem = {
+    NHem: monthlyOf(northCsv).values.slice(0, values.length),
+    SHem: monthlyOf(southCsv).values.slice(0, values.length),
+  };
 
-  return { years, series, monthly: { start: Number(glb[0].Year), values }, zones: ZONES, map: worldMap(), accessed: ACCESSED };
+  return { years, series, monthly: { start: glb.start, values, hem }, zones: ZONES, map: worldMap(), accessed: ACCESSED };
 }
 
 export const climate = load();

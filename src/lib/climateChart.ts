@@ -51,12 +51,15 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
   const full: [number, number] = [firstYear, tEnd];
 
   // ---------- baselines: shift each series by its own mean over the reference period ----------
-  const rebased = new Map<Base, { series: Record<string, number[]>; monthly: (number | null)[] }>();
-  function values(base: Base) {
+  // monthly values per line: Glob is the monthly strip, NHem and SHem feed the readout
+  const monthlyRaw: Record<string, (number | null)[]> = { Glob: data.monthly.values, ...data.monthly.hem };
+  type Values = { series: Record<string, number[]>; monthly: (number | null)[]; months: Record<string, (number | null)[]> };
+  const rebased = new Map<Base, Values>();
+  function values(base: Base): Values {
     if (rebased.has(base)) return rebased.get(base)!;
-    let out;
+    let out: Values;
     if (base === 'nasa') {
-      out = { series: data.series, monthly: data.monthly.values };   // NASA's own numbers, untouched
+      out = { series: data.series, monthly: monthlyRaw.Glob, months: monthlyRaw };   // NASA's own numbers, untouched
     } else {
       const [a, b] = BASELINES[base];
       const series: Record<string, number[]> = {};
@@ -65,10 +68,13 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
         series[k] = s.map(v => v - off);
       }
       // monthly: one offset per calendar month, as NASA does for its own baseline
-      const offs = MONTHS.map((_, m) => mean(
-        d3.range(a, b + 1).map(y => data.monthly.values[(y - mStart) * 12 + m]).filter((v): v is number => v != null)));
-      const monthly = data.monthly.values.map((v, i) => (v == null ? null : v - offs[i % 12]));
-      out = { series, monthly };
+      const months: Record<string, (number | null)[]> = {};
+      for (const [k, s] of Object.entries(monthlyRaw)) {
+        const offs = MONTHS.map((_, m) => mean(
+          d3.range(a, b + 1).map(y => s[(y - mStart) * 12 + m]).filter((v): v is number => v != null)));
+        months[k] = s.map((v, i) => (v == null ? null : v - offs[i % 12]));
+      }
+      out = { series, monthly: months.Glob, months };
     }
     rebased.set(base, out);
     return out;
@@ -375,6 +381,7 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     }
     renderMain();
     updateCursor();
+    updateReadout();   // the readout bars follow the time window
   }
 
   function resetZoom() {
@@ -430,32 +437,50 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     const i = years.indexOf(state.year);
     const ref = BASELINES[state.base];
     const mo = state.month;
-    // one fixed scale over every year and month, so bars compare across the whole record
-    const all = [...GLOBAL_LINES.flatMap(g => v.series[g.key]), ...v.monthly.filter((d): d is number => d != null)];
-    const mx = d3.scaleLinear().domain([Math.min(0, d3.min(all)!), Math.max(0, d3.max(all)!)]).range([0, 100]);
-    const zero = mx(0);
-    const bar = (val: number | null | undefined) => {
-      const tick = `style="--zero:${zero}%"`;
-      if (val == null) return `<span class="clim-meter" ${tick}></span>`;
-      const a = Math.min(mx(val), zero), w = Math.abs(mx(val) - zero);
-      return `<span class="clim-meter" ${tick}><i style="left:${a}%;width:${w}%;background:${color(val)}"></i></span>`;
+    // Global, North and South share one scale: coldest to warmest of their yearly and monthly values
+    // within the time window in view, so each bar starts and ends at its own place and a month can sit
+    // outside its year range without leaving the track. The bar is the line's yearly range;
+    // ▼ above marks the selected year, ▲ below the selected month. The thin grey line is zero.
+    const [d0, d1] = state.domain;
+    const inYears = years.map((y, k) => [y, k] as const).filter(([y]) => y + 1 > d0 && y < d1).map(([, k]) => k);
+    const inMonths = d3.range(mCount).filter(k => { const t = mStart + k / 12; return t + 1 / 12 > d0 && t < d1; });
+    const keys = GLOBAL_LINES.map(g => g.key);
+    const [s0, s1] = d3.extent([
+      ...keys.flatMap(k => inYears.map(j => v.series[k][j])),
+      ...keys.flatMap(k => inMonths.map(j => v.months[k][j])),
+    ].filter((d): d is number => d != null)) as [number, number];
+    const pos = (d: number) => Math.max(0, Math.min(100, s1 > s0 ? ((d - s0) / (s1 - s0)) * 100 : 50));
+    const bar = (key: string, yv: number, mv: number | null | undefined) => {
+      const [lo, hi] = d3.extent(inYears, j => v.series[key][j]) as [number, number];
+      const ramp = d3.range(0, 1.0001, 0.125).map(t => color(lo + t * (hi - lo))).join(',');
+      const zero = s0 < 0 && s1 > 0 ? `<em class="clim-meter-zero" style="left:${pos(0)}%"></em>` : '';
+      const year = `<em class="clim-meter-y" style="left:${pos(yv)}%"></em>`;
+      const month = mv != null ? `<em class="clim-meter-m" style="left:${pos(mv)}%"></em>` : '';
+      return `<span class="clim-meter" title="Years ${fmt(lo)} to ${fmt(hi)} in view">`
+        + `<i style="left:${pos(lo)}%;right:${100 - pos(hi)}%;background:linear-gradient(to right,${ramp})"></i>${zero}${year}${month}</span>`;
     };
-    const row = (label: string, colorCss: string | null, val: number | null | undefined, rank: number | null, extra = '') =>
-      `<div class="clim-row${extra}"><span class="clim-row-k">${colorCss ? `<i style="background:${colorCss}"></i>` : '<i class="clim-row-ring"></i>'}${label}</span>
-        ${bar(val)}<b>${fmt(val)}</b><span class="clim-row-rank">${rank ? ordinal(rank) : ''}</span></div>`;
+    // value column: the year value and its rank; with a month selected, ▼ year and ▲ month values
+    const row = (g: (typeof GLOBAL_LINES)[number]) => {
+      const yv = v.series[g.key][i];
+      const mv = mo != null ? v.months[g.key][mo] : null;
+      const val = mo != null
+        ? `<b><small>▼</small>${fmt(yv)}</b><b class="clim-row-m"><small>▲</small>${fmt(mv)}</b>`
+        : `<b>${fmt(yv)}</b><span class="clim-row-rank">${ordinal(yearRank[g.key][i])}</span>`;
+      return `<div class="clim-row"><span class="clim-row-k"><i style="background:${swatch(g)}"></i>${g.label}</span>
+        ${bar(g.key, yv, mv)}<span class="clim-row-v">${val}</span></div>`;
+    };
 
+    const when = mo != null ? `${MONTHS[mo % 12]} ${mStart + Math.floor(mo / 12)}` : `${state.year}`;
     const mRank = mo != null ? monthRank.get(mo) : undefined;
-    const monthLabel = mo != null ? MONTHS[mo % 12] : 'Month';
     read.innerHTML = `
-      <p class="label">${mo != null ? 'Month' : 'Year'}</p>
-      <p class="clim-read-when">${mo != null ? `${MONTHS[mo % 12]} ${mStart + Math.floor(mo / 12)}` : state.year}</p>
+      <p class="label clim-read-head"><span>${mo != null ? 'Month' : 'Year'}</span><span>Global °C</span></p>
+      <p class="clim-read-when"><span>${when}</span><span>${fmt(mo != null ? v.monthly[mo] : v.series.Glob[i])}</span></p>
       <div class="clim-rows">
-        <div class="clim-row clim-row--head"><span></span><span></span><span>°C</span><span>rank</span></div>
-        ${GLOBAL_LINES.map(g => row(g.label, swatch(g), v.series[g.key][i], yearRank[g.key][i])).join('')}
-        ${row(monthLabel, null, mo != null ? v.monthly[mo] : null, mRank?.[0] ?? null, mo == null ? ' is-empty' : '')}
+        <div class="clim-row clim-row--head"><span></span><span class="clim-row-head-v">${mo != null ? `▼ ${state.year} · ▲ ${MONTHS[mo % 12]}` : '°C · rank'}</span></div>
+        ${GLOBAL_LINES.map(row).join('')}
       </div>
       <p class="clim-read-note">${mo != null
-        ? `Ranks of ${years.length} years · ${MONTHS[mo % 12]} of ${mRank?.[1]}`
+        ? `Global ${MONTHS[mo % 12]}: ${ordinal(mRank![0])} warmest of ${mRank![1]}`
         : `Ranks of ${years.length} years, warmest first`}</p>`;
 
     zonesEl.innerHTML = `<p class="label">By latitude · ${state.year} · tap to compare</p><ul class="clim-read-zones">` + zones.map(z => {
