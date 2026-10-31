@@ -8,8 +8,37 @@ import zonalCsv from '../data/gistemp/ZonAnn.Ts+dSST.csv?raw';
 import globalCsv from '../data/gistemp/GLB.Ts+dSST.csv?raw';
 import northCsv from '../data/gistemp/NH.Ts+dSST.csv?raw';
 import southCsv from '../data/gistemp/SH.Ts+dSST.csv?raw';
+// predictions: https://data.giss.nasa.gov/gistemp/gmsta/ (the file name carries the issue month)
+import predictionsCsv from '../data/gistemp/Annual_GISTEMP_GMSTA_Predictions_202610.csv?raw';
 
 export const ACCESSED = '2026-10-31';
+export const PREDICTIONS_ISSUE = 'October 2026';
+
+/** 1850–1900, the Paris Agreement reference, is older than NASA's record: NASA estimates it for the
+ *  global mean only, from five other datasets. NASA's own pair for 2024 gives the shift:
+ *  +1.28 °C against 1951–1980 and +1.47 °C against 1850–1900 (nasa.gov, January 2025). */
+export const PARIS_OFFSET = 0.19;
+
+/** NASA's predictions of the global yearly value, one per method family, converted to 1951–1980. */
+export interface Prediction { year: number; method: 'models' | 'sofar' | 'enso'; value: number; ci: number }
+const PREDICTION_METHODS: Record<string, Prediction['method']> = {
+  'NMME Mean': 'models',            // mean of 5 seasonal climate models (the members are left out)
+  'YTD': 'sofar',                   // statistical, from the months observed so far
+  'Recent DJF ENSO': 'enso',        // statistical, from last winter's El Niño index
+  'Projected DJF ENSO': 'enso',     // the same, from next winter's forecast El Niño
+};
+function predictions(): Prediction[] {
+  // the file has Windows line ends, and its columns are read by position: method, year, prediction, 95% range
+  return csvParse(predictionsCsv.replace(/\r/g, '').trim())
+    .map(r => Object.values(r) as string[])
+    .filter(([m]) => PREDICTION_METHODS[m.trim()])
+    .map(([m, year, pred, ci]) => ({
+      year: Number(year),
+      method: PREDICTION_METHODS[m.trim()],
+      value: Math.round((Number(pred) - PARIS_OFFSET) * 1000) / 1000,
+      ci: Math.round(Number(ci) * 1000) / 1000,
+    }));
+}
 
 /** The 8 latitude bands, north to south, with their edges in degrees. */
 const BANDS = [
@@ -69,9 +98,11 @@ export interface ClimateData {
   years: number[];                          // one entry per complete year
   series: Record<string, number[]>;        // annual anomalies (°C vs 1951–1980), aligned on years
   monthly: { start: number; values: (number | null)[]; hem: Record<'NHem' | 'SHem', (number | null)[]> }; // global and hemispheres, from January of `start`
+  predictions: Prediction[];                // NASA's global predictions after the last full year, vs 1951–1980
   zones: typeof ZONES;
   map: ReturnType<typeof worldMap>;         // world map paths, 1000 wide (Equal Earth)
   accessed: string;
+  predictionsIssue: string;
 }
 
 /** '***' marks a month NASA has not published yet. */
@@ -105,7 +136,7 @@ function load(): ClimateData {
     SHem: monthlyOf(southCsv).values.slice(0, values.length),
   };
 
-  return { years, series, monthly: { start: glb.start, values, hem }, zones: ZONES, map: worldMap(), accessed: ACCESSED };
+  return { years, series, monthly: { start: glb.start, values, hem }, predictions: predictions().filter(p => p.year > years[years.length - 1]), zones: ZONES, map: worldMap(), accessed: ACCESSED, predictionsIssue: PREDICTIONS_ISSUE };
 }
 
 export const climate = load();
@@ -127,7 +158,6 @@ export function facts(d: ClimateData = climate) {
 
   const decade = [lastYear - 9, lastYear] as const;
   const arcticRatio = mean(between('64N-90N', ...decade)) / mean(between('Glob', ...decade));
-  const preIndustrial = mean(between('Glob', 1880, 1900));
 
   const n = d.monthly.values.length - 1;
   const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -139,7 +169,8 @@ export function facts(d: ClimateData = climate) {
     lastArctic: series['64N-90N'][last],
     warmestYear: years[warmest],
     warmestValue: glob[warmest],
-    warmestVsPre: glob[warmest] - preIndustrial,
+    warmestVsParis: glob[warmest] + PARIS_OFFSET,
+    predictions: d.predictions,
     aboveSince: years[streak],
     decade,
     arcticRatio,

@@ -793,7 +793,8 @@ main {
 .note { padding-bottom: 72px; }
 .note-head { padding-top: 48px; }
 .note-head .deck { max-width: 52ch; }
-.clim-page .note-head .deck { max-width: none; }   /* the chart is full width, so is its one-line deck */
+.clim-page .note-head .deck { max-width: none; }
+.clim-page code { overflow-wrap: anywhere; }   /* long NASA file names on a phone */   /* the chart is full width, so is its one-line deck */
 .note-source { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 4px 0 0; font: 400 var(--step--1)/1.4 var(--font-mono); color: var(--ink-3); }
 .note-source a { color: var(--accent-text); }
 .note-source a:hover { color: var(--ink); }
@@ -1550,6 +1551,8 @@ main {
 .clim-meter-y::before, .clim-meter-m::before { content: ''; position: absolute; left: -4px; border-inline: 4px solid transparent; }
 .clim-meter-y::before { top: 0; border-top: 5px solid var(--ink); }
 .clim-meter-m::before { bottom: 0; border-bottom: 5px solid var(--ink); }
+.clim-row.is-empty .clim-row-k, .clim-row.is-empty b { color: var(--ink-3); font-weight: 400; }
+.clim-ends .clim-ends-rule { stroke: var(--rule); stroke-width: 1; }
 .clim-row-v small { margin-right: 3px; font-size: 0.7em; color: var(--ink-3); }
 .clim-row .clim-row-m { font-weight: 400; color: var(--ink-2); }
 .clim-read .clim-read-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

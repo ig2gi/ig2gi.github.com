@@ -4,10 +4,16 @@
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ClimateChart from '../../components/ClimateChart.astro';
 import Section from '../../components/notes/Section.astro';
-import { facts, ACCESSED } from '../../lib/gistemp';
+import { facts, ACCESSED, PARIS_OFFSET, PREDICTIONS_ISSUE } from '../../lib/gistemp';
 
 const f = facts();
 const c = (v: number) => `${v >= 0 ? '+' : '−'}${Math.abs(v).toFixed(2)} °C`;
+// NASA's predictions, for the text: the spread of the methods per year
+const predYears = [...new Set(f.predictions.map(p => p.year))].sort();
+const pred = predYears.map(year => {
+  const ps = f.predictions.filter(p => p.year === year);
+  return { year, n: ps.length, lo: Math.min(...ps.map(p => p.value)), hi: Math.max(...ps.map(p => p.value)), ci: ps[0].ci };
+});
 const title = 'Global Surface Temperature Change';
 const deck = `${f.lastYear - f.firstYear + 1} years of NASA temperature records, for the whole planet, every month and every latitude.`;
 
@@ -54,17 +60,31 @@ const versions = [
     <Section n="01" title="What it shows" id="shows">
       <p>Every year since <b>{f.aboveSince}</b> has been warmer than the 1951–1980 mean. The warmest so far is <b>{f.warmestYear}</b>, at {c(f.warmestValue)}. In {f.lastYear} the planet was {c(f.lastGlobal)} above that mean.</p>
       <p>The warming is not even. Over the last ten years ({f.decade[0]}–{f.decade[1]}), the Arctic band warmed <b>{f.arcticRatio.toFixed(1)} times</b> as much as the planet as a whole: {c(f.lastArctic)} in {f.lastYear}. Click the top band, 64–90°N, to see its line pull away from the global one. The North warms faster than the South, which has more ocean.</p>
-      <p>Switch the baseline to 1880–1900, a common stand-in for pre-industrial times, and {f.warmestYear} reaches {c(f.warmestVsPre)}. The 1.5 °C limit in the Paris Agreement is about a twenty-year average, not one year, so a single year at 1.5 °C is a warning, not a crossing.</p>
+      <p>Against 1850–1900, the reference of the Paris Agreement, NASA puts {f.warmestYear} at {c(f.warmestVsParis)}. The 1.5 °C limit is about a twenty-year average, not one year, so a single year near 1.5 °C is a warning, not a crossing.</p>
+      {pred.length > 0 && (
+        <p>NASA also predicts the current and the next year ({PREDICTIONS_ISSUE}). {pred.map(p => p.n > 1
+          ? `For ${p.year}, its methods range from ${c(p.lo)} to ${c(p.hi)}. `
+          : `For ${p.year}: ${c(p.lo)}, give or take ${p.ci.toFixed(2)} °C. `).join('')}Against the record of {c(f.warmestValue)} in {f.warmestYear}, that is close for this year, and likely a new record for next year. Point at {f.lastYear + 1} on the yearly chart to compare the methods.</p>
+      )}
     </Section>
 
     <Section n="02" title="How to read it" id="read">
       <p><b>Yearly mean.</b> The global line, with the Northern (thin) and Southern (dashed) hemispheres. Behind them, one bar per year runs from the coldest to the warmest of the 8 latitude bands: the longer the bar, the more uneven the year. The shaded period is the baseline: the years every value is compared with.</p>
+      <p><b>Predictions.</b> NASA’s predictions of the global value for this year and next are listed in the box under the last full year; the chart only draws measured years. Point at {f.lastYear + 1} to see the methods side by side, each with its 95% range: the mean of five seasonal climate models, a statistical estimate from the months observed so far, and one from the El Niño index.</p>
       <p><b>Every month.</b> The global value of each month, as a strip of colour. Point at a month to see where it ranks among all the same months since {f.firstYear}.</p>
       <p><b>By latitude.</b> 8 bands from the North Pole (top) to the South Pole (bottom). The tropics cover far more of the planet than the poles, so they get more room: each band’s height is half an equal share and half its share of the Earth’s surface. Pure surface would make the poles too thin to read; equal bands, as in 2018, make them look as big as the tropics. The world map under the values shows the same 8 bands at their true latitudes, in the colours of the selected year.</p>
       <p><b>Colour.</b> Blue is colder than the baseline, red is warmer, and the neutral middle is exactly zero.</p>
     </Section>
 
-    <Section n="03" title="Three versions" id="versions">
+    <Section n="03" title="Data" id="data">
+      <p>GISTEMP Team, 2026: <a href="https://data.giss.nasa.gov/gistemp/" target="_blank" rel="noopener noreferrer">GISS Surface Temperature Analysis (GISTEMP), version 4</a>. NASA Goddard Institute for Space Studies. Dataset accessed {ACCESSED}.</p>
+      <p>Four tables of measurements, combined land and ocean: the annual means by zone (<code>ZonAnn.Ts+dSST.csv</code>) and the monthly means for the globe and each hemisphere (<code>GLB</code>, <code>NH</code> and <code>SH.Ts+dSST.csv</code>). NASA expresses every value as a difference from the 1951–1980 mean. The other baseline, 1880–1900, is the start of NASA’s record: it shifts each series by its own 1880–1900 mean, and each month by the mean of the same month, so it works for every latitude band.</p>
+      <p>The Paris Agreement uses 1850–1900, which is older than NASA’s record. NASA estimates it for the global mean only, from five other datasets: in 2024, +1.28 °C against 1951–1980 and +1.47 °C against 1850–1900. The two references are {PARIS_OFFSET} °C apart, and that is how the page converts the 1850–1900 figures. The bands and the hemispheres have no 1850–1900 estimate, which is why the chart offers 1880–1900 instead.</p>
+      <p>Predictions: <a href="https://data.giss.nasa.gov/gistemp/gmsta/" target="_blank" rel="noopener noreferrer">GISTEMP Global Mean Surface Temperature Anomaly Predictions</a>, NASA GISS with IRI, Columbia University, {PREDICTIONS_ISSUE} (<code>Annual_GISTEMP_GMSTA_Predictions_202610.csv</code>). NASA publishes them against 1850–1900; they are shifted here by {PARIS_OFFSET} °C. The chart shows the mean of the five models, not each model.</p>
+      <p>Lenssen, N., G. Schmidt, J. Hansen, M. Menne, A. Persin, R. Ruedy, and D. Zyss, 2019: Improvements in the GISTEMP uncertainty model. J. Geophys. Res. Atmos., 124, no. 12, 6307-6326.</p>
+    </Section>
+
+    <Section n="04" title="Three versions" id="versions">
       <p>I first drew climate data in 2012, and came back to it twice. Each version kept what worked and dropped the rest.</p>
       <ol class="clim-versions">
         {versions.map(v => (
@@ -82,12 +102,6 @@ const versions = [
           </li>
         ))}
       </ol>
-    </Section>
-
-    <Section n="04" title="Data" id="data">
-      <p>GISTEMP Team, 2026: <a href="https://data.giss.nasa.gov/gistemp/" target="_blank" rel="noopener noreferrer">GISS Surface Temperature Analysis (GISTEMP), version 4</a>. NASA Goddard Institute for Space Studies. Dataset accessed {ACCESSED}.</p>
-      <p>Four tables, combined land and ocean: the annual means by zone (<code>ZonAnn.Ts+dSST.csv</code>) and the monthly means for the globe and each hemisphere (<code>GLB</code>, <code>NH</code> and <code>SH.Ts+dSST.csv</code>). NASA expresses every value as a difference from the 1951–1980 mean. The pre-industrial baseline shifts each series by its own 1880–1900 mean, and each month by the mean of the same month.</p>
-      <p>Lenssen, N., G. Schmidt, J. Hansen, M. Menne, A. Persin, R. Ruedy, and D. Zyss, 2019: Improvements in the GISTEMP uncertainty model. J. Geophys. Res. Atmos., 124, no. 12, 6307-6326.</p>
     </Section>
   </article>
 </ProjectLayout>

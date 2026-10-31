@@ -49,6 +49,20 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
   const mCount = data.monthly.values.length;
   const tEnd = mStart + mCount / 12;           // end of the last published month
   const full: [number, number] = [firstYear, tEnd];
+  // NASA's predictions (this year and next, global only) stay off the time axis:
+  // they are listed in the value box and shown in the readout when pointing at the current year
+  const predYears = [...new Set(data.predictions.map(p => p.year))].sort();
+  const lastPred = predYears.length ? predYears[predYears.length - 1] : lastYear;
+  const PRED_METHODS = [
+    { key: 'models', label: 'Models', long: 'mean of 5 climate models' },
+    { key: 'sofar', label: 'So far', long: 'from the months so far' },
+    { key: 'enso', label: 'El Niño', long: 'from the El Niño index' },
+  ] as const;
+  // predictions on the active baseline: the same constant shift as the global yearly series
+  const predictions = (base: Base) => {
+    const off = data.series.Glob[0] - values(base).series.Glob[0];
+    return data.predictions.map(p => ({ ...p, value: p.value - off }));
+  };
 
   // ---------- baselines: shift each series by its own mean over the reference period ----------
   // monthly values per line: Glob is the monthly strip, NHem and SHem feed the readout
@@ -104,6 +118,7 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     year: lastYear,
     month: null as number | null,     // index into monthly values when the month strip is scrubbed
     hoverZone: null as string | null,
+    pred: null as number | null,      // a predicted year under the pointer
   };
 
   // ---------- svg skeleton ----------
@@ -292,7 +307,14 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
         ...GLOBAL_LINES.map(g => ({ text: g.label, v: v.series[g.key][li], color: g.color, dash: g.dash })),
         ...state.pins.map((k, i) => ({ text: zones.find(z => z.key === k)!.label, v: v.series[k][li], color: PIN_COLORS[i], dash: null })),
       ];
-      const bw = 132, rh = 15, bh = 24 + rows.length * rh;
+      // NASA's predictions for the global value, under the last full year
+      const pv = ly === lastYear ? predYears.map(y => {
+        const vals = predictions(state.base).filter(p => p.year === y);
+        const lo = d3.min(vals, p => p.value)!, hi = d3.max(vals, p => p.value)!;
+        return { y, text: vals.length > 1 ? `${fmt(lo)}…${d3.format('.2f')(hi)}` : `${fmt(lo)} ±${vals[0].ci.toFixed(2)}` };
+      }) : [];
+      // a second column, so the box stays as low as the last year's rows
+      const cw = 132, pw = pv.length ? 150 : 0, bw = cw + pw, rh = 15, bh = 24 + Math.max(rows.length, pv.length) * rh;
       const bx = W - m.r - bw - 6, by = A.top + A.h - bh - 6;
       const box = gMain.append('g').attr('class', 'clim-ends').attr('transform', `translate(${bx},${by})`);
       box.append('rect').attr('width', bw).attr('height', bh);
@@ -301,8 +323,17 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
         const y = 32 + k * rh;
         box.append('line').attr('x1', 10).attr('x2', 22).attr('y1', y - 4).attr('y2', y - 4).style('stroke', r.color).style('stroke-dasharray', r.dash);
         box.append('text').attr('x', 28).attr('y', y).text(r.text);
-        box.append('text').attr('class', 'clim-ends-v').attr('x', bw - 10).attr('y', y).text(fmt(r.v));
+        box.append('text').attr('class', 'clim-ends-v').attr('x', cw - 10).attr('y', y).text(fmt(r.v));
       });
+      if (pv.length) {
+        box.append('line').attr('class', 'clim-ends-rule').attr('x1', cw).attr('x2', cw).attr('y1', 8).attr('y2', bh - 8);
+        box.append('text').attr('class', 'clim-ends-year').attr('x', cw + 12).attr('y', 16).text('NASA prediction');
+        pv.forEach((r, k) => {
+          const y = 32 + k * rh;
+          box.append('text').attr('x', cw + 12).attr('y', y).text(r.y);
+          box.append('text').attr('class', 'clim-ends-v').attr('x', bw - 10).attr('y', y).text(r.text);
+        });
+      }
     }
 
     // shared year axis
@@ -393,7 +424,7 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     const { A, B, C } = L;
     const v = values(state.base);
     gCursor.selectAll('*').remove();
-    const t = state.month != null ? mStart + (state.month + 0.5) / 12 : state.year + 0.5;
+    const t = state.pred != null ? state.pred + 0.5 : state.month != null ? mStart + (state.month + 0.5) / 12 : state.year + 0.5;
     const cx = x(t);
     const inView = t >= state.domain[0] && t <= state.domain[1];
 
@@ -407,10 +438,12 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     if (!inView) return;
 
     gCursor.append('line').attr('class', 'clim-cursor-line')
-      .attr('x1', cx).attr('x2', cx).attr('y1', A.top - 4).attr('y2', C.top + C.h);
+      .attr('x1', cx).attr('x2', cx).attr('y1', A.top - 4).attr('y2', state.pred != null ? A.top + A.h : C.top + C.h);
     const label = state.month != null ? `${MONTHS[state.month % 12]} ${mStart + Math.floor(state.month / 12)}` : String(state.year);
-    const lx = Math.max(L.m.l + 24, Math.min(W - L.m.r - 24, cx));
-    gCursor.append('text').attr('class', 'clim-cursor-label').attr('x', lx).attr('y', A.top - 10).text(label);
+    const lx = Math.max(L.m.l + 24, Math.min(W - L.m.r - (state.pred != null ? 52 : 24), cx));
+    gCursor.append('text').attr('class', 'clim-cursor-label').attr('x', lx).attr('y', A.top - 10)
+      .text(state.pred != null ? `${state.pred} · predicted` : label);
+    if (state.pred != null) return;
 
     if (state.month != null) {
       gCursor.append('rect').attr('class', 'clim-cursor-cell')
@@ -433,6 +466,7 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
 
   // fixed layout: the same rows for a year or a month, so nothing below moves while scrubbing
   function updateReadout() {
+    if (state.pred != null) return predictionReadout(state.pred);
     const v = values(state.base);
     const i = years.indexOf(state.year);
     const ref = BASELINES[state.base];
@@ -492,6 +526,36 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     }).join('') + `</ul><p class="clim-read-note">°C compared with the ${ref[0]}–${ref[1]} mean</p>`;
   }
 
+  // a predicted year: the same three rows, one per method; the bar is its 95% range, ▼ the predicted value
+  function predictionReadout(y: number) {
+    const ps = predictions(state.base).filter(p => p.year === y);
+    const bounds = ps.flatMap(p => [p.value - p.ci, p.value + p.ci]);
+    let [s0, s1] = d3.extent(bounds) as [number, number];
+    const pad = Math.max(0.05, (0.4 - (s1 - s0)) / 2);
+    s0 -= pad; s1 += pad;
+    const pos = (d: number) => ((d - s0) / (s1 - s0)) * 100;
+    const one = d3.format('+.1f');
+    const vals = ps.map(p => p.value);
+    const big = ps.length === 1 ? fmt(vals[0]) : `${one(d3.min(vals)!)}–${d3.format('.1f')(d3.max(vals)!)}`;
+    const rows = PRED_METHODS.map(m => {
+      const p = ps.find(q => q.method === m.key);
+      if (!p) return `<div class="clim-row is-empty"><span class="clim-row-k"><i class="clim-row-ring"></i>${m.label}</span><span class="clim-meter"></span><span class="clim-row-v"><b>–</b></span></div>`;
+      const lo = p.value - p.ci, hi = p.value + p.ci;
+      const ramp = d3.range(0, 1.0001, 0.25).map(t => color(lo + t * (hi - lo))).join(',');
+      return `<div class="clim-row" title="${m.long}"><span class="clim-row-k"><i class="clim-row-ring"></i>${m.label}</span>
+        <span class="clim-meter"><i style="left:${pos(lo)}%;right:${100 - pos(hi)}%;background:linear-gradient(to right,${ramp})"></i><em class="clim-meter-y" style="left:${pos(p.value)}%"></em></span>
+        <span class="clim-row-v"><b>${fmt(p.value)}</b><span class="clim-row-rank">±${p.ci.toFixed(2)}</span></span></div>`;
+    }).join('');
+    read.innerHTML = `
+      <p class="label clim-read-head"><span>Prediction</span><span>Global °C</span></p>
+      <p class="clim-read-when"><span>${y}</span><span>${big}</span></p>
+      <div class="clim-rows">
+        <div class="clim-row clim-row--head"><span></span><span class="clim-row-head-v">°C · 95% range</span></div>
+        ${rows}
+      </div>
+      <p class="clim-read-note">NASA GISS, ${data.predictionsIssue}</p>`;
+  }
+
   function renderKey() {
     keyEl.innerHTML = GLOBAL_LINES.map(g => `<span class="clim-key-item"><i style="background:${swatch(g)}"></i>${g.label}</span>`).join('')
       + state.pins.map((k, i) => `<button type="button" class="clim-key-item clim-key-pin" data-zone="${k}" aria-label="Remove ${zones.find(z => z.key === k)!.label}">
@@ -524,7 +588,12 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     const [px, py] = d3.pointer(ev, svg.node());
     const t = x.invert(px);
     const inMonths = py >= L.B.top - 14 && py <= L.B.top + L.B.h + 14;
-    if (inMonths) {
+    state.pred = null;
+    if (!inMonths && Math.floor(t) > lastYear && predYears.length) {
+      state.month = null;
+      state.year = lastYear;
+      state.pred = Math.min(lastPred, Math.floor(t));
+    } else if (inMonths) {
       state.month = Math.max(0, Math.min(mCount - 1, Math.floor((t - mStart) * 12)));
       while (state.month > 0 && data.monthly.values[state.month] == null) state.month--;
       state.year = Math.min(lastYear, mStart + Math.floor(state.month / 12));
@@ -565,7 +634,7 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
 
   svg.on('keydown', (ev: KeyboardEvent) => {
     const step = ev.shiftKey ? 10 : 1;
-    let y = state.year;
+    let y = state.pred ?? state.year;
     if (ev.key === 'ArrowLeft') y -= step;
     else if (ev.key === 'ArrowRight') y += step;
     else if (ev.key === 'Home') y = firstYear;
@@ -573,10 +642,14 @@ export function initClimateChart(root: HTMLElement, data: ClimateData) {
     else return;
     ev.preventDefault();
     state.month = null;
-    state.year = Math.max(firstYear, Math.min(lastYear, y));
+    y = Math.max(firstYear, Math.min(lastPred, y));
+    state.year = Math.min(lastYear, y);
+    state.pred = y > lastYear ? y : null;
     updateCursor();
     updateReadout();
-    status.textContent = `${state.year}: global ${fmt(values(state.base).series.Glob[years.indexOf(state.year)])} °C`;
+    status.textContent = state.pred != null
+      ? `${state.pred}: NASA prediction`
+      : `${state.year}: global ${fmt(values(state.base).series.Glob[years.indexOf(state.year)])} °C`;
   });
 
   zonesEl.addEventListener('click', ev => {
