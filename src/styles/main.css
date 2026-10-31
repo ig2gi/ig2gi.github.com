@@ -745,7 +745,7 @@ main {
    PROJECT FRAME (a dataviz project in its own tab)
    ============================================================ */
 
-/* the dark bar marks the site around projects that keep their own look */
+/* the bar marks the site around projects that keep their own look: the same light band as the site header */
 .project-page { display: flex; flex-direction: column; height: 100vh; height: 100dvh; padding: 0; }
 .project-bar {
     display: flex;
@@ -754,15 +754,14 @@ main {
     gap: 16px;
     min-height: 44px;
     padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
-    background: var(--ink);
-    color: var(--on-ink);
+    background: var(--band);
+    color: var(--ink);
 }
 .project-crumbs { display: flex; align-items: baseline; gap: 10px; min-width: 0; padding-block: 10px; }
-.project-bar .wordmark { flex-shrink: 0; font-size: 1rem; color: var(--on-ink); }
-.project-bar .wordmark em { color: var(--accent); }
-.project-sep { color: color-mix(in srgb, var(--on-ink) 35%, transparent); }
-.project-crumb { flex-shrink: 0; font-size: 0.875rem; color: color-mix(in srgb, var(--on-ink) 75%, transparent); }
-.project-crumb:hover, .project-bar .wordmark:hover { color: var(--accent); }
+.project-bar .wordmark { flex-shrink: 0; font-size: 1rem; color: var(--ink); }
+.project-sep { color: var(--ink-3); }
+.project-crumb { flex-shrink: 0; font-size: 0.875rem; color: var(--ink-2); }
+.project-crumb:hover, .project-bar .wordmark:hover { color: var(--accent-text); }
 .project-title {
     margin: 0;
     overflow: hidden;
@@ -770,9 +769,9 @@ main {
     letter-spacing: normal;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: var(--on-ink);
+    color: var(--ink);
 }
-.project-year { flex-shrink: 0; font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; color: var(--accent); }
+.project-year { flex-shrink: 0; font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; color: var(--accent-text); }
 .project-main { flex: 1; width: 100%; min-height: 0; max-width: none; margin: 0; padding: 0; }
 .project-frame { display: block; width: 100%; height: 100%; border: 0; background: var(--white); }
 
@@ -794,6 +793,7 @@ main {
 .note { padding-bottom: 72px; }
 .note-head { padding-top: 48px; }
 .note-head .deck { max-width: 52ch; }
+.clim-page .note-head .deck { max-width: none; }   /* the chart is full width, so is its one-line deck */
 .note-source { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 4px 0 0; font: 400 var(--step--1)/1.4 var(--font-mono); color: var(--ink-3); }
 .note-source a { color: var(--accent-text); }
 .note-source a:hover { color: var(--ink); }
@@ -1436,4 +1436,148 @@ main {
     .tr-key { padding: 12px 0 0; }
     .tr-key-ai { white-space: normal; }
     .tr-panel ol { columns: 1; }
+}
+
+/* ============================================================
+   CLIMATE CHART (/dataviz/climate-change)
+   Drawn by D3 in the browser (src/lib/climateChart.ts);
+   temperatures use the fixed --temp-* scale, everything else roles
+   ============================================================ */
+
+.clim { margin: 8px 0 24px; padding: 8px 0 8px; border-bottom: 1px solid var(--rule); }
+
+.clim-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-bottom: 4px; }
+.clim-key { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.clim-key-item { display: inline-flex; align-items: center; gap: 7px; padding: 0; font: 400 var(--step--1)/1.6 var(--font-mono); color: var(--ink-2); background: none; border: 0; }
+.clim-key-item i { width: 16px; height: 3px; }
+.clim-key-pin { cursor: pointer; }
+.clim-key-pin span { color: var(--ink-3); }
+.clim-key-pin:hover, .clim-key-pin:hover span { color: var(--ink); }
+
+.clim-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.clim-base { display: inline-flex; align-items: center; gap: 0; }
+.clim-base .label { margin-right: 10px; }
+.clim-base button {
+    padding: 7px 10px; font: 500 var(--step--1)/1 var(--font-mono); color: var(--ink-2);
+    background: transparent; border: 1px solid var(--rule); cursor: pointer;
+}
+.clim-base button + button { border-left: 0; }
+.clim-base button span { color: var(--ink-3); font-weight: 400; }
+.clim-base button[aria-pressed="true"] { color: var(--on-ink); background: var(--ink); border-color: var(--ink); }
+.clim-base button[aria-pressed="true"] span { color: var(--on-ink); opacity: 0.75; }
+.clim-base button:not([aria-pressed="true"]):hover { color: var(--ink); border-color: var(--ink-3); }
+
+.clim-grid { display: grid; grid-template-columns: minmax(0, 1fr) 248px; gap: 28px; }
+.clim-plot { min-width: 0; }
+.clim-svg { display: block; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+/* focusable for the arrow keys; no ring, the cursor line shows where you are */
+.clim-svg:focus, .clim-svg:focus-visible { outline: none; }
+.clim-overlay { fill: transparent; cursor: crosshair; }
+
+.clim-svg text { font: 400 11px var(--font-mono); fill: var(--ink-3); }
+.clim-svg .clim-panel { font: 500 10.5px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--ink-3); }
+.clim-yaxis line { stroke: var(--rule); shape-rendering: crispEdges; }
+.clim-yaxis line.zero { stroke: var(--ink-3); stroke-dasharray: 3 3; }
+.clim-yaxis text, .clim-row-label, .clim-band-labels text { text-anchor: end; }
+.clim-band-labels text.is-pinned { font-weight: 600; }
+.clim-band-labels text.is-hover { fill: var(--ink); }
+.clim-ref { fill: var(--paper-2); }
+.clim-ref--other { fill: none; stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 2 3; shape-rendering: crispEdges; }
+.clim-svg .clim-ref-label { font-size: 10px; fill: var(--ink-3); }
+.clim-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.clim-line--pin { stroke-width: 1.5; }
+.clim-cells rect { shape-rendering: crispEdges; }
+.clim-eq { stroke: var(--paper); stroke-width: 1; shape-rendering: crispEdges; }
+.clim-pin-frame { fill: none; stroke-width: 1.5; }
+.clim-map-band { cursor: pointer; }
+.clim-map-band.is-hover { stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.clim-map-sphere { fill: var(--paper-2); }
+.clim-map-edge { fill: none; stroke: var(--rule); stroke-width: 1; pointer-events: none; }
+.clim-map .clim-pin-frame { fill: none; stroke-width: 1.5; }
+.clim-map-land { fill: var(--ink); fill-opacity: 0.22; stroke: var(--ink); stroke-opacity: 0.25; stroke-width: 0.5; vector-effect: non-scaling-stroke; pointer-events: none; }
+.clim-map .clim-pin-frame { pointer-events: none; }
+.clim-map-fig { max-width: 420px; margin: 20px 0 0; }
+.clim-map-fig figcaption { margin-bottom: 8px; }
+.clim-map-year { color: var(--ink); }
+.clim-map-svg { display: block; }
+.clim-ends rect { fill: var(--paper); fill-opacity: 0.92; stroke: var(--rule); }
+.clim-ends line { stroke-width: 2.5; }
+.clim-svg .clim-ends text { font: 400 10.5px var(--font-mono); fill: var(--ink-2); }
+.clim-svg .clim-ends .clim-ends-year { font-weight: 600; fill: var(--ink); }
+.clim-svg .clim-ends .clim-ends-v { text-anchor: end; fill: var(--ink); font-weight: 500; }
+.clim-axis .domain { stroke: var(--ink-3); }
+.clim-axis line { stroke: var(--ink-3); }
+.clim-axis text { font: 400 10.5px var(--font-mono); fill: var(--ink-3); }
+
+.clim-cursor-line { stroke: var(--ink); stroke-width: 1; shape-rendering: crispEdges; }
+.clim-svg .clim-cursor-label { font: 600 12px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.clim-cursor-dot { fill: var(--surface); stroke-width: 2; }
+.clim-cursor-cell { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+
+.clim-brush .selection { fill: none; stroke: var(--ink); stroke-width: 1.5; shape-rendering: crispEdges; }
+.clim-brush .overlay { cursor: ew-resize; }
+
+/* readout */
+.clim-side { min-width: 0; }
+.clim-read { padding-top: 14px; font-size: var(--step--1); }
+.clim-read p { margin: 0; }
+.clim-read-when { margin-top: 2px !important; font: 600 var(--step-2)/1.1 var(--font-mono); letter-spacing: -0.04em; color: var(--ink); }
+/* four fixed rows: label, bar from zero, value, rank */
+.clim-rows { margin-top: 12px; border-top: 1px solid var(--rule); }
+.clim-row { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr) 3.1rem 2.2rem; align-items: center; gap: 8px; height: 30px; border-bottom: 1px solid var(--rule); }
+.clim-row-k { display: flex; align-items: center; gap: 7px; color: var(--ink-2); white-space: nowrap; }
+.clim-row-k i { flex: none; width: 12px; height: 3px; }
+.clim-row-k i.clim-row-ring { width: 8px; height: 8px; margin-inline: 2px; border: 1.5px solid var(--ink-3); border-radius: 50%; }
+.clim-row b { font: 500 var(--step--1)/1 var(--font-mono); color: var(--ink); text-align: right; }
+.clim-row-rank { font: 400 var(--step--2)/1 var(--font-mono); color: var(--ink-3); text-align: right; }
+.clim-row.is-empty .clim-row-k, .clim-row.is-empty b { color: var(--ink-3); font-weight: 400; }
+.clim-row--head { height: 20px; border-bottom: 0; }
+.clim-row--head span { font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: right; }
+.clim-meter { position: relative; height: 10px; }
+.clim-meter::before { content: ''; position: absolute; left: var(--zero); top: -3px; bottom: -3px; border-left: 1px solid var(--ink-3); }
+.clim-meter i { position: absolute; top: 0; bottom: 0; }
+.clim-read .clim-read-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clim-zones { margin-top: 24px; }
+.clim-zones .clim-read-zones { font-size: var(--step--1); }
+.clim-read-zones { margin: 8px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.clim-read-zones button {
+    display: grid; grid-template-columns: 12px 1fr auto; align-items: center; gap: 8px; width: 100%;
+    padding: 4px 6px 4px 0; font: 400 var(--step--1)/1.4 var(--font-mono); color: var(--ink-2);
+    text-align: left; background: none; border: 0; border-bottom: 1px solid var(--rule); border-left: 3px solid transparent; cursor: pointer;
+}
+.clim-read-zones button i { width: 12px; height: 12px; margin-left: 6px; }
+.clim-read-zones button b { font-weight: 500; color: var(--ink); }
+.clim-read-zones button:hover, .clim-read-zones button.is-hover { background: var(--paper-2); }
+.clim-read-zones button[aria-pressed="true"] { border-left-color: var(--pin); color: var(--ink); font-weight: 600; }
+.clim-read-note { margin-top: 10px !important; font-size: var(--step--2); font-family: var(--font-mono); color: var(--ink-3); }
+
+.clim-foot { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 32px; margin-top: 8px; }
+.clim-legend { flex: 0 0 auto; }
+.clim-help { flex: 1 1 280px; max-width: 70ch; margin: 0; font-size: var(--step--1); color: var(--ink-3); }
+.clim-reset[hidden] { display: none; }
+.clim-noscript { padding: 40px 0; color: var(--ink-3); }
+
+/* three versions */
+.clim-versions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 28px 0 0 !important; padding: 0; list-style: none; }
+.clim-version h3 { margin: 4px 0 6px; font-size: 1.0625rem; letter-spacing: -0.02em; }
+.clim-version p:not(.label) { margin: 0; font-size: var(--step--1); line-height: 1.5; color: var(--ink-2); }
+.clim-version-img { display: block; aspect-ratio: 4 / 3; margin-bottom: 12px; overflow: hidden; background: var(--white); border: 1px solid var(--rule); }
+.clim-version-img img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+a.clim-version-img:hover { border-color: var(--accent); }
+.clim-version-here { display: grid; place-items: center; background: var(--paper-2); border-style: dashed; }
+.clim-version-here .label { color: var(--accent-text); }
+
+@media (max-width: 960px) {
+    .clim-grid { grid-template-columns: 1fr; gap: 8px; }
+    .clim-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; align-items: start; }
+    .clim-zones { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+    .clim-versions { grid-template-columns: 1fr; }
+    .clim-version-img { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 520px) {
+    .clim-side { display: block; }
+    .clim-base .label { display: none; }
+    .clim-base button span { display: none; }
 }

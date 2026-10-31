@@ -1,0 +1,50 @@
+---
+// The interactive temperature chart: controls and readout in HTML, the chart drawn
+// by D3 in the browser (src/lib/climateChart.ts) from the NASA data read at build time.
+import { climate } from '../lib/gistemp';
+---
+
+<div class="clim" data-clim>
+  <div class="clim-bar">
+    <div class="clim-key" aria-label="Lines"></div>
+    <div class="clim-tools">
+      <div class="clim-base" role="group" aria-label="Baseline">
+        <span class="label">Baseline</span>
+        <button type="button" data-base="nasa" aria-pressed="true">1951–1980 <span>NASA</span></button>
+        <button type="button" data-base="pre" aria-pressed="false">1880–1900 <span>pre-industrial</span></button>
+      </div>
+      <button type="button" class="btn btn-small clim-reset" hidden>Reset zoom</button>
+    </div>
+  </div>
+
+  <div class="clim-grid">
+    <div class="clim-plot">
+      <noscript><p class="clim-noscript">The chart needs JavaScript.</p></noscript>
+    </div>
+    <aside class="clim-side">
+      <div class="clim-read" aria-label="Values for the selected year"></div>
+      <figure class="clim-map-fig">
+        <figcaption class="label">Map · <span class="clim-map-year"></span></figcaption>
+        <div class="clim-map"></div>
+        <p class="clim-read-note">The 8 bands at their true latitudes</p>
+      </figure>
+      <div class="clim-zones"></div>
+    </aside>
+  </div>
+
+  <div class="clim-foot">
+    <div class="clim-legend" aria-hidden="true"></div>
+    <p class="clim-help">Move along the chart to pick a year, or a month on the monthly strip. Click a band to draw its line. Drag on the stripes at the top to zoom, double-click to zoom out. Arrow keys work too.</p>
+  </div>
+  <p class="sr-only clim-status" aria-live="polite"></p>
+
+  <script type="application/json" data-clim-data set:html={JSON.stringify(climate)} />
+</div>
+
+<script>
+  import { initClimateChart } from '../lib/climateChart';
+  for (const root of document.querySelectorAll<HTMLElement>('[data-clim]')) {
+    const data = JSON.parse(root.querySelector('[data-clim-data]')!.textContent!);
+    initClimateChart(root, data);
+  }
+</script>

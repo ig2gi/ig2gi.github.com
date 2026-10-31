@@ -18,4 +18,7 @@ export default defineConfig({
   outDir: './dist',
   publicDir: './public',
   trailingSlash: 'never',
+  // pre-bundle the browser-only libraries at dev start, so Vite never finds them mid-session,
+  // re-bundles and leaves an open tab with outdated React chunks ("504 Outdated Optimize Dep")
+  vite: { optimizeDeps: { include: ['d3'] } },
 });

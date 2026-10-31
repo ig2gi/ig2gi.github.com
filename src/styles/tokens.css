@@ -52,6 +52,16 @@
 :root {
     --white: #ffffff;                    /* behind iframes and photos, print */
 
+    /* temperature: a diverging data scale (ColorBrewer RdBu), cold to warm,
+       the same in every theme because blue and red carry the meaning */
+    --temp-c3: #2166ac;
+    --temp-c2: #67a9cf;
+    --temp-c1: #d1e5f0;
+    --temp-0: #f4f3ef;
+    --temp-w1: #fddbc7;
+    --temp-w2: #ef8a62;
+    --temp-w3: #b2182b;
+
     --font-body: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
     --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 

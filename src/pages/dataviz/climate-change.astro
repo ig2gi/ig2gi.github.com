@@ -1,0 +1,93 @@
+---
+// Global surface temperature change, 2026: the third version of a chart first drawn in 2012,
+// now in this repo with NASA GISTEMP v4 data up to the last published month.
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import ClimateChart from '../../components/ClimateChart.astro';
+import Section from '../../components/notes/Section.astro';
+import { facts, ACCESSED } from '../../lib/gistemp';
+
+const f = facts();
+const c = (v: number) => `${v >= 0 ? '+' : '−'}${Math.abs(v).toFixed(2)} °C`;
+const title = 'Global Surface Temperature Change';
+const deck = `${f.lastYear - f.firstYear + 1} years of NASA temperature records, for the whole planet, every month and every latitude.`;
+
+const versions = [
+  {
+    year: '2012',
+    title: 'Climate Change',
+    tech: 'D3.js',
+    image: '/images/portfolio/w5.png',
+    href: '/dataviz/climate-change-2012',
+    text: 'The final challenge of the Knight Center MOOC on infographics. World Bank data, country by country: emissions, energy use, projections for 2045. A first try at the subject, broad and busy.',
+  },
+  {
+    year: '2018',
+    title: 'Global Surface Temperature Change',
+    tech: 'D3.js · Observable',
+    image: '/images/portfolio/gtc.png',
+    href: 'https://observablehq.com/@ig2gi/global-surface-temperature-change',
+    external: true,
+    text: 'One dataset, NASA GISTEMP, and one question: where does it warm? Global lines above, the 8 latitude bands as a heatmap below, a pointer linking the two.',
+  },
+  {
+    year: '2026',
+    title: 'This version',
+    tech: 'D3.js · Astro',
+    text: 'Same data, same layout, more honest: bands sized by surface, a world map of the selected year, a colour scale centred on zero, every month up to the latest one, zoom, and a choice of baseline.',
+  },
+];
+---
+
+<ProjectLayout title={title} year="2012–2026" description={`${title}: ${deck} An interactive chart by Gilbert Perrin.`} article>
+  <article class="wrap note clim-page">
+    <header class="page-head note-head">
+      <h1>{title}</h1>
+      <p class="deck">{deck}</p>
+      <p class="note-source">
+        <span>NASA GISTEMP v4 · {f.firstYear} to {f.lastMonth}</span>
+        <a href="https://observablehq.com/@ig2gi/global-surface-temperature-change" target="_blank" rel="noopener noreferrer">2018 notebook ↗</a>
+      </p>
+    </header>
+
+    <ClimateChart />
+
+    <Section n="01" title="What it shows" id="shows">
+      <p>Every year since <b>{f.aboveSince}</b> has been warmer than the 1951–1980 mean. The warmest so far is <b>{f.warmestYear}</b>, at {c(f.warmestValue)}. In {f.lastYear} the planet was {c(f.lastGlobal)} above that mean.</p>
+      <p>The warming is not even. Over the last ten years ({f.decade[0]}–{f.decade[1]}), the Arctic band warmed <b>{f.arcticRatio.toFixed(1)} times</b> as much as the planet as a whole: {c(f.lastArctic)} in {f.lastYear}. Click the top band, 64–90°N, to see its line pull away from the global one. The North warms faster than the South, which has more ocean.</p>
+      <p>Switch the baseline to 1880–1900, a common stand-in for pre-industrial times, and {f.warmestYear} reaches {c(f.warmestVsPre)}. The 1.5 °C limit in the Paris Agreement is about a twenty-year average, not one year, so a single year at 1.5 °C is a warning, not a crossing.</p>
+    </Section>
+
+    <Section n="02" title="How to read it" id="read">
+      <p><b>Yearly mean.</b> The global line, with the Northern (thin) and Southern (dashed) hemispheres. Behind them, one bar per year runs from the coldest to the warmest of the 8 latitude bands: the longer the bar, the more uneven the year. The shaded period is the baseline: the years every value is compared with.</p>
+      <p><b>Every month.</b> The global value of each month, as a strip of colour. Point at a month to see where it ranks among all the same months since {f.firstYear}.</p>
+      <p><b>By latitude.</b> 8 bands from the North Pole (top) to the South Pole (bottom). The tropics cover far more of the planet than the poles, so they get more room: each band’s height is half an equal share and half its share of the Earth’s surface. Pure surface would make the poles too thin to read; equal bands, as in 2018, make them look as big as the tropics. The world map under the values shows the same 8 bands at their true latitudes, in the colours of the selected year.</p>
+      <p><b>Colour.</b> Blue is colder than the baseline, red is warmer, and the neutral middle is exactly zero.</p>
+    </Section>
+
+    <Section n="03" title="Three versions" id="versions">
+      <p>I first drew climate data in 2012, and came back to it twice. Each version kept what worked and dropped the rest.</p>
+      <ol class="clim-versions">
+        {versions.map(v => (
+          <li class:list={['clim-version', { 'is-current': !v.href }]}>
+            {v.href ? (
+              <a class="clim-version-img" href={v.href} {...(v.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                <img src={v.image} alt={`${v.title}, ${v.year}`} loading="lazy" />
+              </a>
+            ) : (
+              <span class="clim-version-img clim-version-here"><span class="label">You are here</span></span>
+            )}
+            <p class="label">{v.year} · {v.tech}</p>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </li>
+        ))}
+      </ol>
+    </Section>
+
+    <Section n="04" title="Data" id="data">
+      <p>GISTEMP Team, 2026: <a href="https://data.giss.nasa.gov/gistemp/" target="_blank" rel="noopener noreferrer">GISS Surface Temperature Analysis (GISTEMP), version 4</a>. NASA Goddard Institute for Space Studies. Dataset accessed {ACCESSED}.</p>
+      <p>Two tables: the annual means by zone (<code>ZonAnn.Ts+dSST.csv</code>) and the global monthly means (<code>GLB.Ts+dSST.csv</code>), combined land and ocean. NASA expresses every value as a difference from the 1951–1980 mean. The pre-industrial baseline shifts each series by its own 1880–1900 mean, and each month by the mean of the same month.</p>
+      <p>Lenssen, N., G. Schmidt, J. Hansen, M. Menne, A. Persin, R. Ruedy, and D. Zyss, 2019: Improvements in the GISTEMP uncertainty model. J. Geophys. Res. Atmos., 124, no. 12, 6307-6326.</p>
+    </Section>
+  </article>
+</ProjectLayout>

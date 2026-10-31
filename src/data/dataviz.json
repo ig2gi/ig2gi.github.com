@@ -7,7 +7,7 @@
     ],
     "description": "Travel Interactive Visualisation World Map.",
     "company": "Freelance Project",
-    "technology": "HTML5 D3.js CSS3 MapBox/ Node.js\u00ae",
+    "technology": "HTML5 D3.js CSS3 MapBox/ Node.js®",
     "url": "travelmap/sprint1/",
     "image": "/images/portfolio/travelmap.png",
     "category": "freelance",
@@ -23,7 +23,7 @@
     ],
     "description": "A serie of graphs and visualisations of key indicators, generated automatically server side (Node.js) and constantly updated for a 'dashboard' usage.",
     "company": "SOPHiA GENETICS",
-    "technology": "HTML5 D3.js CSS3 / Node.js\u00ae",
+    "technology": "HTML5 D3.js CSS3 / Node.js®",
     "url": "stats/",
     "image": "/images/portfolio/dashboards.png",
     "category": "professional",
@@ -59,7 +59,7 @@
     ],
     "description": "The worldmap displays information about statistics on patient analyses done on the SophiA Data Driven Medicine Platform",
     "company": "SOPHiA GENETICS",
-    "technology": "HTML5 D3.js CSS3 / Node.js\u00ae server + Express",
+    "technology": "HTML5 D3.js CSS3 / Node.js® server + Express",
     "url": "",
     "image": "/images/portfolio/sgmap.png",
     "category": "professional"
@@ -92,6 +92,22 @@
     "open": true,
     "category": "personal",
     "link": "https://observablehq.com/@ig2gi/illusion"
+  },
+  {
+    "id": 20,
+    "title": "Global Surface Temperature Change",
+    "year": [
+      2026
+    ],
+    "description": "NASA temperature records from 1880 to the latest month, by latitude and by month. The third version of a chart I first drew in 2012: bands sized by surface, zoom, and a choice of baseline.",
+    "company": "Personal",
+    "technology": "D3.js Astro",
+    "url": "dataviz/climate-change",
+    "image": "/images/portfolio/climate-change.png",
+    "open": true,
+    "category": "personal",
+    "link": "/dataviz/climate-change",
+    "slug": "climate-change"
   },
   {
     "id": 7,
@@ -206,7 +222,7 @@
     "year": [
       2012
     ],
-    "description": "Data Journalism MOOC: Infographics & Data Visualization. Guardian\u2019s DataBlog post about US state unemployment.",
+    "description": "Data Journalism MOOC: Infographics & Data Visualization. Guardian’s DataBlog post about US state unemployment.",
     "technology": "HTML5 D3.js CSS3",
     "company": "Personal",
     "url": "knightcenter/w4/",
